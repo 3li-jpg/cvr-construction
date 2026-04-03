@@ -13,12 +13,12 @@ const themeInitScript = `
   (() => {
     try {
       const storedTheme = window.localStorage.getItem("theme");
-      const isDark = storedTheme === "dark";
+      const isDark = storedTheme !== "light";
       document.documentElement.classList.toggle("dark", isDark);
       document.documentElement.style.colorScheme = isDark ? "dark" : "light";
     } catch {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.style.colorScheme = "light";
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
     }
   })();
 `;
@@ -176,7 +176,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased dark`}
     >
       <body
         suppressHydrationWarning

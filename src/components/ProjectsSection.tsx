@@ -18,14 +18,20 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function joinClassNames(...values: Array<string | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
+
 function ProjectCard({
   projectIndex,
   setCardRef,
   setImageRef,
+  cardClassName,
 }: {
   projectIndex: number;
   setCardRef: (index: number, node: HTMLDivElement | null) => void;
   setImageRef: (index: number, node: HTMLDivElement | null) => void;
+  cardClassName?: string;
 }) {
   const project = projects[projectIndex];
   const projectDetailHref = `/projects/${project.slug}`;
@@ -40,14 +46,17 @@ function ProjectCard({
           ref={(node) => {
             setCardRef(projectIndex, node);
           }}
-          className="w-full max-w-[30rem] will-change-transform xl:max-w-[34rem]"
+          className={joinClassNames(
+            "w-full transform-gpu will-change-transform",
+            cardClassName
+          )}
         >
           <div className="relative aspect-[4/5] overflow-hidden bg-black">
             <div
               ref={(node) => {
                 setImageRef(projectIndex, node);
               }}
-              className="absolute inset-x-0 top-[-6%] h-[112%] will-change-transform"
+              className="absolute inset-x-0 top-[-6%] h-[112%] transform-gpu will-change-transform"
             >
               <Image
                 src={project.coverImage}
@@ -59,7 +68,7 @@ function ProjectCard({
             </div>
           </div>
           <div className="mt-4 flex items-end justify-between gap-4">
-            <div className="max-w-[70%]">
+            <div className="max-w-[74%] sm:max-w-[70%]">
               <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                 {project.category}
               </p>
@@ -78,8 +87,10 @@ function ProjectCard({
 }
 
 export function ProjectsSection() {
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const desktopCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const desktopImageRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const mobileImageRefs = useRef<Array<HTMLDivElement | null>>([]);
   const leftProjectIndexes = projects
     .map((_, index) => index)
     .filter((index) => index % 2 === 0);
@@ -87,12 +98,20 @@ export function ProjectsSection() {
     .map((_, index) => index)
     .filter((index) => index % 2 === 1);
 
-  const setCardRef = (index: number, node: HTMLDivElement | null) => {
-    cardRefs.current[index] = node;
+  const setDesktopCardRef = (index: number, node: HTMLDivElement | null) => {
+    desktopCardRefs.current[index] = node;
   };
 
-  const setImageRef = (index: number, node: HTMLDivElement | null) => {
-    imageRefs.current[index] = node;
+  const setDesktopImageRef = (index: number, node: HTMLDivElement | null) => {
+    desktopImageRefs.current[index] = node;
+  };
+
+  const setMobileCardRef = (index: number, node: HTMLDivElement | null) => {
+    mobileCardRefs.current[index] = node;
+  };
+
+  const setMobileImageRef = (index: number, node: HTMLDivElement | null) => {
+    mobileImageRefs.current[index] = node;
   };
 
   const projectsHeadingClassName =
@@ -107,32 +126,71 @@ export function ProjectsSection() {
     const updateTransforms = () => {
       frame = 0;
 
-      const viewportHeight = window.innerHeight;
       const isDesktop = window.innerWidth >= 1024;
-      const horizontalScale = isDesktop ? 1 : 0;
+      const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+      const activeCardRefs = isDesktop
+        ? desktopCardRefs.current
+        : mobileCardRefs.current;
+      const activeImageRefs = isDesktop
+        ? desktopImageRefs.current
+        : mobileImageRefs.current;
+      const inactiveCardRefs = isDesktop
+        ? mobileCardRefs.current
+        : desktopCardRefs.current;
+      const inactiveImageRefs = isDesktop
+        ? mobileImageRefs.current
+        : desktopImageRefs.current;
+
+      inactiveCardRefs.forEach((card) => {
+        if (card) {
+          card.style.transform = "translate3d(0, 0, 0)";
+        }
+      });
+
+      inactiveImageRefs.forEach((image) => {
+        if (image) {
+          image.style.transform = "translate3d(0, 0, 0) scale(1.03)";
+        }
+      });
 
       projects.forEach((_, index) => {
-        const card = cardRefs.current[index];
-        const image = imageRefs.current[index];
+        const card = activeCardRefs[index];
+        const image = activeImageRefs[index];
 
         if (!card || !image) return;
 
         const rect = card.getBoundingClientRect();
+
+        if (!isDesktop && (rect.bottom < -120 || rect.top > viewportHeight + 120)) {
+          card.style.transform = "translate3d(0, 0, 0)";
+          image.style.transform = "translate3d(0, 0, 0) scale(1.03)";
+          return;
+        }
+
         const progress = clamp(
           (viewportHeight - rect.top) / (viewportHeight + rect.height),
           0,
           1
         );
-        const cardEase = clamp((progress - 0.08) / 0.84, 0, 1);
-        const outwardDrift = 1 - Math.pow(1 - cardEase, 2);
-        const imageOffset = (0.5 - progress) * 72;
-        const horizontalOffset =
-          projectMotion[index % projectMotion.length].targetX *
-          outwardDrift *
-          horizontalScale;
 
-        card.style.transform = `translate3d(${horizontalOffset.toFixed(2)}px, 0, 0)`;
-        image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.04)`;
+        if (isDesktop) {
+          const cardEase = clamp((progress - 0.08) / 0.84, 0, 1);
+          const outwardDrift = 1 - Math.pow(1 - cardEase, 2);
+          const imageOffset = (0.5 - progress) * 72;
+          const horizontalOffset =
+            projectMotion[index % projectMotion.length].targetX * outwardDrift;
+
+          card.style.transform = `translate3d(${horizontalOffset.toFixed(2)}px, 0, 0)`;
+          image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.04)`;
+          return;
+        }
+
+        const imageOffset = (0.5 - progress) * 34;
+        const settle = clamp((progress - 0.04) / 0.82, 0, 1);
+        const cardOffset = (1 - settle) * 10;
+
+        card.style.transform = `translate3d(0, ${cardOffset.toFixed(2)}px, 0)`;
+        image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.03)`;
       });
     };
 
@@ -142,9 +200,12 @@ export function ProjectsSection() {
       }
     };
 
+    const visualViewport = window.visualViewport;
+
     requestTick();
     window.addEventListener("scroll", requestTick, { passive: true });
     window.addEventListener("resize", requestTick);
+    visualViewport?.addEventListener("resize", requestTick);
 
     return () => {
       if (frame) {
@@ -152,6 +213,7 @@ export function ProjectsSection() {
       }
       window.removeEventListener("scroll", requestTick);
       window.removeEventListener("resize", requestTick);
+      visualViewport?.removeEventListener("resize", requestTick);
     };
   }, []);
 
@@ -166,9 +228,9 @@ export function ProjectsSection() {
           <TextAnimate
             as="h2"
             by="line"
-            animation="blurInUp"
+            animation="slideUp"
             once
-            duration={0.8}
+            duration={0.56}
             className={projectsHeadingClassName}
             segmentClassName="block"
           >
@@ -176,14 +238,31 @@ export function ProjectsSection() {
           </TextAnimate>
         </div>
 
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(17rem,24rem)_minmax(0,1fr)] lg:gap-x-[2vw]">
+        <div className="flex flex-col gap-14 sm:gap-16 lg:hidden">
+          {projects.map((project, projectIndex) => (
+            <div
+              key={project.title}
+              className={projectIndex % 2 === 0 ? "flex justify-end" : "flex justify-start"}
+            >
+              <ProjectCard
+                projectIndex={projectIndex}
+                setCardRef={setMobileCardRef}
+                setImageRef={setMobileImageRef}
+                cardClassName="max-w-[20.5rem] sm:max-w-[24rem]"
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(17rem,24rem)_minmax(0,1fr)] lg:gap-x-[2vw]">
           <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 lg:order-1 lg:gap-[18rem]">
             {leftProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}
                 projectIndex={projectIndex}
-                setCardRef={setCardRef}
-                setImageRef={setImageRef}
+                setCardRef={setDesktopCardRef}
+                setImageRef={setDesktopImageRef}
+                cardClassName="max-w-[30rem] xl:max-w-[34rem]"
               />
             ))}
           </div>
@@ -215,8 +294,9 @@ export function ProjectsSection() {
               <ProjectCard
                 key={projects[projectIndex].title}
                 projectIndex={projectIndex}
-                setCardRef={setCardRef}
-                setImageRef={setImageRef}
+                setCardRef={setDesktopCardRef}
+                setImageRef={setDesktopImageRef}
+                cardClassName="max-w-[30rem] xl:max-w-[34rem]"
               />
             ))}
           </div>
