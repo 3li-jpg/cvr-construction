@@ -40,7 +40,7 @@ export function HeroSection() {
 
   const indicatorAnimation = prefersReducedMotion
     ? { opacity: 1 }
-    : { opacity: 0, animation: "heroFadeIn 0.8s ease 1.2s forwards" };
+    : { opacity: 0, animation: "heroFadeIn 0.8s ease 0.8s forwards" };
 
   return (
     <section
@@ -52,12 +52,13 @@ export function HeroSection() {
         className="absolute inset-x-0 top-[-5%] h-[110%] will-change-transform"
       >
         <Image
-          src="/images/2024-01-13.webp"
-          alt="CVR Construction garden studio project in Victoria BC"
+          src="/images/victoria-garden-studio-hero.png"
+          alt="CVR Construction backyard garden studio in Victoria BC"
           fill
           priority
           fetchPriority="high"
           sizes="100vw"
+          unoptimized
           className="object-cover"
         />
       </div>
@@ -73,7 +74,7 @@ export function HeroSection() {
           startOnView={false}
           once
           duration={0.8}
-          delay={prefersReducedMotion ? 0 : 0.2}
+          delay={prefersReducedMotion ? 0 : 0.05}
           className="max-w-[1100px] text-left text-[4.2rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[5.4rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]"
           segmentClassName="block"
         >

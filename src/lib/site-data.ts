@@ -1,4 +1,5 @@
 export const navItems = [
+  { href: "/showroom", label: "Showroom" },
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
@@ -20,21 +21,21 @@ export const services: ServiceEntry[] = [
     num: "01",
     title: "Whole-Home Renovations",
     desc: "Premium home renovations in Victoria, BC with refined finishes, smarter layouts, and disciplined project delivery from demolition through completion.",
-    previewImage: "/images/2024-01-13-1.webp",
+    previewImage: "/images/victoria-whole-home-renovation-interior.webp",
     galleryImages: [
-      "/images/2024-10-02.webp",
+      "/images/victoria-commercial-interior-renovation.webp",
       "/images/2025-01-18.webp",
-      "/images/2024-01-13-2.webp",
+      "/images/victoria-custom-kitchen-renovation.webp",
     ],
   },
   {
     num: "02",
     title: "Kitchen Renovations",
     desc: "Custom kitchen renovations designed around daily use, durable materials, efficient workflow, and a finish level that elevates the entire home.",
-    previewImage: "/images/2024-01-13-2.webp",
+    previewImage: "/images/victoria-custom-kitchen-renovation.webp",
     galleryImages: [
-      "/images/2025-03-19.webp",
-      "/images/2025-05-06.webp",
+      "/images/victoria-kitchen-bath-material-selections.webp",
+      "/images/victoria-premium-kitchen-interior.webp",
       "/images/2025-01-18.webp",
     ],
   },
@@ -42,10 +43,10 @@ export const services: ServiceEntry[] = [
     num: "03",
     title: "Bathroom Renovations",
     desc: "Bathroom remodels with strong waterproofing discipline, clean tile execution, thoughtful lighting, and premium fixture integration.",
-    previewImage: "/images/2025-06-09.webp",
+    previewImage: "/images/victoria-luxury-bathroom-renovation.webp",
     galleryImages: [
-      "/images/2025-04-21.webp",
-      "/images/2025-11-01.webp",
+      "/images/victoria-premium-bathroom-finish-detail.webp",
+      "/images/victoria-bathroom-vanity-detail.webp",
       "/images/2026-02-26.webp",
     ],
   },
@@ -53,22 +54,22 @@ export const services: ServiceEntry[] = [
     num: "04",
     title: "Commercial Renovations",
     desc: "Commercial upgrades and interior improvements delivered with straightforward coordination, clean sites, and reliable schedule control.",
-    previewImage: "/images/2024-10-02.webp",
+    previewImage: "/images/victoria-commercial-interior-renovation.webp",
     galleryImages: [
       "/images/2025-01-18.webp",
-      "/images/2024-10-02.webp",
-      "/images/2024-01-13-1.webp",
+      "/images/victoria-commercial-interior-renovation.webp",
+      "/images/victoria-whole-home-renovation-interior.webp",
     ],
   },
   {
     num: "05",
     title: "Garden Studios & Custom Spaces",
     desc: "Compact custom builds, secondary spaces, and high-value additions that expand how a property works without sacrificing design quality.",
-    previewImage: "/images/2024-01-13.webp",
+    previewImage: "/images/victoria-garden-studio-exterior.webp",
     galleryImages: [
-      "/images/2024-01-13.webp",
-      "/images/2024-01-24.webp",
-      "/images/2024-01-24-2.webp",
+      "/images/victoria-garden-studio-exterior.webp",
+      "/images/victoria-home-entry-renovation-exterior.webp",
+      "/images/victoria-custom-garden-studio-angle.webp",
     ],
   },
 ];
@@ -85,25 +86,25 @@ export const processSteps: ProcessStep[] = [
     num: "01",
     title: "Consult & Site Review",
     desc: "We start by understanding your goals, the space, the investment range, and the level of finish you want. That early clarity keeps the project grounded and realistic from day one.",
-    image: "/images/2024-01-24.webp",
+    image: "/images/victoria-home-entry-renovation-exterior.webp",
   },
   {
     num: "02",
     title: "Scope & Pricing",
     desc: "We define the work, outline the sequencing, and build a quote structure that makes expectations clear. Materials, assumptions, and priorities are aligned before construction begins.",
-    image: "/images/2025-03-19.webp",
+    image: "/images/victoria-kitchen-bath-material-selections.webp",
   },
   {
     num: "03",
     title: "Build & Coordinate",
     desc: "Once work starts, we keep the site organized, the communication direct, and the quality bar high. Every trade and finish is coordinated to protect the final result.",
-    image: "/images/2025-05-06.webp",
+    image: "/images/victoria-premium-kitchen-interior.webp",
   },
   {
     num: "04",
     title: "Walkthrough & Handover",
     desc: "We finish with a final review, punch-list closure, and a clean handover. The goal is simple: a completed space that feels polished, confident, and ready to live in.",
-    image: "/images/2025-04-21.webp",
+    image: "/images/victoria-premium-bathroom-finish-detail.webp",
   },
 ];
 
@@ -142,12 +143,12 @@ export const projects: ProjectEntry[] = [
       "A compact backyard studio designed to feel calm, durable, and properly integrated into a wooded residential property.",
     intro:
       "This project focused on building a secondary space that felt intentional rather than temporary. The result is a clean-lined garden studio with better utility, stronger detailing, and a finish quality that matches the main property.",
-    heroImage: "/images/2024-01-13.webp",
-    coverImage: "/images/2024-01-13.webp",
+    heroImage: "/images/victoria-garden-studio-exterior.webp",
+    coverImage: "/images/victoria-garden-studio-exterior.webp",
     galleryImages: [
-      "/images/2024-01-13.webp",
-      "/images/2024-01-24-2.webp",
-      "/images/2024-01-24.webp",
+      "/images/victoria-garden-studio-exterior.webp",
+      "/images/victoria-custom-garden-studio-angle.webp",
+      "/images/victoria-home-entry-renovation-exterior.webp",
     ],
     scope: [
       "Site review and planning",
@@ -186,11 +187,11 @@ export const projects: ProjectEntry[] = [
       "A character-home kitchen renovation centered on better circulation, stronger material contrast, and a more composed working layout.",
     intro:
       "The brief was to make the kitchen feel sharper, calmer, and more efficient without stripping away the character of the home. The work focused on layout discipline, cleaner lines, and details that would hold up to daily use.",
-    heroImage: "/images/2025-05-06.webp",
-    coverImage: "/images/2024-01-13-2.webp",
+    heroImage: "/images/victoria-premium-kitchen-interior.webp",
+    coverImage: "/images/victoria-custom-kitchen-renovation.webp",
     galleryImages: [
-      "/images/2024-01-13-2.webp",
-      "/images/2025-05-06.webp",
+      "/images/victoria-custom-kitchen-renovation.webp",
+      "/images/victoria-premium-kitchen-interior.webp",
       "/images/2025-01-18.webp",
     ],
     scope: [
@@ -230,12 +231,12 @@ export const projects: ProjectEntry[] = [
       "A bathroom remodel built around cleaner lines, stronger waterproofing discipline, and a higher-end finish standard.",
     intro:
       "This remodel focused on making a compact bathroom feel quieter and more refined. The design direction prioritized restraint, material consistency, and better coordination between tile, vanity, plumbing fixtures, and lighting.",
-    heroImage: "/images/2025-06-09.webp",
-    coverImage: "/images/2025-06-09.webp",
+    heroImage: "/images/victoria-luxury-bathroom-renovation.webp",
+    coverImage: "/images/victoria-luxury-bathroom-renovation.webp",
     galleryImages: [
-      "/images/2025-06-09.webp",
-      "/images/2025-11-01.webp",
-      "/images/2025-04-21.webp",
+      "/images/victoria-luxury-bathroom-renovation.webp",
+      "/images/victoria-bathroom-vanity-detail.webp",
+      "/images/victoria-premium-bathroom-finish-detail.webp",
     ],
     scope: [
       "Demolition and waterproofing prep",
@@ -274,12 +275,12 @@ export const projects: ProjectEntry[] = [
       "A front entry rebuild that improved first impression, weather resilience, and the overall sense of arrival at the property.",
     intro:
       "The goal was to turn a weak first impression into a stronger arrival sequence. The work focused on proportion, exterior durability, and cleaner transitions between structure, cladding, and the approach to the home.",
-    heroImage: "/images/2024-01-24-1.webp",
-    coverImage: "/images/2024-01-24-1.webp",
+    heroImage: "/images/victoria-front-entry-rebuild.webp",
+    coverImage: "/images/victoria-front-entry-rebuild.webp",
     galleryImages: [
-      "/images/2024-01-24-1.webp",
-      "/images/2024-10-02.webp",
-      "/images/2024-01-24.webp",
+      "/images/victoria-front-entry-rebuild.webp",
+      "/images/victoria-commercial-interior-renovation.webp",
+      "/images/victoria-home-entry-renovation-exterior.webp",
     ],
     scope: [
       "Entry rebuild and exterior detailing",
@@ -341,7 +342,7 @@ export const journalPosts: JournalEntry[] = [
       "The best renovation teams combine clear scope, realistic scheduling, premium craftsmanship, and steady communication from first walkthrough to final handover.",
     description:
       "How to evaluate renovation contractors in Victoria, compare communication quality, and look for real signs of disciplined project delivery.",
-    heroImage: "/images/2024-01-13.webp",
+    heroImage: "/images/victoria-garden-studio-exterior.webp",
     readingTime: "4 min read",
     keyTakeaways: [
       "Scope clarity matters more than sales polish.",
@@ -381,7 +382,7 @@ export const journalPosts: JournalEntry[] = [
       "High-value renovations start with smart layout decisions, durable material selections, and a builder who can coordinate finishes without losing momentum on site.",
     description:
       "A practical guide to planning kitchens and bathrooms with better layout decisions, durable finish choices, and cleaner execution.",
-    heroImage: "/images/2025-06-09.webp",
+    heroImage: "/images/victoria-luxury-bathroom-renovation.webp",
     readingTime: "5 min read",
     keyTakeaways: [
       "Layout quality usually matters more than expensive add-ons.",
@@ -421,7 +422,7 @@ export const journalPosts: JournalEntry[] = [
       "Lasting renovation work comes from disciplined prep, strong site management, and details resolved properly before the final layer goes in.",
     description:
       "What separates premium renovations from cosmetic upgrades, and why prep, sequencing, and detail resolution matter so much.",
-    heroImage: "/images/2025-05-06.webp",
+    heroImage: "/images/victoria-premium-kitchen-interior.webp",
     readingTime: "4 min read",
     keyTakeaways: [
       "The hidden work is what determines whether the visible work lasts.",
@@ -461,47 +462,47 @@ export function getJournalPostBySlug(slug: string) {
 export const galleryItems = [
   {
     title: "Forest Garden Studio Exterior",
-    image: "/images/2024-01-13.webp",
+    image: "/images/victoria-garden-studio-exterior.webp",
     category: "Custom Space",
   },
   {
     title: "Kitchen Renovation",
-    image: "/images/2024-01-13-2.webp",
+    image: "/images/victoria-custom-kitchen-renovation.webp",
     category: "Kitchen",
   },
   {
     title: "Luxury Bathroom",
-    image: "/images/2025-06-09.webp",
+    image: "/images/victoria-luxury-bathroom-renovation.webp",
     category: "Bathroom",
   },
   {
     title: "Vanity Detail",
-    image: "/images/2025-04-21.webp",
+    image: "/images/victoria-premium-bathroom-finish-detail.webp",
     category: "Bathroom",
   },
   {
     title: "Character Kitchen",
-    image: "/images/2025-05-06.webp",
+    image: "/images/victoria-premium-kitchen-interior.webp",
     category: "Kitchen",
   },
   {
     title: "Utility Room Fit-Out",
-    image: "/images/2024-10-02.webp",
+    image: "/images/victoria-commercial-interior-renovation.webp",
     category: "Interior",
   },
   {
     title: "Front Entry Rebuild",
-    image: "/images/2024-01-24-1.webp",
+    image: "/images/victoria-front-entry-rebuild.webp",
     category: "Exterior",
   },
   {
     title: "Bathroom Remodel Detail",
-    image: "/images/2025-11-01.webp",
+    image: "/images/victoria-bathroom-vanity-detail.webp",
     category: "Bathroom",
   },
   {
     title: "Garden Studio Exterior Angle",
-    image: "/images/2024-01-24-2.webp",
+    image: "/images/victoria-custom-garden-studio-angle.webp",
     category: "Custom Space",
   },
 ] as const;

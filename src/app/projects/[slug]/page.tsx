@@ -160,6 +160,7 @@ export default async function ProjectDetailPage({
                 alt={project.title}
                 fill
                 priority
+                quality={90}
                 sizes="(max-width: 1023px) 100vw, 65vw"
                 className="object-cover"
               />
@@ -225,6 +226,7 @@ export default async function ProjectDetailPage({
 	                    alt={`${project.title} image ${index + 1}`}
 	                    fill
 	                    loading="eager"
+	                    quality={90}
 	                    sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
 	                    className="object-cover"
 	                  />
@@ -294,6 +296,7 @@ export default async function ProjectDetailPage({
                         src={relatedProject.coverImage}
                         alt={relatedProject.title}
                         fill
+                        quality={90}
                         sizes="(max-width: 639px) 100vw, 224px"
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       />

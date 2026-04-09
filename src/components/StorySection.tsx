@@ -9,9 +9,10 @@ export function StorySection() {
       {/* Left: full-bleed image — slides in from left */}
       <Reveal direction="left" delay={0} duration={1.2} distance={100} className="relative w-full lg:min-h-screen lg:w-1/2 aspect-[4/5] flex-shrink-0 overflow-hidden bg-black lg:aspect-auto">
         <Image
-          src="/images/2025-05-06.webp"
+          src="/images/victoria-premium-kitchen-interior.webp"
           alt="Custom kitchen renovation by CVR Construction"
           fill
+          quality={90}
           sizes="(max-width: 1023px) 100vw, 50vw"
           className="object-cover"
         />

@@ -131,6 +131,7 @@ export function ProcessSection() {
                           src={step.image}
                           alt={step.title}
                           fill
+                          quality={90}
                           sizes="(max-width: 1023px) calc(100vw - 2.5rem), 928px"
                           className="object-cover object-center"
                         />

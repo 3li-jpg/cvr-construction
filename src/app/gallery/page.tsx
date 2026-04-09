@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Browse the CVR Construction image gallery featuring kitchens, bathrooms, custom spaces, and exterior upgrades from projects across Victoria, BC.",
   path: "/gallery",
-  image: galleryItems[0]?.image ?? "/images/2024-01-13.webp",
+  image: galleryItems[0]?.image ?? "/images/victoria-garden-studio-exterior.webp",
   imageAlt: "Project gallery by CVR Construction in Victoria BC",
 });
 
@@ -55,6 +55,7 @@ export default function GalleryPage() {
                       alt={item.title}
                       fill
                       priority={index < 2}
+                      quality={90}
                       sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 40vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />

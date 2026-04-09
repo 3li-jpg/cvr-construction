@@ -47,9 +47,10 @@ export function ShowcaseSection() {
         className="absolute inset-x-0 top-[-5%] h-[110%] will-change-transform"
       >
         <Image
-          src="/images/2025-06-09.webp"
+          src="/images/victoria-luxury-bathroom-renovation.webp"
           alt="CVR Construction bathroom renovation in Victoria BC"
           fill
+          quality={90}
           sizes="100vw"
           className="object-cover"
         />

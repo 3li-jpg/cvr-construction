@@ -7,7 +7,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Learn how CVR Construction approaches premium renovations in Victoria, BC through clear planning, disciplined execution, and detail-driven craftsmanship.",
   path: "/about",
-  image: "/images/2025-11-01.webp",
+  image: "/images/victoria-bathroom-vanity-detail.webp",
   imageAlt: "Bathroom renovation detail by CVR Construction",
 });
 

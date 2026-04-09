@@ -145,21 +145,6 @@ export function Footer({ showCta = false }: FooterProps) {
           </Reveal>
         </div>
       </div>
-
-      {/* Giant CVR text at the bottom */}
-      <div className="relative h-[27vw] w-full overflow-hidden md:h-[22vw] lg:h-[19vw]">
-        <h3
-          className="absolute bottom-0 left-1/2 w-max -translate-x-1/2 select-none text-center text-[30vw] font-black uppercase leading-[0.72] tracking-[-0.05em] md:text-[24vw] lg:text-[21vw]"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.25) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
-        >
-          CVR
-        </h3>
-      </div>
     </footer>
   );
 }

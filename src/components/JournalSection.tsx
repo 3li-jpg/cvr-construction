@@ -60,6 +60,7 @@ export function JournalSection() {
                   src={post.heroImage}
                   alt={post.title}
                   fill
+                  quality={90}
                   sizes="(max-width: 767px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />

@@ -10,7 +10,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Contact CVR Construction in Victoria, BC for premium renovations, kitchens, bathrooms, custom spaces, and commercial upgrades.",
   path: "/contact",
-  image: "/images/2024-01-24-1.webp",
+  image: "/images/victoria-front-entry-rebuild.webp",
   imageAlt: "Front entry rebuild by CVR Construction in Victoria BC",
 });
 

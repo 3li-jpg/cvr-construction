@@ -47,6 +47,7 @@ export function ServicesSection() {
                 alt={activeService.title}
                 width={960}
                 height={1200}
+                quality={90}
                 sizes="(max-width: 1279px) 100vw, 300px"
                 className="aspect-[4/5] w-full object-cover"
               />
@@ -120,6 +121,7 @@ export function ServicesSection() {
                                   alt={`${service.title} reference ${imageIndex + 1}`}
                                   width={1200}
                                   height={980}
+                                  quality={90}
                                   sizes="(max-width: 639px) 100vw, (max-width: 1279px) 33vw, 250px"
                                   className="aspect-[1.22/1] h-full w-full object-cover"
                                 />

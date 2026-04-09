@@ -44,10 +44,11 @@ export function AboutPage() {
           <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-end">
             <div className="relative aspect-[1.38/1] overflow-hidden bg-black">
               <Image
-                src="/images/2025-11-01.webp"
+                src="/images/victoria-bathroom-vanity-detail.webp"
                 alt="Bathroom renovation detail by CVR Construction"
                 fill
                 priority
+                quality={90}
                 sizes="(max-width: 1023px) 100vw, 60vw"
                 className="object-cover"
               />

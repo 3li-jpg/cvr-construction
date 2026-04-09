@@ -13,7 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Read project-planning and renovation insights from CVR Construction, including guidance on kitchens, bathrooms, contractor selection, and premium finish quality.",
   path: "/journals",
-  image: journalPosts[0]?.heroImage ?? "/images/2024-01-13.webp",
+  image: journalPosts[0]?.heroImage ?? "/images/victoria-garden-studio-exterior.webp",
   imageAlt: "Renovation planning journal by CVR Construction",
 });
 
@@ -67,6 +67,7 @@ export default function JournalsPage() {
                 alt={featuredPost.title}
                 fill
                 priority
+                quality={90}
                 sizes="(max-width: 1023px) 100vw, 60vw"
                 className="object-cover"
               />
@@ -118,6 +119,7 @@ export default function JournalsPage() {
                     src={post.heroImage}
                     alt={post.title}
                     fill
+                    quality={90}
                     sizes="(max-width: 639px) 100vw, 176px"
                     className="object-cover"
                   />

@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRouteDates: Record<string, Date> = {
     "": latestSiteUpdate,
     "/about": latestSiteUpdate,
+    "/showroom": latestSiteUpdate,
     "/projects": latestProjectUpdate ? new Date(latestProjectUpdate) : latestSiteUpdate,
     "/journals": latestJournalUpdate ? new Date(latestJournalUpdate) : latestSiteUpdate,
     "/gallery": latestProjectUpdate ? new Date(latestProjectUpdate) : latestSiteUpdate,
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/about",
+    "/showroom",
     "/projects",
     "/journals",
     "/gallery",

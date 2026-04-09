@@ -62,9 +62,10 @@ export function StudioSection() {
           <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-xs">
             <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
               <Image
-                src="/images/2025-11-01.webp"
+                src="/images/victoria-bathroom-vanity-detail.webp"
                 alt="CVR Construction bathroom renovation detail"
                 fill
+                quality={90}
                 sizes="(max-width: 1023px) 100vw, 320px"
                 className="object-cover"
               />

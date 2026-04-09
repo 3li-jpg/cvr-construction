@@ -62,6 +62,7 @@ function ProjectCard({
                 src={project.coverImage}
                 alt={project.title}
                 fill
+                quality={90}
                 sizes="(max-width: 1023px) 100vw, 34rem"
                 className="object-cover brightness-[0.92] transition-[filter] duration-500 ease-out group-hover:brightness-100"
               />

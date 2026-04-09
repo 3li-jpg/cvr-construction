@@ -102,7 +102,7 @@ export default async function JournalDetailPage({
       name: "CVR Construction",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.cvrconstruction.ca/images/2024-01-13.webp",
+        url: "https://www.cvrconstruction.ca/images/victoria-garden-studio-exterior.webp",
       },
     },
   };
@@ -150,6 +150,7 @@ export default async function JournalDetailPage({
               alt={post.title}
               fill
               priority
+              quality={90}
               sizes="(max-width: 1023px) 100vw, 1280px"
               className="object-cover"
             />
@@ -228,6 +229,7 @@ export default async function JournalDetailPage({
                         src={relatedPost.heroImage}
                         alt={relatedPost.title}
                         fill
+                        quality={90}
                         sizes="(max-width: 639px) 100vw, 176px"
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       />

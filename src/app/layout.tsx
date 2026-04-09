@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/2024-01-13.webp",
+        url: "/images/victoria-garden-studio-exterior.webp",
         width: 1360,
         height: 765,
         alt: "CVR Construction custom garden studio project in Victoria BC",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "CVR Construction | Premium Construction Company in Victoria, BC",
     description:
       "Victoria, BC construction company for premium renovations, kitchens, bathrooms, custom spaces, and commercial upgrades.",
-    images: ["/images/2024-01-13.webp"],
+    images: ["/images/victoria-garden-studio-exterior.webp"],
   },
   robots: {
     index: true,
@@ -89,7 +89,7 @@ const localBusinessSchema = {
   name: "CVR Construction Ltd.",
   alternateName: "CVR Construction",
   url: "https://www.cvrconstruction.ca",
-  image: "https://www.cvrconstruction.ca/images/2024-01-13.webp",
+  image: "https://www.cvrconstruction.ca/images/victoria-garden-studio-exterior.webp",
   description:
     "CVR Construction is a Victoria, BC construction company specializing in premium renovations, kitchen and bathroom remodels, custom spaces, and commercial upgrades across Greater Victoria and Vancouver Island.",
   telephone: "+1-250-880-1270",
