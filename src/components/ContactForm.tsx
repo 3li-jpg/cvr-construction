@@ -423,7 +423,7 @@ export function ContactForm() {
           data-analytics-event="contact_primary_cta_clicked"
           data-analytics-label="open_whatsapp_draft"
           data-analytics-location="contact-form"
-          className="tracking-[0.08em] px-8 text-[0.9rem]"
+          className="px-4.5 text-[0.68rem] tracking-[0.08em] md:px-5 md:text-[0.76rem]"
           disabled={submitState === "sending"}
           type="submit"
         >

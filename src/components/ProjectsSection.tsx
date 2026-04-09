@@ -304,7 +304,7 @@ export function ProjectsSection() {
         </div>
 
         <div className="flex justify-center pt-16 sm:pt-20 lg:pt-28">
-          <InteractiveHoverButton href="/projects" className="px-8 text-sm font-bold tracking-widest">
+          <InteractiveHoverButton href="/projects" className="px-4.5 text-[0.68rem] font-bold tracking-[0.12em] md:px-5 md:text-[0.76rem] md:tracking-[0.12em]">
             VIEW ALL PROJECTS
           </InteractiveHoverButton>
         </div>

@@ -21,7 +21,7 @@ function ContactLink({
   return (
     <a
       href={href}
-      className="inline-flex min-h-11 items-center justify-center rounded-full border border-black bg-black px-6 py-4 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white dark:bg-white dark:text-black"
+      className="inline-flex min-h-9 self-start items-center justify-center rounded-full border border-black bg-black px-4.5 py-2.5 text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-white transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white dark:bg-white dark:text-black md:min-h-11 md:px-5 md:py-3 md:text-[0.76rem] md:tracking-[0.12em]"
     >
       {label}
     </a>

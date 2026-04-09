@@ -110,6 +110,8 @@ export function Navbar() {
   const hiddenMenuTabIndex = isOpen ? 0 : -1;
   const whiteHeaderTabIndex = showExpandedWhiteNav ? 0 : -1;
   const blackHeaderTabIndex = showExpandedBlackNav ? 0 : -1;
+  const desktopActionClassName =
+    "min-h-11 whitespace-nowrap px-5 py-3 text-[0.76rem] tracking-[0.12em]";
 
   return (
     <>
@@ -187,11 +189,11 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <InteractiveHoverButton
             href="/contact"
-            className="whitespace-nowrap px-7 py-3.5 text-[0.78rem]"
+            className={desktopActionClassName}
           >
             CONTACT US
           </InteractiveHoverButton>
-          <AnimatedThemeToggler className="h-12 w-12 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
+          <AnimatedThemeToggler className="h-11 w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
           <button
             ref={desktopMenuButtonRef}
             type="button"
@@ -200,7 +202,7 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={() => setIsOpen((current) => !current)}
-            className="whitespace-nowrap rounded-full bg-[#e6e6e2] px-7 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className={`${desktopActionClassName} rounded-full bg-[#e6e6e2] font-semibold uppercase text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black`}
           >
             {isOpen ? "CLOSE" : "MENU"}
           </button>

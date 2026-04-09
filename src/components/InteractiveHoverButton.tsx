@@ -21,7 +21,7 @@ function ArrowRightIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-3.5 w-3.5 md:h-4 md:w-4"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -45,8 +45,8 @@ export function InteractiveHoverButton({
 }: InteractiveHoverButtonProps) {
   const sizeClasses =
     size === "sm"
-      ? "min-h-11 px-4 py-2.5 text-[0.72rem]"
-      : "px-6 py-4 text-[0.82rem]";
+      ? "min-h-10 px-3 py-1.5 text-[0.62rem] md:min-h-11 md:px-4 md:py-2.5 md:text-[0.72rem]"
+      : "min-h-9 px-4 py-2 text-[0.66rem] md:min-h-11 md:px-5 md:py-3 md:text-[0.76rem]";
 
   const containerClasses =
     variant === "light"
@@ -69,7 +69,7 @@ export function InteractiveHoverButton({
       : "focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black";
 
   const buttonClasses = joinClassNames(
-    "group relative inline-flex w-fit cursor-pointer items-center justify-center overflow-hidden rounded-full border font-semibold uppercase tracking-[0.12em] transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2",
+    "group relative inline-flex w-fit self-start cursor-pointer items-center justify-center overflow-hidden rounded-full border font-semibold uppercase tracking-[0.1em] md:tracking-[0.12em] transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2",
     sizeClasses,
     containerClasses,
     focusClasses,
@@ -81,7 +81,7 @@ export function InteractiveHoverButton({
       <div className="relative z-[1] flex items-center justify-center gap-2">
         <div
           className={joinClassNames(
-            "h-2 w-2 rounded-full transition-transform duration-300 ease-out group-hover:scale-[90]",
+            "h-1.5 w-1.5 rounded-full transition-transform duration-300 ease-out group-hover:scale-[90] md:h-2 md:w-2",
             dotClasses
           )}
         />
@@ -91,7 +91,7 @@ export function InteractiveHoverButton({
       </div>
       <div
         className={joinClassNames(
-          "pointer-events-none absolute inset-0 z-10 flex items-center justify-center gap-2 px-5 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100",
+          "pointer-events-none absolute inset-0 z-10 flex items-center justify-center gap-2 px-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 md:px-5",
           "translate-x-8",
           overlayClasses
         )}
