@@ -40,7 +40,7 @@ export function ShowcaseSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full h-screen relative overflow-hidden bg-black"
+      className="relative h-[62svh] min-h-[62svh] w-full overflow-hidden bg-black md:h-[72dvh] md:min-h-[72dvh] lg:h-[78dvh] lg:min-h-[78dvh]"
     >
       <div
         ref={imageWrapRef}

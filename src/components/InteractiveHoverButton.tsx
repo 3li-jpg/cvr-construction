@@ -95,6 +95,7 @@ export function InteractiveHoverButton({
           "translate-x-8",
           overlayClasses
         )}
+        aria-hidden="true"
       >
         <span>{children}</span>
         <ArrowRightIcon />

@@ -5,9 +5,8 @@ import { Reveal } from "@/components/Reveal";
 
 export function StorySection() {
   return (
-    <section className="w-full bg-white text-black flex flex-col lg:flex-row min-h-screen overflow-hidden">
-      {/* Left: full-bleed image — slides in from left */}
-      <Reveal direction="left" delay={0} duration={1.2} distance={100} className="relative w-full lg:min-h-screen lg:w-1/2 aspect-[4/5] flex-shrink-0 overflow-hidden bg-black lg:aspect-auto">
+    <section className="flex min-h-[78svh] w-full flex-col overflow-hidden bg-white text-black md:min-h-[82dvh] lg:flex-row">
+      <Reveal direction="left" delay={0} duration={1.2} distance={100} className="relative aspect-[4/5] w-full flex-shrink-0 overflow-hidden bg-black lg:min-h-[82dvh] lg:w-1/2 lg:aspect-auto">
         <Image
           src="/images/victoria-premium-kitchen-interior.webp"
           alt="Custom kitchen renovation by CVR Construction"
@@ -18,8 +17,7 @@ export function StorySection() {
         />
       </Reveal>
 
-      {/* Right: text content — slides in from right */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-20 md:px-12 lg:px-16 xl:px-20">
+      <div className="flex w-full flex-col justify-center px-8 py-16 md:px-12 md:py-18 lg:w-1/2 lg:px-16 xl:px-20">
         <Reveal direction="up" delay={0.2} duration={0.8}>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black mb-10 flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-black" />

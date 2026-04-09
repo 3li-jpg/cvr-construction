@@ -1,10 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { trackEvent } from "@/lib/analytics";
 
-type SubmitState = "idle" | "sending" | "sent";
+type SubmitState = "idle" | "sending" | "redirecting" | "sent" | "fallback";
+type FieldName =
+  | "firstName"
+  | "lastName"
+  | "email"
+  | "organization"
+  | "region"
+  | "subject"
+  | "message";
+
+type FormValues = Record<FieldName, string>;
+
+type FormErrors = Partial<Record<FieldName, string>>;
+
+const DRAFT_STORAGE_KEY = "cvr-contact-draft";
+
+const initialValues: FormValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  organization: "",
+  region: "",
+  subject: "",
+  message: "",
+};
 
 function buildWhatsAppMessage(data: {
   firstName: string;
@@ -31,51 +55,204 @@ function buildWhatsAppMessage(data: {
   return encodeURIComponent(lines.join("\n"));
 }
 
+function validateField(name: FieldName, value: string) {
+  const trimmedValue = value.trim();
+
+  if (name === "organization") {
+    return "";
+  }
+
+  if (!trimmedValue) {
+    return "This field is required.";
+  }
+
+  if (name === "email") {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(trimmedValue)) {
+      return "Enter a valid email address.";
+    }
+  }
+
+  return "";
+}
+
 export function ContactForm() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
-  const fieldClassName =
-    "h-18 border border-black/8 bg-black/[0.03] px-6 text-[1rem] text-black placeholder:text-black/28 focus-visible:border-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/15";
-  const textareaClassName =
-    "min-h-[12rem] resize-none border border-black/8 bg-black/[0.03] px-6 py-5 text-[1rem] text-black placeholder:text-black/28 focus-visible:border-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/15";
+  const [values, setValues] = useState<FormValues>(() => {
+    if (typeof window === "undefined") {
+      return initialValues;
+    }
+
+    try {
+      const savedDraft = window.sessionStorage.getItem(DRAFT_STORAGE_KEY);
+
+      if (!savedDraft) {
+        return initialValues;
+      }
+
+      const parsedDraft = JSON.parse(savedDraft) as Partial<FormValues>;
+      return { ...initialValues, ...parsedDraft };
+    } catch {
+      window.sessionStorage.removeItem(DRAFT_STORAGE_KEY);
+      return initialValues;
+    }
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [statusMessage, setStatusMessage] = useState(
+    "Submitting opens WhatsApp with your project details prefilled for CVR Construction. Nothing is sent until you confirm the message in WhatsApp."
+  );
+  const [whatsAppFallbackUrl, setWhatsAppFallbackUrl] = useState("");
+
+  useEffect(() => {
+    try {
+      window.sessionStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(values));
+    } catch {
+      // Ignore storage write failures and keep the in-memory draft.
+    }
+  }, [values]);
+
+  const getFieldClassName = (name: FieldName) =>
+    `h-18 border px-6 text-[1rem] text-black placeholder:text-black/28 focus-visible:outline-none focus-visible:ring-2 ${
+      errors[name]
+        ? "border-red-500/70 bg-red-50 focus-visible:border-red-600 focus-visible:ring-red-500/20"
+        : "border-black/8 bg-black/[0.03] focus-visible:border-black focus-visible:ring-black/15"
+    }`;
+
+  const getTextareaClassName = (name: FieldName) =>
+    `min-h-[12rem] resize-none border px-6 py-5 text-[1rem] text-black placeholder:text-black/28 focus-visible:outline-none focus-visible:ring-2 ${
+      errors[name]
+        ? "border-red-500/70 bg-red-50 focus-visible:border-red-600 focus-visible:ring-red-500/20"
+        : "border-black/8 bg-black/[0.03] focus-visible:border-black focus-visible:ring-black/15"
+    }`;
+
+  const setFieldValue = (name: FieldName, value: string) => {
+    setValues((current) => ({
+      ...current,
+      [name]: value,
+    }));
+
+    setErrors((current) => {
+      if (!current[name]) {
+        return current;
+      }
+
+      const nextError = validateField(name, value);
+
+      if (!nextError) {
+        const nextErrors = { ...current };
+        delete nextErrors[name];
+        return nextErrors;
+      }
+
+      return {
+        ...current,
+        [name]: nextError,
+      };
+    });
+  };
+
+  const handleBlur = (name: FieldName) => {
+    const nextError = validateField(name, values[name]);
+
+    setErrors((current) => {
+      if (!nextError) {
+        const nextErrors = { ...current };
+        delete nextErrors[name];
+        return nextErrors;
+      }
+
+      return {
+        ...current,
+        [name]: nextError,
+      };
+    });
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitState("sending");
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
+    const nextErrors = Object.entries(values).reduce<FormErrors>((accumulator, [key, value]) => {
+      const fieldName = key as FieldName;
+      const fieldError = validateField(fieldName, value);
+
+      if (fieldError) {
+        accumulator[fieldName] = fieldError;
+      }
+
+      return accumulator;
+    }, {});
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      setSubmitState("idle");
+      setStatusMessage("Please correct the highlighted fields before opening WhatsApp.");
+      return;
+    }
 
     const payload = {
-      firstName: String(formData.get("firstName") ?? "").trim(),
-      lastName: String(formData.get("lastName") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim(),
-      organization: String(formData.get("organization") ?? "").trim(),
-      region: String(formData.get("region") ?? "").trim(),
-      subject: String(formData.get("subject") ?? "").trim(),
-      message: String(formData.get("message") ?? "").trim(),
+      firstName: values.firstName.trim(),
+      lastName: values.lastName.trim(),
+      email: values.email.trim(),
+      organization: values.organization.trim(),
+      region: values.region.trim(),
+      subject: values.subject.trim(),
+      message: values.message.trim(),
     };
 
     const whatsappUrl = `https://wa.me/12508801270?text=${buildWhatsAppMessage(payload)}`;
+    const prefersDirectHandoff =
+      window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
+
+    setWhatsAppFallbackUrl(whatsappUrl);
+    try {
+      window.sessionStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(values));
+    } catch {
+      // Ignore storage write failures and continue with the WhatsApp handoff.
+    }
+
+    if (prefersDirectHandoff) {
+      trackEvent({
+        event: "whatsapp_enquiry_started",
+        label: payload.subject || "general-enquiry",
+        location: "contact-form",
+        method: "direct-handoff",
+      });
+      setSubmitState("redirecting");
+      setStatusMessage(
+        "Opening WhatsApp in this tab. If it does not open, return here and use the manual WhatsApp link below."
+      );
+      window.location.assign(whatsappUrl);
+      return;
+    }
+
     const popup = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
     trackEvent({
       event: "whatsapp_enquiry_started",
       label: payload.subject || "general-enquiry",
       location: "contact-form",
-      method: popup ? "popup" : "redirect",
+      method: popup ? "popup" : "manual-fallback",
     });
 
-    if (!popup) {
-      window.location.assign(whatsappUrl);
+    if (popup) {
+      setSubmitState("sent");
+      setStatusMessage(
+        "Your WhatsApp draft opened in a new tab. Your project details are still saved here until you decide to clear them."
+      );
+      return;
     }
 
-    form.reset();
-    setSubmitState("sent");
+    setSubmitState("fallback");
+    setStatusMessage(
+      "WhatsApp did not open automatically. Use the manual link below, or contact CVR at info@cvrconstruction.ca or +1 250 880 1270."
+    );
   };
 
   return (
     <>
-      <form className="mt-12 space-y-9 lg:mt-14" onSubmit={handleSubmit}>
+      <form className="mt-12 space-y-9 lg:mt-14" noValidate onSubmit={handleSubmit}>
         <div className="grid gap-6 md:grid-cols-2">
           <label className="flex flex-col gap-4">
             <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
@@ -87,8 +264,18 @@ export function ContactForm() {
               required
               autoComplete="given-name"
               placeholder="Jamie…"
-              className={fieldClassName}
+              value={values.firstName}
+              onChange={(event) => setFieldValue("firstName", event.currentTarget.value)}
+              onBlur={() => handleBlur("firstName")}
+              aria-invalid={Boolean(errors.firstName)}
+              aria-describedby={errors.firstName ? "contact-firstName-error" : undefined}
+              className={getFieldClassName("firstName")}
             />
+            {errors.firstName ? (
+              <span id="contact-firstName-error" className="text-sm text-red-700">
+                {errors.firstName}
+              </span>
+            ) : null}
           </label>
 
           <label className="flex flex-col gap-4">
@@ -101,8 +288,18 @@ export function ContactForm() {
               required
               autoComplete="family-name"
               placeholder="Smith…"
-              className={fieldClassName}
+              value={values.lastName}
+              onChange={(event) => setFieldValue("lastName", event.currentTarget.value)}
+              onBlur={() => handleBlur("lastName")}
+              aria-invalid={Boolean(errors.lastName)}
+              aria-describedby={errors.lastName ? "contact-lastName-error" : undefined}
+              className={getFieldClassName("lastName")}
             />
+            {errors.lastName ? (
+              <span id="contact-lastName-error" className="text-sm text-red-700">
+                {errors.lastName}
+              </span>
+            ) : null}
           </label>
         </div>
 
@@ -117,8 +314,18 @@ export function ContactForm() {
             autoComplete="email"
             spellCheck={false}
             placeholder="name@example.com…"
-            className={fieldClassName}
+            value={values.email}
+            onChange={(event) => setFieldValue("email", event.currentTarget.value)}
+            onBlur={() => handleBlur("email")}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
+            className={getFieldClassName("email")}
           />
+          {errors.email ? (
+            <span id="contact-email-error" className="text-sm text-red-700">
+              {errors.email}
+            </span>
+          ) : null}
         </label>
 
         <label className="flex flex-col gap-4">
@@ -130,7 +337,10 @@ export function ContactForm() {
             name="organization"
             autoComplete="organization"
             placeholder="Home, business, or property name…"
-            className={fieldClassName}
+            value={values.organization}
+            onChange={(event) => setFieldValue("organization", event.currentTarget.value)}
+            onBlur={() => handleBlur("organization")}
+            className={getFieldClassName("organization")}
           />
         </label>
 
@@ -145,8 +355,18 @@ export function ContactForm() {
               required
               autoComplete="address-level2"
               placeholder="Victoria, Oak Bay, Saanich, Langford…"
-              className={fieldClassName}
+              value={values.region}
+              onChange={(event) => setFieldValue("region", event.currentTarget.value)}
+              onBlur={() => handleBlur("region")}
+              aria-invalid={Boolean(errors.region)}
+              aria-describedby={errors.region ? "contact-region-error" : undefined}
+              className={getFieldClassName("region")}
             />
+            {errors.region ? (
+              <span id="contact-region-error" className="text-sm text-red-700">
+                {errors.region}
+              </span>
+            ) : null}
           </label>
 
           <label className="flex flex-col gap-4">
@@ -159,8 +379,18 @@ export function ContactForm() {
               required
               autoComplete="off"
               placeholder="Kitchen renovation, bathroom remodel, commercial upgrade…"
-              className={fieldClassName}
+              value={values.subject}
+              onChange={(event) => setFieldValue("subject", event.currentTarget.value)}
+              onBlur={() => handleBlur("subject")}
+              aria-invalid={Boolean(errors.subject)}
+              aria-describedby={errors.subject ? "contact-subject-error" : undefined}
+              className={getFieldClassName("subject")}
             />
+            {errors.subject ? (
+              <span id="contact-subject-error" className="text-sm text-red-700">
+                {errors.subject}
+              </span>
+            ) : null}
           </label>
         </div>
 
@@ -174,8 +404,18 @@ export function ContactForm() {
             rows={7}
             autoComplete="off"
             placeholder="Tell us about the space, your goals, timeline, and any details that matter…"
-            className={textareaClassName}
+            value={values.message}
+            onChange={(event) => setFieldValue("message", event.currentTarget.value)}
+            onBlur={() => handleBlur("message")}
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? "contact-message-error" : undefined}
+            className={getTextareaClassName("message")}
           />
+          {errors.message ? (
+            <span id="contact-message-error" className="text-sm text-red-700">
+              {errors.message}
+            </span>
+          ) : null}
         </label>
 
         <InteractiveHoverButton
@@ -187,7 +427,11 @@ export function ContactForm() {
           disabled={submitState === "sending"}
           type="submit"
         >
-          {submitState === "sending" ? "OPENING WHATSAPP…" : "OPEN WHATSAPP DRAFT"}
+          {submitState === "sending"
+            ? "PREPARING DRAFT…"
+            : submitState === "redirecting"
+              ? "OPENING WHATSAPP…"
+              : "OPEN WHATSAPP DRAFT"}
         </InteractiveHoverButton>
       </form>
 
@@ -196,10 +440,19 @@ export function ContactForm() {
         aria-live="polite"
         className="mt-5 text-[0.88rem] leading-relaxed text-black/58"
       >
-        {submitState === "sent"
-          ? "Your message draft has been opened in WhatsApp. If it did not open, contact CVR at info@cvrconstruction.ca or +1 250 880 1270."
-          : "Submitting opens WhatsApp with your project details prefilled for CVR Construction. Nothing is sent until you confirm the message in WhatsApp."}
+        {statusMessage}
       </p>
+
+      {whatsAppFallbackUrl ? (
+        <a
+          href={whatsAppFallbackUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-flex w-fit items-center gap-2 border-b border-black pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+        >
+          Open WhatsApp manually
+        </a>
+      ) : null}
     </>
   );
 }

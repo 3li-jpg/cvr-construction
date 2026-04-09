@@ -56,7 +56,7 @@ export default function JournalsPage() {
                 The Build
               </>
             }
-            titleClassName="max-w-[10ch] text-[3rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[4.2rem] md:text-[5.2rem] lg:max-w-none lg:text-[6.3rem]"
+            titleClassName="max-w-[12ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4.2rem] md:max-w-[10ch] md:text-[5.2rem] lg:max-w-none lg:text-[6.3rem]"
             description="These articles are here to help clients make better renovation decisions before work begins. They are written to improve clarity, reduce avoidable mistakes, and explain what quality really looks like on site."
           />
 

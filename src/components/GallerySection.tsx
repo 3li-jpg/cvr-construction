@@ -8,75 +8,13 @@ import {
   ScrollVelocityRow,
 } from "@/components/ScrollVelocity";
 import { TextAnimate } from "@/components/TextAnimate";
-
-const galleryItems = [
-  {
-    src: "/images/victoria-garden-studio-exterior.webp",
-    alt: "Garden studio exterior by CVR Construction",
-    eyebrow: "Custom Space",
-    title: "Forest Garden Studio",
-  },
-  {
-    src: "/images/victoria-custom-kitchen-renovation.webp",
-    alt: "Kitchen renovation by CVR Construction",
-    eyebrow: "Kitchen Renovation",
-    title: "Custom Kitchen",
-  },
-  {
-    src: "/images/victoria-luxury-bathroom-renovation.webp",
-    alt: "Bathroom renovation by CVR Construction",
-    eyebrow: "Bathroom Renovation",
-    title: "Luxury Bathroom",
-  },
-  {
-    src: "/images/victoria-front-entry-rebuild.webp",
-    alt: "Front entry rebuild by CVR Construction",
-    eyebrow: "Exterior Upgrade",
-    title: "Front Entry Rebuild",
-  },
-  {
-    src: "/images/victoria-premium-kitchen-interior.webp",
-    alt: "Kitchen interior detail by CVR Construction",
-    eyebrow: "Interior Detail",
-    title: "Character Kitchen",
-  },
-  {
-    src: "/images/victoria-commercial-interior-renovation.webp",
-    alt: "Utility room renovation by CVR Construction",
-    eyebrow: "Commercial Upgrade",
-    title: "Utility Interior",
-  },
-  {
-    src: "/images/victoria-bathroom-vanity-detail.webp",
-    alt: "Modern bathroom vanity and fixtures by CVR Construction",
-    eyebrow: "Bathroom Detail",
-    title: "Modern Vanity",
-  },
-  {
-    src: "/images/victoria-custom-garden-studio-angle.webp",
-    alt: "Garden studio exterior walkway by CVR Construction",
-    eyebrow: "Exterior Finish",
-    title: "Studio Approach",
-  },
-  {
-    src: "/images/victoria-premium-bathroom-finish-detail.webp",
-    alt: "Bathroom vanity and tile detail by CVR Construction",
-    eyebrow: "Finish Detail",
-    title: "Stone + Fixture",
-  },
-  {
-    src: "/images/2025-01-18.webp",
-    alt: "Interior renovation by CVR Construction",
-    eyebrow: "Interior Upgrade",
-    title: "Refined Interior",
-  },
-];
+import { galleryItems } from "@/lib/site-data";
 
 const firstRowItems = galleryItems.slice(0, 5);
 const secondRowItems = galleryItems.slice(5);
 
 function GalleryTile({
-  src,
+  image,
   alt,
   eyebrow,
   title,
@@ -85,7 +23,7 @@ function GalleryTile({
     <article className="mr-4 w-[76vw] shrink-0 sm:mr-5 sm:w-[28rem] lg:mr-6 lg:w-[32rem] xl:w-[36rem]">
       <div className="group relative aspect-[16/11] overflow-hidden bg-black">
         <Image
-          src={src}
+          src={image}
           alt={alt}
           fill
           quality={90}
@@ -153,12 +91,12 @@ export function GallerySection() {
       <ScrollVelocityContainer className="space-y-4 sm:space-y-5 lg:space-y-6">
         <ScrollVelocityRow baseVelocity={2.6} direction={1}>
           {firstRowItems.map((item) => (
-            <GalleryTile key={`${item.src}-row-1`} {...item} />
+            <GalleryTile key={`${item.image}-row-1`} {...item} />
           ))}
         </ScrollVelocityRow>
         <ScrollVelocityRow baseVelocity={2.2} direction={-1}>
           {secondRowItems.map((item) => (
-            <GalleryTile key={`${item.src}-row-2`} {...item} />
+            <GalleryTile key={`${item.image}-row-2`} {...item} />
           ))}
         </ScrollVelocityRow>
       </ScrollVelocityContainer>

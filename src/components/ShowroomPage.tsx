@@ -3,92 +3,13 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { RouteIntro } from "@/components/RouteIntro";
-
-const showroomPhone = "+1 250 466 6531";
-const showroomPhoneHref = "tel:+12504666531";
-const showroomEmail = "cvrshowroom@outlook.com";
-const showroomEmailHref = "mailto:cvrshowroom@outlook.com";
-
-const showroomBrands = [
-  "KOHLER",
-  "Moen",
-  "PEARL",
-  "Grohe",
-  "Delta",
-  "Glacier Bay",
-  "RAINLEX",
-  "American Standard",
-  "Pfister",
-  "MAAX",
-] as const;
-
-const showroomReasons = [
-  {
-    title: "Compare Finishes In Person",
-    description:
-      "See how textures, finishes, and proportions actually read in real light before they go into the home.",
-  },
-  {
-    title: "Review Real Product Options",
-    description:
-      "Compare fixture lines, faucet styles, shower components, and bath products side by side instead of relying on tabs and screenshots.",
-  },
-  {
-    title: "Choose With Better Guidance",
-    description:
-      "Use the showroom as a faster decision point when you want product options narrowed down with more confidence.",
-  },
-] as const;
-
-const showroomCollections = [
-  {
-    index: "01",
-    eyebrow: "Showroom / Faucets & Fixtures",
-    title: "Kitchen & Bath Fixtures",
-    description:
-      "A tighter product selection for clients who want better-looking faucets, hardware, and fixture lines without guessing from online thumbnails alone.",
-    image: "/images/victoria-premium-kitchen-interior.webp",
-    alt: "CVR showroom kitchen and bath fixture selection",
-  },
-  {
-    index: "02",
-    eyebrow: "Showroom / Tubs & Showers",
-    title: "Bath & Shower Products",
-    description:
-      "Explore shower systems, trim, tubs, and core bathroom product lines in person so the finish, scale, and overall direction are easier to lock in.",
-    image: "/images/victoria-luxury-bathroom-renovation.webp",
-    alt: "CVR showroom bath and shower product selection",
-  },
-  {
-    index: "03",
-    eyebrow: "Showroom / Product Guidance",
-    title: "Selections That Feel Resolved",
-    description:
-      "The showroom is built to make product decisions feel clearer. Better contrast, fewer weak choices, and a stronger sense of what belongs in the final space.",
-    image: "/images/victoria-custom-garden-studio-angle.webp",
-    alt: "CVR showroom premium product consultation image",
-  },
-] as const;
-
-const showroomSchema = {
-  "@context": "https://schema.org",
-  "@type": "Store",
-  name: "CVR Showroom",
-  url: "https://www.cvrconstruction.ca/showroom",
-  telephone: "+1-250-466-6531",
-  email: "cvrshowroom@outlook.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Victoria",
-    addressRegion: "BC",
-    addressCountry: "CA",
-  },
-  areaServed: ["Victoria, BC", "Greater Victoria", "Vancouver Island"],
-  brand: showroomBrands.map((name) => ({
-    "@type": "Brand",
-    name,
-  })),
-};
+import {
+  showroomBrands,
+  showroomCollections,
+  showroomContact,
+  showroomReasons,
+  showroomSchema,
+} from "@/lib/site-data";
 
 function ContactLink({
   href,
@@ -192,16 +113,16 @@ export function ShowroomPage() {
               </p>
               <div className="mt-6 grid gap-3 border-t border-white/14 pt-5 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-white/64">
                 <a
-                  href={showroomPhoneHref}
+                  href={showroomContact.phoneHref}
                   className="transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
-                  {showroomPhone}
+                  {showroomContact.phone}
                 </a>
                 <a
-                  href={showroomEmailHref}
+                  href={showroomContact.emailHref}
                   className="break-all transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
-                  {showroomEmail}
+                  {showroomContact.email}
                 </a>
               </div>
             </div>
@@ -245,7 +166,7 @@ export function ShowroomPage() {
               FORWARD
             </>
           }
-          titleClassName="max-w-[10ch] text-[3rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[4.2rem] md:text-[5.2rem] lg:max-w-none lg:text-[6.1rem]"
+          titleClassName="max-w-[12ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4.2rem] md:max-w-[10ch] md:text-[5.2rem] lg:max-w-none lg:text-[6.1rem]"
           description={
             <>
               <p>
@@ -411,10 +332,10 @@ export function ShowroomPage() {
                 Showroom Phone
               </p>
               <a
-                href={showroomPhoneHref}
+                href={showroomContact.phoneHref}
                 className="mt-3 block text-[1.25rem] font-medium leading-7 tracking-[-0.03em] text-black/78 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
               >
-                {showroomPhone}
+                {showroomContact.phone}
               </a>
             </div>
 
@@ -423,10 +344,10 @@ export function ShowroomPage() {
                 Showroom Email
               </p>
               <a
-                href={showroomEmailHref}
+                href={showroomContact.emailHref}
                 className="mt-3 block break-all text-[1.1rem] font-medium leading-7 tracking-[-0.03em] text-black/78 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
               >
-                {showroomEmail}
+                {showroomContact.email}
               </a>
             </div>
 
@@ -443,8 +364,8 @@ export function ShowroomPage() {
         </div>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <ContactLink href={showroomPhoneHref} label="Call The Showroom" />
-          <ContactLink href={showroomEmailHref} label="Email The Showroom" />
+          <ContactLink href={showroomContact.phoneHref} label="Call The Showroom" />
+          <ContactLink href={showroomContact.emailHref} label="Email The Showroom" />
         </div>
       </section>
 

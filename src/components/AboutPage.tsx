@@ -23,7 +23,7 @@ export function AboutPage() {
                 Precision
               </>
             }
-            titleClassName="max-w-[11ch] text-[3rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[4.2rem] md:text-[5.4rem] lg:max-w-none lg:text-[6.5rem]"
+            titleClassName="max-w-[13ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[12ch] sm:text-[4.2rem] md:max-w-[11ch] md:text-[5.4rem] lg:max-w-none lg:text-[6.5rem]"
             description={
               <>
                 <p>

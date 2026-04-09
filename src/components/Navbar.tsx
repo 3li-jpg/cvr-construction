@@ -108,11 +108,14 @@ export function Navbar() {
 
   const menuButtonLabel = isOpen ? "Close site navigation" : "Open site navigation";
   const hiddenMenuTabIndex = isOpen ? 0 : -1;
+  const whiteHeaderTabIndex = showExpandedWhiteNav ? 0 : -1;
+  const blackHeaderTabIndex = showExpandedBlackNav ? 0 : -1;
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-[99] hidden px-8 pt-8 text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] md:block lg:px-10 ${
+        aria-hidden={!showExpandedWhiteNav}
+        className={`fixed inset-x-0 top-0 z-[99] hidden px-8 pt-8 text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block lg:px-10 ${
           showExpandedWhiteNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
@@ -122,6 +125,7 @@ export function Navbar() {
           <Link
             href="/"
             onClick={closeMenu}
+            tabIndex={whiteHeaderTabIndex}
             className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[2.45rem]"
           >
             CVR
@@ -132,6 +136,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                tabIndex={whiteHeaderTabIndex}
                 className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 {item.label.toUpperCase()}
@@ -144,7 +149,8 @@ export function Navbar() {
       </header>
 
       <header
-        className={`fixed inset-x-0 top-0 z-[99] hidden px-8 pt-8 text-black transition-all duration-300 md:block lg:px-10 ${
+        aria-hidden={!showExpandedBlackNav}
+        className={`fixed inset-x-0 top-0 z-[99] hidden px-8 pt-8 text-black transition-all duration-300 lg:block lg:px-10 ${
           showExpandedBlackNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
@@ -154,6 +160,7 @@ export function Navbar() {
           <Link
             href="/"
             onClick={closeMenu}
+            tabIndex={blackHeaderTabIndex}
             className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 md:text-[2.45rem]"
           >
             CVR
@@ -164,6 +171,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                tabIndex={blackHeaderTabIndex}
                 className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
               >
                 {item.label.toUpperCase()}
@@ -175,7 +183,7 @@ export function Navbar() {
         </div>
       </header>
 
-      <header className="fixed right-0 top-0 z-[100] hidden px-6 pt-6 md:block lg:px-10 lg:pt-8">
+      <header className="fixed right-0 top-0 z-[100] hidden px-6 pt-6 lg:block lg:px-10 lg:pt-8">
         <div className="flex items-center gap-3">
           <InteractiveHoverButton
             href="/contact"
@@ -199,7 +207,14 @@ export function Navbar() {
         </div>
       </header>
 
-      <header className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 py-2.5 backdrop-blur dark:border-white/10 dark:bg-black/92 md:hidden">
+      <header
+        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2.5 pt-2.5 backdrop-blur dark:border-white/10 dark:bg-black/92 lg:hidden"
+        style={{
+          paddingTop: "max(env(safe-area-inset-top), 0.625rem)",
+          paddingLeft: "max(env(safe-area-inset-left), 1rem)",
+          paddingRight: "max(env(safe-area-inset-right), 1rem)",
+        }}
+      >
         <Link
           href="/"
           onClick={closeMenu}
@@ -212,7 +227,7 @@ export function Navbar() {
           <InteractiveHoverButton
             href="/contact"
             size="sm"
-            className="whitespace-nowrap px-3 py-1.5 text-[9px]"
+            className="whitespace-nowrap px-4 py-2 text-[0.68rem]"
           >
             CONTACT US
           </InteractiveHoverButton>
@@ -225,7 +240,7 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={() => setIsOpen((current) => !current)}
-            className="min-h-11 whitespace-nowrap rounded-full bg-[#e6e6e2] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className="min-h-11 whitespace-nowrap rounded-full bg-[#e6e6e2] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
             {isOpen ? "CLOSE" : "MENU"}
           </button>
@@ -239,48 +254,57 @@ export function Navbar() {
         aria-modal="true"
         aria-label="Site navigation"
         aria-hidden={!isOpen}
-        className={`fixed inset-0 z-[95] flex flex-col justify-center bg-black px-6 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] md:px-20 ${
+        className={`fixed inset-0 z-[95] overflow-y-auto overscroll-contain bg-black px-5 pb-8 pt-24 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] sm:px-6 md:px-12 md:pb-12 md:pt-28 lg:px-20 ${
           isOpen ? "translate-y-0" : "pointer-events-none -translate-y-full"
         }`}
+        style={{
+          paddingTop: "calc(env(safe-area-inset-top) + 6rem)",
+          paddingBottom: "calc(env(safe-area-inset-bottom) + 2rem)",
+        }}
       >
-        <nav aria-label="Expanded site navigation" className="flex flex-col gap-4 text-5xl font-black uppercase tracking-tighter text-white sm:text-7xl lg:text-8xl">
-          {primaryNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              tabIndex={hiddenMenuTabIndex}
-              onClick={closeMenu}
-              className="w-fit transition-all duration-300 hover:translate-x-4 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="absolute bottom-12 left-6 flex w-full flex-col justify-between gap-8 pr-12 text-sm font-medium uppercase tracking-widest text-white/50 md:left-20 md:flex-row md:pr-40">
-          <div>
-            <p className="mb-2 text-white">Get in touch</p>
-            <a
-              href="mailto:info@cvrconstruction.ca"
-              tabIndex={hiddenMenuTabIndex}
-              className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              info@cvrconstruction.ca
-            </a>
-          </div>
-          <div className="flex gap-6">
-            {socialLinks.map((item) => (
-              <a
+        <div className="flex min-h-full flex-col justify-center">
+          <nav
+            aria-label="Expanded site navigation"
+            className="flex flex-col gap-4 text-[clamp(2.75rem,12vw,4.75rem)] font-black uppercase tracking-tighter text-white sm:text-7xl lg:text-8xl"
+          >
+            {primaryNavItems.map((item) => (
+              <Link
                 key={item.href}
                 href={item.href}
-                target="_blank"
-                rel="noreferrer"
                 tabIndex={hiddenMenuTabIndex}
-                className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                onClick={closeMenu}
+                className="w-fit transition-all duration-300 hover:translate-x-4 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
+          </nav>
+
+          <div className="mt-12 flex flex-col gap-8 border-t border-white/12 pt-6 text-sm font-medium uppercase tracking-widest text-white/50 md:mt-16 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-2 text-white">Get in touch</p>
+              <a
+                href="mailto:info@cvrconstruction.ca"
+                tabIndex={hiddenMenuTabIndex}
+                className="break-all transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                info@cvrconstruction.ca
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-6">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  tabIndex={hiddenMenuTabIndex}
+                  className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

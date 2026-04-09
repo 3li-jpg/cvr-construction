@@ -33,7 +33,7 @@ export default function ContactPage() {
                 Next Project
               </>
             }
-            titleClassName="max-w-[10ch] text-[3.1rem] font-black uppercase leading-[0.88] tracking-[-0.07em] text-black sm:text-[4.3rem] md:text-[5.4rem] lg:max-w-none lg:text-[6.1rem]"
+            titleClassName="max-w-[12ch] text-balance text-[3.1rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-black sm:max-w-[11ch] sm:text-[4.3rem] md:max-w-[10ch] md:text-[5.4rem] lg:max-w-none lg:text-[6.1rem]"
             description={
               <>
                 <p>

@@ -45,7 +45,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden bg-black"
+      className="relative h-[100svh] min-h-[100svh] w-full overflow-hidden bg-black md:h-[100dvh] md:min-h-[100dvh]"
     >
       <div
         ref={imageWrapRef}
@@ -82,7 +82,7 @@ export function HeroSection() {
         </TextAnimate>
 
         <div
-          className="absolute bottom-6 right-5 md:bottom-8 md:right-8 lg:bottom-10 lg:right-10 flex items-center gap-3 text-white/70 text-[10px] font-semibold uppercase tracking-[0.2em]"
+          className="absolute bottom-8 right-5 hidden items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:flex md:bottom-8 md:right-8 lg:bottom-10 lg:right-10"
           style={indicatorAnimation}
         >
           <span>SCROLL DOWN</span>

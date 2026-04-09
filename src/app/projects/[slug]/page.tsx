@@ -90,19 +90,32 @@ export default async function ProjectDetailPage({
   };
   const projectSchema = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": `${pageUrl}#webpage`,
+    "@type": "CreativeWork",
+    "@id": `${pageUrl}#project`,
+    name: project.title,
+    headline: `${project.title} | CVR Construction`,
+    abstract: project.summary,
+    description: project.intro,
     url: pageUrl,
-    name: `${project.title} | CVR Construction`,
-    description: project.summary,
+    mainEntityOfPage: pageUrl,
     dateModified: project.updatedAt,
-    image: `https://www.cvrconstruction.ca${project.heroImage}`,
-    about: [
-      project.category,
-      project.location,
-      ...project.scope,
-      ...project.highlights,
+    creator: {
+      "@type": "Organization",
+      name: "CVR Construction",
+      url: "https://www.cvrconstruction.ca",
+    },
+    contentLocation: {
+      "@type": "Place",
+      name: project.location,
+    },
+    image: [
+      `https://www.cvrconstruction.ca${project.heroImage}`,
+      ...project.galleryImages.map(
+        (image) => `https://www.cvrconstruction.ca${image}`
+      ),
     ],
+    keywords: [project.category, project.location, ...project.scope],
+    genre: "Construction project case study",
   };
 
   return (
@@ -131,7 +144,7 @@ export default async function ProjectDetailPage({
                 <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                   {project.category} / {project.location}
                 </p>
-                <h1 className="max-w-[12ch] text-[3.2rem] font-black uppercase leading-[0.88] tracking-[-0.06em] text-black sm:text-[4.4rem] md:text-[5.5rem] lg:max-w-none lg:text-[6.6rem]">
+                <h1 className="max-w-[14ch] text-balance text-[3.2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-black sm:max-w-[13ch] sm:text-[4.4rem] md:max-w-[12ch] md:text-[5.5rem] lg:max-w-none lg:text-[6.6rem]">
                   {project.title}
                 </h1>
               </div>
@@ -212,29 +225,29 @@ export default async function ProjectDetailPage({
               </p>
             </div>
 
-	            {project.galleryImages.length > 0 ? (
-	            <div className="grid gap-4 sm:grid-cols-3">
-	              {project.galleryImages.map((image, index) => (
-	                <div
-	                  key={image}
-	                  className={`relative overflow-hidden bg-black/5 ${
-	                    index === 0 ? "sm:col-span-2 sm:row-span-2 aspect-[1.05/1]" : "aspect-[0.9/1]"
-	                  }`}
-	                >
-	                  <Image
-	                    src={image}
-	                    alt={`${project.title} image ${index + 1}`}
-	                    fill
-	                    loading="eager"
-	                    quality={90}
-	                    sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
-	                    className="object-cover"
-	                  />
-	                </div>
-	              ))}
-	            </div>
-	            ) : null}
-	          </div>
+            {project.galleryImages.length > 0 ? (
+              <div className="grid gap-4 sm:grid-cols-3">
+                {project.galleryImages.map((image, index) => (
+                  <div
+                    key={image}
+                    className={`relative overflow-hidden bg-black/5 ${
+                      index === 0 ? "aspect-[1.05/1] sm:col-span-2 sm:row-span-2" : "aspect-[0.9/1]"
+                    }`}
+                  >
+                    <Image
+                      src={image}
+                      alt={`${project.title} image ${index + 1}`}
+                      fill
+                      priority={index === 0}
+                      quality={90}
+                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
 
           {project.storySections.length > 0 ? (
             <div className="grid gap-8 border-t border-black/10 pt-10 lg:grid-cols-[minmax(18rem,0.36fr)_minmax(0,1fr)] lg:gap-14">

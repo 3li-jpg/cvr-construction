@@ -10,7 +10,7 @@ type RouteIntroProps = {
 };
 
 const defaultTitleClassName =
-  "max-w-[12ch] text-[3rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[4.2rem] md:text-[5.2rem] lg:max-w-none lg:text-[6.1rem]";
+  "max-w-[14ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[13ch] sm:text-[4.2rem] md:max-w-[12ch] md:text-[5.2rem] lg:max-w-none lg:text-[6.1rem]";
 
 export function RouteIntro({
   eyebrow,

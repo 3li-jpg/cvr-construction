@@ -32,7 +32,7 @@ export default function GalleryPage() {
                 At The Finish
               </>
             }
-            titleClassName="max-w-[10ch] text-[3rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[4.2rem] md:text-[5.4rem] lg:max-w-none lg:text-[6.4rem]"
+            titleClassName="max-w-[12ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4.2rem] md:max-w-[10ch] md:text-[5.4rem] lg:max-w-none lg:text-[6.4rem]"
             description="This gallery is built as a visual proof layer. It shows the kinds of rooms, details, and final conditions that shape how our work is judged once the project is complete."
           />
 

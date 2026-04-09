@@ -8,10 +8,10 @@ import { TextAnimate } from "@/components/TextAnimate";
 import { projects } from "@/lib/site-data";
 
 const projectMotion = [
-  { side: "left" as const, targetX: -20 },
-  { side: "right" as const, targetX: 72 },
-  { side: "left" as const, targetX: -88 },
-  { side: "right" as const, targetX: 96 },
+  { side: "left" as const, targetX: -12 },
+  { side: "right" as const, targetX: 34 },
+  { side: "left" as const, targetX: -26 },
+  { side: "right" as const, targetX: 42 },
 ] as const;
 
 function clamp(value: number, min: number, max: number) {
@@ -177,7 +177,7 @@ export function ProjectsSection() {
         if (isDesktop) {
           const cardEase = clamp((progress - 0.08) / 0.84, 0, 1);
           const outwardDrift = 1 - Math.pow(1 - cardEase, 2);
-          const imageOffset = (0.5 - progress) * 72;
+          const imageOffset = (0.5 - progress) * 56;
           const horizontalOffset =
             projectMotion[index % projectMotion.length].targetX * outwardDrift;
 
@@ -256,7 +256,7 @@ export function ProjectsSection() {
         </div>
 
         <div className="hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(17rem,24rem)_minmax(0,1fr)] lg:gap-x-[2vw]">
-          <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 lg:order-1 lg:gap-[18rem]">
+          <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 lg:order-1 lg:gap-[13rem]">
             {leftProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}
@@ -290,7 +290,7 @@ export function ProjectsSection() {
             </div>
           </div>
 
-          <div className="order-3 flex flex-col items-start gap-14 sm:gap-16 lg:gap-[18rem] lg:pt-[16rem]">
+          <div className="order-3 flex flex-col items-start gap-14 sm:gap-16 lg:gap-[13rem] lg:pt-[11rem]">
             {rightProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}

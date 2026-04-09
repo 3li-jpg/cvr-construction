@@ -464,48 +464,161 @@ export const galleryItems = [
     title: "Forest Garden Studio Exterior",
     image: "/images/victoria-garden-studio-exterior.webp",
     category: "Custom Space",
+    eyebrow: "Custom Space",
+    alt: "Garden studio exterior by CVR Construction",
   },
   {
     title: "Kitchen Renovation",
     image: "/images/victoria-custom-kitchen-renovation.webp",
     category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "Kitchen renovation by CVR Construction",
   },
   {
     title: "Luxury Bathroom",
     image: "/images/victoria-luxury-bathroom-renovation.webp",
     category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "Bathroom renovation by CVR Construction",
   },
   {
     title: "Vanity Detail",
     image: "/images/victoria-premium-bathroom-finish-detail.webp",
     category: "Bathroom",
+    eyebrow: "Finish Detail",
+    alt: "Bathroom vanity and tile detail by CVR Construction",
   },
   {
     title: "Character Kitchen",
     image: "/images/victoria-premium-kitchen-interior.webp",
     category: "Kitchen",
+    eyebrow: "Interior Detail",
+    alt: "Kitchen interior detail by CVR Construction",
   },
   {
     title: "Utility Room Fit-Out",
     image: "/images/victoria-commercial-interior-renovation.webp",
     category: "Interior",
+    eyebrow: "Commercial Upgrade",
+    alt: "Utility room renovation by CVR Construction",
   },
   {
     title: "Front Entry Rebuild",
     image: "/images/victoria-front-entry-rebuild.webp",
     category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "Front entry rebuild by CVR Construction",
   },
   {
     title: "Bathroom Remodel Detail",
     image: "/images/victoria-bathroom-vanity-detail.webp",
     category: "Bathroom",
+    eyebrow: "Bathroom Detail",
+    alt: "Modern bathroom vanity and fixtures by CVR Construction",
   },
   {
     title: "Garden Studio Exterior Angle",
     image: "/images/victoria-custom-garden-studio-angle.webp",
     category: "Custom Space",
+    eyebrow: "Exterior Finish",
+    alt: "Garden studio exterior walkway by CVR Construction",
+  },
+  {
+    title: "Refined Interior",
+    image: "/images/2025-01-18.webp",
+    category: "Interior",
+    eyebrow: "Interior Upgrade",
+    alt: "Interior renovation by CVR Construction",
   },
 ] as const;
+
+export const showroomContact = {
+  phone: "+1 250 466 6531",
+  phoneHref: "tel:+12504666531",
+  email: "cvrshowroom@outlook.com",
+  emailHref: "mailto:cvrshowroom@outlook.com",
+} as const;
+
+export const showroomBrands = [
+  "KOHLER",
+  "Moen",
+  "PEARL",
+  "Grohe",
+  "Delta",
+  "Glacier Bay",
+  "RAINLEX",
+  "American Standard",
+  "Pfister",
+  "MAAX",
+] as const;
+
+export const showroomReasons = [
+  {
+    title: "Compare Finishes In Person",
+    description:
+      "See how textures, finishes, and proportions actually read in real light before they go into the home.",
+  },
+  {
+    title: "Review Real Product Options",
+    description:
+      "Compare fixture lines, faucet styles, shower components, and bath products side by side instead of relying on tabs and screenshots.",
+  },
+  {
+    title: "Choose With Better Guidance",
+    description:
+      "Use the showroom as a faster decision point when you want product options narrowed down with more confidence.",
+  },
+] as const;
+
+export const showroomCollections = [
+  {
+    index: "01",
+    eyebrow: "Showroom / Faucets & Fixtures",
+    title: "Kitchen & Bath Fixtures",
+    description:
+      "A tighter product selection for clients who want better-looking faucets, hardware, and fixture lines without guessing from online thumbnails alone.",
+    image: "/images/victoria-premium-kitchen-interior.webp",
+    alt: "CVR showroom kitchen and bath fixture selection",
+  },
+  {
+    index: "02",
+    eyebrow: "Showroom / Tubs & Showers",
+    title: "Bath & Shower Products",
+    description:
+      "Explore shower systems, trim, tubs, and core bathroom product lines in person so the finish, scale, and overall direction are easier to lock in.",
+    image: "/images/victoria-luxury-bathroom-renovation.webp",
+    alt: "CVR showroom bath and shower product selection",
+  },
+  {
+    index: "03",
+    eyebrow: "Showroom / Product Guidance",
+    title: "Selections That Feel Resolved",
+    description:
+      "The showroom is built to make product decisions feel clearer. Better contrast, fewer weak choices, and a stronger sense of what belongs in the final space.",
+    image: "/images/victoria-custom-garden-studio-angle.webp",
+    alt: "CVR showroom premium product consultation image",
+  },
+] as const;
+
+export const showroomSchema = {
+  "@context": "https://schema.org",
+  "@type": "Store",
+  name: "CVR Showroom",
+  url: "https://www.cvrconstruction.ca/showroom",
+  telephone: showroomContact.phone,
+  email: showroomContact.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Victoria",
+    addressRegion: "BC",
+    addressCountry: "CA",
+  },
+  areaServed: ["Victoria, BC", "Greater Victoria", "Vancouver Island"],
+  brand: showroomBrands.map((name) => ({
+    "@type": "Brand",
+    name,
+  })),
+} as const;
 
 export const socialLinks = [
   {

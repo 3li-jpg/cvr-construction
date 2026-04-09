@@ -132,7 +132,7 @@ export default async function JournalDetailPage({
               <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                 Journal / Advice For Renovation Clients
               </p>
-              <h1 className="text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.055em] sm:text-[4rem] md:text-[5rem] lg:text-[5.8rem]">
+              <h1 className="max-w-[13ch] text-balance text-[2.65rem] font-black uppercase leading-[0.94] tracking-[-0.03em] sm:max-w-[13ch] sm:text-[4rem] md:max-w-none md:text-[5rem] lg:text-[5.8rem]">
                 {post.title}
               </h1>
             </div>

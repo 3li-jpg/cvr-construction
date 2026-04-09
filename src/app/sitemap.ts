@@ -17,14 +17,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latestSiteUpdate = new Date(
     Math.max(latestProjectUpdate, latestJournalUpdate)
   );
+  const staticPageDates: Record<string, string> = {
+    "": "2026-04-09",
+    "/about": "2026-04-09",
+    "/showroom": "2026-04-09",
+    "/contact": "2026-04-09",
+  };
   const staticRouteDates: Record<string, Date> = {
-    "": latestSiteUpdate,
-    "/about": latestSiteUpdate,
-    "/showroom": latestSiteUpdate,
+    "": new Date(staticPageDates[""]),
+    "/about": new Date(staticPageDates["/about"]),
+    "/showroom": new Date(staticPageDates["/showroom"]),
     "/projects": latestProjectUpdate ? new Date(latestProjectUpdate) : latestSiteUpdate,
     "/journals": latestJournalUpdate ? new Date(latestJournalUpdate) : latestSiteUpdate,
     "/gallery": latestProjectUpdate ? new Date(latestProjectUpdate) : latestSiteUpdate,
-    "/contact": latestSiteUpdate,
+    "/contact": new Date(staticPageDates["/contact"]),
   };
 
   const staticRoutes = [
