@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
+import TextRoll from "@/components/ui/text-roll";
 import { navItems, socialLinks } from "@/lib/site-data";
 
 const primaryNavItems = navItems.filter((item) => item.href !== "/contact");
@@ -202,9 +203,14 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={() => setIsOpen((current) => !current)}
-            className={`${desktopActionClassName} rounded-full bg-[#e6e6e2] font-semibold uppercase text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black`}
+            className={`${desktopActionClassName} min-w-[7.25rem] rounded-full bg-[#e6e6e2] font-semibold uppercase text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black`}
           >
-            {isOpen ? "CLOSE" : "MENU"}
+            <TextRoll
+              center
+              className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.9]"
+            >
+              {isOpen ? "CLOSE" : "MENU"}
+            </TextRoll>
           </button>
         </div>
       </header>
@@ -242,9 +248,14 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={() => setIsOpen((current) => !current)}
-            className="min-h-11 whitespace-nowrap rounded-full bg-[#e6e6e2] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className="min-h-11 min-w-[6.25rem] whitespace-nowrap rounded-full bg-[#e6e6e2] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
-            {isOpen ? "CLOSE" : "MENU"}
+            <TextRoll
+              center
+              className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.9]"
+            >
+              {isOpen ? "CLOSE" : "MENU"}
+            </TextRoll>
           </button>
         </div>
       </header>
@@ -277,7 +288,9 @@ export function Navbar() {
                 onClick={closeMenu}
                 className="w-fit transition-all duration-300 hover:translate-x-4 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                {item.label}
+                <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.82]">
+                  {item.label.toUpperCase()}
+                </TextRoll>
               </Link>
             ))}
           </nav>
@@ -290,7 +303,7 @@ export function Navbar() {
                 tabIndex={hiddenMenuTabIndex}
                 className="break-all transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                info@cvrconstruction.ca
+                INFO@CVRCONSTRUCTION.CA
               </a>
             </div>
             <div className="flex flex-wrap gap-6">
@@ -303,7 +316,7 @@ export function Navbar() {
                   tabIndex={hiddenMenuTabIndex}
                   className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
-                  {item.label}
+                  {item.label.toUpperCase()}
                 </a>
               ))}
             </div>

@@ -2,6 +2,7 @@
 
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type InteractiveHoverButtonProps = {
   children: ReactNode;
@@ -11,10 +12,6 @@ type InteractiveHoverButtonProps = {
   size?: "sm" | "md";
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children" | "href">;
-
-function joinClassNames(...values: Array<string | undefined | false>) {
-  return values.filter(Boolean).join(" ");
-}
 
 function ArrowRightIcon() {
   return (
@@ -68,7 +65,7 @@ export function InteractiveHoverButton({
       ? "focus-visible:ring-white focus-visible:ring-offset-black"
       : "focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black";
 
-  const buttonClasses = joinClassNames(
+  const buttonClasses = cn(
     "group relative inline-flex w-fit self-start cursor-pointer items-center justify-center overflow-hidden rounded-full border font-semibold uppercase tracking-[0.1em] md:tracking-[0.12em] transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2",
     sizeClasses,
     containerClasses,
@@ -80,7 +77,7 @@ export function InteractiveHoverButton({
     <>
       <div className="relative z-[1] flex items-center justify-center gap-2">
         <div
-          className={joinClassNames(
+          className={cn(
             "h-1.5 w-1.5 rounded-full transition-transform duration-300 ease-out group-hover:scale-[90] md:h-2 md:w-2",
             dotClasses
           )}
@@ -90,7 +87,7 @@ export function InteractiveHoverButton({
         </span>
       </div>
       <div
-        className={joinClassNames(
+        className={cn(
           "pointer-events-none absolute inset-0 z-10 flex items-center justify-center gap-2 px-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 md:px-5",
           "translate-x-8",
           overlayClasses

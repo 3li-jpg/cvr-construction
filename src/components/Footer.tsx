@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
+import TextRoll from "@/components/ui/text-roll";
 import { navItems, projects, socialLinks } from "@/lib/site-data";
 
 interface FooterProps {
@@ -94,7 +95,9 @@ export function Footer({ showCta = false }: FooterProps) {
                   href={link.href}
                   className="text-[2.25rem] font-medium leading-[1.12] tracking-[-0.05em] transition-colors hover:text-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[3rem]"
                 >
-                  {link.label}
+                  <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.96]">
+                    {link.label.toUpperCase()}
+                  </TextRoll>
                 </Link>
               ))}
             </div>

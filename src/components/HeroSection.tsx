@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { TextAnimate } from "@/components/TextAnimate";
+import BlurTextAnimation from "@/components/ui/blur-text-animation";
 
 export function HeroSection() {
   const imageWrapRef = useRef<HTMLDivElement>(null);
@@ -67,19 +67,34 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50" />
 
       <div className="relative z-10 flex h-full w-full items-end px-5 pb-6 md:px-8 md:pb-8 lg:px-10 lg:pb-10">
-        <TextAnimate
-          as="h1"
-          by="line"
-          animation="blurInUp"
-          startOnView={false}
-          once
-          duration={0.8}
-          delay={prefersReducedMotion ? 0 : 0.05}
-          className="max-w-[1100px] text-left text-[4.2rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[5.4rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]"
-          segmentClassName="block"
-        >
-          {"BUILT DIFFERENT,\nBUILT TO LAST"}
-        </TextAnimate>
+        {prefersReducedMotion ? (
+          <h1 className="max-w-[1100px] text-left text-[4.2rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[5.4rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]">
+            BUILT DIFFERENT,
+            <br />
+            BUILT TO LAST
+          </h1>
+        ) : (
+          <h1 className="max-w-[1100px] text-left text-[4.2rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[5.4rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]">
+            <BlurTextAnimation
+              text="BUILT DIFFERENT,"
+              className="max-w-full"
+              fontSize="text-[inherit]"
+              fontFamily="font-inherit"
+              textColor="text-white"
+              animationDelay={3000}
+              repeat={false}
+            />
+            <BlurTextAnimation
+              text="BUILT TO LAST"
+              className="mt-1 max-w-full"
+              fontSize="text-[inherit]"
+              fontFamily="font-inherit"
+              textColor="text-white"
+              animationDelay={3000}
+              repeat={false}
+            />
+          </h1>
+        )}
 
         <div
           className="absolute bottom-8 right-5 hidden items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:flex md:bottom-8 md:right-8 lg:bottom-10 lg:right-10"

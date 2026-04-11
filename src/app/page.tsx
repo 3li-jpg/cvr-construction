@@ -5,6 +5,7 @@ import { ShowcaseSection } from "@/components/ShowcaseSection";
 import { StorySection } from "@/components/StorySection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { GallerySection } from "@/components/GallerySection";
 import { JournalSection } from "@/components/JournalSection";
@@ -43,6 +44,7 @@ export default function Home() {
         <ProcessSection />
         <GallerySection />
         <JournalSection />
+        <TestimonialsSection />
         <Footer showCta />
       </div>
     </main>
