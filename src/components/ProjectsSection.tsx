@@ -22,6 +22,9 @@ function joinClassNames(...values: Array<string | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
+const projectCardFrameClassName =
+  "w-[min(100%,17rem)] sm:w-[19rem] lg:w-[23rem] xl:w-[26rem]";
+
 function ProjectCard({
   projectIndex,
   setCardRef,
@@ -63,21 +66,21 @@ function ProjectCard({
                 alt={project.title}
                 fill
                 quality={90}
-                sizes="(max-width: 1023px) 100vw, 34rem"
+                sizes="(max-width: 639px) 17rem, (max-width: 1023px) 19rem, (max-width: 1279px) 23rem, 26rem"
                 className="object-cover brightness-[0.92] transition-[filter] duration-500 ease-out group-hover:brightness-100"
               />
             </div>
           </div>
-          <div className="mt-4 flex items-end justify-between gap-4">
+          <div className="mt-3 flex items-end justify-between gap-3">
             <div className="max-w-[74%] sm:max-w-[70%]">
-              <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+              <p className="mb-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-black/48 sm:text-[0.69rem]">
                 {project.category}
               </p>
-              <h3 className="text-[1.2rem] font-bold uppercase tracking-[-0.04em] sm:text-[1.35rem] lg:text-[1.55rem]">
+              <h3 className="text-[1.05rem] font-bold uppercase tracking-[-0.04em] sm:text-[1.18rem] lg:text-[1.32rem] xl:text-[1.42rem]">
                 {project.title}
               </h3>
             </div>
-            <span className="text-sm font-semibold tracking-[-0.03em] text-black/75 sm:text-base">
+            <span className="text-[0.8rem] font-semibold tracking-[-0.03em] text-black/75 sm:text-[0.92rem]">
               {project.year}
             </span>
           </div>
@@ -116,7 +119,7 @@ export function ProjectsSection() {
   };
 
   const projectsHeadingClassName =
-    "text-[2.9rem] sm:text-[3.8rem] md:text-[4.6rem] lg:text-[5.1rem] xl:text-[5.5rem] font-black tracking-[-0.03em] uppercase leading-[0.9]";
+    "text-[2.35rem] sm:text-[3rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] font-black tracking-[-0.03em] uppercase leading-[0.9]";
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -219,10 +222,10 @@ export function ProjectsSection() {
   }, []);
 
   return (
-    <section className="w-full overflow-x-clip bg-white px-6 py-24 text-black sm:px-8 md:px-10 lg:px-0 lg:py-32">
+    <section className="w-full overflow-x-clip bg-white px-6 py-20 text-black sm:px-8 md:px-10 lg:px-0 lg:py-24">
       <div className="mx-auto w-full max-w-none">
-        <div className="mb-14 flex flex-col items-center text-center lg:hidden">
-          <p className="mb-6 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest text-black">
+        <div className="mb-10 flex flex-col items-center text-center lg:hidden">
+          <p className="mb-5 flex items-center justify-center gap-2 text-[0.68rem] font-semibold uppercase tracking-widest text-black">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
             PROJECTS
           </p>
@@ -239,7 +242,7 @@ export function ProjectsSection() {
           </TextAnimate>
         </div>
 
-        <div className="flex flex-col gap-14 sm:gap-16 lg:hidden">
+        <div className="flex flex-col gap-10 sm:gap-12 lg:hidden">
           {projects.map((project, projectIndex) => (
             <div
               key={project.title}
@@ -249,21 +252,21 @@ export function ProjectsSection() {
                 projectIndex={projectIndex}
                 setCardRef={setMobileCardRef}
                 setImageRef={setMobileImageRef}
-                cardClassName="max-w-[20.5rem] sm:max-w-[24rem]"
+                cardClassName={projectCardFrameClassName}
               />
             </div>
           ))}
         </div>
 
-        <div className="hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(17rem,24rem)_minmax(0,1fr)] lg:gap-x-[2vw]">
-          <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 lg:order-1 lg:gap-[13rem]">
+        <div className="hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(15rem,20rem)_minmax(0,1fr)] lg:gap-x-[1.5vw]">
+          <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 lg:order-1 lg:gap-[9rem]">
             {leftProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}
                 projectIndex={projectIndex}
                 setCardRef={setDesktopCardRef}
                 setImageRef={setDesktopImageRef}
-                cardClassName="max-w-[30rem] xl:max-w-[34rem]"
+                cardClassName={projectCardFrameClassName}
               />
             ))}
           </div>
@@ -271,7 +274,7 @@ export function ProjectsSection() {
           <div className="order-1 hidden lg:order-2 lg:block">
             <div className="sticky top-1/2 -translate-y-1/2">
               <div className="flex flex-col items-center text-center">
-                <p className="mb-6 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest text-black">
+                <p className="mb-5 flex items-center justify-center gap-2 text-[0.68rem] font-semibold uppercase tracking-widest text-black">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
                   PROJECTS
                 </p>
@@ -290,21 +293,21 @@ export function ProjectsSection() {
             </div>
           </div>
 
-          <div className="order-3 flex flex-col items-start gap-14 sm:gap-16 lg:gap-[13rem] lg:pt-[11rem]">
+          <div className="order-3 flex flex-col items-start gap-14 sm:gap-16 lg:gap-[9rem] lg:pt-[7rem]">
             {rightProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}
                 projectIndex={projectIndex}
                 setCardRef={setDesktopCardRef}
                 setImageRef={setDesktopImageRef}
-                cardClassName="max-w-[30rem] xl:max-w-[34rem]"
+                cardClassName={projectCardFrameClassName}
               />
             ))}
           </div>
         </div>
 
-        <div className="flex justify-center pt-16 sm:pt-20 lg:pt-28">
-          <InteractiveHoverButton href="/projects" className="px-4.5 text-[0.68rem] font-bold tracking-[0.12em] md:px-5 md:text-[0.76rem] md:tracking-[0.12em]">
+        <div className="flex justify-center pt-12 sm:pt-14 lg:pt-20">
+          <InteractiveHoverButton href="/projects" className="px-4 text-[0.64rem] font-bold tracking-[0.12em] md:px-4.5 md:text-[0.72rem] md:tracking-[0.12em]">
             VIEW ALL PROJECTS
           </InteractiveHoverButton>
         </div>

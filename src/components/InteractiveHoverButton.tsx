@@ -10,6 +10,7 @@ type InteractiveHoverButtonProps = {
   href?: string;
   variant?: "default" | "light";
   size?: "sm" | "md";
+  showDot?: boolean;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children" | "href">;
 
@@ -37,6 +38,7 @@ export function InteractiveHoverButton({
   href,
   variant = "default",
   size = "md",
+  showDot = true,
   type,
   ...props
 }: InteractiveHoverButtonProps) {
@@ -76,12 +78,14 @@ export function InteractiveHoverButton({
   const content = (
     <>
       <div className="relative z-[1] flex items-center justify-center gap-2">
-        <div
-          className={cn(
-            "h-1.5 w-1.5 rounded-full transition-transform duration-300 ease-out group-hover:scale-[90] md:h-2 md:w-2",
-            dotClasses
-          )}
-        />
+        {showDot ? (
+          <div
+            className={cn(
+              "h-1.5 w-1.5 rounded-full transition-transform duration-300 ease-out group-hover:scale-[90] md:h-2 md:w-2",
+              dotClasses
+            )}
+          />
+        ) : null}
         <span className="inline-block transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0">
           {children}
         </span>

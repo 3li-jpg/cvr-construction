@@ -87,13 +87,13 @@ export function ShowroomPage() {
         <div className="absolute inset-0 bg-black/34" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/55 to-transparent" />
 
-        <div className="relative z-10 flex min-h-[100dvh] flex-col justify-end px-5 pb-6 pt-28 sm:px-8 md:px-12 md:pb-10 md:pt-32 lg:px-10 lg:pb-12 lg:pt-36">
+        <div className="relative z-10 flex min-h-[100dvh] flex-col justify-end px-5 pb-6 pt-24 sm:px-8 md:px-12 md:pb-10 md:pt-32 lg:px-10 lg:pb-12 lg:pt-36">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(17rem,0.9fr)] lg:items-end">
             <div>
               <p className="mb-6 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-white/62">
                 Showroom / In-Person Product Selection
               </p>
-              <h1 className="max-w-[1100px] text-left text-[3.7rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[4.8rem] md:text-[6rem] lg:text-[6.9rem] xl:text-[7.5rem]">
+              <h1 className="max-w-[1100px] text-left text-[3rem] font-bold uppercase leading-[0.9] tracking-tighter text-balance text-white sm:text-[4.2rem] md:text-[6rem] lg:text-[6.9rem] xl:text-[7.5rem]">
                 SEE IT.
                 <br />
                 COMPARE IT.

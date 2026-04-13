@@ -66,15 +66,15 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-black opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50" />
 
-      <div className="relative z-10 flex h-full w-full items-end px-5 pb-6 md:px-8 md:pb-8 lg:px-10 lg:pb-10">
+      <div className="relative z-10 flex h-full w-full items-center px-5 pb-14 pt-24 md:items-end md:px-8 md:pb-8 md:pt-28 lg:px-10 lg:pb-10 lg:pt-32">
         {prefersReducedMotion ? (
-          <h1 className="max-w-[1100px] text-left text-[4.2rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[5.4rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]">
+          <h1 className="max-w-[1100px] text-left text-[3.15rem] font-bold uppercase leading-[0.9] tracking-tighter text-balance text-white sm:text-[4.6rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]">
             BUILT DIFFERENT,
             <br />
             BUILT TO LAST
           </h1>
         ) : (
-          <h1 className="max-w-[1100px] text-left text-[4.2rem] font-bold uppercase leading-[0.88] tracking-tighter text-balance text-white sm:text-[5.4rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]">
+          <h1 className="max-w-[1100px] text-left text-[3.15rem] font-bold uppercase leading-[0.9] tracking-tighter text-balance text-white sm:text-[4.6rem] md:text-[6.8rem] lg:text-[7.6rem] xl:text-[8.4rem]">
             <BlurTextAnimation
               text="BUILT DIFFERENT,"
               className="max-w-full"

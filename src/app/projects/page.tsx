@@ -33,7 +33,7 @@ export default function ProjectsPage() {
                 Holds Up
               </>
             }
-            titleClassName="max-w-[12ch] text-balance text-[3.1rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4.4rem] md:max-w-[10ch] md:text-[5.6rem] lg:max-w-none lg:text-[6.8rem]"
+            titleClassName="max-w-[12ch] text-balance text-[2.65rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4rem] md:max-w-[10ch] md:text-[5.6rem] lg:max-w-none lg:text-[6.8rem]"
             description="This page is structured as proof, not filler. Each featured project shows the kind of finish quality, coordination, and decision-making that clients should expect from a premium renovation partner."
           />
 

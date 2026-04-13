@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
 import { Footer } from "@/components/Footer";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
@@ -32,48 +32,10 @@ export default function GalleryPage() {
                 At The Finish
               </>
             }
-            titleClassName="max-w-[12ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4.2rem] md:max-w-[10ch] md:text-[5.4rem] lg:max-w-none lg:text-[6.4rem]"
+            titleClassName="max-w-[12ch] text-balance text-[2.55rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[3.9rem] md:max-w-[10ch] md:text-[5.4rem] lg:max-w-none lg:text-[6.4rem]"
             description="This gallery is built as a visual proof layer. It shows the kinds of rooms, details, and final conditions that shape how our work is judged once the project is complete."
           />
-
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 xl:grid-cols-12">
-            {galleryItems.map((item, index) => {
-              const isLarge = index % 5 === 0 || index % 5 === 3;
-
-              return (
-                <figure
-                  key={item.image}
-                  className={`group overflow-hidden border border-black/10 bg-white ${
-                    isLarge
-                      ? "xl:col-span-7"
-                      : "xl:col-span-5"
-                  }`}
-                >
-                  <div className={`relative overflow-hidden bg-black ${isLarge ? "aspect-[1.35/1]" : "aspect-[0.92/1]"}`}>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      priority={index < 2}
-                      quality={90}
-                      sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 40vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <figcaption className="flex items-center justify-between gap-4 p-4">
-                    <div>
-                      <p className="mb-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
-                        {item.category}
-                      </p>
-                      <p className="text-[0.96rem] font-semibold tracking-[-0.02em] text-black">
-                        {item.title}
-                      </p>
-                    </div>
-                  </figcaption>
-                </figure>
-              );
-            })}
-          </div>
+          <GalleryLightboxGrid />
 
           <div className="mt-12 flex flex-col gap-5 border-t border-black/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
             <div>

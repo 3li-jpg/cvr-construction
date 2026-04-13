@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
 import { services } from "@/lib/site-data";
@@ -18,8 +18,28 @@ function PillButton({ label }: { label: string }) {
 }
 
 export function ServicesSection() {
-  const [openIdx, setOpenIdx] = useState(0);
-  const activeService = services[openIdx];
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+
+    const syncOpenService = () => {
+      setOpenIdx((current) => {
+        if (mediaQuery.matches) {
+          return current ?? 0;
+        }
+
+        return null;
+      });
+    };
+
+    syncOpenService();
+    mediaQuery.addEventListener("change", syncOpenService);
+
+    return () => mediaQuery.removeEventListener("change", syncOpenService);
+  }, []);
+
+  const activeService = services[openIdx ?? 0];
 
   return (
     <section className="w-full bg-white px-8 py-10 text-black dark:bg-[#0f0f0e] dark:text-white sm:px-10 lg:px-10 lg:py-12 xl:px-12">
@@ -40,7 +60,12 @@ export function ServicesSection() {
         </Reveal>
 
         <div className="mt-14 grid gap-10 xl:mt-12 xl:grid-cols-[minmax(240px,300px)_minmax(0,1fr)] xl:items-start xl:gap-20 2xl:grid-cols-[300px_minmax(0,1fr)] 2xl:gap-24">
-          <Reveal direction="up" delay={0.18} duration={0.95} className="flex max-w-[18.75rem] flex-col gap-5 xl:pt-1">
+          <Reveal
+            direction="up"
+            delay={0.18}
+            duration={0.95}
+            className="flex max-w-[18.75rem] flex-col gap-5 xl:sticky xl:top-24 xl:self-start xl:pt-1"
+          >
             <div className="overflow-hidden bg-white dark:bg-[#131311]">
               <Image
                 src={activeService.previewImage}
@@ -61,7 +86,7 @@ export function ServicesSection() {
             <PillButton label="Start Your Project" />
           </Reveal>
 
-          <div className="xl:pt-[4.5rem]">
+          <div>
             {services.map((service, index) => {
               const isOpen = openIdx === index;
               const triggerId = `service-trigger-${service.num}`;
@@ -79,10 +104,14 @@ export function ServicesSection() {
                     <button
                       id={triggerId}
                       type="button"
-                      onClick={() => setOpenIdx(index)}
+                      onClick={() =>
+                        setOpenIdx((current) => (current === index ? null : index))
+                      }
                       aria-expanded={isOpen}
                       aria-controls={panelId}
-                      className="grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-5 py-5 text-left transition-colors hover:text-black/74 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 dark:hover:text-white/74 dark:focus-visible:ring-white dark:focus-visible:ring-offset-black md:gap-x-6 md:py-6"
+                      className={`grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-5 text-left transition-colors hover:text-black/74 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 dark:hover:text-white/74 dark:focus-visible:ring-white dark:focus-visible:ring-offset-black md:gap-x-6 ${
+                        index === 0 ? "pb-5 pt-0 md:pb-6 md:pt-0" : "py-5 md:py-6"
+                      }`}
                     >
                       <span className="pt-2 text-[0.95rem] font-medium leading-none tracking-[-0.05em] text-black/85 dark:text-white/82 md:text-[1.05rem]">
                         {service.num}/

@@ -118,9 +118,14 @@ export default function BlurTextAnimation({
         className={cn(
           textColor,
           fontSize,
-          fontFamily,
-          "font-light leading-[0.92] tracking-wide"
+          fontFamily
         )}
+        style={{
+          fontWeight: "inherit",
+          letterSpacing: "inherit",
+          lineHeight: "inherit",
+          textTransform: "inherit",
+        }}
       >
         {textWords.map((word, index) => (
           <span

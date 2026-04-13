@@ -173,8 +173,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased dark`}>
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
+    <html
+      lang="en"
+      className={`${inter.variable} h-full antialiased dark`}
+      style={{ colorScheme: "dark" }}
+      suppressHydrationWarning
+    >
+      <body
+        className="min-h-full flex flex-col font-sans bg-background text-foreground"
+        suppressHydrationWarning
+      >
         <a
           href="#main-content"
           className="sr-only fixed left-4 top-4 z-[200] rounded-full bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-black shadow-lg focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 dark:bg-black dark:text-white dark:focus:ring-white dark:focus:ring-offset-black"

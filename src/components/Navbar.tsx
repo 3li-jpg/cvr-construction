@@ -216,7 +216,7 @@ export function Navbar() {
       </header>
 
       <header
-        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2.5 pt-2.5 backdrop-blur dark:border-white/10 dark:bg-black/92 lg:hidden"
+        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2 pt-2 backdrop-blur dark:border-white/10 dark:bg-black/92 lg:hidden"
         style={{
           paddingTop: "max(env(safe-area-inset-top), 0.625rem)",
           paddingLeft: "max(env(safe-area-inset-left), 1rem)",
@@ -226,20 +226,13 @@ export function Navbar() {
         <Link
           href="/"
           onClick={closeMenu}
-          className="text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black md:text-[2.45rem]"
+          className="text-[1.95rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black md:text-[2.2rem]"
         >
           CVR
         </Link>
 
-        <div className="flex items-center gap-2">
-          <InteractiveHoverButton
-            href="/contact"
-            size="sm"
-            className="whitespace-nowrap px-4 py-2 text-[0.68rem]"
-          >
-            CONTACT US
-          </InteractiveHoverButton>
-          <AnimatedThemeToggler className="h-11 w-11 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
+        <div className="flex items-center gap-1.5">
+          <AnimatedThemeToggler className="h-10 w-10 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
           <button
             ref={mobileMenuButtonRef}
             type="button"
@@ -248,7 +241,7 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={() => setIsOpen((current) => !current)}
-            className="min-h-11 min-w-[6.25rem] whitespace-nowrap rounded-full bg-[#e6e6e2] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className="min-h-10 min-w-[4.9rem] whitespace-nowrap rounded-full bg-[#e6e6e2] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
             <TextRoll
               center
@@ -259,6 +252,22 @@ export function Navbar() {
           </button>
         </div>
       </header>
+
+      <div
+        className="fixed bottom-4 left-1/2 z-[101] -translate-x-1/2 lg:hidden"
+        style={{
+          bottom: "max(env(safe-area-inset-bottom), 1rem)",
+        }}
+      >
+        <InteractiveHoverButton
+          href="/contact"
+          size="sm"
+          showDot={false}
+          className="min-h-11 whitespace-nowrap px-5 py-2.5 text-[0.68rem] tracking-[0.1em] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+        >
+          CONTACT US
+        </InteractiveHoverButton>
+      </div>
 
       <div
         ref={menuRef}
