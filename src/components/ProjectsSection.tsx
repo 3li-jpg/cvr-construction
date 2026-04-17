@@ -8,10 +8,10 @@ import { TextAnimate } from "@/components/TextAnimate";
 import { projects } from "@/lib/site-data";
 
 const projectMotion = [
-  { side: "left" as const, targetX: -12 },
-  { side: "right" as const, targetX: 34 },
-  { side: "left" as const, targetX: -26 },
-  { side: "right" as const, targetX: 42 },
+  { side: "left" as const, targetX: -42 },
+  { side: "right" as const, targetX: 84 },
+  { side: "left" as const, targetX: -68 },
+  { side: "right" as const, targetX: 108 },
 ] as const;
 
 function clamp(value: number, min: number, max: number) {
@@ -23,7 +23,7 @@ function joinClassNames(...values: Array<string | undefined>) {
 }
 
 const projectCardFrameClassName =
-  "w-[min(100%,17rem)] sm:w-[19rem] lg:w-[23rem] xl:w-[26rem]";
+  "w-[min(100%,12.75rem)] sm:w-[14.25rem] lg:w-[17.25rem] xl:w-[19.5rem]";
 
 function ProjectCard({
   projectIndex,
@@ -59,14 +59,14 @@ function ProjectCard({
               ref={(node) => {
                 setImageRef(projectIndex, node);
               }}
-              className="absolute inset-x-0 top-[-6%] h-[112%] transform-gpu will-change-transform"
+              className="absolute inset-x-0 top-[-12%] h-[124%] transform-gpu will-change-transform"
             >
               <Image
                 src={project.coverImage}
                 alt={project.title}
                 fill
                 quality={90}
-                sizes="(max-width: 639px) 17rem, (max-width: 1023px) 19rem, (max-width: 1279px) 23rem, 26rem"
+                sizes="(max-width: 639px) 12.75rem, (max-width: 1023px) 14.25rem, (max-width: 1279px) 17.25rem, 19.5rem"
                 className="object-cover brightness-[0.92] transition-[filter] duration-500 ease-out group-hover:brightness-100"
               />
             </div>
@@ -153,7 +153,7 @@ export function ProjectsSection() {
 
       inactiveImageRefs.forEach((image) => {
         if (image) {
-          image.style.transform = "translate3d(0, 0, 0) scale(1.03)";
+          image.style.transform = "translate3d(0, 0, 0) scale(1.06)";
         }
       });
 
@@ -167,7 +167,7 @@ export function ProjectsSection() {
 
         if (!isDesktop && (rect.bottom < -120 || rect.top > viewportHeight + 120)) {
           card.style.transform = "translate3d(0, 0, 0)";
-          image.style.transform = "translate3d(0, 0, 0) scale(1.03)";
+          image.style.transform = "translate3d(0, 0, 0) scale(1.06)";
           return;
         }
 
@@ -179,22 +179,23 @@ export function ProjectsSection() {
 
         if (isDesktop) {
           const cardEase = clamp((progress - 0.08) / 0.84, 0, 1);
-          const outwardDrift = 1 - Math.pow(1 - cardEase, 2);
-          const imageOffset = (0.5 - progress) * 56;
+          const outwardDrift = 1 - Math.pow(1 - cardEase, 1.45);
+          const imageOffset = (0.5 - progress) * 92;
           const horizontalOffset =
             projectMotion[index % projectMotion.length].targetX * outwardDrift;
+          const verticalOffset = (0.5 - progress) * 18;
 
-          card.style.transform = `translate3d(${horizontalOffset.toFixed(2)}px, 0, 0)`;
-          image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.04)`;
+          card.style.transform = `translate3d(${horizontalOffset.toFixed(2)}px, ${verticalOffset.toFixed(2)}px, 0)`;
+          image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.08)`;
           return;
         }
 
-        const imageOffset = (0.5 - progress) * 34;
+        const imageOffset = (0.5 - progress) * 54;
         const settle = clamp((progress - 0.04) / 0.82, 0, 1);
-        const cardOffset = (1 - settle) * 10;
+        const cardOffset = (1 - settle) * 18;
 
         card.style.transform = `translate3d(0, ${cardOffset.toFixed(2)}px, 0)`;
-        image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.03)`;
+        image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.06)`;
       });
     };
 
@@ -222,8 +223,8 @@ export function ProjectsSection() {
   }, []);
 
   return (
-    <section className="w-full overflow-x-clip bg-white px-6 py-20 text-black sm:px-8 md:px-10 lg:px-0 lg:py-24">
-      <div className="mx-auto w-full max-w-none">
+    <section className="w-full overflow-x-clip bg-white py-20 text-black lg:py-24">
+      <div className="site-shell">
         <div className="mb-10 flex flex-col items-center text-center lg:hidden">
           <p className="mb-5 flex items-center justify-center gap-2 text-[0.68rem] font-semibold uppercase tracking-widest text-black">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />

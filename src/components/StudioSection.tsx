@@ -39,81 +39,82 @@ export function StudioSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white pb-16 pt-16 text-black md:pt-20">
+      <div className="site-shell">
+        <div className="flex flex-col items-center text-center">
+          <Reveal direction="up" delay={0} duration={0.8}>
+            <p className="mb-10 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+              ABOUT CVR
+            </p>
+          </Reveal>
 
-      <div className="px-6 sm:px-8 md:px-12 lg:px-16">
-        <Reveal direction="up" delay={0} duration={0.8}>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black mb-10 flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-black" />
-            ABOUT CVR
-          </p>
-        </Reveal>
-
-        <Reveal direction="up" delay={0.1} duration={1} distance={60}>
-          <h2 className={`${sectionHeadingClassName} mb-16 lg:mb-20`}>
-            CRAFT WITHOUT
-            <br />
-            COMPROMISE
-          </h2>
-        </Reveal>
-      </div>
-
-      <div className="flex flex-col lg:flex-row w-full lg:items-stretch">
-        <div className="w-full lg:w-1/2 flex items-start justify-center px-6 sm:px-8 md:px-12 lg:px-16 pb-12 lg:pb-0">
-          <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-xs">
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
-              <Image
-                src="/images/victoria-bathroom-vanity-detail.webp"
-                alt="CVR Construction bathroom renovation detail"
-                fill
-                quality={90}
-                sizes="(max-width: 1023px) 100vw, 320px"
-                className="object-cover"
-              />
-            </div>
+          <Reveal direction="up" delay={0.1} duration={1} distance={60}>
+            <h2 className={`${sectionHeadingClassName} mb-16 lg:mb-20`}>
+              CRAFT WITHOUT
+              <br />
+              COMPROMISE
+            </h2>
           </Reveal>
         </div>
 
-        <div className="w-full lg:w-1/2 flex flex-col justify-start px-6 sm:px-8 md:px-10 lg:px-12 py-2">
-          <div className="relative flex items-start mb-8">
-            <span
-              className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem] font-black tracking-[-0.03em] leading-[1.2] shrink-0 pr-3"
-              style={{
-                transform: `translateY(${weTranslate}em)`,
-                willChange: "transform",
-              }}
-            >
-              We
-            </span>
-
-            <div ref={phrasesRef} className="flex flex-col">
-              {phrases.map((phrase, i) => {
-                const distance = Math.abs(i - floatPos);
-                const opacity = Math.max(0.1, 1 - distance * 0.65);
-                return (
-                  <span
-                    key={i}
-                    className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem] font-black tracking-[-0.03em] leading-[1.2] block"
-                    style={{ opacity }}
-                  >
-                    {phrase}
-                  </span>
-                );
-              })}
-            </div>
+        <div className="flex w-full flex-col lg:flex-row lg:items-stretch">
+          <div className="flex w-full items-start justify-center pb-12 lg:w-1/2 lg:pb-0 lg:pr-10 xl:pr-14">
+            <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-xs">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
+                <Image
+                  src="/images/victoria-bathroom-vanity-detail.webp"
+                  alt="CVR Construction bathroom renovation detail"
+                  fill
+                  quality={90}
+                  sizes="(max-width: 1023px) 100vw, 320px"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal direction="up" delay={0.2} duration={0.9} className="flex flex-col gap-5 text-[0.88rem] md:text-[0.93rem] font-normal leading-[1.75] text-black/60 max-w-md">
-            <p>
-              CVR Construction delivers high-end renovations across Victoria
-              with disciplined planning, clean execution, and a finish standard
-              that reads premium the moment you walk in.
-            </p>
-            <p>
-              From kitchens and bathrooms to custom spaces and commercial
-              interiors, every project is approached with restraint, precision,
-              and the kind of care that gives the final result lasting weight.
-            </p>
-          </Reveal>
+          <div className="flex w-full flex-col justify-start py-2 lg:w-1/2 lg:pl-8 xl:pl-12">
+            <div className="relative mb-8 flex items-start">
+              <span
+                className="shrink-0 pr-3 text-[2rem] font-black leading-[1.2] tracking-[-0.03em] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem]"
+                style={{
+                  transform: `translateY(${weTranslate}em)`,
+                  willChange: "transform",
+                }}
+              >
+                We
+              </span>
+
+              <div ref={phrasesRef} className="flex flex-col">
+                {phrases.map((phrase, i) => {
+                  const distance = Math.abs(i - floatPos);
+                  const opacity = Math.max(0.1, 1 - distance * 0.65);
+                  return (
+                    <span
+                      key={i}
+                      className="block text-[2rem] font-black leading-[1.2] tracking-[-0.03em] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem]"
+                      style={{ opacity }}
+                    >
+                      {phrase}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            <Reveal direction="up" delay={0.2} duration={0.9} className="flex max-w-md flex-col gap-5 text-[0.88rem] font-normal leading-[1.75] text-black/60 md:text-[0.93rem]">
+              <p>
+                CVR Construction delivers high-end renovations across Victoria
+                with disciplined planning, clean execution, and a finish standard
+                that reads premium the moment you walk in.
+              </p>
+              <p>
+                From kitchens and bathrooms to custom spaces and commercial
+                interiors, every project is approached with restraint, precision,
+                and the kind of care that gives the final result lasting weight.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

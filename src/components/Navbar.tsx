@@ -118,100 +118,106 @@ export function Navbar() {
     <>
       <header
         aria-hidden={!showExpandedWhiteNav}
-        className={`fixed inset-x-0 top-0 z-[99] hidden px-8 pt-8 text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block lg:px-10 ${
+        className={`fixed inset-x-0 top-0 z-[99] hidden text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block ${
           showExpandedWhiteNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
         }`}
       >
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-          <Link
-            href="/"
-            onClick={closeMenu}
-            tabIndex={whiteHeaderTabIndex}
-            className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[2.45rem]"
-          >
-            CVR
-          </Link>
+        <div className="site-shell pt-8">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              tabIndex={whiteHeaderTabIndex}
+              className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[2.45rem]"
+            >
+              CVR
+            </Link>
 
-          <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
-            {primaryNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                tabIndex={whiteHeaderTabIndex}
-                className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                {item.label.toUpperCase()}
-              </Link>
-            ))}
-          </nav>
+            <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
+              {primaryNavItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  tabIndex={whiteHeaderTabIndex}
+                  className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  {item.label.toUpperCase()}
+                </Link>
+              ))}
+            </nav>
 
-          <div className="justify-self-end pr-[13.5rem]" />
+            <div className="justify-self-end pr-[13.5rem]" />
+          </div>
         </div>
       </header>
 
       <header
         aria-hidden={!showExpandedBlackNav}
-        className={`fixed inset-x-0 top-0 z-[99] hidden px-8 pt-8 text-black transition-all duration-300 lg:block lg:px-10 ${
+        className={`fixed inset-x-0 top-0 z-[99] hidden text-black transition-all duration-300 lg:block ${
           showExpandedBlackNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
         }`}
       >
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-          <Link
-            href="/"
-            onClick={closeMenu}
-            tabIndex={blackHeaderTabIndex}
-            className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 md:text-[2.45rem]"
-          >
-            CVR
-          </Link>
+        <div className="site-shell pt-8">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              tabIndex={blackHeaderTabIndex}
+              className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 md:text-[2.45rem]"
+            >
+              CVR
+            </Link>
 
-          <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-black">
-            {primaryNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                tabIndex={blackHeaderTabIndex}
-                className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
-              >
-                {item.label.toUpperCase()}
-              </Link>
-            ))}
-          </nav>
+            <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-black">
+              {primaryNavItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  tabIndex={blackHeaderTabIndex}
+                  className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                >
+                  {item.label.toUpperCase()}
+                </Link>
+              ))}
+            </nav>
 
-          <div className="justify-self-end pr-[13.5rem]" />
+            <div className="justify-self-end pr-[13.5rem]" />
+          </div>
         </div>
       </header>
 
-      <header className="fixed right-0 top-0 z-[100] hidden px-6 pt-6 lg:block lg:px-10 lg:pt-8">
-        <div className="flex items-center gap-3">
-          <InteractiveHoverButton
-            href="/contact"
-            className={desktopActionClassName}
-          >
-            CONTACT US
-          </InteractiveHoverButton>
-          <AnimatedThemeToggler className="h-11 w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
-          <button
-            ref={desktopMenuButtonRef}
-            type="button"
-            aria-expanded={isOpen}
-            aria-controls={menuId}
-            aria-haspopup="dialog"
-            aria-label={menuButtonLabel}
-            onClick={() => setIsOpen((current) => !current)}
-            className={`${desktopActionClassName} min-w-[7.25rem] rounded-full bg-[#e6e6e2] font-semibold uppercase text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black`}
-          >
-            <TextRoll
-              center
-              className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.9]"
+      <header className="fixed inset-x-0 top-0 z-[100] hidden lg:block">
+        <div className="site-shell flex justify-end pt-8">
+          <div className="flex items-center gap-3">
+            <InteractiveHoverButton
+              href="/contact"
+              className={desktopActionClassName}
             >
-              {isOpen ? "CLOSE" : "MENU"}
-            </TextRoll>
-          </button>
+              CONTACT US
+            </InteractiveHoverButton>
+            <AnimatedThemeToggler className="h-11 w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
+            <button
+              ref={desktopMenuButtonRef}
+              type="button"
+              aria-expanded={isOpen}
+              aria-controls={menuId}
+              aria-haspopup="dialog"
+              aria-label={menuButtonLabel}
+              onClick={() => setIsOpen((current) => !current)}
+              className={`${desktopActionClassName} min-w-[7.25rem] rounded-full bg-[#e6e6e2] font-semibold uppercase text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black`}
+            >
+              <TextRoll
+                center
+                className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.9]"
+              >
+                {isOpen ? "CLOSE" : "MENU"}
+              </TextRoll>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -233,7 +239,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-1.5">
           <AnimatedThemeToggler className="h-10 w-10 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
-          <button
+          <InteractiveHoverButton
             ref={mobileMenuButtonRef}
             type="button"
             aria-expanded={isOpen}
@@ -249,7 +255,7 @@ export function Navbar() {
             >
               {isOpen ? "CLOSE" : "MENU"}
             </TextRoll>
-          </button>
+          </InteractiveHoverButton>
         </div>
       </header>
 

@@ -8,7 +8,6 @@ import { ServicesSection } from "@/components/ServicesSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { GallerySection } from "@/components/GallerySection";
-import { JournalSection } from "@/components/JournalSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -43,7 +42,6 @@ export default function Home() {
       <div className="relative z-[60] bg-white">
         <ProcessSection />
         <GallerySection />
-        <JournalSection />
         <TestimonialsSection />
         <Footer showCta />
       </div>

@@ -83,7 +83,7 @@ export function GallerySection() {
   return (
     <>
       <section className="w-full overflow-hidden bg-white py-18 text-black sm:py-20 lg:py-24">
-        <div className="mb-12 flex flex-col items-center px-6 text-center lg:mb-16">
+        <div className="site-shell mb-12 flex flex-col items-center text-center lg:mb-16">
           <Reveal direction="up" delay={0} duration={0.8}>
             <p className="mb-5 flex items-center justify-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />

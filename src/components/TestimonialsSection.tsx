@@ -10,7 +10,7 @@ export function TestimonialsSection() {
 
   return (
     <section className="w-full overflow-hidden px-0 py-24 text-black dark:text-white sm:py-28 lg:py-32">
-      <div className="mx-auto w-full max-w-none">
+      <div className="site-shell">
         <div className="mb-12 flex flex-col items-center px-0 text-center lg:mb-16">
           <Reveal direction="up" delay={0} duration={0.8}>
             <p className="mb-5 flex items-center justify-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black dark:text-white">

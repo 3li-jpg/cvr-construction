@@ -42,22 +42,24 @@ export function ServicesSection() {
   const activeService = services[openIdx ?? 0];
 
   return (
-    <section className="w-full bg-white px-8 py-10 text-black dark:bg-[#0f0f0e] dark:text-white sm:px-10 lg:px-10 lg:py-12 xl:px-12">
-      <div className="mx-auto flex w-full max-w-[1880px] flex-col">
-        <Reveal direction="up" duration={0.8}>
-          <p className="flex items-center gap-3 text-[0.9rem] font-semibold uppercase tracking-[-0.03em] text-black">
-            <span className="text-[1rem] leading-none">•</span>
-            <span>What We Do</span>
-          </p>
-        </Reveal>
+    <section className="w-full bg-white py-10 text-black dark:bg-[#0f0f0e] dark:text-white lg:py-12">
+      <div className="site-shell flex w-full flex-col">
+        <div className="flex flex-col items-center text-center">
+          <Reveal direction="up" duration={0.8}>
+            <p className="flex items-center gap-3 text-[0.9rem] font-semibold uppercase tracking-[-0.03em] text-black">
+              <span className="text-[1rem] leading-none">•</span>
+              <span>What We Do</span>
+            </p>
+          </Reveal>
 
-        <Reveal direction="up" delay={0.12} duration={0.95} distance={70}>
-          <h2 className="mt-8 max-w-[13ch] text-[2.9rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]">
-            Spaces Built
-            <br />
-            With Intent
-          </h2>
-        </Reveal>
+          <Reveal direction="up" delay={0.12} duration={0.95} distance={70}>
+            <h2 className="mt-8 max-w-[13ch] text-[2.9rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]">
+              Spaces Built
+              <br />
+              With Intent
+            </h2>
+          </Reveal>
+        </div>
 
         <div className="mt-14 grid gap-10 xl:mt-12 xl:grid-cols-[minmax(240px,300px)_minmax(0,1fr)] xl:items-start xl:gap-20 2xl:grid-cols-[300px_minmax(0,1fr)] 2xl:gap-24">
           <Reveal

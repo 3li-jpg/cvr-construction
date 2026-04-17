@@ -16,7 +16,7 @@ export function Footer({ showCta = false }: FooterProps) {
   return (
       <footer className="w-full bg-black text-white relative overflow-hidden">
       {showCta ? (
-        <div className="px-6 pb-24 pt-24 text-center sm:px-8 md:px-12 lg:px-20">
+        <div className="site-shell pb-24 pt-24 text-center">
           <div className="relative mx-auto flex min-h-[24rem] w-full max-w-[70rem] items-center justify-center sm:min-h-[28rem] md:min-h-[34rem]">
             <div className="relative z-10 flex max-w-[58rem] flex-col items-center">
               <Reveal direction="up" delay={0.1} duration={1.1} distance={100}>
@@ -42,7 +42,7 @@ export function Footer({ showCta = false }: FooterProps) {
       ) : null}
 
       <div
-        className={`w-full px-6 pb-0 sm:px-8 md:px-12 lg:px-20 ${
+        className={`site-shell w-full pb-0 ${
           showCta ? "pt-2" : "pt-14 md:pt-16 lg:pt-20"
         }`}
       >
