@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { services } from "@/lib/site-data";
 
 function PillButton({ label }: { label: string }) {
@@ -43,13 +44,12 @@ export function ServicesSection() {
 
   return (
     <section className="w-full bg-white py-10 text-black dark:bg-[#0f0f0e] dark:text-white lg:py-12">
-      <div className="site-shell flex w-full flex-col">
+      <div className="site-shell flex w-full flex-col px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           <Reveal direction="up" duration={0.8}>
-            <p className="flex items-center gap-3 text-[0.9rem] font-semibold uppercase tracking-[-0.03em] text-black">
-              <span className="text-[1rem] leading-none">•</span>
-              <span>What We Do</span>
-            </p>
+            <SectionEyebrow className="text-[0.9rem] tracking-[-0.03em] text-black dark:text-white">
+              What We Do
+            </SectionEyebrow>
           </Reveal>
 
           <Reveal direction="up" delay={0.12} duration={0.95} distance={70}>

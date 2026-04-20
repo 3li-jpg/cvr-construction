@@ -1,6 +1,11 @@
 "use client";
 
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import {
+  forwardRef,
+  type AnchorHTMLAttributes,
+  type ButtonHTMLAttributes,
+  type ReactNode,
+} from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -32,16 +37,22 @@ function ArrowRightIcon() {
   );
 }
 
-export function InteractiveHoverButton({
-  children,
-  className,
-  href,
-  variant = "default",
-  size = "md",
-  showDot = true,
-  type,
-  ...props
-}: InteractiveHoverButtonProps) {
+export const InteractiveHoverButton = forwardRef<
+  HTMLButtonElement,
+  InteractiveHoverButtonProps
+>(function InteractiveHoverButton(
+  {
+    children,
+    className,
+    href,
+    variant = "default",
+    size = "md",
+    showDot = true,
+    type,
+    ...props
+  },
+  ref
+) {
   const sizeClasses =
     size === "sm"
       ? "min-h-10 px-3 py-1.5 text-[0.62rem] md:min-h-11 md:px-4 md:py-2.5 md:text-[0.72rem]"
@@ -113,8 +124,13 @@ export function InteractiveHoverButton({
   }
 
   return (
-    <button type={type ?? "button"} className={buttonClasses} {...props}>
+    <button
+      ref={ref}
+      type={type ?? "button"}
+      className={buttonClasses}
+      {...props}
+    >
       {content}
     </button>
   );
-}
+});

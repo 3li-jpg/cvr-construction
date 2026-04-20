@@ -12,11 +12,20 @@ interface FooterProps {
 
 export function Footer({ showCta = false }: FooterProps) {
   const featuredProjects = [...projects].slice(0, 4).reverse();
+  const eyebrowClassName =
+    "mb-10 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white/55";
+  const largeLinkClassName =
+    "text-[2.35rem] font-medium leading-[1.06] tracking-[-0.05em] text-white transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[3rem]";
+  const sitemapLinkClassName =
+    "text-[2.25rem] font-medium leading-[1.12] tracking-[-0.05em] text-white transition-colors hover:text-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[3rem]";
+  const metaLinkClassName =
+    "transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
   return (
-      <footer className="w-full bg-black text-white relative overflow-hidden">
+      <footer className="relative w-full overflow-x-hidden">
       {showCta ? (
-        <div className="site-shell pb-24 pt-24 text-center">
+        <div className="bg-white text-black">
+          <div className="site-shell px-2 pb-24 pt-24 text-center sm:px-3 lg:px-4">
           <div className="relative mx-auto flex min-h-[24rem] w-full max-w-[70rem] items-center justify-center sm:min-h-[28rem] md:min-h-[34rem]">
             <div className="relative z-10 flex max-w-[58rem] flex-col items-center">
               <Reveal direction="up" delay={0.1} duration={1.1} distance={100}>
@@ -28,21 +37,19 @@ export function Footer({ showCta = false }: FooterProps) {
               </Reveal>
 
               <Reveal direction="up" delay={0.35} duration={0.8}>
-                <InteractiveHoverButton
-                  href="/contact"
-                  variant="light"
-                  className="z-10"
-                >
+                <InteractiveHoverButton href="/contact" variant="default" className="z-10">
                   SEND US AN ENQUIRY
                 </InteractiveHoverButton>
               </Reveal>
             </div>
           </div>
         </div>
+        </div>
       ) : null}
 
-      <div
-        className={`site-shell w-full pb-0 ${
+      <div className="bg-black text-white">
+        <div
+        className={`site-shell w-full px-2 sm:px-3 lg:px-4 pb-0 ${
           showCta ? "pt-2" : "pt-14 md:pt-16 lg:pt-20"
         }`}
       >
@@ -50,7 +57,7 @@ export function Footer({ showCta = false }: FooterProps) {
           {/* Column 1: Address + Contact */}
           <Reveal direction="up" delay={0.08} duration={0.9} distance={42}>
             <div className="flex flex-col gap-0 text-left">
-              <p className="mb-10 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white/55">
+              <p className={eyebrowClassName}>
                 • CONTACT
               </p>
 
@@ -58,7 +65,7 @@ export function Footer({ showCta = false }: FooterProps) {
                 href="https://maps.app.goo.gl/WpiNvvknAfY1fdir6"
                 target="_blank"
                 rel="noreferrer"
-                className="text-[2.35rem] font-medium leading-[1.06] tracking-[-0.05em] transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[3rem]"
+                className={largeLinkClassName}
               >
                 <p>Victoria, BC</p>
                 <p>Vancouver Island</p>
@@ -68,13 +75,13 @@ export function Footer({ showCta = false }: FooterProps) {
               <div className="mt-7 flex flex-col gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60">
                 <a
                   href="mailto:info@cvrconstruction.ca"
-                  className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  className={metaLinkClassName}
                 >
                   INFO@CVRCONSTRUCTION.CA
                 </a>
                 <a
                   href="tel:+12508801270"
-                  className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  className={metaLinkClassName}
                 >
                   +1 250 880 1270
                 </a>
@@ -85,7 +92,7 @@ export function Footer({ showCta = false }: FooterProps) {
           {/* Column 2: Navigation Links */}
           <Reveal direction="up" delay={0.16} duration={0.9} distance={42}>
             <div className="flex flex-col gap-1 text-left">
-              <p className="mb-10 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white/55">
+              <p className={eyebrowClassName}>
                 • SITEMAP
               </p>
 
@@ -93,7 +100,7 @@ export function Footer({ showCta = false }: FooterProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[2.25rem] font-medium leading-[1.12] tracking-[-0.05em] transition-colors hover:text-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[3rem]"
+                  className={sitemapLinkClassName}
                 >
                   <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.96]">
                     {link.label.toUpperCase()}
@@ -106,7 +113,7 @@ export function Footer({ showCta = false }: FooterProps) {
           {/* Column 3: Project Names */}
           <Reveal direction="up" delay={0.24} duration={0.9} distance={42}>
             <div className="flex flex-col gap-1 text-left">
-              <p className="mb-10 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white/55">
+              <p className={eyebrowClassName}>
                 • PROJECTS
               </p>
 
@@ -114,7 +121,7 @@ export function Footer({ showCta = false }: FooterProps) {
                 <Link
                   key={project.slug}
                   href={`/projects/${project.slug}`}
-                  className="text-[2.25rem] font-medium leading-[1.12] tracking-[-0.05em] transition-colors hover:text-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[3rem]"
+                  className={sitemapLinkClassName}
                 >
                   {project.title}
                 </Link>
@@ -124,29 +131,29 @@ export function Footer({ showCta = false }: FooterProps) {
         </div>
 
         {/* Bottom bar: socials left, copyright center */}
-        <div className="mt-24 flex w-full flex-col items-start justify-between gap-6 pb-10 md:flex-row md:items-center">
-          <Reveal direction="up" delay={0.3} duration={0.8} distance={30}>
-            <div className="flex gap-6 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/50">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  {link.label.toUpperCase()}
-                </a>
-              ))}
-            </div>
-          </Reveal>
+        <div
+          className="mt-24 flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-center"
+          style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
+        >
+          <div className="flex gap-6 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/50">
+            {socialLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className={metaLinkClassName}
+              >
+                {link.label.toUpperCase()}
+              </a>
+            ))}
+          </div>
 
-          <Reveal direction="up" delay={0.34} duration={0.75} distance={24}>
-            <p className="text-[0.88rem] text-white/40">
-              © {new Date().getFullYear()} All rights reserved.
-            </p>
-          </Reveal>
+          <p className="text-[0.88rem] text-white/40">
+            © {new Date().getFullYear()} All rights reserved.
+          </p>
         </div>
+      </div>
       </div>
     </footer>
   );

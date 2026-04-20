@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { TextAnimate } from "@/components/TextAnimate";
 import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
 
@@ -13,10 +14,9 @@ export function TestimonialsSection() {
       <div className="site-shell">
         <div className="mb-12 flex flex-col items-center px-0 text-center lg:mb-16">
           <Reveal direction="up" delay={0} duration={0.8}>
-            <p className="mb-5 flex items-center justify-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black dark:text-white">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-black dark:bg-white" />
+            <SectionEyebrow className="mb-5 justify-center text-[0.78rem] tracking-[0.14em] text-black dark:text-white">
               CLIENT REVIEWS
-            </p>
+            </SectionEyebrow>
           </Reveal>
           <Reveal direction="up" delay={0.15} duration={1} distance={80}>
             <TextAnimate

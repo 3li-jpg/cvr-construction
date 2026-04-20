@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { processSteps } from "@/lib/site-data";
 
 export function ProcessSection() {
@@ -82,10 +83,9 @@ export function ProcessSection() {
         <div className="site-shell pb-5 pt-4 lg:pb-16 lg:pt-24">
           <div className="flex flex-col items-center text-center">
             <Reveal direction="up" duration={0.8} distance={36}>
-              <p className="mb-6 flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+              <SectionEyebrow className="mb-6 text-[0.78rem] tracking-[0.14em] text-black">
                 OUR PROCESS
-              </p>
+              </SectionEyebrow>
             </Reveal>
             <Reveal direction="up" delay={0.08} duration={0.95} distance={54}>
               <h2 className={`${processHeadingClassName} max-w-4xl text-balance`}>

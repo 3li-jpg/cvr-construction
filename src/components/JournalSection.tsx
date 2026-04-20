@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { TextAnimate } from "@/components/TextAnimate";
 import { journalPosts } from "@/lib/site-data";
 
@@ -17,10 +18,9 @@ export function JournalSection() {
         <div className="mb-14 flex flex-col items-center gap-6 text-center lg:mb-16">
           <div className="flex flex-col items-center text-center">
             <Reveal direction="up" delay={0} duration={0.8}>
-              <p className="mb-5 flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+              <SectionEyebrow className="mb-5 justify-center text-[0.78rem] tracking-[0.14em] text-black dark:text-white">
                 JOURNALS
-              </p>
+              </SectionEyebrow>
             </Reveal>
             <Reveal direction="up" delay={0.15} duration={1} distance={80}>
               <TextAnimate

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { sectionHeadingClassName } from "@/lib/section-heading";
 
 const phrases = [
@@ -42,10 +43,9 @@ export function StudioSection() {
       <div className="site-shell">
         <div className="flex flex-col items-center text-center">
           <Reveal direction="up" delay={0} duration={0.8}>
-            <p className="mb-10 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+            <SectionEyebrow className="mb-10 text-xs tracking-[0.2em] text-black">
               ABOUT CVR
-            </p>
+            </SectionEyebrow>
           </Reveal>
 
           <Reveal direction="up" delay={0.1} duration={1} distance={60}>

@@ -8,7 +8,13 @@ import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import TextRoll from "@/components/ui/text-roll";
 import { navItems, socialLinks } from "@/lib/site-data";
 
-const primaryNavItems = navItems.filter((item) => item.href !== "/contact");
+const desktopNavItems = navItems.filter(
+  (item) => item.href !== "/contact" && item.href !== "/"
+);
+const menuNavItems = [
+  ...navItems.filter((item) => item.href === "/"),
+  ...navItems.filter((item) => item.href !== "/contact" && item.href !== "/"),
+];
 
 function focusableElements(container: HTMLElement | null) {
   if (!container) {
@@ -136,7 +142,7 @@ export function Navbar() {
             </Link>
 
             <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
-              {primaryNavItems.map((item) => (
+              {desktopNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -173,7 +179,7 @@ export function Navbar() {
             </Link>
 
             <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-black">
-              {primaryNavItems.map((item) => (
+              {desktopNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -190,9 +196,9 @@ export function Navbar() {
         </div>
       </header>
 
-      <header className="fixed inset-x-0 top-0 z-[100] hidden lg:block">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] hidden lg:block">
         <div className="site-shell flex justify-end pt-8">
-          <div className="flex items-center gap-3">
+          <div className="pointer-events-auto flex items-center gap-3">
             <InteractiveHoverButton
               href="/contact"
               className={desktopActionClassName}
@@ -290,18 +296,18 @@ export function Navbar() {
           paddingBottom: "calc(env(safe-area-inset-bottom) + 2rem)",
         }}
       >
-        <div className="flex min-h-full flex-col justify-center">
+        <div className="flex min-h-full flex-col items-center justify-center text-center">
           <nav
             aria-label="Expanded site navigation"
-            className="flex flex-col gap-4 text-[clamp(2.75rem,12vw,4.75rem)] font-black uppercase tracking-tighter text-white sm:text-7xl lg:text-8xl"
+            className="flex flex-col items-center gap-4 text-[clamp(2.75rem,12vw,4.75rem)] font-black uppercase tracking-tighter text-white sm:text-7xl lg:text-8xl"
           >
-            {primaryNavItems.map((item) => (
+            {menuNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 tabIndex={hiddenMenuTabIndex}
                 onClick={closeMenu}
-                className="w-fit transition-all duration-300 hover:translate-x-4 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="w-fit text-center transition-all duration-300 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.82]">
                   {item.label.toUpperCase()}
@@ -310,8 +316,8 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="mt-12 flex flex-col gap-8 border-t border-white/12 pt-6 text-sm font-medium uppercase tracking-widest text-white/50 md:mt-16 md:flex-row md:items-end md:justify-between">
-            <div>
+          <div className="mt-12 flex w-full max-w-[42rem] flex-col items-center gap-8 border-t border-white/12 pt-6 text-center text-sm font-medium uppercase tracking-widest text-white/50 md:mt-16 md:items-center md:justify-center">
+            <div className="flex flex-col items-center">
               <p className="mb-2 text-white">Get in touch</p>
               <a
                 href="mailto:info@cvrconstruction.ca"
@@ -321,7 +327,7 @@ export function Navbar() {
                 INFO@CVRCONSTRUCTION.CA
               </a>
             </div>
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
               {socialLinks.map((item) => (
                 <a
                   key={item.href}

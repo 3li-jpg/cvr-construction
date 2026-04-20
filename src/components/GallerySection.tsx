@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GalleryLightboxOverlay } from "@/components/GalleryLightboxOverlay";
 import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
@@ -85,10 +86,9 @@ export function GallerySection() {
       <section className="w-full overflow-hidden bg-white py-18 text-black sm:py-20 lg:py-24">
         <div className="site-shell mb-12 flex flex-col items-center text-center lg:mb-16">
           <Reveal direction="up" delay={0} duration={0.8}>
-            <p className="mb-5 flex items-center justify-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+            <SectionEyebrow className="mb-5 justify-center text-[0.78rem] tracking-[0.14em] text-black">
               GALLERY
-            </p>
+            </SectionEyebrow>
           </Reveal>
           <Reveal direction="up" delay={0.15} duration={1} distance={80}>
             <TextAnimate

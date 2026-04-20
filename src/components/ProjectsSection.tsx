@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { TextAnimate } from "@/components/TextAnimate";
 import { projects } from "@/lib/site-data";
 
@@ -226,10 +227,9 @@ export function ProjectsSection() {
     <section className="w-full overflow-x-clip bg-white py-20 text-black lg:py-24">
       <div className="site-shell">
         <div className="mb-10 flex flex-col items-center text-center lg:hidden">
-          <p className="mb-5 flex items-center justify-center gap-2 text-[0.68rem] font-semibold uppercase tracking-widest text-black">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+          <SectionEyebrow className="mb-5 justify-center text-[0.68rem] tracking-widest text-black">
             PROJECTS
-          </p>
+          </SectionEyebrow>
           <TextAnimate
             as="h2"
             by="line"
@@ -275,10 +275,9 @@ export function ProjectsSection() {
           <div className="order-1 hidden lg:order-2 lg:block">
             <div className="sticky top-1/2 -translate-y-1/2">
               <div className="flex flex-col items-center text-center">
-                <p className="mb-5 flex items-center justify-center gap-2 text-[0.68rem] font-semibold uppercase tracking-widest text-black">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+                <SectionEyebrow className="mb-5 justify-center text-[0.68rem] tracking-widest text-black">
                   PROJECTS
-                </p>
+                </SectionEyebrow>
                 <TextAnimate
                   as="h2"
                   by="line"
