@@ -138,28 +138,6 @@ export function ProjectsIndex() {
           Selected projects
         </h2>
 
-        <div className="mb-10 flex flex-col gap-6 border-t border-black/10 pt-10 sm:flex-row sm:items-end sm:justify-between md:mb-14">
-          <div className="flex flex-col gap-1 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black/48">
-            <span>Index</span>
-            <span className="text-black">
-              {String(projects.length).padStart(2, "0")} Featured Projects
-            </span>
-          </div>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black/40">
-            {projects.map((project, index) => (
-              <li key={project.slug} className="flex items-center gap-2">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <Link
-                  href={`#project-${project.slug}`}
-                  className="text-black transition-opacity hover:opacity-60"
-                >
-                  {project.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="flex flex-col gap-24 md:gap-32 lg:gap-40">
           {projects.map((project, index) => (
             <div id={`project-${project.slug}`} key={project.slug}>

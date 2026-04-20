@@ -1,66 +1,65 @@
+"use client";
+
 import Image from "next/image";
 import Script from "next/script";
+import { motion, type Variants } from "motion/react";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { RouteIntro } from "@/components/RouteIntro";
-import { proseBodyClassName } from "@/lib/prose";
+import { PageIntro } from "@/components/PageIntro";
+import { Reveal } from "@/components/Reveal";
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "@/components/ScrollVelocity";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { proseBodyClassName, proseHeroClassName } from "@/lib/prose";
 import {
   showroomBrands,
   showroomCollections,
   showroomContact,
+  showroomFacts,
+  showroomHero,
+  showroomPortrait,
   showroomReasons,
   showroomSchema,
 } from "@/lib/site-data";
 
-function ContactLink({
-  href,
-  label,
-}: {
-  href: string;
-  label: string;
-}) {
-  return (
-    <a
-      href={href}
-      className="inline-flex min-h-9 self-start items-center justify-center rounded-full border border-black bg-black px-4.5 py-2.5 text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-white transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white dark:bg-white dark:text-black md:min-h-11 md:px-5 md:py-3 md:text-[0.76rem] md:tracking-[0.12em]"
-    >
-      {label}
-    </a>
-  );
-}
+const sectionEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
-function BrandWordmark({ brand }: { brand: (typeof showroomBrands)[number] }) {
-  const brandClassName =
-    brand === "KOHLER"
-      ? "text-[1.45rem] tracking-[-0.08em]"
-      : brand === "Moen"
-        ? "text-[1.35rem] normal-case tracking-[-0.05em]"
-        : brand === "PEARL"
-          ? "text-[1.25rem] tracking-[0.28em]"
-          : brand === "Grohe"
-            ? "text-[1.3rem] normal-case tracking-[-0.05em]"
-            : brand === "Delta"
-              ? "text-[1.3rem] normal-case tracking-[-0.05em]"
-              : brand === "Glacier Bay"
-                ? "text-[1.1rem] normal-case tracking-[0.02em]"
-                : brand === "RAINLEX"
-                  ? "text-[1.15rem] tracking-[0.18em]"
-                  : brand === "American Standard"
-                    ? "text-[0.98rem] normal-case tracking-[0.04em]"
-                    : brand === "Pfister"
-                      ? "text-[1.22rem] normal-case tracking-[-0.04em]"
-                      : "text-[1.25rem] tracking-[0.18em]";
+const factVariants: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: sectionEase, delay: i * 0.12 },
+  }),
+};
 
-  return (
-    <div className="flex min-h-[7rem] items-center justify-center border border-white/14 px-5 py-6 text-center">
-      <span
-        className={`font-black uppercase leading-none text-white ${brandClassName}`}
-      >
-        {brand}
-      </span>
-    </div>
-  );
-}
+const philosophyContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.22, delayChildren: 0.1 },
+  },
+};
+
+const philosophyItem: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, ease: sectionEase },
+  },
+};
+
+const reasonRowVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: sectionEase, delay: i * 0.08 },
+  }),
+};
 
 export function ShowroomPage() {
   return (
@@ -72,306 +71,290 @@ export function ShowroomPage() {
       />
       <Navbar />
 
-      <section className="relative min-h-[100dvh] overflow-hidden bg-black text-white">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/victoria-premium-kitchen-interior.webp"
-            alt="Premium kitchen and fixture display for the CVR showroom in Victoria BC"
-            fill
-            priority
-            fetchPriority="high"
-            quality={90}
-            sizes="100vw"
-            className="object-cover opacity-78"
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/34" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/55 to-transparent" />
+      <PageIntro
+        eyebrow="Showroom / In-Person Selection"
+        title={"Our Showroom"}
+        scrollTargetId="showroom"
+        backgroundImage={showroomHero}
+      />
 
-        <div className="relative z-10 flex min-h-[100dvh] flex-col justify-end px-5 pb-6 pt-24 sm:px-8 md:px-12 md:pb-10 md:pt-32 lg:px-10 lg:pb-12 lg:pt-36">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(17rem,0.9fr)] lg:items-end">
-            <div>
-              <p className="mb-6 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-white/62">
-                Showroom / In-Person Product Selection
-              </p>
-              <h1 className="max-w-[1100px] text-left text-[3rem] font-bold uppercase leading-[0.9] tracking-tighter text-balance text-white sm:text-[4.2rem] md:text-[6rem] lg:text-[6.9rem] xl:text-[7.5rem]">
-                SEE IT.
-                <br />
-                COMPARE IT.
-                <br />
-                CHOOSE IT.
-              </h1>
-            </div>
+      {/* Facts + intro */}
+      <section
+        id="showroom"
+        aria-labelledby="showroom-heading"
+        className="site-shell px-6 pb-24 pt-16 sm:px-8 md:px-12 md:pb-28 md:pt-20 lg:px-20 lg:pb-32 lg:pt-24"
+      >
+        <h2 id="showroom-heading" className="sr-only">
+          About the CVR Showroom
+        </h2>
 
-            <div className="border border-white/18 bg-black/35 p-5 backdrop-blur-sm md:p-6">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-white/56">
-                CVR Showroom
-              </p>
-              <p className="mt-4 text-[1rem] leading-7 text-white/76">
-                A dedicated in-person showroom for clients who want to compare
-                fixtures, product lines, and finish options with more clarity
-                before the final selections are made.
-              </p>
-              <div className="mt-6 grid gap-3 border-t border-white/14 pt-5 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-white/64">
-                <a
-                  href={showroomContact.phoneHref}
-                  className="transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  {showroomContact.phone}
-                </a>
-                <a
-                  href={showroomContact.emailHref}
-                  className="break-all transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  {showroomContact.email}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 flex items-center gap-3 text-white/70 text-[10px] font-semibold uppercase tracking-[0.2em]">
-            <span>SCROLL DOWN</span>
-            <div className="flex flex-col items-center">
-              <div className="h-6 w-[1px] bg-white/50" />
-              <svg
-                width="8"
-                height="6"
-                viewBox="0 0 8 6"
-                fill="none"
-                className="mt-0.5"
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-black/10 pt-14 sm:gap-x-10 md:gap-y-14 lg:grid-cols-4 lg:gap-x-12 lg:pt-20">
+          {showroomFacts.map((fact, index) => {
+            const numericValue = Number.parseInt(fact.value, 10);
+            return (
+              <motion.div
+                key={fact.label}
+                custom={index}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+                variants={factVariants}
+                className="flex flex-col gap-3"
               >
-                <path
-                  d="M1 1L4 4L7 1"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                <p className="flex items-baseline text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.8rem] md:text-[4.4rem] lg:text-[4rem] xl:text-[4.6rem]">
+                  <AnimatedNumber value={numericValue} />
+                  <span className="text-black/55">{fact.suffix}</span>
+                </p>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/48">
+                  {fact.label}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="mt-16 grid gap-10 md:mt-20 lg:mt-24 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1fr)] lg:items-stretch lg:gap-16">
+          <Reveal direction="up" duration={0.9} distance={32}>
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-black sm:aspect-[4/4.6] lg:aspect-[3/4]">
+              <Image
+                src={showroomPortrait.src}
+                alt={showroomPortrait.alt}
+                fill
+                quality={88}
+                sizes="(max-width: 1023px) 100vw, 32vw"
+                className="object-cover"
+              />
             </div>
-          </div>
+          </Reveal>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+            variants={philosophyContainer}
+            className="flex flex-col gap-8 md:gap-10 lg:h-full lg:justify-between lg:gap-6 lg:py-1"
+          >
+            <motion.div variants={philosophyItem}>
+              <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+                SEE IT. COMPARE IT. CHOOSE IT.
+              </SectionEyebrow>
+            </motion.div>
+
+            <motion.p variants={philosophyItem} className={proseHeroClassName}>
+              A dedicated in-person showroom for clients who want to compare fixtures, product lines, and finish options with more clarity before the final selections are locked.
+            </motion.p>
+
+            <motion.p variants={philosophyItem} className={proseHeroClassName}>
+              The goal is simple &mdash; better visibility, stronger contrast between options, and fewer weak selections once the project is moving.
+            </motion.p>
+
+            <motion.div variants={philosophyItem}>
+              <a
+                href={showroomContact.phoneHref}
+                className="inline-flex items-center gap-3 border-b border-current pb-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                Book A Showroom Visit
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="px-6 pb-16 pt-16 sm:px-8 md:px-12 md:pb-20 md:pt-20 lg:px-20 lg:pb-24 lg:pt-24">
-        <RouteIntro
-          eyebrow="Showroom / Built For In-Person Decisions"
-          title={
-            <>
-              A SHOWROOM
-              <br />
-              THAT MOVES
-              <br />
-              SELECTIONS
-              <br />
-              FORWARD
-            </>
-          }
-          titleClassName="max-w-[12ch] text-balance text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[4.2rem] md:max-w-[10ch] md:text-[5.2rem] lg:max-w-none lg:text-[6.1rem]"
-          description={
-            <>
-              <p>
-                This page is not about construction services in the abstract.
-                It is about the physical showroom: a place where clients can
-                review products in person, compare brand options, and make
-                sharper decisions before the final spec gets locked.
-              </p>
-              <p className="mt-4">
-                The goal is simple. Better visibility, stronger contrast
-                between options, and fewer weak selections once the project is
-                moving.
-              </p>
-            </>
-          }
-        />
-      </section>
+      {/* Brands marquee */}
+      <section
+        aria-labelledby="brands-heading"
+        className="border-y border-black/10 bg-white py-10 md:py-12"
+      >
+        <div className="site-shell mb-6 flex flex-col gap-2 px-6 sm:px-8 md:px-12 lg:px-20">
+          <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-black/60">
+            BRANDS IN STORE
+          </SectionEyebrow>
+          <h2
+            id="brands-heading"
+            className="text-[2.9rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
+          >
+            The Lines Clients Trust
+          </h2>
+        </div>
 
-      <section className="border-y-2 border-white bg-black text-white">
-        <div className="px-6 py-12 sm:px-8 md:px-12 lg:px-20 lg:py-16">
-          <div className="mb-10 flex flex-col gap-4 border-b border-white/14 pb-5 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-white/52">
-                Brands In Store
-              </p>
-              <h2 className="max-w-[11ch] text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.9rem] lg:max-w-none lg:text-[4.7rem]">
-                The Lines Clients Ask For, In One Place
-              </h2>
-            </div>
-            <p className="max-w-[28rem] text-[0.98rem] leading-7 text-white/68">
-              Visible brand coverage matters here. The names are on the page,
-              in the markup, and in the showroom schema so the route reads like
-              a real product destination rather than a vague landing page.
-            </p>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        <ScrollVelocityContainer className="pt-2">
+          <ScrollVelocityRow baseVelocity={2.2} direction={1} scrollReactivity={false}>
             {showroomBrands.map((brand) => (
-              <BrandWordmark key={brand} brand={brand} />
+              <span
+                key={brand}
+                className="mr-10 whitespace-nowrap text-[1.8rem] font-black uppercase tracking-[-0.02em] text-black/75 sm:mr-14 sm:text-[2.4rem] md:text-[3rem] lg:text-[3.4rem]"
+              >
+                {brand}
+                <span aria-hidden="true" className="mx-6 text-black/20 sm:mx-8">
+                  ◆
+                </span>
+              </span>
             ))}
-          </div>
-        </div>
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
       </section>
 
-      <section className="bg-white text-black">
-        {showroomCollections.map((collection, index) => {
-          const isReversed = index % 2 === 1;
-
-          return (
-            <section
-              key={collection.index}
-              className="border-b border-black/10 px-6 py-10 sm:px-8 md:px-12 lg:px-20 lg:py-14"
+      {/* Product categories */}
+      <section
+        aria-labelledby="collections-heading"
+        className="site-shell px-6 pb-16 pt-20 sm:px-8 md:px-12 md:pb-20 md:pt-28 lg:px-20 lg:pb-24 lg:pt-32"
+      >
+        <Reveal direction="up" duration={0.7} distance={28}>
+          <div className="mb-12 flex flex-col gap-4 lg:mb-16">
+            <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+              WHAT YOU CAN SEE
+            </SectionEyebrow>
+            <h2
+              id="collections-heading"
+              className="text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.2rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
             >
-              <div
-                className={`grid gap-8 lg:grid-cols-2 lg:gap-12 ${
-                  isReversed ? "lg:[&>*:first-child]:order-2" : ""
-                }`}
-              >
-                <div className="relative min-h-[24rem] overflow-hidden bg-black">
-                  <Image
-                    src={collection.image}
-                    alt={collection.alt}
-                    fill
-                    quality={90}
-                    sizes="(max-width: 1023px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
+              Product Categories
+            </h2>
+          </div>
+        </Reveal>
 
-                <div className="flex flex-col justify-between">
-                  <div>
+        <div className="flex flex-col gap-16 md:gap-20 lg:gap-24">
+          {showroomCollections.map((collection, index) => {
+            const isReversed = index % 2 === 1;
+            return (
+              <Reveal
+                key={collection.index}
+                direction="up"
+                duration={0.9}
+                distance={40}
+              >
+                <article
+                  className={`grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-center ${
+                    isReversed ? "lg:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-black lg:aspect-[5/4]">
+                    <Image
+                      src={collection.image}
+                      alt={collection.alt}
+                      fill
+                      quality={90}
+                      sizes="(max-width: 1023px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col">
                     <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                       {collection.index} / {collection.eyebrow}
                     </p>
-                    <h2 className="max-w-[11ch] text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.9rem] lg:max-w-none lg:text-[4.7rem]">
+                    <h3 className="max-w-[12ch] text-[2.2rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:text-[3rem] md:text-[3.6rem] lg:max-w-none lg:text-[4rem] xl:text-[4.4rem]">
                       {collection.title}
-                    </h2>
-                    <p className={`mt-6 max-w-[36rem] ${proseBodyClassName}`}>
+                    </h3>
+                    <p className={`mt-6 max-w-[40rem] ${proseBodyClassName}`}>
                       {collection.description}
                     </p>
                   </div>
-
-                  <div className="mt-8 border-t border-black/10 pt-5">
-                    <p className="text-[0.74rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-                      What This Changes
-                    </p>
-                    <p className={`mt-3 max-w-[34rem] ${proseBodyClassName}`}>
-                      Instead of choosing products from disconnected tabs and
-                      spec sheets, the showroom gives clients a place to compare
-                      selections with real scale, real finish contrast, and more
-                      confidence in the final direction.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          );
-        })}
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
       </section>
 
-      <section className="relative overflow-hidden bg-black text-white">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/victoria-front-entry-rebuild.webp"
-            alt="Front entry renovation project by CVR Construction in Victoria BC"
-            fill
-            quality={90}
-            sizes="100vw"
-            className="object-cover opacity-30"
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/58" />
-
-        <div className="relative z-10 px-6 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-24">
-          <div className="max-w-[58rem]">
-            <p className="mb-5 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-white/52">
-              Why The Showroom Matters
-            </p>
-            <h2 className="max-w-[11ch] text-[2.8rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[3.8rem] md:text-[5rem] lg:max-w-none lg:text-[6rem]">
-              NOT JUST
-              <br />
-              CATALOG PICKS.
-            </h2>
-          </div>
-
-          <div className="mt-12 grid gap-4 lg:grid-cols-3">
-            {showroomReasons.map((reason) => (
-              <div
-                key={reason.title}
-                className="border border-white/14 bg-black/30 p-5 backdrop-blur-sm md:p-6"
+      {/* Why the showroom */}
+      <section
+        aria-labelledby="why-heading"
+        className="site-shell px-6 pb-24 pt-8 sm:px-8 md:px-12 md:pb-28 md:pt-12 lg:px-20 lg:pb-32 lg:pt-16"
+      >
+        <div className="grid gap-10 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
+          <Reveal direction="up" duration={0.7} distance={28}>
+            <div className="flex flex-col gap-6">
+              <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+                WHY THE SHOWROOM
+              </SectionEyebrow>
+              <h2
+                id="why-heading"
+                className="text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.6rem] lg:text-[4rem] xl:text-[4.4rem]"
               >
-                <p className="text-[1.15rem] font-black uppercase leading-[1.02] tracking-[-0.04em] text-white">
-                  {reason.title}
-                </p>
-                <p className="mt-4 text-[0.98rem] leading-7 text-white/70">
-                  {reason.description}
-                </p>
-              </div>
+                Not Just
+                <br />
+                Catalog Picks.
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="flex flex-col">
+            {showroomReasons.map((reason, index) => (
+              <motion.div
+                key={reason.title}
+                custom={index}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                variants={reasonRowVariants}
+                className="group border-b border-black/10 first:border-t"
+              >
+                <div className="grid grid-cols-1 gap-3 py-6 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] sm:gap-10 sm:py-8 md:py-9">
+                  <p className="text-[1.15rem] font-black uppercase leading-[1.05] tracking-[-0.03em] md:text-[1.4rem] lg:text-[1.6rem]">
+                    {reason.title}
+                  </p>
+                  <p className={`${proseBodyClassName} max-w-[38rem]`}>
+                    {reason.description}
+                  </p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white px-6 pb-20 pt-16 text-black sm:px-8 md:px-12 md:pb-24 lg:px-20">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(22rem,0.98fr)] lg:items-end">
-          <div>
-            <p className="mb-5 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-              Visit / Contact The Showroom
-            </p>
-            <h2 className="max-w-[10ch] text-[2.8rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[3.9rem] md:text-[4.8rem] lg:max-w-none lg:text-[5.7rem]">
-              COME SEE THE PRODUCTS IN PERSON
+      {/* Visit / contact */}
+      <section
+        aria-labelledby="visit-heading"
+        className="site-shell px-6 pb-24 sm:px-8 md:px-12 md:pb-28 lg:px-20 lg:pb-32"
+      >
+        <Reveal direction="up" duration={0.7} distance={28}>
+          <div className="mb-10 flex flex-col gap-4 border-t border-black/10 pt-10 lg:mb-14 lg:pt-14">
+            <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+              VISIT THE SHOWROOM
+            </SectionEyebrow>
+            <h2
+              id="visit-heading"
+              className="max-w-[15ch] text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.6rem] lg:max-w-none lg:text-[4rem] xl:text-[4.6rem]"
+            >
+              Come See The Products In Person
             </h2>
-            <p className={`mt-6 max-w-[40rem] ${proseBodyClassName}`}>
-              If the project is moving into selections, the showroom is the
-              fastest way to compare brands, tighten the decision-making, and
-              move toward a cleaner final specification.
-            </p>
           </div>
+        </Reveal>
 
-          <div className="grid gap-4 border-t border-black/10 pt-6 lg:border-t-0 lg:pt-0">
-            <div className="border border-black/10 p-5">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Reveal direction="up" delay={0.08} duration={0.8} distance={30}>
+            <a
+              href={showroomContact.phoneHref}
+              className="group flex h-full flex-col justify-between gap-10 border border-black/12 p-6 transition-colors duration-300 hover:border-black hover:bg-black hover:text-white focus-visible:outline-none focus-visible:border-black focus-visible:bg-black focus-visible:text-white md:p-8"
+            >
+              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/48 group-hover:text-white/60 group-focus-visible:text-white/60">
                 Showroom Phone
-              </p>
-              <a
-                href={showroomContact.phoneHref}
-                className="mt-3 block text-[1.25rem] font-medium leading-7 tracking-[-0.03em] text-black/78 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
-              >
+              </span>
+              <span className="text-[1.8rem] font-black uppercase leading-[1.02] tracking-[-0.04em] md:text-[2.4rem] lg:text-[2.8rem]">
                 {showroomContact.phone}
-              </a>
-            </div>
-
-            <div className="border border-black/10 p-5">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+              </span>
+            </a>
+          </Reveal>
+          <Reveal direction="up" delay={0.16} duration={0.8} distance={30}>
+            <a
+              href={showroomContact.emailHref}
+              className="group flex h-full flex-col justify-between gap-10 border border-black/12 p-6 transition-colors duration-300 hover:border-black hover:bg-black hover:text-white focus-visible:outline-none focus-visible:border-black focus-visible:bg-black focus-visible:text-white md:p-8"
+            >
+              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/48 group-hover:text-white/60 group-focus-visible:text-white/60">
                 Showroom Email
-              </p>
-              <a
-                href={showroomContact.emailHref}
-                className="mt-3 block break-all text-[1.1rem] font-medium leading-7 tracking-[-0.03em] text-black/78 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
-              >
+              </span>
+              <span className="break-all text-[1.4rem] font-black uppercase leading-[1.1] tracking-[-0.03em] md:text-[1.8rem] lg:text-[2rem]">
                 {showroomContact.email}
-              </a>
-            </div>
-
-            <div className="border border-black/10 p-5">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-                What To Use This For
-              </p>
-              <p className={`mt-3 ${proseBodyClassName}`}>
-                Brand comparison, finish decisions, fixture selection, and a
-                more confident direction before products are finalized.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <ContactLink href={showroomContact.phoneHref} label="Call The Showroom" />
-          <ContactLink href={showroomContact.emailHref} label="Email The Showroom" />
+              </span>
+            </a>
+          </Reveal>
         </div>
       </section>
 
       <div className="relative z-[60] bg-black">
-        <Footer />
+        <Footer showCta />
       </div>
     </main>
   );

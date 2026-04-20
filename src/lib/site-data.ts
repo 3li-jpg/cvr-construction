@@ -736,6 +736,23 @@ export const galleryHero = {
   alt: "CVR Construction luxury bathroom renovation in Victoria BC",
 };
 
+export const showroomHero = {
+  src: "/images/victoria-premium-kitchen-interior.webp",
+  alt: "CVR Showroom in-person product selection in Victoria BC",
+};
+
+export const showroomPortrait = {
+  src: "/images/victoria-kitchen-bath-material-selections.webp",
+  alt: "Premium material and fixture selections inside the CVR Showroom",
+};
+
+export const showroomFacts = [
+  { value: "10", suffix: "+", label: "Premium Brands" },
+  { value: "3", suffix: "", label: "Product Categories" },
+  { value: "100", suffix: "%", label: "By Appointment" },
+  { value: "12", suffix: "+", label: "Years Experience" },
+] as const;
+
 export const aboutStudioPortrait = {
   image: "/images/victoria-home-entry-renovation-exterior.webp",
   alt: "CVR Construction completed home on Vancouver Island",

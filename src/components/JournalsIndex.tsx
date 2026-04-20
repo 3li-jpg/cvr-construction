@@ -113,13 +113,7 @@ export function JournalsIndex() {
           Latest journals
         </h2>
 
-        <div className="mb-10 flex flex-col gap-6 border-t border-black/10 pt-10 sm:flex-row sm:items-end sm:justify-between md:mb-14">
-          <div className="flex flex-col gap-1 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black/48">
-            <span>Journal Index</span>
-            <span className="text-black">
-              {String(journalPosts.length).padStart(2, "0")} Articles
-            </span>
-          </div>
+        <div className="mb-10 border-t border-black/10 pt-10 md:mb-14">
           <p className={`max-w-[34rem] ${proseBodyClassName}`}>
             Written to help clients make better renovation decisions before the site work begins. Calmer scopes, cleaner finishes, fewer avoidable mistakes.
           </p>
