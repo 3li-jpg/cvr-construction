@@ -762,9 +762,19 @@ export type StudioPartner = {
   name: string;
 };
 
-export const studioPartners: StudioPartner[] = showroomBrands.map((name) => ({
-  name,
-}));
+// Placeholder partners — swap these with real collaborators when confirmed.
+export const studioPartners: StudioPartner[] = [
+  { name: "Westbrook Architects" },
+  { name: "Aspen Timber Co." },
+  { name: "Northbank Millwork" },
+  { name: "Harbour Stone Supply" },
+  { name: "Meridian Studio" },
+  { name: "Coastline Joinery" },
+  { name: "Fairhaven Lighting" },
+  { name: "Keystone Tile Works" },
+  { name: "Pacifica Electrical" },
+  { name: "Parkside Cabinetry" },
+];
 
 export const studioYears = [
   "2013",

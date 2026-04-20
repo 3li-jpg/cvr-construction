@@ -166,7 +166,7 @@ export function ShowroomPage() {
         aria-labelledby="brands-heading"
         className="border-y border-black/10 bg-white py-10 md:py-12"
       >
-        <div className="site-shell mb-6 flex flex-col gap-2 px-6 sm:px-8 md:px-12 lg:px-20">
+        <div className="site-shell mb-6 flex flex-col items-center gap-2 px-6 text-center sm:px-8 md:px-12 lg:px-20">
           <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-black/60">
             BRANDS IN STORE
           </SectionEyebrow>
@@ -201,7 +201,7 @@ export function ShowroomPage() {
         className="site-shell px-6 pb-16 pt-20 sm:px-8 md:px-12 md:pb-20 md:pt-28 lg:px-20 lg:pb-24 lg:pt-32"
       >
         <Reveal direction="up" duration={0.7} distance={28}>
-          <div className="mb-12 flex flex-col gap-4 lg:mb-16">
+          <div className="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
             <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
               WHAT YOU CAN SEE
             </SectionEyebrow>
@@ -310,7 +310,7 @@ export function ShowroomPage() {
         className="site-shell px-6 pb-24 sm:px-8 md:px-12 md:pb-28 lg:px-20 lg:pb-32"
       >
         <Reveal direction="up" duration={0.7} distance={28}>
-          <div className="mb-10 flex flex-col gap-4 border-t border-black/10 pt-10 lg:mb-14 lg:pt-14">
+          <div className="mb-10 flex flex-col items-center gap-4 border-t border-black/10 pt-10 text-center lg:mb-14 lg:pt-14">
             <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
               VISIT THE SHOWROOM
             </SectionEyebrow>
