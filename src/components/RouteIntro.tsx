@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { proseBodyClassName } from "@/lib/prose";
 
 type RouteIntroProps = {
   eyebrow: string;
@@ -33,7 +34,7 @@ export function RouteIntro({
 
       <div className="max-w-[42rem] lg:justify-self-end">
         <div
-          className={`text-[1rem] leading-7 text-black/70 sm:text-[1.08rem] ${descriptionClassName}`}
+          className={`${proseBodyClassName} ${descriptionClassName}`}
         >
           {description}
         </div>

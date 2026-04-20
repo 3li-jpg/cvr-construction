@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { RouteIntro } from "@/components/RouteIntro";
+import { proseBodyClassName } from "@/lib/prose";
 import {
   showroomBrands,
   showroomCollections,
@@ -244,7 +245,7 @@ export function ShowroomPage() {
                     <h2 className="max-w-[11ch] text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.9rem] lg:max-w-none lg:text-[4.7rem]">
                       {collection.title}
                     </h2>
-                    <p className="mt-6 max-w-[36rem] text-[1rem] leading-7 text-black/70 sm:text-[1.08rem]">
+                    <p className={`mt-6 max-w-[36rem] ${proseBodyClassName}`}>
                       {collection.description}
                     </p>
                   </div>
@@ -253,7 +254,7 @@ export function ShowroomPage() {
                     <p className="text-[0.74rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                       What This Changes
                     </p>
-                    <p className="mt-3 max-w-[34rem] text-[0.98rem] leading-7 text-black/68">
+                    <p className={`mt-3 max-w-[34rem] ${proseBodyClassName}`}>
                       Instead of choosing products from disconnected tabs and
                       spec sheets, the showroom gives clients a place to compare
                       selections with real scale, real finish contrast, and more
@@ -319,7 +320,7 @@ export function ShowroomPage() {
             <h2 className="max-w-[10ch] text-[2.8rem] font-black uppercase leading-[0.88] tracking-[-0.06em] sm:text-[3.9rem] md:text-[4.8rem] lg:max-w-none lg:text-[5.7rem]">
               COME SEE THE PRODUCTS IN PERSON
             </h2>
-            <p className="mt-6 max-w-[40rem] text-[1rem] leading-7 text-black/70 sm:text-[1.08rem]">
+            <p className={`mt-6 max-w-[40rem] ${proseBodyClassName}`}>
               If the project is moving into selections, the showroom is the
               fastest way to compare brands, tighten the decision-making, and
               move toward a cleaner final specification.
@@ -355,7 +356,7 @@ export function ShowroomPage() {
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                 What To Use This For
               </p>
-              <p className="mt-3 text-[0.98rem] leading-7 text-black/68">
+              <p className={`mt-3 ${proseBodyClassName}`}>
                 Brand comparison, finish decisions, fixture selection, and a
                 more confident direction before products are finalized.
               </p>

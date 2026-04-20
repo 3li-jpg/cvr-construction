@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
 import { buildPageMetadata } from "@/lib/metadata";
+import { proseBodyClassName } from "@/lib/prose";
 import { getProjectBySlug, projects } from "@/lib/site-data";
 
 type ProjectDetailPageProps = {
@@ -289,7 +290,7 @@ export default async function ProjectDetailPage({
                     More Built Proof
                   </h2>
                 </div>
-                <p className="max-w-xl text-[0.95rem] leading-7 text-black/68">
+                <p className={`max-w-xl ${proseBodyClassName}`}>
                   Explore adjacent projects to understand how the same level of planning and finish shows up across different scopes.
                 </p>
               </div>
@@ -345,7 +346,7 @@ export default async function ProjectDetailPage({
               <p className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                 Start A Similar Project
               </p>
-              <p className="max-w-2xl text-[0.96rem] leading-7 text-black/68">
+              <p className={`max-w-2xl ${proseBodyClassName}`}>
                 If you are planning a renovation, custom space, or detail-driven upgrade in Victoria, we can help shape the scope and finish level early.
               </p>
             </div>

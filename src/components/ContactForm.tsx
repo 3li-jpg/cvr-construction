@@ -448,7 +448,7 @@ export function ContactForm() {
           href={whatsAppFallbackUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 inline-flex w-fit items-center gap-2 border-b border-black pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+          className="mt-4 inline-flex w-fit items-center gap-2 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
         >
           Open WhatsApp manually
         </a>

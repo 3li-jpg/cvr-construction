@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
 import { buildPageMetadata } from "@/lib/metadata";
+import { proseBodyClassName } from "@/lib/prose";
 import { getJournalPostBySlug, journalPosts } from "@/lib/site-data";
 
 type JournalDetailPageProps = {
@@ -173,7 +174,7 @@ export default async function JournalDetailPage({
                     <ul className="space-y-3 text-[0.96rem] leading-7 text-black/70">
                       {post.keyTakeaways.map((takeaway) => (
                         <li key={takeaway} className="flex gap-3">
-                          <span className="mt-3 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-black" />
+                          <span className="mt-3 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
                           <span>{takeaway}</span>
                         </li>
                       ))}
@@ -209,7 +210,7 @@ export default async function JournalDetailPage({
                     Keep Reading
                   </h2>
                 </div>
-                <p className="max-w-xl text-[0.95rem] leading-7 text-black/68">
+                <p className={`max-w-xl ${proseBodyClassName}`}>
                   These articles are written to reduce planning mistakes before a renovation gets expensive.
                 </p>
               </div>
@@ -261,7 +262,7 @@ export default async function JournalDetailPage({
               <p className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                 Planning A Project?
               </p>
-              <p className="max-w-2xl text-[0.96rem] leading-7 text-black/68">
+              <p className={`max-w-2xl ${proseBodyClassName}`}>
                 If you are preparing for a renovation in Victoria, we can help shape the scope, timeline, and finish standard before the work begins.
               </p>
             </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
+import { proseBodyClassName } from "@/lib/prose";
 
 export function StorySection() {
   return (
@@ -21,13 +22,13 @@ export function StorySection() {
         <div className="flex w-full flex-col justify-center py-16 lg:w-1/2 lg:pl-12 xl:pl-16">
           <Reveal direction="up" delay={0.2} duration={0.8}>
             <p className="mb-10 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
               OUR STORY
             </p>
           </Reveal>
 
           <Reveal direction="up" delay={0.4} duration={0.9}>
-            <div className="max-w-lg space-y-6 text-[0.95rem] font-normal leading-[1.8] text-black/70 md:text-base">
+            <div className={`max-w-xl space-y-6 ${proseBodyClassName}`}>
               <p>
                 CVR Construction is trusted for renovation work that feels
                 composed, substantial, and properly finished. We take on

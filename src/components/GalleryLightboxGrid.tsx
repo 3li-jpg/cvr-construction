@@ -1,12 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
 import { GalleryLightboxOverlay } from "@/components/GalleryLightboxOverlay";
 import { galleryItems } from "@/lib/site-data";
 
+const sectionEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
+
+const ASPECT_PATTERN = [
+  "aspect-[4/5]",
+  "aspect-[1/1]",
+  "aspect-[5/6]",
+  "aspect-[4/5]",
+  "aspect-[1/1]",
+  "aspect-[5/7]",
+] as const;
+
 export function GalleryLightboxGrid() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const total = galleryItems.length;
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((current) =>
+      current === null ? null : (current - 1 + total) % total
+    );
+  }, [total]);
+
+  const handleNext = useCallback(() => {
+    setActiveIndex((current) =>
+      current === null ? null : (current + 1) % total
+    );
+  }, [total]);
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -32,53 +59,47 @@ export function GalleryLightboxGrid() {
 
   return (
     <>
-      <div className="mt-14 grid gap-4 sm:grid-cols-2 xl:grid-cols-12">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
         {galleryItems.map((item, index) => {
-          const isLarge = index % 5 === 0 || index % 5 === 3;
+          const aspectClass = ASPECT_PATTERN[index % ASPECT_PATTERN.length];
 
           return (
-            <button
+            <motion.button
               key={item.image}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className={`group overflow-hidden border border-black/10 bg-white text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 ${
-                isLarge ? "xl:col-span-7" : "xl:col-span-5"
-              }`}
               aria-label={`Open larger image for ${item.title}`}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 40, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+              transition={{
+                duration: 0.85,
+                ease: sectionEase,
+                delay: Math.min((index % 6) * 0.06, 0.3),
+              }}
+              className={`group relative block w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 ${aspectClass}`}
             >
-              <div
-                className={`relative overflow-hidden bg-black ${
-                  isLarge ? "aspect-[1.35/1]" : "aspect-[0.92/1]"
-                }`}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  priority={index < 2}
-                  quality={90}
-                  sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 40vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-              </div>
-              <div className="flex items-center justify-between gap-4 p-4">
-                <div>
-                  <p className="mb-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
-                    {item.category}
-                  </p>
-                  <p className="text-[0.96rem] font-semibold tracking-[-0.02em] text-black">
-                    {item.title}
-                  </p>
-                </div>
-              </div>
-            </button>
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                quality={90}
+                priority={index < 3}
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              />
+            </motion.button>
           );
         })}
       </div>
 
       <GalleryLightboxOverlay
-        item={activeItem}
+        item={activeItem ?? null}
+        index={activeIndex}
+        total={total}
         onClose={() => setActiveIndex(null)}
+        onPrev={handlePrev}
+        onNext={handleNext}
       />
     </>
   );

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
 import { Footer } from "@/components/Footer";
-import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
+import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
 import { Navbar } from "@/components/Navbar";
-import { RouteIntro } from "@/components/RouteIntro";
+import { PageIntro } from "@/components/PageIntro";
 import { buildPageMetadata } from "@/lib/metadata";
-import { galleryItems } from "@/lib/site-data";
+import { proseBodyClassName } from "@/lib/prose";
+import { galleryHero, galleryItems } from "@/lib/site-data";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Gallery",
@@ -21,43 +21,39 @@ export default function GalleryPage() {
     <main id="main-content" className="relative bg-white text-black">
       <Navbar />
 
-      <section className="px-6 pb-16 pt-28 sm:px-8 md:px-12 md:pb-20 md:pt-32 lg:px-20 lg:pb-24 lg:pt-36">
-        <div className="mx-auto max-w-[1600px]">
-          <RouteIntro
-            eyebrow="Gallery / Project Photography"
-            title={
-              <>
-                A Closer Look
-                <br />
-                At The Finish
-              </>
-            }
-            titleClassName="max-w-[12ch] text-balance text-[2.55rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:max-w-[11ch] sm:text-[3.9rem] md:max-w-[10ch] md:text-[5.4rem] lg:max-w-none lg:text-[6.4rem]"
-            description="This gallery is built as a visual proof layer. It shows the kinds of rooms, details, and final conditions that shape how our work is judged once the project is complete."
-          />
-          <GalleryLightboxGrid />
+      <PageIntro
+        eyebrow="Gallery / Project Photography"
+        title={"Design In Focus"}
+        scrollTargetId="gallery"
+        backgroundImage={galleryHero}
+      />
 
-          <div className="mt-12 flex flex-col gap-5 border-t border-black/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-                Want To See The Full Scope
-              </p>
-              <p className="max-w-2xl text-[0.96rem] leading-7 text-black/68">
-                The gallery shows the finish. The project pages explain the thinking, the scope, and the kind of result clients can expect.
-              </p>
-            </div>
-            <InteractiveHoverButton
-              href="/projects"
-              className="w-fit"
-            >
-              View Projects
-            </InteractiveHoverButton>
+      <section
+        id="gallery"
+        aria-labelledby="gallery-grid-heading"
+        className="site-shell px-6 pb-24 pt-10 sm:px-8 md:px-12 md:pb-28 md:pt-14 lg:px-20 lg:pb-32 lg:pt-16"
+      >
+        <h2 id="gallery-grid-heading" className="sr-only">
+          Visual gallery
+        </h2>
+
+        <div className="mb-10 flex flex-col gap-6 border-t border-black/10 pt-10 sm:flex-row sm:items-end sm:justify-between md:mb-14">
+          <div className="flex flex-col gap-1 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black/48">
+            <span>Gallery Index</span>
+            <span className="text-black">
+              {String(galleryItems.length).padStart(2, "0")} Selected Images
+            </span>
           </div>
+          <p className={`max-w-[34rem] ${proseBodyClassName}`}>
+            A visual proof layer across kitchens, bathrooms, custom spaces, and exterior upgrades. Click any image to open the full-resolution view.
+          </p>
         </div>
+
+        <GalleryLightboxGrid />
       </section>
 
       <div className="relative z-[60] bg-black">
-        <Footer />
+        <Footer showCta />
       </div>
     </main>
   );

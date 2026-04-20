@@ -655,3 +655,105 @@ export const studioStats = [
   { label: "Core Focus", value: "Renovations, kitchens, bathrooms & custom spaces" },
   { label: "Project Standard", value: "Premium finish quality with disciplined delivery" },
 ] as const;
+
+export const studioFacts = [
+  { value: "12", suffix: "+", label: "Years On The Island" },
+  { value: "150", suffix: "+", label: "Completed Projects" },
+  { value: "40", suffix: "+", label: "Trades Coordinated" },
+  { value: "100", suffix: "%", label: "Licensed & Insured" },
+] as const;
+
+export const studioPhilosophy = [
+  "CVR Construction is a Victoria-based builder focused on disciplined renovation work. The bias is toward restraint, cleaner scopes, and finishes that hold their quality long after handover. We take on fewer projects and work them harder.",
+  "Every project is shaped by its own conditions — the home, the site, the client's appetite for detail. The way we coordinate trades, sequence the build, and close out the last ten percent is what makes the end result feel premium rather than just completed.",
+] as const;
+
+export type StudioCertification = {
+  title: string;
+  meta: string;
+  year?: string;
+  href?: string;
+};
+
+export const studioCertifications: StudioCertification[] = [
+  {
+    title: "BBB Accredited Business",
+    meta: "Better Business Bureau",
+    year: "Ongoing",
+    href: "https://www.bbb.org/ca/bc/victoria/profile/remodeling/cvr-construction-ltd-0047-235975091",
+  },
+  {
+    title: "WorkSafeBC Registered",
+    meta: "Active Coverage",
+    year: "Current",
+  },
+  {
+    title: "Licensed & Insured In British Columbia",
+    meta: "Full Liability Coverage",
+    year: "Current",
+  },
+  {
+    title: "CHBA Victoria Member",
+    meta: "Canadian Home Builders' Association",
+  },
+  {
+    title: "RenoMark Renovator",
+    meta: "Professional Renovation Standard",
+  },
+  {
+    title: "Houzz Best Of Service",
+    meta: "Recognition",
+    year: "2024",
+  },
+  {
+    title: "HomeStars Best Of Award",
+    meta: "Recognition",
+    year: "2024",
+  },
+  {
+    title: "Canadian Construction Association",
+    meta: "Professional Membership",
+  },
+];
+
+export const aboutHero = {
+  src: "/images/victoria-whole-home-renovation-interior.webp",
+  alt: "CVR Construction premium whole-home renovation in Victoria BC",
+};
+
+export const projectsHero = {
+  src: "/images/victoria-custom-kitchen-renovation.webp",
+  alt: "CVR Construction custom kitchen project in Victoria BC",
+};
+
+export const journalsHero = {
+  src: "/images/victoria-kitchen-bath-material-selections.webp",
+  alt: "CVR Construction material selection studio in Victoria BC",
+};
+
+export const galleryHero = {
+  src: "/images/victoria-luxury-bathroom-renovation.webp",
+  alt: "CVR Construction luxury bathroom renovation in Victoria BC",
+};
+
+export const aboutStudioPortrait = {
+  image: "/images/victoria-home-entry-renovation-exterior.webp",
+  alt: "CVR Construction completed home on Vancouver Island",
+};
+
+export type StudioPartner = {
+  name: string;
+};
+
+export const studioPartners: StudioPartner[] = showroomBrands.map((name) => ({
+  name,
+}));
+
+export const studioYears = [
+  "2013",
+  "2016",
+  "2019",
+  "2021",
+  "2024",
+  "2026",
+] as const;

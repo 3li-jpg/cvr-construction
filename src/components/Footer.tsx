@@ -1,10 +1,16 @@
  "use client";
 
+import Image from "next/image";
 import Link from 'next/link';
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
 import TextRoll from "@/components/ui/text-roll";
 import { navItems, projects, socialLinks } from "@/lib/site-data";
+
+const ctaBackgroundImage = {
+  src: "/images/victoria-whole-home-renovation-interior.webp",
+  alt: "",
+};
 
 interface FooterProps {
   showCta?: boolean;
@@ -22,14 +28,43 @@ export function Footer({ showCta = false }: FooterProps) {
     "transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
   return (
-      <footer className="relative w-full overflow-x-hidden">
+    <>
       {showCta ? (
-        <div className="bg-white text-black">
-          <div className="site-shell px-2 pb-24 pt-24 text-center sm:px-3 lg:px-4">
-          <div className="relative mx-auto flex min-h-[24rem] w-full max-w-[70rem] items-center justify-center sm:min-h-[28rem] md:min-h-[34rem]">
-            <div className="relative z-10 flex max-w-[58rem] flex-col items-center">
-              <Reveal direction="up" delay={0.1} duration={1.1} distance={100}>
-                <h2 className="mb-10 max-w-[9ch] text-[16vw] font-black uppercase leading-[0.86] tracking-[-0.055em] text-balance sm:mb-12 sm:text-[11vw] md:text-[5.8rem] lg:max-w-none lg:text-[7.5rem] xl:text-[8.6rem]">
+        <section
+          aria-labelledby="global-cta-heading"
+          className="relative isolate flex h-[100svh] min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black text-white md:h-[100dvh] md:min-h-[100dvh]"
+        >
+          <Image
+            src={ctaBackgroundImage.src}
+            alt={ctaBackgroundImage.alt}
+            fill
+            quality={90}
+            sizes="100vw"
+            className="pointer-events-none absolute inset-0 -z-10 object-cover object-center"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 bg-black/60"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-black/30 via-black/20 to-black/80"
+          />
+
+          <div className="site-shell relative z-10 flex w-full flex-col items-center justify-center px-6 py-20 text-center sm:px-8 md:px-12 lg:px-20">
+            <div className="flex max-w-[58rem] flex-col items-center">
+              <Reveal direction="up" delay={0.08} duration={0.7} distance={20}>
+                <p className="mb-6 flex items-center justify-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-white/75 sm:mb-8">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-white/75" />
+                  Contact Us
+                </p>
+              </Reveal>
+
+              <Reveal direction="up" delay={0.18} duration={1} distance={60}>
+                <h2
+                  id="global-cta-heading"
+                  className="mb-10 max-w-[9ch] text-[16vw] font-black uppercase leading-[0.86] tracking-[-0.055em] text-balance text-white sm:mb-12 sm:text-[11vw] md:text-[5.8rem] lg:max-w-none lg:text-[7.5rem] xl:text-[8.6rem]"
+                >
                   LET&apos;S BUILD
                   <br />
                   SOMETHING LASTING
@@ -37,21 +72,18 @@ export function Footer({ showCta = false }: FooterProps) {
               </Reveal>
 
               <Reveal direction="up" delay={0.35} duration={0.8}>
-                <InteractiveHoverButton href="/contact" variant="default" className="z-10">
+                <InteractiveHoverButton href="/contact" variant="light" className="z-10">
                   SEND US AN ENQUIRY
                 </InteractiveHoverButton>
               </Reveal>
             </div>
           </div>
-        </div>
-        </div>
+        </section>
       ) : null}
 
-      <div className="bg-black text-white">
+      <footer className="relative flex h-[100svh] w-full flex-col justify-between overflow-hidden bg-black text-white md:h-[100dvh]">
         <div
-        className={`site-shell w-full px-2 sm:px-3 lg:px-4 pb-0 ${
-          showCta ? "pt-2" : "pt-14 md:pt-16 lg:pt-20"
-        }`}
+        className="site-shell w-full px-2 sm:px-3 lg:px-4 pt-10 md:pt-14"
       >
         <div className="grid w-full grid-cols-1 gap-14 md:grid-cols-3 lg:gap-16">
           {/* Column 1: Address + Contact */}
@@ -129,12 +161,11 @@ export function Footer({ showCta = false }: FooterProps) {
             </div>
           </Reveal>
         </div>
+      </div>
 
-        {/* Bottom bar: socials left, copyright center */}
-        <div
-          className="mt-24 flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-center"
-          style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
-        >
+      {/* Middle: socials + copyright (centered in leftover space between sitemap and brand) */}
+      <div className="site-shell w-full px-2 sm:px-3 lg:px-4">
+        <div className="flex w-full flex-col items-start justify-between gap-3 md:flex-row md:items-center">
           <div className="flex gap-6 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/50">
             {socialLinks.map((link) => (
               <a
@@ -154,7 +185,24 @@ export function Footer({ showCta = false }: FooterProps) {
           </p>
         </div>
       </div>
+
+      <div aria-hidden="true" className="w-full select-none">
+        <p
+          className="block w-full whitespace-nowrap text-center font-semibold uppercase leading-[0.82] tracking-[-0.04em] text-white text-[10.5vw]"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(0deg, rgba(0,0,0,0) 0%, rgb(0,0,0) 100%)",
+            maskImage:
+              "linear-gradient(0deg, rgba(0,0,0,0) 0%, rgb(0,0,0) 100%)",
+            marginBottom: "-0.2em",
+          }}
+        >
+          Canada Victoria
+          <br />
+          Remodelling
+        </p>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 }

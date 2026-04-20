@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { proseBodyClassName } from "@/lib/prose";
 import { sectionHeadingClassName } from "@/lib/section-heading";
 
 const phrases = [
@@ -58,22 +59,22 @@ export function StudioSection() {
         </div>
 
         <div className="flex w-full flex-col lg:flex-row lg:items-stretch">
-          <div className="flex w-full items-start justify-center pb-12 lg:w-1/2 lg:pb-0 lg:pr-10 xl:pr-14">
-            <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-xs">
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
+          <div className="flex w-full items-start justify-center pb-12 lg:w-1/2 lg:items-stretch lg:pb-0 lg:pr-10 xl:pr-14">
+            <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-xs lg:max-w-md lg:h-full">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-white lg:aspect-auto lg:h-full">
                 <Image
                   src="/images/victoria-bathroom-vanity-detail.webp"
                   alt="CVR Construction bathroom renovation detail"
                   fill
                   quality={90}
-                  sizes="(max-width: 1023px) 100vw, 320px"
+                  sizes="(max-width: 1023px) 100vw, 448px"
                   className="object-cover"
                 />
               </div>
             </Reveal>
           </div>
 
-          <div className="flex w-full flex-col justify-start py-2 lg:w-1/2 lg:pl-8 xl:pl-12">
+          <div className="flex w-full flex-col justify-start py-2 lg:w-1/2 lg:py-0 lg:pl-8 xl:pl-12">
             <div className="relative mb-8 flex items-start">
               <span
                 className="shrink-0 pr-3 text-[2rem] font-black leading-[1.2] tracking-[-0.03em] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem]"
@@ -102,7 +103,7 @@ export function StudioSection() {
               </div>
             </div>
 
-            <Reveal direction="up" delay={0.2} duration={0.9} className="flex max-w-md flex-col gap-5 text-[0.88rem] font-normal leading-[1.75] text-black/60 md:text-[0.93rem]">
+            <Reveal direction="up" delay={0.2} duration={0.9} className={`flex max-w-xl flex-col gap-5 ${proseBodyClassName}`}>
               <p>
                 CVR Construction delivers high-end renovations across Victoria
                 with disciplined planning, clean execution, and a finish standard

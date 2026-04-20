@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { RouteIntro } from "@/components/RouteIntro";
 import { buildPageMetadata } from "@/lib/metadata";
+import { proseBodyClassName } from "@/lib/prose";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
@@ -125,7 +126,7 @@ export default function ContactPage() {
                 <p className="text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-black/52">
                   01 / Review
                 </p>
-                <p className="max-w-[42rem] text-[0.98rem] leading-7 text-black/70">
+                <p className={`max-w-[42rem] ${proseBodyClassName}`}>
                   We review your scope, location, timing, and whether the
                   project is a fit for our current workload.
                 </p>
@@ -134,7 +135,7 @@ export default function ContactPage() {
                 <p className="text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-black/52">
                   02 / Talk
                 </p>
-                <p className="max-w-[42rem] text-[0.98rem] leading-7 text-black/70">
+                <p className={`max-w-[42rem] ${proseBodyClassName}`}>
                   For most enquiries, WhatsApp, phone, or email is the fastest
                   way to clarify the scope before a site visit.
                 </p>
@@ -143,7 +144,7 @@ export default function ContactPage() {
                 <p className="text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-black/52">
                   03 / Scope
                 </p>
-                <p className="max-w-[42rem] text-[0.98rem] leading-7 text-black/70">
+                <p className={`max-w-[42rem] ${proseBodyClassName}`}>
                   If the project moves forward, we define priorities, finish
                   level, and the next steps toward pricing and scheduling.
                 </p>

@@ -11,6 +11,7 @@ import {
   ScrollVelocityRow,
 } from "@/components/ScrollVelocity";
 import { TextAnimate } from "@/components/TextAnimate";
+import { proseBodyClassName } from "@/lib/prose";
 import { galleryItems } from "@/lib/site-data";
 
 const firstRowItems = galleryItems.slice(0, 5);
@@ -104,7 +105,7 @@ export function GallerySection() {
             </TextAnimate>
           </Reveal>
           <Reveal direction="up" delay={0.26} duration={0.8}>
-            <p className="max-w-[42rem] text-[1rem] leading-7 text-black/68 sm:text-[1.05rem]">
+            <p className={`max-w-[42rem] ${proseBodyClassName}`}>
               A moving field of recent kitchens, bathrooms, custom spaces, and
               finish details. The goal is not volume, but proof of range and
               finish quality.
@@ -113,9 +114,9 @@ export function GallerySection() {
           <Reveal direction="up" delay={0.34} duration={0.8}>
             <Link
               href="/gallery"
-              className="mt-7 inline-flex items-center gap-3 border-b border-black pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+              className="mt-7 inline-flex items-center gap-3 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
             >
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" />
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
               View Full Gallery
             </Link>
           </Reveal>

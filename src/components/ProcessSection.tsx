@@ -150,7 +150,7 @@ export function ProcessSection() {
                         />
                       </div>
 
-                      <div className="flex flex-col items-center gap-5 text-center lg:min-h-[34rem] lg:w-full lg:items-start lg:justify-center lg:text-left">
+                      <div className="flex flex-col items-center gap-5 text-center lg:min-h-[34rem] lg:w-full lg:items-start lg:justify-center lg:gap-6 lg:text-left">
                         <Reveal
                           direction="up"
                           delay={0.08}
@@ -172,7 +172,7 @@ export function ProcessSection() {
                           distance={30}
                           threshold={0.18}
                         >
-                          <p className="mx-auto w-full max-w-[21rem] text-[1rem] leading-[1.44] text-black/72 dark:text-white/68 sm:max-w-[26rem] md:max-w-[34rem] lg:mx-0 lg:max-w-[23rem] lg:leading-[1.44]">
+                          <p className="mx-auto w-full max-w-[24rem] text-[1rem] leading-[1.55] tracking-[-0.015em] text-black sm:max-w-[26rem] sm:text-[1.08rem] md:max-w-[32rem] md:text-[1.18rem] lg:mx-0 lg:max-w-[23rem] lg:text-[1.24rem] lg:leading-[1.5]">
                             {step.desc}
                           </p>
                         </Reveal>

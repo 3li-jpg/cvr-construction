@@ -38,8 +38,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
   const isHomePage = pathname === "/";
-  const showExpandedWhiteNav = isHomePage && !isPastHero && !isOpen;
-  const showExpandedBlackNav = !isHomePage && !isPastHero && !isOpen;
+  const showExpandedNav = !isPastHero && !isOpen;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,17 +114,16 @@ export function Navbar() {
 
   const menuButtonLabel = isOpen ? "Close site navigation" : "Open site navigation";
   const hiddenMenuTabIndex = isOpen ? 0 : -1;
-  const whiteHeaderTabIndex = showExpandedWhiteNav ? 0 : -1;
-  const blackHeaderTabIndex = showExpandedBlackNav ? 0 : -1;
+  const expandedHeaderTabIndex = showExpandedNav ? 0 : -1;
   const desktopActionClassName =
     "min-h-11 whitespace-nowrap px-5 py-3 text-[0.76rem] tracking-[0.12em]";
 
   return (
     <>
       <header
-        aria-hidden={!showExpandedWhiteNav}
+        aria-hidden={!showExpandedNav}
         className={`fixed inset-x-0 top-0 z-[99] hidden text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block ${
-          showExpandedWhiteNav
+          showExpandedNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
         }`}
@@ -135,56 +133,19 @@ export function Navbar() {
             <Link
               href="/"
               onClick={closeMenu}
-              tabIndex={whiteHeaderTabIndex}
+              tabIndex={expandedHeaderTabIndex}
               className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[2.45rem]"
             >
               CVR
             </Link>
 
-            <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
+            <nav aria-label="Primary" className="flex items-center gap-8 text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
               {desktopNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  tabIndex={whiteHeaderTabIndex}
+                  tabIndex={expandedHeaderTabIndex}
                   className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  {item.label.toUpperCase()}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="justify-self-end pr-[13.5rem]" />
-          </div>
-        </div>
-      </header>
-
-      <header
-        aria-hidden={!showExpandedBlackNav}
-        className={`fixed inset-x-0 top-0 z-[99] hidden text-black transition-all duration-300 lg:block ${
-          showExpandedBlackNav
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-full opacity-0"
-        }`}
-      >
-        <div className="site-shell pt-8">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-            <Link
-              href="/"
-              onClick={closeMenu}
-              tabIndex={blackHeaderTabIndex}
-              className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 md:text-[2.45rem]"
-            >
-              CVR
-            </Link>
-
-            <nav aria-label="Primary" className="flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.08em] text-black">
-              {desktopNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  tabIndex={blackHeaderTabIndex}
-                  className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                 >
                   {item.label.toUpperCase()}
                 </Link>
