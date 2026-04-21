@@ -15,7 +15,7 @@ export default function Home() {
     <main id="main-content" className="bg-black text-white relative">
       <Navbar />
 
-      <div className="relative z-0 overflow-hidden lg:sticky lg:top-0 lg:h-[100dvh]">
+      <div className="relative z-0 overflow-hidden md:sticky md:top-0 md:h-[100dvh]">
         <HeroSection />
       </div>
 
@@ -27,7 +27,7 @@ export default function Home() {
         <ShowcaseSection />
       </div>
 
-      <div className="relative z-30 overflow-hidden bg-white md:min-h-[100dvh] lg:sticky lg:top-0 lg:h-[100dvh]">
+      <div className="relative z-30 bg-white md:min-h-[100dvh] lg:sticky lg:top-0 lg:h-[100dvh] lg:overflow-hidden">
         <StorySection />
       </div>
 

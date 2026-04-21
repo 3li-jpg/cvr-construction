@@ -1,0 +1,11 @@
+# robots.txt for https://www.cvrconstruction.ca
+# Content-Signal directives declare preferred usage of this site's content
+# by automated agents and AI systems. See https://contentsignals.org/ and
+# https://datatracker.ietf.org/doc/draft-romm-aipref-contentsignals/
+
+User-agent: *
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+Sitemap: https://www.cvrconstruction.ca/sitemap.xml
+Host: https://www.cvrconstruction.ca

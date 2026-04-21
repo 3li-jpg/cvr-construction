@@ -32,7 +32,7 @@ export function Footer({ showCta = false }: FooterProps) {
       {showCta ? (
         <section
           aria-labelledby="global-cta-heading"
-          className="relative isolate z-0 flex h-[100svh] min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black text-white md:h-[100dvh] md:min-h-[100dvh] lg:sticky lg:top-0"
+          className="relative isolate z-0 flex h-[100svh] min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black text-white md:sticky md:top-0 md:h-[100dvh] md:min-h-[100dvh]"
         >
           <Image
             src={ctaBackgroundImage.src}

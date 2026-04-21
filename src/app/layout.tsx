@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { PageTransition } from "@/components/PageTransition";
+import { WebMCPRegistrar } from "@/components/WebMCPRegistrar";
 import "./globals.css";
 
 const inter = Inter({
@@ -211,6 +212,7 @@ export default function RootLayout({
           }}
         />
         <AnalyticsTracker />
+        <WebMCPRegistrar />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>
