@@ -1,20 +1,64 @@
 "use client";
 
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import TextRoll from "@/components/ui/text-roll";
+import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { navItems, socialLinks } from "@/lib/site-data";
 
-const desktopNavItems = navItems.filter(
-  (item) => item.href !== "/contact" && item.href !== "/"
-);
-const menuNavItems = [
+// Display order for the top-of-page horizontal nav and the expanded menu
+// overlay. Home leads, Contact is excluded (it has its own CTA button).
+const orderedNavItems = [
   ...navItems.filter((item) => item.href === "/"),
-  ...navItems.filter((item) => item.href !== "/contact" && item.href !== "/"),
+  ...navItems.filter((item) => item.href !== "/" && item.href !== "/contact"),
 ];
+const desktopNavItems = orderedNavItems;
+const menuNavItems = orderedNavItems;
+
+// Menu curtain animation. The panel uses the site-wide expo-out easing so it
+// feels connected to the page-transition curtain. Children are staggered via
+// `staggerChildren` + `delayChildren` so the nav items and footer block
+// progressively reveal AFTER the panel has landed (on open) and retract BEFORE
+// the panel lifts (on close) — this is the "play along" choreography.
+const menuPanelVariants: Variants = {
+  hidden: { y: "-100%" },
+  show: {
+    y: "0%",
+    transition: { duration: DURATION.base, ease: EASE_OUT_EXPO },
+  },
+  exit: {
+    y: "-100%",
+    transition: { duration: DURATION.md, ease: EASE_OUT_EXPO, delay: 0.15 },
+  },
+};
+
+const menuContentVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.38 },
+  },
+  exit: {
+    transition: { staggerChildren: 0.04, staggerDirection: -1 },
+  },
+};
+
+const menuItemVariants: Variants = {
+  hidden: { opacity: 0, y: 48 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: DURATION.md, ease: EASE_OUT_EXPO },
+  },
+  exit: {
+    opacity: 0,
+    y: 24,
+    transition: { duration: DURATION.xs, ease: EASE_OUT_EXPO },
+  },
+};
 
 function focusableElements(container: HTMLElement | null) {
   if (!container) {
@@ -38,7 +82,9 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
   const isHomePage = pathname === "/";
+  const isContactPage = pathname === "/contact";
   const showExpandedNav = !isPastHero && !isOpen;
+  const showMobileContactFab = !isContactPage && !isOpen;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -227,84 +273,109 @@ export function Navbar() {
       </header>
 
       <div
-        className="fixed bottom-4 left-1/2 z-[101] -translate-x-1/2 lg:hidden"
+        aria-hidden={!showMobileContactFab}
+        className={`fixed left-1/2 z-[101] -translate-x-1/2 transition-all duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] lg:hidden ${
+          showMobileContactFab
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
+        }`}
         style={{
-          bottom: "max(env(safe-area-inset-bottom), 1rem)",
+          bottom: "max(env(safe-area-inset-bottom, 0px), 1rem)",
         }}
       >
         <InteractiveHoverButton
           href="/contact"
           size="sm"
           showDot={false}
+          tabIndex={showMobileContactFab ? 0 : -1}
           className="min-h-11 whitespace-nowrap px-5 py-2.5 text-[0.68rem] tracking-[0.1em] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
         >
           CONTACT US
         </InteractiveHoverButton>
       </div>
 
-      <div
-        ref={menuRef}
-        id={menuId}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site navigation"
-        aria-hidden={!isOpen}
-        className={`fixed inset-0 z-[95] overflow-y-auto overscroll-contain bg-black px-5 pb-8 pt-24 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] sm:px-6 md:px-12 md:pb-12 md:pt-28 lg:px-20 ${
-          isOpen ? "translate-y-0" : "pointer-events-none -translate-y-full"
-        }`}
-        style={{
-          paddingTop: "calc(env(safe-area-inset-top) + 6rem)",
-          paddingBottom: "calc(env(safe-area-inset-bottom) + 2rem)",
-        }}
-      >
-        <div className="flex min-h-full flex-col items-center justify-center text-center">
-          <nav
-            aria-label="Expanded site navigation"
-            className="flex flex-col items-center gap-4 text-[clamp(2.75rem,12vw,4.75rem)] font-black uppercase tracking-tighter text-white sm:text-7xl lg:text-8xl"
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.div
+            ref={menuRef}
+            id={menuId}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+            variants={menuPanelVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="fixed inset-0 z-[95] overflow-y-auto overscroll-contain bg-black px-5 pb-6 pt-20 sm:px-6 md:px-12 md:pb-8 md:pt-24 lg:px-20"
+            style={{
+              paddingTop: "calc(env(safe-area-inset-top) + 5rem)",
+              paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)",
+            }}
           >
-            {menuNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                tabIndex={hiddenMenuTabIndex}
-                onClick={closeMenu}
-                className="w-fit text-center transition-all duration-300 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            <motion.div
+              variants={menuContentVariants}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              className="flex min-h-full flex-col items-center justify-center gap-8 text-center md:gap-10"
+            >
+              <nav
+                aria-label="Expanded site navigation"
+                className="flex flex-col items-center gap-1 text-[clamp(1.7rem,5.5vw,4rem)] font-black uppercase leading-[0.95] tracking-tighter text-white"
               >
-                <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.82]">
-                  {item.label.toUpperCase()}
-                </TextRoll>
-              </Link>
-            ))}
-          </nav>
+                {menuNavItems.map((item) => (
+                  <motion.div
+                    key={item.href}
+                    variants={menuItemVariants}
+                    className="overflow-hidden"
+                  >
+                    <Link
+                      href={item.href}
+                      tabIndex={hiddenMenuTabIndex}
+                      onClick={closeMenu}
+                      className="block w-fit text-center transition-colors duration-300 hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.95]">
+                        {item.label.toUpperCase()}
+                      </TextRoll>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
 
-          <div className="mt-12 flex w-full max-w-[42rem] flex-col items-center gap-8 border-t border-white/12 pt-6 text-center text-sm font-medium uppercase tracking-widest text-white/50 md:mt-16 md:items-center md:justify-center">
-            <div className="flex flex-col items-center">
-              <p className="mb-2 text-white">Get in touch</p>
-              <a
-                href="mailto:info@cvrconstruction.ca"
-                tabIndex={hiddenMenuTabIndex}
-                className="break-all transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              <motion.div
+                variants={menuItemVariants}
+                className="flex w-full max-w-[42rem] flex-col items-center gap-3 border-t border-white/12 pt-5 text-center text-[0.72rem] font-medium uppercase tracking-[0.18em] text-white/50 sm:text-xs md:gap-4 md:pt-6"
               >
-                INFO@CVRCONSTRUCTION.CA
-              </a>
-            </div>
-            <div className="flex flex-wrap justify-center gap-6">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  tabIndex={hiddenMenuTabIndex}
-                  className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  {item.label.toUpperCase()}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+                <div className="flex flex-col items-center gap-1">
+                  <p className="text-[0.7rem] text-white/60">Get in touch</p>
+                  <a
+                    href="mailto:info@cvrconstruction.ca"
+                    tabIndex={hiddenMenuTabIndex}
+                    className="break-all text-sm tracking-[0.14em] text-white transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-base"
+                  >
+                    INFO@CVRCONSTRUCTION.CA
+                  </a>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                  {socialLinks.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={hiddenMenuTabIndex}
+                      className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      {item.label.toUpperCase()}
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }

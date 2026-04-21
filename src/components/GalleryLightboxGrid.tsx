@@ -4,9 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { GalleryLightboxOverlay } from "@/components/GalleryLightboxOverlay";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { galleryItems } from "@/lib/site-data";
-
-const sectionEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
 const ASPECT_PATTERN = [
   "aspect-[4/5]",
@@ -74,7 +73,7 @@ export function GalleryLightboxGrid() {
               viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{
                 duration: 0.85,
-                ease: sectionEase,
+                ease: EASE_OUT_EXPO,
                 delay: Math.min((index % 6) * 0.06, 0.3),
               }}
               className={`group relative block w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 ${aspectClass}`}

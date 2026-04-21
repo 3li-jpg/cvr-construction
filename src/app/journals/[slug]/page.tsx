@@ -6,9 +6,13 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
+import { PageIntro } from "@/components/PageIntro";
 import { buildPageMetadata } from "@/lib/metadata";
 import { proseBodyClassName } from "@/lib/prose";
 import { getJournalPostBySlug, journalPosts } from "@/lib/site-data";
+
+const journalDetailTitleClassName =
+  "mx-auto text-center text-balance text-[clamp(2.15rem,10vw,2.9rem)] font-bold uppercase leading-[0.96] tracking-tight text-white sm:text-[3.6rem] md:text-[4.8rem] lg:text-[5.6rem] xl:text-[6.4rem]";
 
 type JournalDetailPageProps = {
   params: Promise<{
@@ -119,8 +123,27 @@ export default async function JournalDetailPage({
         }}
       />
 
-      <article className="px-6 pb-16 pt-28 sm:px-8 md:px-12 md:pb-20 md:pt-32 lg:px-20 lg:pb-24 lg:pt-36">
-        <div className="mx-auto flex max-w-[1320px] flex-col gap-10">
+      <PageIntro
+        eyebrow="Journal / Advice For Renovation Clients"
+        title={post.title}
+        titleClassName={journalDetailTitleClassName}
+        scrollTargetId="journal-detail"
+        backgroundImage={{
+          src: post.heroImage,
+          alt: `${post.title} — CVR Construction journal article`,
+        }}
+      />
+
+      <article
+        id="journal-detail"
+        aria-labelledby="journal-detail-heading"
+        className="site-shell px-6 pb-16 pt-16 sm:px-8 md:px-12 md:pb-20 md:pt-20 lg:px-20 lg:pb-24 lg:pt-24"
+      >
+        <h2 id="journal-detail-heading" className="sr-only">
+          {post.title}
+        </h2>
+
+        <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-5">
             <Link
               href="/journals"
@@ -129,16 +152,7 @@ export default async function JournalDetailPage({
               ← Back To Journals
             </Link>
 
-            <div className="max-w-4xl">
-              <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-                Journal / Advice For Renovation Clients
-              </p>
-              <h1 className="max-w-[13ch] text-balance text-[2.65rem] font-black uppercase leading-[0.94] tracking-[-0.03em] sm:max-w-[13ch] sm:text-[4rem] md:max-w-none md:text-[5rem] lg:text-[5.8rem]">
-                {post.title}
-              </h1>
-            </div>
-
-            <div className="flex flex-col gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48 sm:flex-row sm:items-center sm:gap-4">
+            <div className="flex flex-col gap-2 border-t border-black/10 pt-8 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48 sm:flex-row sm:items-center sm:gap-4 md:pt-10">
               <time dateTime={post.publishedAt}>{post.date}</time>
               <span aria-hidden="true">•</span>
               <span>{post.readingTime}</span>
@@ -150,7 +164,6 @@ export default async function JournalDetailPage({
               src={post.heroImage}
               alt={post.title}
               fill
-              priority
               quality={90}
               sizes="(max-width: 1023px) 100vw, 1280px"
               className="object-cover"

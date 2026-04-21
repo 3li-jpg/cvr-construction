@@ -21,7 +21,9 @@ export function ShowcaseSection() {
   useEffect(() => {
     if (prefersReducedMotion) return;
 
-    const handleScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       if (!imageWrapRef.current || !sectionRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
@@ -32,15 +34,24 @@ export function ShowcaseSection() {
       imageWrapRef.current.style.transform = `translateY(${translateY}px)`;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const requestTick = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    requestTick();
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", requestTick);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestTick);
+      window.removeEventListener("resize", requestTick);
+    };
   }, [prefersReducedMotion]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-[62svh] min-h-[62svh] w-full overflow-hidden bg-black md:h-[72dvh] md:min-h-[72dvh] lg:h-[78dvh] lg:min-h-[78dvh]"
+      className="relative h-[100svh] min-h-[100svh] w-full overflow-hidden bg-black md:h-[100dvh] md:min-h-[100dvh]"
     >
       <div
         ref={imageWrapRef}

@@ -12,10 +12,9 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 import { PageIntro } from "@/components/PageIntro";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { proseBodyClassName } from "@/lib/prose";
 import { projects, projectsHero, type ProjectEntry } from "@/lib/site-data";
-
-const sectionEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
 function useParallax(ref: React.RefObject<HTMLElement | null>): MotionValue<number> {
   const { scrollYProgress } = useScroll({
@@ -51,7 +50,7 @@ function ProjectRow({
       initial={prefersReducedMotion ? false : { opacity: 0, y: 64 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -20% 0px" }}
-      transition={{ duration: 1.05, ease: sectionEase }}
+      transition={{ duration: 1.05, ease: EASE_OUT_EXPO }}
       className="relative"
     >
       <Link

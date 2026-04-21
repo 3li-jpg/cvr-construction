@@ -66,9 +66,9 @@ export function ServicesSection() {
             direction="up"
             delay={0.18}
             duration={0.95}
-            className="flex max-w-[18.75rem] flex-col gap-5 xl:sticky xl:top-24 xl:self-start xl:pt-1"
+            className="mx-auto flex max-w-[18.75rem] flex-col items-center gap-5 xl:mx-0 xl:items-start xl:sticky xl:top-24 xl:self-start xl:pt-1"
           >
-            <div className="overflow-hidden bg-white dark:bg-[#131311]">
+            <div className="w-full overflow-hidden bg-white dark:bg-[#131311]">
               <Image
                 src={activeService.previewImage}
                 alt={activeService.title}
@@ -130,7 +130,7 @@ export function ServicesSection() {
                       id={panelId}
                       role="region"
                       aria-labelledby={triggerId}
-                      className={`grid transition-[grid-template-rows,opacity,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      className={`grid transition-[grid-template-rows,opacity,padding] duration-[700ms] ease-[cubic-bezier(0.19,1,0.22,1)] ${
                         isOpen ? "grid-rows-[1fr] pb-8 opacity-100" : "grid-rows-[0fr] pb-0 opacity-0"
                       }`}
                     >

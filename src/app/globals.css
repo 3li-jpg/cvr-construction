@@ -187,6 +187,23 @@ html.dark {
   color: rgba(244, 242, 237, 0.4) !important;
 }
 
+/* --------------------------------------------------------------------------
+   Scroll behavior
+   Native scroll everywhere — Framer-style "buttery" feel comes from native
+   trackpad momentum + GPU-composited scroll-driven animations, not from a JS
+   smoothing library. `scroll-behavior: smooth` only engages for anchor-link
+   jumps (e.g. the hero's "Scroll down" CTA).
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 @keyframes heroSlideUp {
   from {
     opacity: 0;

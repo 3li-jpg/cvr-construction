@@ -16,9 +16,21 @@ export function ProcessSection() {
     "text-[2.9rem] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem] font-black tracking-[-0.045em] uppercase leading-[0.9]";
 
   useEffect(() => {
+    const readStickyTop = () => {
+      if (!headerRef.current) {
+        return window.innerWidth >= 640 ? 76 : 72;
+      }
+      const rawTop = window.getComputedStyle(headerRef.current).top;
+      const parsed = Number.parseFloat(rawTop);
+      if (Number.isFinite(parsed) && parsed > 0) {
+        return parsed;
+      }
+      return window.innerWidth >= 640 ? 76 : 72;
+    };
+
     const updateMobileCardTop = () => {
       const headerHeight = headerRef.current?.offsetHeight ?? 0;
-      const stickyTop = window.innerWidth >= 640 ? 76 : 72;
+      const stickyTop = readStickyTop();
       const spacing = window.innerWidth >= 640 ? 12 : 10;
       setMobileCardTop(Math.round(stickyTop + headerHeight + spacing));
     };
@@ -44,7 +56,10 @@ export function ProcessSection() {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) return;
 
+    let frame = 0;
+
     const updateCardShade = () => {
+      frame = 0;
       const stickyTop = window.innerWidth >= 1024 ? 80 : mobileCardTop;
 
       articleRefs.current.forEach((article, index) => {
@@ -64,13 +79,18 @@ export function ProcessSection() {
       });
     };
 
-    updateCardShade();
-    window.addEventListener("scroll", updateCardShade, { passive: true });
-    window.addEventListener("resize", updateCardShade);
+    const requestTick = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateCardShade);
+    };
+
+    requestTick();
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", requestTick);
 
     return () => {
-      window.removeEventListener("scroll", updateCardShade);
-      window.removeEventListener("resize", updateCardShade);
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestTick);
+      window.removeEventListener("resize", requestTick);
     };
   }, [mobileCardTop]);
 
@@ -78,7 +98,7 @@ export function ProcessSection() {
     <section className="w-full bg-white text-black">
       <div
         ref={headerRef}
-        className="sticky top-[4.5rem] z-10 border-b border-black/8 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-[#0f0f0e]/95 sm:top-[4.75rem] lg:static lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none"
+        className="sticky top-[max(4.5rem,calc(env(safe-area-inset-top,0px)+3.25rem))] z-10 border-b border-black/8 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-[#0f0f0e]/95 sm:top-[4.75rem] lg:static lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none"
       >
         <div className="site-shell pb-5 pt-4 lg:pb-16 lg:pt-24">
           <div className="flex flex-col items-center text-center">

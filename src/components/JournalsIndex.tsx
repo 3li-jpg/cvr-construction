@@ -4,17 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { PageIntro } from "@/components/PageIntro";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { proseBodyClassName } from "@/lib/prose";
 import { journalPosts, journalsHero, type JournalEntry } from "@/lib/site-data";
-
-const sectionEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
 const rowVariants: Variants = {
   hidden: { opacity: 0, y: 36 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease: sectionEase, delay: i * 0.08 },
+    transition: { duration: 0.85, ease: EASE_OUT_EXPO, delay: i * 0.08 },
   }),
 };
 

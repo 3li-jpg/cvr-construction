@@ -13,6 +13,7 @@ import {
   ScrollVelocityRow,
 } from "@/components/ScrollVelocity";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { proseBodyClassName, proseHeroClassName } from "@/lib/prose";
 import {
   showroomBrands,
@@ -25,14 +26,12 @@ import {
   showroomSchema,
 } from "@/lib/site-data";
 
-const sectionEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
-
 const factVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: sectionEase, delay: i * 0.12 },
+    transition: { duration: DURATION.base, ease: EASE_OUT_EXPO, delay: i * 0.12 },
   }),
 };
 
@@ -48,7 +47,7 @@ const philosophyItem: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: sectionEase },
+    transition: { duration: 1, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -57,7 +56,7 @@ const reasonRowVariants: Variants = {
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: sectionEase, delay: i * 0.08 },
+    transition: { duration: DURATION.md, ease: EASE_OUT_EXPO, delay: i * 0.08 },
   }),
 };
 

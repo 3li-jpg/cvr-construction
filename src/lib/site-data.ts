@@ -741,6 +741,11 @@ export const showroomHero = {
   alt: "CVR Showroom in-person product selection in Victoria BC",
 };
 
+export const contactHero = {
+  src: "/images/victoria-front-entry-rebuild.webp",
+  alt: "Front entry rebuild by CVR Construction in Victoria BC",
+};
+
 export const showroomPortrait = {
   src: "/images/victoria-kitchen-bath-material-selections.webp",
   alt: "Premium material and fixture selections inside the CVR Showroom",

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { useEffect, useRef, type ReactNode } from "react";
 import { TextAnimate } from "@/components/TextAnimate";
+import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 
 type PageIntroProps = {
   eyebrow?: string;
@@ -19,14 +20,14 @@ type PageIntroProps = {
 };
 
 const baseTitleClassName =
-  "mx-auto text-center text-balance text-[3.15rem] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]";
+  "mx-auto text-center text-balance text-[clamp(2.45rem,11vw,3.15rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]";
 
 const eyebrowVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.19, 1, 0.22, 1], delay: 0.1 },
+    transition: { duration: DURATION.md, ease: EASE_OUT_EXPO, delay: 0.1 },
   },
 };
 
@@ -35,7 +36,7 @@ const descriptionVariants: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: 0.9 },
+    transition: { duration: DURATION.md, ease: EASE_OUT_EXPO, delay: 0.9 },
   },
 };
 
@@ -43,7 +44,7 @@ const scrollCueVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut", delay: 1.4 },
+    transition: { duration: DURATION.md, ease: EASE_OUT_EXPO, delay: 1.4 },
   },
 };
 
@@ -63,7 +64,9 @@ export function PageIntro({
   useEffect(() => {
     if (prefersReducedMotion) return;
 
-    const handleScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       if (!imageWrapRef.current || !sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const vh = window.innerHeight;
@@ -75,9 +78,18 @@ export function PageIntro({
       imageWrapRef.current.style.transform = `translateY(${translateY}px)`;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const requestTick = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    requestTick();
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", requestTick);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestTick);
+      window.removeEventListener("resize", requestTick);
+    };
   }, [prefersReducedMotion]);
 
   const resolvedTitleClassName = titleClassName ?? baseTitleClassName;

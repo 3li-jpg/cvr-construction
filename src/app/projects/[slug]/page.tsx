@@ -6,9 +6,13 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
+import { PageIntro } from "@/components/PageIntro";
 import { buildPageMetadata } from "@/lib/metadata";
 import { proseBodyClassName } from "@/lib/prose";
 import { getProjectBySlug, projects } from "@/lib/site-data";
+
+const projectDetailTitleClassName =
+  "mx-auto text-center text-balance text-[clamp(2.3rem,10.5vw,3rem)] font-bold uppercase leading-[0.94] tracking-tight text-white sm:text-[3.9rem] md:text-[5.3rem] lg:text-[6.2rem] xl:text-[7rem]";
 
 type ProjectDetailPageProps = {
   params: Promise<{
@@ -130,8 +134,27 @@ export default async function ProjectDetailPage({
         }}
       />
 
-      <section className="px-6 pb-16 pt-28 sm:px-8 md:px-12 md:pb-20 md:pt-32 lg:px-20 lg:pb-24 lg:pt-36">
-        <div className="mx-auto flex max-w-[1560px] flex-col gap-12">
+      <PageIntro
+        eyebrow={`Projects / ${project.category}`}
+        title={project.title}
+        titleClassName={projectDetailTitleClassName}
+        scrollTargetId="project-detail"
+        backgroundImage={{
+          src: project.heroImage,
+          alt: `${project.title} by CVR Construction`,
+        }}
+      />
+
+      <section
+        id="project-detail"
+        aria-labelledby="project-detail-heading"
+        className="site-shell px-6 pb-16 pt-16 sm:px-8 md:px-12 md:pb-20 md:pt-20 lg:px-20 lg:pb-24 lg:pt-24"
+      >
+        <h2 id="project-detail-heading" className="sr-only">
+          {project.title} — Project details
+        </h2>
+
+        <div className="flex flex-col gap-12">
           <div className="flex flex-col gap-6">
             <Link
               href="/projects"
@@ -140,29 +163,18 @@ export default async function ProjectDetailPage({
               ← Back To Projects
             </Link>
 
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-4xl">
-                <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-                  {project.category} / {project.location}
-                </p>
-                <h1 className="max-w-[14ch] text-balance text-[3.2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-black sm:max-w-[13ch] sm:text-[4.4rem] md:max-w-[12ch] md:text-[5.5rem] lg:max-w-none lg:text-[6.6rem]">
-                  {project.title}
-                </h1>
+            <div className="grid gap-3 border-t border-black/10 pt-8 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-black/55 sm:grid-cols-3 md:pt-10">
+              <div>
+                <p className="mb-2 text-black/35">Year</p>
+                <p className="text-black">{project.year}</p>
               </div>
-
-              <div className="grid gap-3 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-black/55 sm:grid-cols-3 lg:min-w-[34rem]">
-                <div>
-                  <p className="mb-2 text-black/35">Year</p>
-                  <p className="text-black">{project.year}</p>
-                </div>
-                <div>
-                  <p className="mb-2 text-black/35">Type</p>
-                  <p className="text-black">{project.category}</p>
-                </div>
-                <div>
-                  <p className="mb-2 text-black/35">Location</p>
-                  <p className="text-black">{project.location}</p>
-                </div>
+              <div>
+                <p className="mb-2 text-black/35">Type</p>
+                <p className="text-black">{project.category}</p>
+              </div>
+              <div>
+                <p className="mb-2 text-black/35">Location</p>
+                <p className="text-black">{project.location}</p>
               </div>
             </div>
           </div>
@@ -173,7 +185,6 @@ export default async function ProjectDetailPage({
                 src={project.heroImage}
                 alt={project.title}
                 fill
-                priority
                 quality={90}
                 sizes="(max-width: 1023px) 100vw, 65vw"
                 className="object-cover"

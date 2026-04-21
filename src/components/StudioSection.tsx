@@ -22,7 +22,9 @@ export function StudioSection() {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) return;
 
-    const handleScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       if (!phrasesRef.current) return;
       const rect = phrasesRef.current.getBoundingClientRect();
       const vh = window.innerHeight;
@@ -31,9 +33,19 @@ export function StudioSection() {
       const p = Math.max(0, Math.min(1, (startY - rect.top) / (startY - endY)));
       setProgress(p);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const requestTick = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    requestTick();
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", requestTick);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestTick);
+      window.removeEventListener("resize", requestTick);
+    };
   }, []);
 
   const weTranslate = progress * (phrases.length - 1) * 1.2;
@@ -74,7 +86,7 @@ export function StudioSection() {
             </Reveal>
           </div>
 
-          <div className="flex w-full flex-col justify-start py-2 lg:w-1/2 lg:py-0 lg:pl-8 xl:pl-12">
+          <div className="flex w-full flex-col items-center justify-start py-2 lg:w-1/2 lg:items-start lg:py-0 lg:pl-8 xl:pl-12">
             <div className="relative mb-8 flex items-start">
               <span
                 className="shrink-0 pr-3 text-[2rem] font-black leading-[1.2] tracking-[-0.03em] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem]"
@@ -103,7 +115,7 @@ export function StudioSection() {
               </div>
             </div>
 
-            <Reveal direction="up" delay={0.2} duration={0.9} className={`flex max-w-xl flex-col gap-5 ${proseBodyClassName}`}>
+            <Reveal direction="up" delay={0.2} duration={0.9} className={`flex w-full max-w-xl flex-col gap-5 ${proseBodyClassName}`}>
               <p>
                 CVR Construction delivers high-end renovations across Victoria
                 with disciplined planning, clean execution, and a finish standard

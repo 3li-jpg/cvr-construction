@@ -9,6 +9,7 @@ import {
   motion,
 } from "motion/react";
 import { useEffect, useRef } from "react";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 
 type AnimatedNumberProps = {
   value: number;
@@ -35,7 +36,7 @@ export function AnimatedNumber({
     }
     const controls = animate(count, value, {
       duration,
-      ease: [0.19, 1, 0.22, 1],
+      ease: EASE_OUT_EXPO,
     });
     return () => controls.stop();
   }, [inView, value, duration, count, prefersReducedMotion]);

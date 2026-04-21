@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef } from "react";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 
 export type GalleryLightboxItem = {
   image: string;
@@ -107,7 +108,7 @@ export function GalleryLightboxOverlay({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: transitionDuration, ease: [0.19, 1, 0.22, 1] }}
+          transition={{ duration: transitionDuration, ease: EASE_OUT_EXPO }}
           className="fixed inset-0 z-[140] bg-black/96 px-4 py-6 backdrop-blur-sm sm:px-8 sm:py-10"
           onClick={onClose}
           role="dialog"
@@ -148,7 +149,7 @@ export function GalleryLightboxOverlay({
                   initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.02 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.99 }}
-                  transition={{ duration: transitionDuration, ease: [0.19, 1, 0.22, 1] }}
+                  transition={{ duration: transitionDuration, ease: EASE_OUT_EXPO }}
                   className="absolute inset-0"
                 >
                   <Image

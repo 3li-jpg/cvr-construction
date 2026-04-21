@@ -56,7 +56,7 @@ export const InteractiveHoverButton = forwardRef<
   const sizeClasses =
     size === "sm"
       ? "min-h-10 px-3 py-1.5 text-[0.62rem] md:min-h-11 md:px-4 md:py-2.5 md:text-[0.72rem]"
-      : "min-h-9 px-4 py-2 text-[0.66rem] md:min-h-11 md:px-5 md:py-3 md:text-[0.76rem]";
+      : "min-h-11 px-4 py-2.5 text-[0.66rem] md:min-h-11 md:px-5 md:py-3 md:text-[0.76rem]";
 
   const containerClasses =
     variant === "light"

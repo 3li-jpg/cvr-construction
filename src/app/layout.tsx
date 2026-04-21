@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
+import { PageTransition } from "@/components/PageTransition";
 import "./globals.css";
 
 const inter = Inter({
@@ -80,6 +81,16 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a09" },
+  ],
 };
 
 const localBusinessSchema = {
@@ -200,7 +211,7 @@ export default function RootLayout({
           }}
         />
         <AnalyticsTracker />
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

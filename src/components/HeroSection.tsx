@@ -22,7 +22,10 @@ export function HeroSection() {
   useEffect(() => {
     if (prefersReducedMotion) return;
 
-    const handleScroll = () => {
+    let frame = 0;
+
+    const updateTransform = () => {
+      frame = 0;
       if (!imageWrapRef.current || !sectionRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
@@ -33,9 +36,20 @@ export function HeroSection() {
       imageWrapRef.current.style.transform = `translateY(${translateY}px)`;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const requestTick = () => {
+      if (!frame) {
+        frame = window.requestAnimationFrame(updateTransform);
+      }
+    };
+
+    requestTick();
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", requestTick);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestTick);
+      window.removeEventListener("resize", requestTick);
+    };
   }, [prefersReducedMotion]);
 
   const indicatorAnimation = prefersReducedMotion
@@ -69,12 +83,12 @@ export function HeroSection() {
       <div className="relative z-10 h-full w-full">
         <div className="site-shell relative flex h-full items-center justify-center pb-14 pt-24 md:pb-8 md:pt-28 lg:pb-10 lg:pt-32">
           {prefersReducedMotion ? (
-            <h1 className="mx-auto text-center text-[3.15rem] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]">
+            <h1 className="mx-auto text-center text-[clamp(2.35rem,11.5vw,3.15rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]">
               <span className="block whitespace-nowrap">BUILT DIFFERENT</span>
               <span className="block whitespace-nowrap">BUILT TO LAST</span>
             </h1>
           ) : (
-            <h1 className="mx-auto text-center text-[3.15rem] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]">
+            <h1 className="mx-auto text-center text-[clamp(2.35rem,11.5vw,3.15rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]">
               <BlurTextAnimation
                 text="BUILT DIFFERENT"
                 className="block whitespace-nowrap"
@@ -107,6 +121,20 @@ export function HeroSection() {
                 <path d="M1 1L4 4L7 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
+          </div>
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-white/55 flex sm:hidden"
+            style={{
+              bottom: "calc(env(safe-area-inset-bottom, 0px) + 4.5rem)",
+              ...(prefersReducedMotion
+                ? { opacity: 1 }
+                : { opacity: 0, animation: "heroFadeIn 0.8s ease 0.9s forwards" }),
+            }}
+          >
+            <span>SCROLL</span>
+            <div className="h-4 w-[1px] bg-white/70" />
           </div>
         </div>
       </div>
