@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 
@@ -17,14 +17,13 @@ type PageTransitionProps = {
 // `prefers-reduced-motion: reduce`.
 export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
-  const currentRoute = `${pathname}?${searchParams.toString()}`;
   const pendingRouteRef = useRef<string | null>(null);
   const navigationTimerRef = useRef<number | null>(null);
   const transitionPhaseRef = useRef<"idle" | "cover" | "reveal">("idle");
   const [transitionPhase, setTransitionPhase] = useState<"idle" | "cover" | "reveal">("idle");
+  const [currentRoute, setCurrentRoute] = useState(pathname);
 
   const updateTransitionPhase = useCallback((phase: "idle" | "cover" | "reveal") => {
     transitionPhaseRef.current = phase;
@@ -34,6 +33,10 @@ export function PageTransition({ children }: PageTransitionProps) {
   useEffect(() => {
     transitionPhaseRef.current = transitionPhase;
   }, [transitionPhase]);
+
+  useEffect(() => {
+    setCurrentRoute(`${pathname}${window.location.search}`);
+  }, [pathname]);
 
   useEffect(() => {
     if (transitionPhase === "cover" && pendingRouteRef.current === currentRoute) {
@@ -79,7 +82,7 @@ export function PageTransition({ children }: PageTransitionProps) {
         return;
       }
 
-      const nextRoute = `${url.pathname}?${url.searchParams.toString()}`;
+      const nextRoute = `${url.pathname}${url.search}`;
       if (nextRoute === currentRoute) {
         return;
       }
