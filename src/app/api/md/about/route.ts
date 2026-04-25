@@ -16,15 +16,15 @@ Vancouver Island.
 
 ## What we build
 
-- Whole-home renovations
+- Full home remodeling
 - Kitchens and bathrooms
-- Custom garden studios and accessory spaces
-- Commercial tenant improvements
+- Custom spaces
+- Commercial upgrades
 
 ## Contact
 
 - Website: https://www.cvrconstruction.ca
-- Email: info@cvrconstruction.ca
+- Email: cvrconstruction@outlook.com
 - Phone: +1-250-880-1270
 `;
 

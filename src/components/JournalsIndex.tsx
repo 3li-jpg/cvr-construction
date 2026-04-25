@@ -49,7 +49,7 @@ function JournalRow({
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
           <div className="flex flex-col gap-2 sm:flex-1">
-            <h2 className="text-[2.1rem] font-black uppercase leading-[0.95] tracking-[-0.05em] transition-all duration-500 ease-out group-hover:translate-x-1 sm:text-[2.8rem] md:text-[3.6rem] lg:text-[4.2rem] xl:text-[4.6rem]">
+            <h2 className="text-[1.8rem] font-black uppercase leading-[0.95] tracking-[-0.05em] transition-all duration-500 ease-out group-hover:translate-x-1 sm:text-[2.38rem] md:text-[3.06rem] lg:text-[3.57rem] xl:text-[3.9rem]">
               {post.title}
             </h2>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/50 sm:hidden">

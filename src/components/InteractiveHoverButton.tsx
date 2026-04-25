@@ -16,6 +16,7 @@ type InteractiveHoverButtonProps = {
   variant?: "default" | "light";
   size?: "sm" | "md";
   showDot?: boolean;
+  icon?: ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children" | "href">;
 
@@ -48,6 +49,7 @@ export const InteractiveHoverButton = forwardRef<
     variant = "default",
     size = "md",
     showDot = true,
+    icon,
     type,
     ...props
   },
@@ -79,7 +81,7 @@ export const InteractiveHoverButton = forwardRef<
       : "focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black";
 
   const buttonClasses = cn(
-    "group relative inline-flex w-fit self-start cursor-pointer items-center justify-center overflow-hidden rounded-full border font-semibold uppercase tracking-[0.1em] md:tracking-[0.12em] transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2",
+    "group relative inline-flex w-fit self-start cursor-pointer items-center justify-center overflow-hidden rounded-none border font-semibold uppercase tracking-[0.1em] md:tracking-[0.12em] transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2",
     sizeClasses,
     containerClasses,
     focusClasses,
@@ -89,16 +91,22 @@ export const InteractiveHoverButton = forwardRef<
   const content = (
     <>
       <div className="relative z-[1] flex items-center justify-center gap-2">
-        {showDot ? (
+        {/* Expanding dot — always present for the bg-fill animation; hidden when icon is used */}
+        {showDot && (
           <div
             className={cn(
-              "h-1.5 w-1.5 rounded-full transition-transform duration-300 ease-out group-hover:scale-[90] md:h-2 md:w-2",
+              "rounded-none transition-transform duration-300 ease-out group-hover:scale-[90]",
+              icon
+                ? "absolute h-1.5 w-1.5 opacity-0 md:h-2 md:w-2"
+                : "h-1.5 w-1.5 md:h-2 md:w-2",
               dotClasses
             )}
           />
-        ) : null}
-        <span className="inline-block transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0">
-          {children}
+        )}
+        {/* Icon + label slide out together */}
+        <span className="inline-flex items-center gap-1.5 transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0">
+          {icon && <span className="shrink-0">{icon}</span>}
+          <span>{children}</span>
         </span>
       </div>
       <div

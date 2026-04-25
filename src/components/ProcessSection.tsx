@@ -10,43 +10,17 @@ import { processSteps } from "@/lib/site-data";
 export function ProcessSection() {
   const articleRefs = useRef<Array<HTMLElement | null>>([]);
   const overlayRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  const [mobileCardTop, setMobileCardTop] = useState(188);
+  const [mobileCardTop, setMobileCardTop] = useState(82);
   const processHeadingClassName =
-    "text-[2.9rem] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem] font-black tracking-[-0.045em] uppercase leading-[0.9]";
+    "text-[2.4rem] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] font-black tracking-[-0.045em] uppercase leading-[0.9]";
 
   useEffect(() => {
-    const readStickyTop = () => {
-      if (!headerRef.current) {
-        return window.innerWidth >= 640 ? 76 : 72;
-      }
-      const rawTop = window.getComputedStyle(headerRef.current).top;
-      const parsed = Number.parseFloat(rawTop);
-      if (Number.isFinite(parsed) && parsed > 0) {
-        return parsed;
-      }
-      return window.innerWidth >= 640 ? 76 : 72;
-    };
-
     const updateMobileCardTop = () => {
-      const headerHeight = headerRef.current?.offsetHeight ?? 0;
-      const stickyTop = readStickyTop();
-      const spacing = window.innerWidth >= 640 ? 12 : 10;
-      setMobileCardTop(Math.round(stickyTop + headerHeight + spacing));
+      const top = window.innerWidth >= 640 ? 88 : 82;
+      setMobileCardTop(top);
     };
 
     updateMobileCardTop();
-
-    if (typeof ResizeObserver !== "undefined" && headerRef.current) {
-      const observer = new ResizeObserver(() => updateMobileCardTop());
-      observer.observe(headerRef.current);
-      window.addEventListener("resize", updateMobileCardTop);
-
-      return () => {
-        observer.disconnect();
-        window.removeEventListener("resize", updateMobileCardTop);
-      };
-    }
 
     window.addEventListener("resize", updateMobileCardTop);
     return () => window.removeEventListener("resize", updateMobileCardTop);
@@ -96,10 +70,7 @@ export function ProcessSection() {
 
   return (
     <section className="w-full bg-white text-black">
-      <div
-        ref={headerRef}
-        className="sticky top-[max(4.5rem,calc(env(safe-area-inset-top,0px)+3.25rem))] z-10 border-b border-black/8 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-[#0f0f0e]/95 sm:top-[4.75rem] lg:static lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none"
-      >
+      <div className="border-b border-black/8 bg-white dark:border-white/10 dark:bg-[#0f0f0e] lg:border-b-0 lg:bg-transparent">
         <div className="site-shell pb-5 pt-4 lg:pb-16 lg:pt-24">
           <div className="flex flex-col items-center text-center">
             <Reveal direction="up" duration={0.8} distance={36}>
@@ -142,8 +113,8 @@ export function ProcessSection() {
 
             <div className="site-shell pb-5 pt-0 sm:pb-6 lg:py-7">
               <div className="overflow-hidden rounded-none border border-black/10 bg-white shadow-[0_18px_48px_rgba(0,0,0,0.06)] dark:border-white/10 dark:bg-[#0f0f0e] sm:rounded-[1.35rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
-                <div className="px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-8 lg:min-h-[42rem] lg:px-0 lg:py-0">
-                  <div className="grid gap-5 lg:mx-auto lg:max-w-[72rem] lg:grid-cols-[6rem_minmax(0,1fr)] lg:items-start lg:gap-8 xl:max-w-[78rem]">
+                <div className="min-h-[calc(100svh-var(--process-card-top)-1rem)] px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-8 lg:min-h-[42rem] lg:px-0 lg:py-0">
+                  <div className="grid min-h-[inherit] content-center gap-5 lg:mx-auto lg:max-w-[72rem] lg:grid-cols-[6rem_minmax(0,1fr)] lg:items-start lg:gap-8 xl:max-w-[78rem]">
                     <div className="flex items-start justify-center lg:pt-2">
                       <Reveal
                         direction="up"
@@ -152,7 +123,7 @@ export function ProcessSection() {
                         distance={30}
                         threshold={0.2}
                       >
-                        <span className="inline-block whitespace-nowrap text-[3rem] font-black uppercase leading-[0.82] tracking-[-0.06em] text-black dark:text-white sm:text-[3.5rem] lg:text-[4rem]">
+                        <span className="inline-block whitespace-nowrap text-[2.5rem] font-black uppercase leading-[0.82] tracking-[-0.06em] text-black dark:text-white sm:text-[3rem] lg:text-[3.4rem]">
                           {step.num}/
                         </span>
                       </Reveal>
@@ -179,7 +150,7 @@ export function ProcessSection() {
                           threshold={0.18}
                         >
                           <div className="mx-auto w-full max-w-[56rem] lg:mr-auto">
-                            <h3 className="mx-auto max-w-[18rem] text-[2.15rem] font-black uppercase leading-[0.92] tracking-[-0.05em] text-balance sm:max-w-[24rem] sm:text-[2.6rem] md:max-w-[30rem] md:text-[3.2rem] lg:mx-0 lg:max-w-[24rem] lg:text-[3rem] lg:leading-[0.9] lg:tracking-[-0.045em] xl:text-[3.35rem]">
+                            <h3 className="mx-auto max-w-[18rem] text-[1.85rem] font-black uppercase leading-[0.92] tracking-[-0.05em] text-balance sm:max-w-[22rem] sm:text-[2.2rem] md:max-w-[28rem] md:text-[2.7rem] lg:mx-0 lg:max-w-[22rem] lg:text-[2.55rem] lg:leading-[0.9] lg:tracking-[-0.045em] xl:text-[2.85rem]">
                               {step.title}
                             </h3>
                           </div>
@@ -192,7 +163,7 @@ export function ProcessSection() {
                           distance={30}
                           threshold={0.18}
                         >
-                          <p className="mx-auto w-full max-w-[24rem] text-[1rem] leading-[1.55] tracking-[-0.015em] text-black sm:max-w-[26rem] sm:text-[1.08rem] md:max-w-[32rem] md:text-[1.18rem] lg:mx-0 lg:max-w-[23rem] lg:text-[1.24rem] lg:leading-[1.5]">
+                          <p className="mx-auto w-full max-w-[24rem] text-[0.93rem] leading-[1.6] tracking-[-0.01em] text-black sm:max-w-[26rem] sm:text-[1rem] md:max-w-[32rem] md:text-[1.08rem] lg:mx-0 lg:max-w-[23rem] lg:text-[1.12rem] lg:leading-[1.55]">
                             {step.desc}
                           </p>
                         </Reveal>

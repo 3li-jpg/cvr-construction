@@ -5,17 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
-import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import TextRoll from "@/components/ui/text-roll";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
-import { navItems, socialLinks } from "@/lib/site-data";
+import { businessContact, navItems, socialLinks } from "@/lib/site-data";
 
 // Display order for the top-of-page horizontal nav and the expanded menu
-// overlay. Home leads, Contact is excluded (it has its own CTA button).
-const orderedNavItems = [
-  ...navItems.filter((item) => item.href === "/"),
-  ...navItems.filter((item) => item.href !== "/" && item.href !== "/contact"),
-];
+// overlay. Contact is excluded because it has its own CTA button.
+const orderedNavItems = navItems.filter((item) => item.href !== "/contact");
 const desktopNavItems = orderedNavItems;
 const menuNavItems = orderedNavItems;
 
@@ -84,7 +80,7 @@ export function Navbar() {
   const isHomePage = pathname === "/";
   const isContactPage = pathname === "/contact";
   const showExpandedNav = !isPastHero && !isOpen;
-  const showMobileContactFab = !isContactPage && !isOpen;
+  const showMobileContactFab = !isContactPage && !isOpen && isPastHero;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -161,9 +157,6 @@ export function Navbar() {
   const menuButtonLabel = isOpen ? "Close site navigation" : "Open site navigation";
   const hiddenMenuTabIndex = isOpen ? 0 : -1;
   const expandedHeaderTabIndex = showExpandedNav ? 0 : -1;
-  const desktopActionClassName =
-    "min-h-11 whitespace-nowrap px-5 py-3 text-[0.76rem] tracking-[0.12em]";
-
   return (
     <>
       <header
@@ -185,7 +178,7 @@ export function Navbar() {
               CVR
             </Link>
 
-            <nav aria-label="Primary" className="flex items-center gap-8 text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
+            <nav aria-label="Primary" className="flex items-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
               {desktopNavItems.map((item) => (
                 <Link
                   key={item.href}
@@ -193,25 +186,30 @@ export function Navbar() {
                   tabIndex={expandedHeaderTabIndex}
                   className="transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
-                  {item.label.toUpperCase()}
+                  <TextRoll className="text-[inherit] font-[inherit] tracking-[inherit] leading-[0.95]">
+                    {item.label.toUpperCase()}
+                  </TextRoll>
                 </Link>
               ))}
             </nav>
 
-            <div className="justify-self-end pr-[13.5rem]" />
+            <div className="justify-self-end" style={{minWidth: "17.5rem"}} />
           </div>
         </div>
       </header>
 
       <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] hidden lg:block">
         <div className="site-shell flex justify-end pt-8">
-          <div className="pointer-events-auto flex items-center gap-3">
-            <InteractiveHoverButton
-              href="/contact"
-              className={desktopActionClassName}
+          <div className="pointer-events-auto flex items-center gap-2">
+            <a
+              href={businessContact.phoneHref}
+              className="inline-flex h-11 items-center gap-2 rounded-none border border-black bg-black px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white dark:bg-white dark:text-black"
             >
-              CONTACT US
-            </InteractiveHoverButton>
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="currentColor" aria-hidden="true">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              CALL NOW
+            </a>
             <AnimatedThemeToggler className="h-11 w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
             <button
               ref={desktopMenuButtonRef}
@@ -221,7 +219,7 @@ export function Navbar() {
               aria-haspopup="dialog"
               aria-label={menuButtonLabel}
               onClick={() => setIsOpen((current) => !current)}
-              className={`${desktopActionClassName} min-w-[7.25rem] rounded-full bg-[#e6e6e2] font-semibold uppercase text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black`}
+              className="inline-flex h-11 min-w-[6.5rem] items-center justify-center rounded-none bg-[#e6e6e2] px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
             >
               <TextRoll
                 center
@@ -251,8 +249,8 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-1.5">
-          <AnimatedThemeToggler className="h-10 w-10 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
-          <InteractiveHoverButton
+          <AnimatedThemeToggler className="h-12 w-12 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
+          <button
             ref={mobileMenuButtonRef}
             type="button"
             aria-expanded={isOpen}
@@ -260,7 +258,7 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={() => setIsOpen((current) => !current)}
-            className="min-h-10 min-w-[4.9rem] whitespace-nowrap rounded-full bg-[#e6e6e2] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className="flex h-12 min-w-[5.35rem] items-center justify-center rounded-none border border-black/8 bg-[#e6e6e2] px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/10 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
             <TextRoll
               center
@@ -268,7 +266,7 @@ export function Navbar() {
             >
               {isOpen ? "CLOSE" : "MENU"}
             </TextRoll>
-          </InteractiveHoverButton>
+          </button>
         </div>
       </header>
 
@@ -283,15 +281,16 @@ export function Navbar() {
           bottom: "max(env(safe-area-inset-bottom, 0px), 1rem)",
         }}
       >
-        <InteractiveHoverButton
-          href="/contact"
-          size="sm"
-          showDot={false}
+        <a
+          href={businessContact.phoneHref}
           tabIndex={showMobileContactFab ? 0 : -1}
-          className="min-h-11 whitespace-nowrap px-5 py-2.5 text-[0.68rem] tracking-[0.1em] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+          className="inline-flex min-h-[3.45rem] whitespace-nowrap items-center gap-2.5 rounded-none bg-black px-6 py-3 text-[0.85rem] font-semibold uppercase tracking-[0.1em] text-white shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-opacity hover:opacity-80"
         >
-          CONTACT US
-        </InteractiveHoverButton>
+          <svg viewBox="0 0 24 24" className="h-[1.1rem] w-[1.1rem]" fill="currentColor" aria-hidden="true">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          CALL NOW
+        </a>
       </div>
 
       <AnimatePresence>
@@ -321,7 +320,7 @@ export function Navbar() {
             >
               <nav
                 aria-label="Expanded site navigation"
-                className="flex flex-col items-center gap-1 text-[clamp(1.7rem,5.5vw,4rem)] font-black uppercase leading-[0.95] tracking-tighter text-white"
+                className="flex flex-col items-center gap-[0.3rem] text-[clamp(2.76rem,8.94vw,4rem)] font-black uppercase leading-[0.95] tracking-tighter text-white md:gap-1 md:text-[clamp(1.7rem,5.5vw,4rem)]"
               >
                 {menuNavItems.map((item) => (
                   <motion.div
@@ -350,11 +349,11 @@ export function Navbar() {
                 <div className="flex flex-col items-center gap-1">
                   <p className="text-[0.7rem] text-white/60">Get in touch</p>
                   <a
-                    href="mailto:info@cvrconstruction.ca"
+                    href={businessContact.emailHref}
                     tabIndex={hiddenMenuTabIndex}
                     className="break-all text-sm tracking-[0.14em] text-white transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-base"
                   >
-                    INFO@CVRCONSTRUCTION.CA
+                    {businessContact.email.toUpperCase()}
                   </a>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">

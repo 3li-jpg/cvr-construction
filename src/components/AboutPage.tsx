@@ -137,7 +137,7 @@ export function AboutPage() {
                 variants={factVariants}
                 className="flex flex-col gap-3"
               >
-                <p className="flex items-baseline text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.8rem] md:text-[4.4rem] lg:text-[4rem] xl:text-[4.6rem]">
+                <p className="flex items-baseline text-[2.55rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.2rem] md:text-[3.75rem] lg:text-[3.4rem] xl:text-[3.9rem]">
                   <AnimatedNumber value={numericValue} />
                   <span className="text-black/55">{fact.suffix}</span>
                 </p>
@@ -191,7 +191,7 @@ export function AboutPage() {
                 href="/projects"
                 className="inline-flex items-center gap-3 border-b border-current pb-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 dark:focus-visible:ring-white"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                <span className="h-1.5 w-1.5 rounded-none bg-current" />
                 Explore Our Projects
               </Link>
             </motion.div>
@@ -249,7 +249,7 @@ export function AboutPage() {
           </SectionEyebrow>
           <h2
             id="partners-heading"
-            className="text-[2.9rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
+            className="text-[2.4rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
           >
             Trusted By The Best
           </h2>
@@ -283,7 +283,7 @@ export function AboutPage() {
             </SectionEyebrow>
             <h2
               id="awards-heading"
-              className="text-[2rem] font-black uppercase leading-[0.95] tracking-[-0.05em] sm:text-[3.2rem] sm:leading-[0.9] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
+              className="text-[1.7rem] font-black uppercase leading-[0.95] tracking-[-0.05em] sm:text-[2.72rem] sm:leading-[0.9] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
             >
               Certifications &amp; Awards
             </h2>
@@ -363,7 +363,7 @@ export function AboutPage() {
             <Reveal direction="up" delay={0.12} duration={0.95} distance={70}>
               <h2
                 id="services-heading"
-                className="mt-8 max-w-[13ch] text-[2.9rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
+                className="mt-8 max-w-[13ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
               >
                 Crafting Form
                 <br />

@@ -9,7 +9,7 @@ in Greater Victoria or on Vancouver Island.
 
 ## Channels
 
-- **Email:** info@cvrconstruction.ca
+- **Email:** cvrconstruction@outlook.com
 - **Phone:** +1-250-880-1270
 - **WhatsApp:** https://wa.me/12508801270
 - **Instagram:** https://www.instagram.com/cvr_construction_ltd/
@@ -24,7 +24,7 @@ Monday to Friday, 8:00 – 17:00 Pacific Time.
 
 When reaching out, please share:
 
-1. Project type (kitchen, bathroom, whole-home, commercial, garden studio)
+1. Project type (kitchen, bathroom, full-home, commercial, custom space)
 2. Rough scope or square footage
 3. Location in Greater Victoria or Vancouver Island
 4. Target timeline and budget range

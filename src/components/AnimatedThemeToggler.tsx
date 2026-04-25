@@ -140,7 +140,7 @@ export function AnimatedThemeToggler({
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
       className={[
-        "flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/12 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-white dark:hover:text-black",
+        "flex h-12 w-12 items-center justify-center rounded-none border border-black/10 bg-white text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/12 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-white dark:hover:text-black",
         className,
       ]
         .filter(Boolean)

@@ -246,7 +246,7 @@ export function ContactForm() {
 
     setSubmitState("fallback");
     setStatusMessage(
-      "WhatsApp did not open automatically. Use the manual link below, or contact CVR at info@cvrconstruction.ca or +1 250 880 1270."
+      "WhatsApp did not open automatically. Use the manual link below, or contact CVR at cvrconstruction@outlook.com or +1 250 880 1270."
     );
   };
 

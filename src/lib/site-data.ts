@@ -1,12 +1,25 @@
 export const navItems = [
   { href: "/showroom", label: "Showroom" },
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/journals", label: "Journals" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+export const businessContact = {
+  name: "CVR Construction Ltd.",
+  addressLine1: "1226 Finlayson Street",
+  cityRegionPostal: "Victoria, BC V8T 2V3",
+  country: "Canada",
+  phone: "+1 (250) 880 1270",
+  phoneHref: "tel:+12508801270",
+  email: "cvrconstruction@outlook.com",
+  emailHref: "mailto:cvrconstruction@outlook.com",
+  whatsapp: "https://wa.me/12508801270",
+  mapsHref:
+    "https://maps.google.com/?q=1226+Finlayson+Street,+Victoria,+BC+V8T+2V3,+Canada",
+} as const;
 
 export type ServiceEntry = {
   num: string;
@@ -19,8 +32,8 @@ export type ServiceEntry = {
 export const services: ServiceEntry[] = [
   {
     num: "01",
-    title: "Whole-Home Renovations",
-    desc: "Premium home renovations in Victoria, BC with refined finishes, smarter layouts, and disciplined project delivery from demolition through completion.",
+    title: "Full Home Remodeling",
+    desc: "Full home remodeling in Victoria, BC with disciplined planning, refined finishes, and clear project delivery from demolition through final handover.",
     previewImage: "/images/victoria-whole-home-renovation-interior.webp",
     galleryImages: [
       "/images/victoria-commercial-interior-renovation.webp",
@@ -30,8 +43,8 @@ export const services: ServiceEntry[] = [
   },
   {
     num: "02",
-    title: "Kitchen Renovations",
-    desc: "Custom kitchen renovations designed around daily use, durable materials, efficient workflow, and a finish level that elevates the entire home.",
+    title: "Kitchen Renovation",
+    desc: "Kitchen renovation work designed around daily use, durable materials, efficient workflow, and a finish level that lifts the entire home.",
     previewImage: "/images/victoria-custom-kitchen-renovation.webp",
     galleryImages: [
       "/images/victoria-kitchen-bath-material-selections.webp",
@@ -41,8 +54,8 @@ export const services: ServiceEntry[] = [
   },
   {
     num: "03",
-    title: "Bathroom Renovations",
-    desc: "Bathroom remodels with strong waterproofing discipline, clean tile execution, thoughtful lighting, and premium fixture integration.",
+    title: "Bathroom Remodeling",
+    desc: "Bathroom remodeling with strong waterproofing discipline, clean tile execution, thoughtful lighting, and premium fixture integration.",
     previewImage: "/images/victoria-luxury-bathroom-renovation.webp",
     galleryImages: [
       "/images/victoria-premium-bathroom-finish-detail.webp",
@@ -52,7 +65,7 @@ export const services: ServiceEntry[] = [
   },
   {
     num: "04",
-    title: "Commercial Renovations",
+    title: "Commercial Upgrades",
     desc: "Commercial upgrades and interior improvements delivered with straightforward coordination, clean sites, and reliable schedule control.",
     previewImage: "/images/victoria-commercial-interior-renovation.webp",
     galleryImages: [
@@ -63,13 +76,25 @@ export const services: ServiceEntry[] = [
   },
   {
     num: "05",
-    title: "Garden Studios & Custom Spaces",
-    desc: "Compact custom builds, secondary spaces, and high-value additions that expand how a property works without sacrificing design quality.",
+    title: "Custom Spaces",
+    desc: "Custom spaces, compact additions, and secondary builds that expand how a property works without sacrificing design quality.",
     previewImage: "/images/victoria-garden-studio-exterior.webp",
     galleryImages: [
       "/images/victoria-garden-studio-exterior.webp",
       "/images/victoria-home-entry-renovation-exterior.webp",
       "/images/victoria-custom-garden-studio-angle.webp",
+    ],
+  },
+  {
+    num: "06",
+    title: "Tile, Flooring & Fixtures",
+    desc: "Tile, flooring, fixtures, and finish details installed with clean execution, precise layouts, and a more polished final result.",
+    previewImage: "/images/victoria-kitchen-bath-material-selections.webp",
+    galleryImages: [
+      "/images/victoria-kitchen-bath-material-selections.webp",
+      "/images/victoria-premium-bathroom-finish-detail.webp",
+      "/images/victoria-luxury-bathroom-renovation.webp",
+      "/images/victoria-bathroom-vanity-detail.webp",
     ],
   },
 ];
@@ -533,10 +558,15 @@ export const galleryItems = [
 ] as const;
 
 export const showroomContact = {
+  addressLine1: "1057 Fort St",
+  cityRegionPostal: "Victoria, BC V8V 3K5",
+  country: "Canada",
   phone: "+1 250 466 6531",
   phoneHref: "tel:+12504666531",
   email: "cvrshowroom@outlook.com",
   emailHref: "mailto:cvrshowroom@outlook.com",
+  mapsHref:
+    "https://maps.google.com/?q=1057+Fort+St,+Victoria,+BC+V8V+3K5,+Canada",
 } as const;
 
 export const showroomBrands = [
@@ -609,8 +639,10 @@ export const showroomSchema = {
   email: showroomContact.email,
   address: {
     "@type": "PostalAddress",
+    streetAddress: showroomContact.addressLine1,
     addressLocality: "Victoria",
     addressRegion: "BC",
+    postalCode: "V8V 3K5",
     addressCountry: "CA",
   },
   areaServed: ["Victoria, BC", "Greater Victoria", "Vancouver Island"],
@@ -630,6 +662,22 @@ export const socialLinks = [
     label: "Facebook",
   },
   { href: "https://wa.me/12508801270", label: "WhatsApp" },
+  { href: "https://www.yelp.ca/biz/cvr-construction-victoria", label: "Yelp" },
+] as const;
+
+export const trustLinks = [
+  {
+    label: "BBB Accredited",
+    href: "https://www.bbb.org/ca/bc/victoria/profile/remodeling/cvr-construction-ltd-0047-235975091",
+  },
+  {
+    label: "Google Reviews",
+    href: "https://maps.app.goo.gl/WpiNvvknAfY1fdir6",
+  },
+  {
+    label: "Yelp Reviews",
+    href: "https://www.yelp.ca/biz/cvr-construction-victoria",
+  },
 ] as const;
 
 export const studioPrinciples = [

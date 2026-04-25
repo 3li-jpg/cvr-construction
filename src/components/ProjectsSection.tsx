@@ -19,10 +19,6 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-function joinClassNames(...values: Array<string | undefined>) {
-  return values.filter(Boolean).join(" ");
-}
-
 const projectCardFrameClassName =
   "w-[min(100%,12.75rem)] sm:w-[14.25rem] lg:w-[17.25rem] xl:w-[19.5rem]";
 
@@ -30,18 +26,18 @@ function ProjectCard({
   projectIndex,
   setCardRef,
   setImageRef,
-  cardClassName,
+  frameClassName,
 }: {
   projectIndex: number;
   setCardRef: (index: number, node: HTMLDivElement | null) => void;
   setImageRef: (index: number, node: HTMLDivElement | null) => void;
-  cardClassName?: string;
+  frameClassName?: string;
 }) {
   const project = projects[projectIndex];
   const projectDetailHref = `/projects/${project.slug}`;
 
   return (
-    <article>
+    <article className={frameClassName}>
       <Link
         href={projectDetailHref}
         className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
@@ -50,10 +46,7 @@ function ProjectCard({
           ref={(node) => {
             setCardRef(projectIndex, node);
           }}
-          className={joinClassNames(
-            "w-full transform-gpu will-change-transform",
-            cardClassName
-          )}
+          className="w-full transform-gpu will-change-transform"
         >
           <div className="relative aspect-[4/5] overflow-hidden bg-black">
             <div
@@ -120,7 +113,7 @@ export function ProjectsSection() {
   };
 
   const projectsHeadingClassName =
-    "text-[2.35rem] sm:text-[3rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] font-black tracking-[-0.03em] uppercase leading-[0.9]";
+    "text-[2.0rem] sm:text-[2.7rem] md:text-[3.2rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black tracking-[-0.03em] uppercase leading-[0.9]";
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -191,11 +184,14 @@ export function ProjectsSection() {
           return;
         }
 
-        const imageOffset = (0.5 - progress) * 54;
-        const settle = clamp((progress - 0.04) / 0.82, 0, 1);
-        const cardOffset = (1 - settle) * 18;
+        const imageOffset = (0.5 - progress) * 70;
+        const cardEase = clamp((progress - 0.05) / 0.85, 0, 1);
+        const outwardDrift = 1 - Math.pow(1 - cardEase, 1.5);
+        const mobileTargetX = index % 2 === 0 ? -42 : 42;
+        const horizontalOffset = mobileTargetX * outwardDrift;
+        const verticalOffset = (0.5 - progress) * 14;
 
-        card.style.transform = `translate3d(0, ${cardOffset.toFixed(2)}px, 0)`;
+        card.style.transform = `translate3d(${horizontalOffset.toFixed(2)}px, ${verticalOffset.toFixed(2)}px, 0)`;
         image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.06)`;
       });
     };
@@ -253,7 +249,7 @@ export function ProjectsSection() {
                 projectIndex={projectIndex}
                 setCardRef={setMobileCardRef}
                 setImageRef={setMobileImageRef}
-                cardClassName={projectCardFrameClassName}
+                frameClassName={projectCardFrameClassName}
               />
             </div>
           ))}
@@ -267,7 +263,7 @@ export function ProjectsSection() {
                 projectIndex={projectIndex}
                 setCardRef={setDesktopCardRef}
                 setImageRef={setDesktopImageRef}
-                cardClassName={projectCardFrameClassName}
+                frameClassName={projectCardFrameClassName}
               />
             ))}
           </div>
@@ -300,7 +296,7 @@ export function ProjectsSection() {
                 projectIndex={projectIndex}
                 setCardRef={setDesktopCardRef}
                 setImageRef={setDesktopImageRef}
-                cardClassName={projectCardFrameClassName}
+                frameClassName={projectCardFrameClassName}
               />
             ))}
           </div>

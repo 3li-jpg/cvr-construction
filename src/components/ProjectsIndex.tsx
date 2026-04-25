@@ -92,7 +92,7 @@ function ProjectRow({
             <span>{project.year}</span>
           </div>
 
-          <h2 className="max-w-[14ch] text-[2.9rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]">
+          <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]">
             {project.title}
           </h2>
 
@@ -109,7 +109,7 @@ function ProjectRow({
           </p>
 
           <span className="mt-2 inline-flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black transition-transform duration-500 ease-out group-hover:translate-x-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-current" />
+            <span className="h-1.5 w-1.5 rounded-none bg-current" />
             View Project
           </span>
         </div>

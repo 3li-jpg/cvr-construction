@@ -19,6 +19,7 @@ interface BlurTextAnimationProps {
   fontFamily?: string;
   textColor?: string;
   animationDelay?: number;
+  initialDelay?: number;
   repeat?: boolean;
 }
 
@@ -40,6 +41,7 @@ export default function BlurTextAnimation({
   fontFamily = "font-['Avenir_Next',_'Avenir',_system-ui,_sans-serif]",
   textColor = "text-white",
   animationDelay = 4000,
+  initialDelay = 0,
   repeat = true,
 }: BlurTextAnimationProps) {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -63,12 +65,12 @@ export default function BlurTextAnimation({
       return {
         text: word,
         duration: 2.2 + Math.cos(index * 0.3) * 0.3,
-        delay: baseDelay + exponentialDelay + microVariation,
+        delay: baseDelay + exponentialDelay + microVariation + (initialDelay / 1000),
         blur: 12 + Math.floor(variationSeed * 8),
         scale: 0.9 + Math.sin(index * 0.2) * 0.05,
       };
     });
-  }, [text, words]);
+  }, [text, words, initialDelay]);
 
   useEffect(() => {
     const startAnimation = () => {

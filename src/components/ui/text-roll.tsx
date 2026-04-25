@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const STAGGER = 0.035;
+const STAGGER = 0.0245;
 
 export default function TextRoll({
   children,
@@ -47,6 +47,7 @@ export default function TextRoll({
                   },
                 }}
                 transition={{
+                  duration: 0.21,
                   ease: "easeInOut",
                   delay,
                 }}
@@ -76,6 +77,7 @@ export default function TextRoll({
                   },
                 }}
                 transition={{
+                  duration: 0.21,
                   ease: "easeInOut",
                   delay,
                 }}

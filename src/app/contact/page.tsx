@@ -5,7 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { PageIntro } from "@/components/PageIntro";
 import { buildPageMetadata } from "@/lib/metadata";
 import { proseBodyClassName } from "@/lib/prose";
-import { contactHero } from "@/lib/site-data";
+import { businessContact, contactHero } from "@/lib/site-data";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
@@ -45,33 +45,34 @@ export default function ContactPage() {
               </p>
               <div className="space-y-1 text-[1rem] leading-7 text-black/74">
                 <a
-                  href="mailto:info@cvrconstruction.ca"
+                  href={businessContact.emailHref}
                   data-analytics-event="contact_secondary_cta_clicked"
                   data-analytics-label="email"
                   data-analytics-location="contact-page"
                   className="block transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
                 >
-                  info@cvrconstruction.ca
+                  {businessContact.email}
                 </a>
                 <a
-                  href="tel:+12508801270"
+                  href={businessContact.phoneHref}
                   data-analytics-event="contact_secondary_cta_clicked"
                   data-analytics-label="phone"
                   data-analytics-location="contact-page"
                   className="block transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
                 >
-                  +1 250 880 1270
+                  {businessContact.phone}
                 </a>
               </div>
             </div>
 
             <div className="border-b border-black/10 py-5 md:px-8 xl:border-b-0 xl:border-r">
               <p className="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
-                Service Area
+                Office
               </p>
               <p className="text-[1rem] leading-7 text-black/72">
-                Victoria, Greater Victoria, and select Vancouver Island
-                projects.
+                {businessContact.addressLine1}
+                <br />
+                {businessContact.cityRegionPostal}
               </p>
             </div>
 

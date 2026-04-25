@@ -1,14 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import Script from "next/script";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { PageTransition } from "@/components/PageTransition";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { WebMCPRegistrar } from "@/components/WebMCPRegistrar";
+import { businessContact } from "@/lib/site-data";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  style: ["italic"],
+  display: "swap",
 });
 
 const themeInitScript = `
@@ -28,19 +38,21 @@ const themeInitScript = `
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.cvrconstruction.ca"),
   title: {
-    default: "CVR Construction | Premium Construction Company in Victoria, BC",
+    default: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
     template: "%s | CVR Construction",
   },
   description:
-    "CVR Construction is a Victoria, BC construction company specializing in premium home renovations, kitchen and bathroom remodels, custom spaces, and detail-driven commercial upgrades across Greater Victoria and Vancouver Island.",
+    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. 12+ years on Vancouver Island, licensed & insured. Visit our kitchen & bath showroom.",
   keywords: [
     "CVR Construction",
+    "bathroom renovation Victoria BC",
+    "kitchen remodeling Victoria",
+    "home remodeling Victoria",
+    "contractor Victoria BC",
+    "kitchen and bath showroom Victoria",
     "construction company Victoria BC",
-    "Victoria construction company",
     "Victoria renovation contractor",
     "premium renovations Victoria",
-    "kitchen renovation Victoria BC",
-    "bathroom renovation Victoria BC",
     "commercial renovations Victoria BC",
     "Vancouver Island construction company",
   ],
@@ -48,9 +60,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "CVR Construction | Premium Construction Company in Victoria, BC",
+    title: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
     description:
-      "Premium renovations, kitchens, bathrooms, custom spaces, and commercial upgrades delivered with clean execution across Victoria and Vancouver Island.",
+      "Premier bathroom renovation, kitchen remodeling, and home remodeling contractor in Victoria, BC. 12+ years, licensed & insured. Kitchen & bath showroom now open.",
     url: "https://www.cvrconstruction.ca",
     siteName: "CVR Construction",
     locale: "en_CA",
@@ -66,9 +78,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CVR Construction | Premium Construction Company in Victoria, BC",
+    title: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
     description:
-      "Victoria, BC construction company for premium renovations, kitchens, bathrooms, custom spaces, and commercial upgrades.",
+      "Victoria, BC contractor for bathroom renovation, kitchen remodeling, home remodeling, and custom spaces. Visit our showroom.",
     images: ["/images/victoria-garden-studio-exterior.webp"],
   },
   robots: {
@@ -105,11 +117,13 @@ const localBusinessSchema = {
   description:
     "CVR Construction is a Victoria, BC construction company specializing in premium renovations, kitchen and bathroom remodels, custom spaces, and commercial upgrades across Greater Victoria and Vancouver Island.",
   telephone: "+1-250-880-1270",
-  email: "info@cvrconstruction.ca",
+  email: businessContact.email,
   address: {
     "@type": "PostalAddress",
+    streetAddress: businessContact.addressLine1,
     addressLocality: "Victoria",
     addressRegion: "BC",
+    postalCode: "V8T 2V3",
     addressCountry: "CA",
   },
   areaServed: [
@@ -125,8 +139,8 @@ const localBusinessSchema = {
   sameAs: [
     "https://www.instagram.com/cvr_construction_ltd/",
     "https://www.facebook.com/profile.php?id=61552800609732",
-    "https://wa.me/12508801270",
-    "https://maps.app.goo.gl/WpiNvvknAfY1fdir6",
+    businessContact.whatsapp,
+    businessContact.mapsHref,
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -136,35 +150,35 @@ const localBusinessSchema = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Whole-Home Renovations",
+          name: "Full Home Remodeling",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Kitchen Renovations",
+          name: "Kitchen Renovation",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Bathroom Renovations",
+          name: "Bathroom Remodeling",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Commercial Renovations",
+          name: "Commercial Upgrades",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Garden Studios and Custom Spaces",
+          name: "Custom Spaces",
         },
       },
     ],
@@ -173,7 +187,7 @@ const localBusinessSchema = {
     "@type": "ContactPoint",
     contactType: "customer service",
     telephone: "+1-250-880-1270",
-    email: "info@cvrconstruction.ca",
+    email: businessContact.email,
     areaServed: "CA",
     availableLanguage: ["en"],
   },
@@ -187,7 +201,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${cormorant.variable} h-full antialiased dark`}
       style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >
@@ -197,7 +211,7 @@ export default function RootLayout({
       >
         <a
           href="#main-content"
-          className="sr-only fixed left-4 top-4 z-[200] rounded-full bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-black shadow-lg focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 dark:bg-black dark:text-white dark:focus:ring-white dark:focus:ring-offset-black"
+          className="sr-only fixed left-4 top-4 z-[200] rounded-none bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-black shadow-lg focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 dark:bg-black dark:text-white dark:focus:ring-white dark:focus:ring-offset-black"
         >
           Skip to main content
         </a>
@@ -213,7 +227,9 @@ export default function RootLayout({
         />
         <AnalyticsTracker />
         <WebMCPRegistrar />
-        <PageTransition>{children}</PageTransition>
+        <SmoothScroll>
+          <PageTransition>{children}</PageTransition>
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -27,21 +27,22 @@ type NavigatorWithModelContext = Navigator & {
 
 const CONTACT_INFO = {
   name: "CVR Construction Ltd.",
-  email: "info@cvrconstruction.ca",
+  email: "cvrconstruction@outlook.com",
   phone: "+1-250-880-1270",
   whatsapp: "https://wa.me/12508801270",
   website: "https://www.cvrconstruction.ca",
-  location: "Victoria, BC, Canada",
+  location: "1226 Finlayson Street, Victoria, BC V8T 2V3, Canada",
   hours: "Mon–Fri 08:00–17:00 PT",
   serviceArea: ["Greater Victoria, BC", "Saanich Peninsula", "Vancouver Island"],
 };
 
 const SERVICES = [
-  "Whole-home renovations",
-  "Kitchen renovations",
-  "Bathroom renovations",
-  "Commercial renovations and tenant improvements",
-  "Custom garden studios and accessory spaces",
+  "Full home remodeling",
+  "Kitchen renovation",
+  "Bathroom remodeling",
+  "Commercial upgrades",
+  "Custom spaces",
+  "Tile, flooring, and fixtures",
 ];
 
 const PROJECT_TYPES = [

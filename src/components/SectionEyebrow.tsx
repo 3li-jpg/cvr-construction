@@ -23,7 +23,7 @@ export function SectionEyebrow({
     >
       <span
         aria-hidden="true"
-        className={cn("inline-block h-1.5 w-1.5 rounded-full bg-current", dotClassName)}
+        className={cn("inline-block h-1.5 w-1.5 rounded-none bg-current", dotClassName)}
       />
       <span>{children}</span>
     </p>

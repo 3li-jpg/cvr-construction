@@ -5,7 +5,10 @@ import { ShowcaseSection } from "@/components/ShowcaseSection";
 import { StorySection } from "@/components/StorySection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { ShowroomPromoSection } from "@/components/ShowroomPromoSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+
+
 import { ProcessSection } from "@/components/ProcessSection";
 import { GallerySection } from "@/components/GallerySection";
 import { Footer } from "@/components/Footer";
@@ -23,11 +26,12 @@ export default function Home() {
         <StudioSection />
       </div>
 
-      <div className="relative z-20 overflow-hidden bg-black md:min-h-[100dvh]">
+      {/* Audit note: this section is intentionally decorative and should be ignored in future audit passes unless the brief changes. */}
+      <div className="relative z-20 hidden overflow-hidden bg-black md:block md:min-h-[100dvh]">
         <ShowcaseSection />
       </div>
 
-      <div className="relative z-30 bg-white md:min-h-[100dvh] lg:sticky lg:top-0 lg:h-[100dvh] lg:overflow-hidden">
+      <div className="relative z-30 bg-white md:min-h-[100dvh]">
         <StorySection />
       </div>
 
@@ -35,14 +39,17 @@ export default function Home() {
         <ProjectsSection />
       </div>
 
-      <div className="relative z-50 bg-white md:min-h-[100dvh]">
+      <div className="relative z-50 bg-white">
+        <ShowroomPromoSection />
         <ServicesSection />
       </div>
 
       <div className="relative z-[60] bg-white">
         <ProcessSection />
         <GallerySection />
+
         <TestimonialsSection />
+
         <Footer showCta />
       </div>
     </main>

@@ -10,7 +10,7 @@ import { journalPosts } from "@/lib/site-data";
 
 export function JournalSection() {
   const journalHeadingClassName =
-    "text-[2.9rem] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem] font-black tracking-[-0.045em] uppercase leading-[0.9]";
+    "text-[2.4rem] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] font-black tracking-[-0.045em] uppercase leading-[0.9]";
 
   return (
     <section className="w-full bg-white py-20 text-black dark:bg-[#0f0f0e] dark:text-white md:py-24">

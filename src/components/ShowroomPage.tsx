@@ -4,6 +4,7 @@ import Image from "next/image";
 import Script from "next/script";
 import { motion, type Variants } from "motion/react";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { ContactBlockSection } from "@/components/ContactBlockSection";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PageIntro } from "@/components/PageIntro";
@@ -72,7 +73,7 @@ export function ShowroomPage() {
 
       <PageIntro
         eyebrow="Showroom / In-Person Selection"
-        title={"Our Showroom"}
+        title={"Victoria Kitchen & Bath Showroom"}
         scrollTargetId="showroom"
         backgroundImage={showroomHero}
       />
@@ -100,7 +101,7 @@ export function ShowroomPage() {
                 variants={factVariants}
                 className="flex flex-col gap-3"
               >
-                <p className="flex items-baseline text-[3rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.8rem] md:text-[4.4rem] lg:text-[4rem] xl:text-[4.6rem]">
+                <p className="flex items-baseline text-[2.55rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.2rem] md:text-[3.75rem] lg:text-[3.4rem] xl:text-[3.9rem]">
                   <AnimatedNumber value={numericValue} />
                   <span className="text-black/55">{fact.suffix}</span>
                 </p>
@@ -144,17 +145,55 @@ export function ShowroomPage() {
             </motion.p>
 
             <motion.p variants={philosophyItem} className={proseHeroClassName}>
-              The goal is simple &mdash; better visibility, stronger contrast between options, and fewer weak selections once the project is moving.
+              Visit us at {showroomContact.addressLine1}, {showroomContact.cityRegionPostal}. The goal is simple &mdash; better visibility, stronger contrast between options, and fewer weak selections once the project is moving.
             </motion.p>
 
-            <motion.div variants={philosophyItem}>
-              <a
-                href={showroomContact.phoneHref}
-                className="inline-flex items-center gap-3 border-b border-current pb-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-current" />
-                Book A Showroom Visit
-              </a>
+            <motion.div variants={philosophyItem} className="flex flex-col gap-4">
+              <div className="grid gap-4 border border-black/10 p-5 text-left sm:grid-cols-2">
+                <div>
+                  <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
+                    Address
+                  </p>
+                  <a
+                    href={showroomContact.mapsHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[0.98rem] leading-7 text-black/74 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+                  >
+                    {showroomContact.addressLine1}
+                    <br />
+                    {showroomContact.cityRegionPostal}
+                  </a>
+                </div>
+                <div>
+                  <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
+                    Phone
+                  </p>
+                  <a
+                    href={showroomContact.phoneHref}
+                    className="text-[0.98rem] leading-7 text-black/74 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+                  >
+                    {showroomContact.phone}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={showroomContact.phoneHref}
+                  className="inline-flex items-center gap-2 rounded-none bg-black px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+                >
+                  Call Showroom
+                </a>
+                <a
+                  href={showroomContact.mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-none border border-black/15 px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:border-black hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+                >
+                  Get Directions
+                </a>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -171,7 +210,7 @@ export function ShowroomPage() {
           </SectionEyebrow>
           <h2
             id="brands-heading"
-            className="text-[2.9rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
+            className="text-[2.4rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
           >
             The Lines Clients Trust
           </h2>
@@ -206,7 +245,7 @@ export function ShowroomPage() {
             </SectionEyebrow>
             <h2
               id="collections-heading"
-              className="text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.2rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]"
+              className="text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[2.72rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
             >
               Product Categories
             </h2>
@@ -242,7 +281,7 @@ export function ShowroomPage() {
                     <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
                       {collection.index} / {collection.eyebrow}
                     </p>
-                    <h3 className="max-w-[12ch] text-[2.2rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:text-[3rem] md:text-[3.6rem] lg:max-w-none lg:text-[4rem] xl:text-[4.4rem]">
+                    <h3 className="max-w-[12ch] text-[1.87rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:text-[2.55rem] md:text-[3.06rem] lg:max-w-none lg:text-[3.4rem] xl:text-[3.74rem]">
                       {collection.title}
                     </h3>
                     <p className={`mt-6 max-w-[40rem] ${proseBodyClassName}`}>
@@ -269,7 +308,7 @@ export function ShowroomPage() {
               </SectionEyebrow>
               <h2
                 id="why-heading"
-                className="text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.6rem] lg:text-[4rem] xl:text-[4.4rem]"
+                className="text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[2.55rem] md:text-[3.06rem] lg:text-[3.4rem] xl:text-[3.74rem]"
               >
                 Not Just
                 <br />
@@ -303,54 +342,10 @@ export function ShowroomPage() {
         </div>
       </section>
 
-      {/* Visit / contact */}
-      <section
-        aria-labelledby="visit-heading"
-        className="site-shell px-6 pb-24 sm:px-8 md:px-12 md:pb-28 lg:px-20 lg:pb-32"
-      >
-        <Reveal direction="up" duration={0.7} distance={28}>
-          <div className="mb-10 flex flex-col items-center gap-4 border-t border-black/10 pt-10 text-center lg:mb-14 lg:pt-14">
-            <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
-              VISIT THE SHOWROOM
-            </SectionEyebrow>
-            <h2
-              id="visit-heading"
-              className="max-w-[15ch] text-[2.35rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3rem] md:text-[3.6rem] lg:max-w-none lg:text-[4rem] xl:text-[4.6rem]"
-            >
-              Come See The Products In Person
-            </h2>
-          </div>
-        </Reveal>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Reveal direction="up" delay={0.08} duration={0.8} distance={30}>
-            <a
-              href={showroomContact.phoneHref}
-              className="group flex h-full flex-col justify-between gap-10 border border-black/12 p-6 transition-colors duration-300 hover:border-black hover:bg-black hover:text-white focus-visible:outline-none focus-visible:border-black focus-visible:bg-black focus-visible:text-white md:p-8"
-            >
-              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/48 group-hover:text-white/60 group-focus-visible:text-white/60">
-                Showroom Phone
-              </span>
-              <span className="text-[1.8rem] font-black uppercase leading-[1.02] tracking-[-0.04em] md:text-[2.4rem] lg:text-[2.8rem]">
-                {showroomContact.phone}
-              </span>
-            </a>
-          </Reveal>
-          <Reveal direction="up" delay={0.16} duration={0.8} distance={30}>
-            <a
-              href={showroomContact.emailHref}
-              className="group flex h-full flex-col justify-between gap-10 border border-black/12 p-6 transition-colors duration-300 hover:border-black hover:bg-black hover:text-white focus-visible:outline-none focus-visible:border-black focus-visible:bg-black focus-visible:text-white md:p-8"
-            >
-              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/48 group-hover:text-white/60 group-focus-visible:text-white/60">
-                Showroom Email
-              </span>
-              <span className="break-all text-[1.4rem] font-black uppercase leading-[1.1] tracking-[-0.03em] md:text-[1.8rem] lg:text-[2rem]">
-                {showroomContact.email}
-              </span>
-            </a>
-          </Reveal>
-        </div>
-      </section>
+      {/* Contact */}
+      <div className="flex min-h-screen items-center">
+        <ContactBlockSection />
+      </div>
 
       <div className="relative z-[60] bg-black">
         <Footer showCta />

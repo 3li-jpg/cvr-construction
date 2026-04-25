@@ -45,15 +45,15 @@ export function ServicesSection() {
   return (
     <section className="w-full bg-white py-10 text-black dark:bg-[#0f0f0e] dark:text-white lg:py-12">
       <div className="site-shell flex w-full flex-col px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start text-left md:items-center md:text-center">
+        <div className="flex flex-col items-center text-center">
           <Reveal direction="up" duration={0.8}>
-            <SectionEyebrow className="text-[0.9rem] tracking-[-0.03em] text-black dark:text-white md:justify-center">
+            <SectionEyebrow className="justify-center text-[0.9rem] tracking-[-0.03em] text-black dark:text-white">
               What We Do
             </SectionEyebrow>
           </Reveal>
 
           <Reveal direction="up" delay={0.12} duration={0.95} distance={70}>
-            <h2 className="mt-6 text-[2.9rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.7rem] md:mt-8 md:max-w-[13ch] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]">
+            <h2 className="mt-6 text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.1rem] md:mt-8 md:max-w-[13ch] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]">
               Spaces Built
               <br />
               With Intent
@@ -66,7 +66,7 @@ export function ServicesSection() {
             direction="up"
             delay={0.18}
             duration={0.95}
-            className="mx-auto flex max-w-[18.75rem] flex-col items-center gap-5 xl:mx-0 xl:items-start xl:sticky xl:top-24 xl:self-start xl:pt-1"
+            className="mx-auto flex max-w-[18.75rem] flex-col items-center gap-5 text-center xl:sticky xl:top-24 xl:self-start xl:pt-1"
           >
             <div className="w-full overflow-hidden bg-white dark:bg-[#131311]">
               <Image
@@ -80,12 +80,14 @@ export function ServicesSection() {
               />
             </div>
 
-            <p className="max-w-[17ch] text-[clamp(0.98rem,1.08vw,1.08rem)] leading-[1.16] tracking-[-0.025em] text-black dark:text-white">
+            <p className="w-full text-[clamp(0.98rem,1.08vw,1.08rem)] leading-[1.16] tracking-[-0.025em] text-black dark:text-white">
               Chosen for projects where finish quality, clarity, and execution
               matter as much as the final look.
             </p>
 
-            <PillButton label="Start Your Project" />
+            <div className="flex w-full justify-center">
+              <PillButton label="Start Your Project" />
+            </div>
           </Reveal>
 
           <div>

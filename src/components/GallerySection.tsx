@@ -30,7 +30,7 @@ function GalleryTile({
     <button
       type="button"
       onClick={onClick}
-      className="mr-4 w-[76vw] shrink-0 appearance-none bg-transparent p-0 text-left sm:mr-5 sm:w-[28rem] lg:mr-6 lg:w-[32rem] xl:w-[36rem]"
+      className="mr-4 w-[calc(100vw-(var(--site-gutter)*2))] max-w-[24rem] shrink-0 appearance-none bg-transparent p-0 text-left sm:mr-5 sm:w-[28rem] sm:max-w-none lg:mr-6 lg:w-[32rem] xl:w-[36rem]"
       aria-label={`Open larger image for ${title}`}
     >
       <div className="group relative aspect-[16/11] overflow-hidden bg-black">
@@ -59,7 +59,7 @@ function GalleryTile({
 export function GallerySection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const galleryHeadingClassName =
-    "text-[2.9rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.7rem] md:text-[4.45rem] lg:text-[5rem] xl:text-[5.45rem]";
+    "text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]";
   const activeItem = activeIndex === null ? null : galleryItems[activeIndex];
 
   useEffect(() => {
@@ -116,14 +116,18 @@ export function GallerySection() {
               href="/gallery"
               className="mt-7 inline-flex items-center gap-3 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
             >
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+              <span className="inline-block h-1.5 w-1.5 rounded-none bg-current" />
               View Full Gallery
             </Link>
           </Reveal>
         </div>
 
         <ScrollVelocityContainer className="space-y-4 sm:space-y-5 lg:space-y-6">
-          <ScrollVelocityRow baseVelocity={2.6} direction={1}>
+          <ScrollVelocityRow
+            baseVelocity={2.6}
+            direction={1}
+            className="px-[var(--site-gutter)] sm:px-0"
+          >
             {firstRowItems.map((item, index) => (
               <GalleryTile
                 key={`${item.image}-row-1`}
@@ -132,7 +136,11 @@ export function GallerySection() {
               />
             ))}
           </ScrollVelocityRow>
-          <ScrollVelocityRow baseVelocity={2.2} direction={-1}>
+          <ScrollVelocityRow
+            baseVelocity={2.2}
+            direction={-1}
+            className="px-[var(--site-gutter)] sm:px-0"
+          >
             {secondRowItems.map((item, index) => (
               <GalleryTile
                 key={`${item.image}-row-2`}

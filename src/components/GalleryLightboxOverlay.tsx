@@ -172,7 +172,7 @@ export function GalleryLightboxOverlay({
                     onPrev();
                   }}
                   aria-label="Previous image"
-                  className="absolute left-2 top-1/2 hidden -translate-y-1/2 rounded-full border border-white/25 bg-black/30 p-3 text-white transition-all hover:border-white/60 hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:block"
+                  className="absolute left-2 top-1/2 hidden -translate-y-1/2 rounded-none border border-white/25 bg-black/30 p-3 text-white transition-all hover:border-white/60 hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:block"
                 >
                   <ChevronIcon direction="prev" />
                 </button>
@@ -185,7 +185,7 @@ export function GalleryLightboxOverlay({
                     onNext();
                   }}
                   aria-label="Next image"
-                  className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-full border border-white/25 bg-black/30 p-3 text-white transition-all hover:border-white/60 hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:block"
+                  className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-none border border-white/25 bg-black/30 p-3 text-white transition-all hover:border-white/60 hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:block"
                 >
                   <ChevronIcon direction="next" />
                 </button>

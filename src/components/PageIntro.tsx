@@ -20,7 +20,7 @@ type PageIntroProps = {
 };
 
 const baseTitleClassName =
-  "mx-auto text-center text-balance text-[clamp(2.45rem,11vw,3.15rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[4.6rem] md:text-[6.4rem] lg:text-[7.3rem] xl:text-[8rem]";
+  "mx-auto text-center text-balance text-[clamp(2rem,9vw,2.6rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white sm:text-[3.8rem] md:text-[5.2rem] lg:text-[6rem] xl:text-[6.6rem]";
 
 const eyebrowVariants: Variants = {
   hidden: { opacity: 0, y: 12 },

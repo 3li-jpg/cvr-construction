@@ -1,92 +1,110 @@
 "use client";
 
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SQRT_5000 = Math.sqrt(5000);
 
-const testimonials = [
+type Testimonial = {
+  tempId: number;
+  testimonial: string;
+  by: string;
+  project: string;
+  source: string;
+};
+
+const testimonials: Testimonial[] = [
   {
     tempId: 0,
     testimonial:
-      "CVR brought order to a complex renovation. The schedule stayed clear, the site stayed organized, and the final finish feels properly premium.",
-    by: "Emma, Homeowner in Oak Bay",
-    imgSrc:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
+      "Bader is managing my property and is easy to work with, honest, and competent. Installing a dishwasher, TV mount, and light fixture, and ready to do more. Very pleased.",
+    by: "Kathrin Lake",
+    project: "Home Upgrade",
+    source: "Client Feedback",
   },
   {
     tempId: 1,
     testimonial:
-      "The bathroom detailing was handled with real discipline. Nothing felt improvised and every material transition was resolved cleanly.",
-    by: "Daniel, Property Owner",
-    imgSrc:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+      "I highly recommend this business. I was completely impressed with their professionalism and customer service.",
+    by: "Aseel Stra",
+    project: "General Contracting",
+    source: "Client Feedback",
   },
   {
     tempId: 2,
     testimonial:
-      "Communication stayed sharp from the walkthrough to handover. We always knew what was happening and what decision was needed next.",
-    by: "Sofia, Interior Client",
-    imgSrc:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80",
+      "Bader and his team finished my commercial renovation in record time. Bader is a great communicator and listened to what I wanted done, then made professional and experienced recommendations. Always punctual and showed up when they said they would.",
+    by: "Roxanne Derkson",
+    project: "Commercial Renovation",
+    source: "Client Feedback",
   },
   {
     tempId: 3,
     testimonial:
-      "They handled our commercial refresh without the usual chaos. Quality stayed high even while the schedule stayed tight.",
-    by: "Marcus, Studio Director",
-    imgSrc:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80",
+      "I am the owner of Indian Aroma Restaurant. Bader and his team at CVR Construction did a lot of renovation work in my commercial restaurant and my house, and they did a really nice job. Thank you Bader, thank you CVR Construction.",
+    by: "Usingh Panwar",
+    project: "Commercial + Residential",
+    source: "Client Feedback",
   },
   {
     tempId: 4,
     testimonial:
-      "What stood out was the restraint. They did not oversell anything, they just delivered careful work that reads well up close.",
-    by: "Grace, Renovation Client",
-    imgSrc:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+      "Bader did a great job with the renovation of my kitchen, bathroom, kitchen cabinets, painting, and flooring. Highly recommended.",
+    by: "Chaith",
+    project: "Kitchen + Bathroom",
+    source: "Client Feedback",
   },
   {
     tempId: 5,
     testimonial:
-      "We were balancing budget, design, and timing, and CVR kept all three under control without losing the quality of the result.",
-    by: "Leah, Project Lead",
-    imgSrc:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80",
+      "Great company to work with. Project completed on time and within budget.",
+    by: "Pizza Al Forno - Victoria",
+    project: "Commercial Upgrade",
+    source: "Client Feedback",
   },
   {
     tempId: 6,
     testimonial:
-      "Our garden studio feels intentional instead of added on. The proportions, trim work, and exterior detailing all feel composed.",
-    by: "Noah, Homeowner",
-    imgSrc:
-      "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=300&q=80",
+      "Thanks CVR Construction for all the hard work you did in my house to turn it into my dream home. I appreciate your management, timeline, and quality of work. Thank you Bader for taking my ideas and making them real.",
+    by: "Varma Mudunuri",
+    project: "Full Home Remodeling",
+    source: "Client Feedback",
   },
   {
     tempId: 7,
     testimonial:
-      "The process felt calm the whole way through. Even when we changed direction on a few items, the team kept the project moving.",
-    by: "Ava, Victoria Client",
-    imgSrc:
-      "https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=crop&w=300&q=80",
+      "I am writing to thank you for the quality of service provided by your company. This company is very professional and hardworking. They finished my kitchen very quickly and I am very satisfied with the results. I would work with them again.",
+    by: "Khawla Khatib",
+    project: "Kitchen Renovation",
+    source: "Client Feedback",
   },
-  {
-    tempId: 8,
-    testimonial:
-      "The workmanship is what people notice first. Better flow, cleaner lines, and details that hold up when you are standing right in the room.",
-    by: "Julian, Custom Build Client",
-    imgSrc:
-      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=300&q=80",
-  },
-];
+] ;
 
 interface TestimonialCardProps {
   position: number;
-  testimonial: (typeof testimonials)[0];
+  testimonial: Testimonial;
   handleMove: (steps: number) => void;
   cardSize: number;
+  setCardRef: (id: number, node: HTMLDivElement | null) => void;
+}
+
+function FiveStars({ active }: { active: boolean }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(
+        "flex items-center gap-1 text-[0.68rem] tracking-[0.08em]",
+        active ? "text-current/90" : "text-current/55"
+      )}
+    >
+      <span>★</span>
+      <span>★</span>
+      <span>★</span>
+      <span>★</span>
+      <span>★</span>
+    </div>
+  );
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -94,16 +112,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   testimonial,
   handleMove,
   cardSize,
+  setCardRef,
 }) => {
   const isCenter = position === 0;
   const distance = Math.abs(position);
   const isVisible = distance <= 2;
+  const initials = testimonial.by
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .replace(".", "");
 
   return (
     <div
+      ref={(node) => setCardRef(testimonial.tempId, node)}
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
+        "absolute left-1/2 top-1/2 flex cursor-pointer flex-col border-2 p-8 transition-all duration-500 ease-in-out",
         isCenter
           ? "z-20 border-primary bg-primary text-primary-foreground"
           : "border-border bg-card text-card-foreground hover:border-primary/50",
@@ -111,7 +136,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       )}
       style={{
         width: cardSize,
-        height: cardSize,
         clipPath:
           "polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)",
         transform: `
@@ -121,7 +145,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
           scale(${isCenter ? 1 : 0.92})
         `,
-        boxShadow: isCenter ? "0px 10px 0px 0px var(--border)" : "0px 18px 48px -28px rgba(0,0,0,0.28)",
+        boxShadow: isCenter
+          ? "0px 10px 0px 0px var(--border)"
+          : "0px 18px 48px -28px rgba(0,0,0,0.28)",
         zIndex: 20 - distance,
       }}
     >
@@ -135,20 +161,54 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         }}
       />
 
-      <Image
-        src={testimonial.imgSrc}
-        alt={testimonial.by.split(",")[0]}
-        width={56}
-        height={64}
-        className="mb-5 h-16 w-14 bg-muted object-cover object-top"
-        style={{
-          boxShadow: "3px 3px 0px var(--background)",
-        }}
-      />
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div
+            className={cn(
+              "flex h-11 w-11 shrink-0 items-center justify-center text-sm font-bold",
+              isCenter
+                ? "bg-primary-foreground/20 text-primary-foreground"
+                : "bg-muted text-muted-foreground"
+            )}
+          >
+            {initials}
+          </div>
+          <div className="flex flex-col">
+            <span
+              className={cn(
+                "text-xs font-semibold uppercase tracking-[0.08em]",
+                isCenter ? "text-primary-foreground" : "text-foreground"
+              )}
+            >
+              {testimonial.by}
+            </span>
+            <span
+              className={cn(
+                "mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em]",
+                isCenter ? "text-primary-foreground/70" : "text-muted-foreground"
+              )}
+            >
+              {testimonial.project}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-end gap-2 text-right">
+          <FiveStars active={isCenter} />
+          <span
+            className={cn(
+              "text-[0.62rem] font-semibold uppercase tracking-[0.14em]",
+              isCenter ? "text-primary-foreground/65" : "text-muted-foreground"
+            )}
+          >
+            {testimonial.source}
+          </span>
+        </div>
+      </div>
 
       <h3
         className={cn(
-          "text-base font-medium leading-[1.45] tracking-[-0.03em] sm:text-xl",
+          "flex-1 text-base font-medium leading-[1.45] tracking-[-0.03em] sm:text-xl",
           isCenter ? "text-primary-foreground" : "text-foreground"
         )}
       >
@@ -157,19 +217,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       <p
         className={cn(
-          "absolute bottom-8 left-8 right-8 mt-2 text-sm italic",
-          isCenter ? "text-primary-foreground/80" : "text-muted-foreground"
+          "mt-6 border-t pt-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em]",
+          isCenter
+            ? "border-primary-foreground/15 text-primary-foreground/72"
+            : "border-border text-muted-foreground"
         )}
       >
-        - {testimonial.by}
+        Verified Client Review
       </p>
     </div>
   );
 };
 
 export const StaggerTestimonials: React.FC = () => {
-  const [cardSize, setCardSize] = useState(365);
+  const [cardSize, setCardSize] = useState(390);
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
+  const [containerHeight, setContainerHeight] = useState(585);
+  const cardRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   const handleMove = (steps: number) => {
     if (steps === 0) {
@@ -198,7 +262,7 @@ export const StaggerTestimonials: React.FC = () => {
   useEffect(() => {
     const updateSize = () => {
       const { matches } = window.matchMedia("(min-width: 640px)");
-      setCardSize(matches ? 365 : 290);
+      setCardSize(matches ? 390 : 305);
     };
 
     updateSize();
@@ -207,10 +271,45 @@ export const StaggerTestimonials: React.FC = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  useEffect(() => {
+    const updateHeight = () => {
+      const heights = Object.values(cardRefs.current)
+        .map((node) => node?.getBoundingClientRect().height ?? 0)
+        .filter(Boolean);
+
+      if (heights.length === 0) {
+        return;
+      }
+
+      const tallest = Math.max(...heights);
+      setContainerHeight(Math.ceil(tallest + 155));
+    };
+
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    Object.values(cardRefs.current).forEach((node) => {
+      if (node) {
+        resizeObserver.observe(node);
+      }
+    });
+
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, [cardSize, testimonialsList]);
+
+  const setCardRef = (id: number, node: HTMLDivElement | null) => {
+    cardRefs.current[id] = node;
+  };
+
   return (
     <div
       className="relative w-full overflow-hidden bg-transparent"
-      style={{ height: 600 }}
+      style={{ height: containerHeight }}
     >
       {testimonialsList.map((testimonial, index) => {
         const position =
@@ -225,6 +324,7 @@ export const StaggerTestimonials: React.FC = () => {
             handleMove={handleMove}
             position={position}
             cardSize={cardSize}
+            setCardRef={setCardRef}
           />
         );
       })}

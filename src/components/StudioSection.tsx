@@ -62,7 +62,7 @@ export function StudioSection() {
           </Reveal>
 
           <Reveal direction="up" delay={0.1} duration={1} distance={60}>
-            <h2 className={`${sectionHeadingClassName} mb-16 lg:mb-20`}>
+            <h2 className="text-[2.4rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4.5rem] xl:text-[5.2rem] font-black tracking-[-0.03em] uppercase leading-[0.88] mb-16 lg:mb-20">
               CRAFT WITHOUT
               <br />
               COMPROMISE
@@ -70,23 +70,30 @@ export function StudioSection() {
           </Reveal>
         </div>
 
-        <div className="flex w-full flex-col lg:flex-row lg:items-stretch">
-          <div className="flex w-full items-start justify-center pb-12 lg:w-1/2 lg:items-stretch lg:pb-0 lg:pr-10 xl:pr-14">
-            <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-xs lg:max-w-md lg:h-full">
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-white lg:aspect-auto lg:h-full">
+        <div className="flex w-full flex-col lg:flex-row lg:items-start">
+          <div className="flex w-full items-start justify-center pb-12 lg:sticky lg:top-20 lg:w-1/2 lg:self-start lg:pb-0 lg:pr-10 xl:pr-14">
+            <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-[272px] lg:max-w-[381px]">
+              <div
+                className="relative w-full overflow-hidden"
+                style={{
+                  transform: `translateY(${progress * 30}px)`,
+                  willChange: "transform",
+                }}
+              >
                 <Image
                   src="/images/victoria-bathroom-vanity-detail.webp"
                   alt="CVR Construction bathroom renovation detail"
-                  fill
+                  width={1024}
+                  height={1536}
                   quality={90}
                   sizes="(max-width: 1023px) 100vw, 448px"
-                  className="object-cover"
+                  className="h-auto w-full"
                 />
               </div>
             </Reveal>
           </div>
 
-          <div className="flex w-full flex-col items-center justify-start py-2 lg:w-1/2 lg:items-start lg:py-0 lg:pl-8 xl:pl-12">
+          <div className="flex w-full flex-col items-center justify-start py-2 lg:w-1/2 lg:items-start lg:justify-center lg:py-0 lg:pl-8 xl:pl-12">
             <div className="relative mb-8 flex items-start">
               <span
                 className="shrink-0 pr-3 text-[2rem] font-black leading-[1.2] tracking-[-0.03em] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.2rem] xl:text-[3.6rem]"
@@ -115,7 +122,7 @@ export function StudioSection() {
               </div>
             </div>
 
-            <Reveal direction="up" delay={0.2} duration={0.9} className={`flex w-full max-w-xl flex-col gap-5 ${proseBodyClassName}`}>
+            <Reveal direction="up" delay={0.2} duration={0.9} className={`flex w-full max-w-xl flex-col gap-5 text-left ${proseBodyClassName}`}>
               <p>
                 CVR Construction delivers high-end renovations across Victoria
                 with disciplined planning, clean execution, and a finish standard

@@ -187,7 +187,7 @@ export default async function JournalDetailPage({
                     <ul className="space-y-3 text-[0.96rem] leading-7 text-black/70">
                       {post.keyTakeaways.map((takeaway) => (
                         <li key={takeaway} className="flex gap-3">
-                          <span className="mt-3 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
+                          <span className="mt-3 inline-block h-1.5 w-1.5 shrink-0 rounded-none bg-current" />
                           <span>{takeaway}</span>
                         </li>
                       ))}
