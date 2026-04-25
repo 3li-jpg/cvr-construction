@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SQRT_5000 = Math.sqrt(5000);
@@ -81,6 +81,26 @@ const testimonials: Testimonial[] = [
   },
 ] ;
 
+const avatarStyles = [
+  "bg-[#e8e1d7] text-[#2b241f]",
+  "bg-[#d8dee4] text-[#18212a]",
+  "bg-[#e2d9c4] text-[#2c2619]",
+  "bg-[#d9e0d6] text-[#1f2c21]",
+  "bg-[#e4d6d6] text-[#2d1f1f]",
+  "bg-[#d7dde7] text-[#1d2430]",
+  "bg-[#ddd8e5] text-[#241f2f]",
+  "bg-[#d6e2df] text-[#1d2d29]",
+];
+
+function getAvatarStyle(name: string) {
+  const index = Array.from(name).reduce(
+    (total, character) => total + character.charCodeAt(0),
+    0
+  ) % avatarStyles.length;
+
+  return avatarStyles[index];
+}
+
 interface TestimonialCardProps {
   position: number;
   testimonial: Testimonial;
@@ -122,6 +142,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     .map((n) => n[0])
     .join("")
     .replace(".", "");
+  const avatarStyle = getAvatarStyle(testimonial.by);
 
   return (
     <div
@@ -165,13 +186,21 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         <div className="flex items-center gap-3">
           <div
             className={cn(
-              "flex h-11 w-11 shrink-0 items-center justify-center text-sm font-bold",
+              "relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border text-sm font-bold",
               isCenter
-                ? "bg-primary-foreground/20 text-primary-foreground"
-                : "bg-muted text-muted-foreground"
+                ? "border-primary-foreground/24 bg-primary-foreground/18 text-primary-foreground"
+                : `border-black/10 ${avatarStyle}`
             )}
           >
-            {initials}
+            <UserRound
+              aria-hidden="true"
+              className={cn(
+                "absolute h-8 w-8 opacity-18",
+                isCenter ? "text-primary-foreground" : "text-current"
+              )}
+              strokeWidth={1.45}
+            />
+            <span className="relative z-10">{initials}</span>
           </div>
           <div className="flex flex-col">
             <span

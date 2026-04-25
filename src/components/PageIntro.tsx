@@ -121,7 +121,7 @@ export function PageIntro({
       />
 
       <div className="relative z-10 h-full w-full">
-        <div className="site-shell relative flex h-full flex-col items-center justify-center pb-14 pt-24 text-center md:pb-8 md:pt-28 lg:pb-10 lg:pt-32">
+        <div className="site-shell relative flex h-full flex-col items-center justify-center py-24 text-center md:py-28 lg:py-32">
           {eyebrow ? (
             <motion.p
               initial={prefersReducedMotion ? "show" : "hidden"}

@@ -110,25 +110,25 @@ export const processSteps: ProcessStep[] = [
   {
     num: "01",
     title: "Consult & Site Review",
-    desc: "We start by understanding your goals, the space, the investment range, and the level of finish you want. That early clarity keeps the project grounded and realistic from day one.",
+    desc: "We start by understanding your goals, the space, the investment range, and the level of finish you want. Site conditions, priorities, and constraints are reviewed early so the project starts with a grounded plan instead of assumptions.",
     image: "/images/victoria-home-entry-renovation-exterior.webp",
   },
   {
     num: "02",
     title: "Scope & Pricing",
-    desc: "We define the work, outline the sequencing, and build a quote structure that makes expectations clear. Materials, assumptions, and priorities are aligned before construction begins.",
+    desc: "We define the work, outline the sequencing, and build a quote structure that makes expectations clear. Materials, assumptions, timelines, and priorities are aligned before construction begins so decisions are easier to track.",
     image: "/images/victoria-kitchen-bath-material-selections.webp",
   },
   {
     num: "03",
     title: "Build & Coordinate",
-    desc: "Once work starts, we keep the site organized, the communication direct, and the quality bar high. Every trade and finish is coordinated to protect the final result.",
+    desc: "Once work starts, we keep the site organized, the communication direct, and the quality bar high. Every trade, finish, and handoff is coordinated with the final result in mind, from rough work through visible details.",
     image: "/images/victoria-premium-kitchen-interior.webp",
   },
   {
     num: "04",
     title: "Walkthrough & Handover",
-    desc: "We finish with a final review, punch-list closure, and a clean handover. The goal is simple: a completed space that feels polished, confident, and ready to live in.",
+    desc: "We finish with a final review, punch-list closure, and a clean handover. The last details are checked with the same care as the main build, so the completed space feels polished, confident, and ready to live in.",
     image: "/images/victoria-premium-bathroom-finish-detail.webp",
   },
 ];

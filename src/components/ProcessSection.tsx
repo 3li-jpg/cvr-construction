@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { proseBodyClassName } from "@/lib/prose";
 import { processSteps } from "@/lib/site-data";
 
 export function ProcessSection() {
@@ -114,8 +115,8 @@ export function ProcessSection() {
             <div className="site-shell pb-5 pt-0 sm:pb-6 lg:py-7">
               <div className="overflow-hidden rounded-none border border-black/10 bg-white shadow-[0_18px_48px_rgba(0,0,0,0.06)] dark:border-white/10 dark:bg-[#0f0f0e] sm:rounded-[1.35rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
                 <div className="min-h-[calc(100svh-var(--process-card-top)-1rem)] px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-8 lg:min-h-[42rem] lg:px-0 lg:py-0">
-                  <div className="grid min-h-[inherit] content-center gap-5 lg:mx-auto lg:max-w-[72rem] lg:grid-cols-[6rem_minmax(0,1fr)] lg:items-start lg:gap-8 xl:max-w-[78rem]">
-                    <div className="flex items-start justify-center lg:pt-2">
+                  <div className="grid min-h-[inherit] content-start gap-4 pt-3 sm:pt-4 lg:mx-auto lg:max-w-[72rem] lg:grid-cols-[6rem_minmax(0,1fr)] lg:content-center lg:items-start lg:gap-8 lg:pt-0 xl:max-w-[78rem]">
+                    <div className="flex items-start justify-center lg:min-h-[34rem] lg:items-center lg:pt-0">
                       <Reveal
                         direction="up"
                         delay={0.04}
@@ -123,14 +124,15 @@ export function ProcessSection() {
                         distance={30}
                         threshold={0.2}
                       >
-                        <span className="inline-block whitespace-nowrap text-[2.5rem] font-black uppercase leading-[0.82] tracking-[-0.06em] text-black dark:text-white sm:text-[3rem] lg:text-[3.4rem]">
-                          {step.num}/
+                        <span className="inline-block whitespace-nowrap text-[1.6rem] font-black uppercase leading-none tracking-[0.12em] text-black dark:text-white sm:text-[1.73rem] lg:text-[3.4rem] lg:leading-[0.82] lg:tracking-[-0.06em]">
+                          <span className="lg:hidden">STEP {step.num}</span>
+                          <span className="hidden lg:inline">{step.num}/</span>
                         </span>
                       </Reveal>
                     </div>
 
                     <div className="grid gap-5 lg:min-h-[42rem] lg:grid-cols-[minmax(0,44rem)_minmax(22rem,24rem)] lg:items-center lg:justify-center lg:gap-8 xl:gap-10">
-                      <div className="relative mx-auto aspect-[1.16/1] w-full max-w-[58rem] overflow-hidden rounded-none bg-white dark:bg-[#131311] sm:aspect-[1.28/1] sm:rounded-[1rem] lg:h-[34rem] lg:w-full lg:max-w-none lg:rounded-none">
+                      <div className="relative mx-auto aspect-[1/0.96] w-full max-w-[58rem] overflow-hidden rounded-none bg-white dark:bg-[#131311] sm:aspect-[1.12/1] sm:rounded-[1rem] lg:h-[34rem] lg:w-full lg:max-w-none lg:rounded-none">
                         <Image
                           src={step.image}
                           alt={step.title}
@@ -163,7 +165,7 @@ export function ProcessSection() {
                           distance={30}
                           threshold={0.18}
                         >
-                          <p className="mx-auto w-full max-w-[24rem] text-[0.93rem] leading-[1.6] tracking-[-0.01em] text-black sm:max-w-[26rem] sm:text-[1rem] md:max-w-[32rem] md:text-[1.08rem] lg:mx-0 lg:max-w-[23rem] lg:text-[1.12rem] lg:leading-[1.55]">
+                          <p className={`mx-auto w-full max-w-[25rem] sm:max-w-[28rem] md:max-w-[32rem] lg:mx-0 lg:max-w-[24rem] ${proseBodyClassName} dark:text-white`}>
                             {step.desc}
                           </p>
                         </Reveal>

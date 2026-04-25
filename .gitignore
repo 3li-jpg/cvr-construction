@@ -21,6 +21,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Generated audits and local test artifacts
+CVR AUDIT/
+audit-screenshots/
+cvr-audit.cjs
+test-results/
+
 # IDE
 .idea/
 .vscode/

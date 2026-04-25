@@ -137,7 +137,7 @@ export function ServicesSection() {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <div className="pl-[max(2.7rem,7.8vw)] pr-1 md:pl-[max(3.5rem,7.9vw)]">
+                        <div className="pl-[3.2rem] pr-1 md:pl-[3.75rem]">
                           <p className="max-w-[34ch] text-[clamp(0.95rem,1.12vw,1.05rem)] leading-[1.16] tracking-[-0.03em] text-black/58 dark:text-white/58">
                             {service.desc}
                           </p>
