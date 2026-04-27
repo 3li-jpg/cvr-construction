@@ -81,9 +81,10 @@ export const InteractiveHoverButton = forwardRef<
       : "focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black";
 
   const buttonClasses = cn(
-    "group relative inline-flex w-fit self-start cursor-pointer items-center justify-center overflow-hidden rounded-none border font-semibold uppercase tracking-[0.1em] md:tracking-[0.12em] transition-opacity duration-300 hover:opacity-95 focus-visible:outline-none focus-visible:ring-2",
+    "group relative inline-flex w-fit self-start cursor-pointer items-center justify-center overflow-hidden rounded-none border font-semibold uppercase tracking-[0.1em] md:tracking-[0.12em] transition-opacity duration-300 focus-visible:outline-none focus-visible:ring-2",
     sizeClasses,
     containerClasses,
+    variant === "light" ? "hover:opacity-100" : "hover:opacity-95",
     focusClasses,
     className
   );

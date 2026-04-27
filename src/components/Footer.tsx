@@ -21,9 +21,10 @@ const ctaBackgroundImage = {
 
 interface FooterProps {
   showCta?: boolean;
+  hideContactInfo?: boolean;
 }
 
-export function Footer({ showCta = false }: FooterProps) {
+export function Footer({ showCta = false, hideContactInfo = false }: FooterProps) {
   const featuredProjects = [...projects].slice(0, 4).reverse();
   const metaLinkClassName =
     "transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
@@ -31,6 +32,8 @@ export function Footer({ showCta = false }: FooterProps) {
     "mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white/52";
   const footerDisplayLinkClassName =
     "inline-flex max-w-full w-fit font-medium tracking-[-0.04em] text-white transition-colors hover:text-white/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
+  const globalCtaButtonClassName =
+    "z-10 h-14 w-full min-w-[17.5rem] max-w-full px-6 text-[0.78rem] sm:w-[18.5rem]";
 
   return (
     <>
@@ -79,12 +82,16 @@ export function Footer({ showCta = false }: FooterProps) {
               <Reveal direction="up" delay={0.35} duration={0.8}>
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex flex-wrap items-center justify-center gap-3">
-                    <InteractiveHoverButton href="/contact" variant="light" className="z-10">
+                    <InteractiveHoverButton
+                      href="/contact"
+                      variant="light"
+                      className={globalCtaButtonClassName}
+                    >
                       GET A FREE ESTIMATE
                     </InteractiveHoverButton>
                     <a
                       href="/showroom"
-                      className="z-10 inline-flex items-center justify-center rounded-none border border-white/40 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white/10"
+                      className={`${globalCtaButtonClassName} inline-flex items-center justify-center rounded-none border border-white/40 font-bold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white/10`}
                     >
                       Visit Our Showroom
                     </a>
@@ -118,49 +125,65 @@ export function Footer({ showCta = false }: FooterProps) {
 
             <div className="grid flex-1 content-start gap-12 pt-7 md:grid-cols-[minmax(0,1fr)_minmax(13rem,0.72fr)_minmax(0,1.08fr)] md:gap-x-12 md:pt-9 lg:gap-x-16">
               <Reveal direction="up" delay={0.08} duration={0.9} distance={42}>
-                <div className="flex max-w-[22rem] flex-col text-left">
-                  <p className={footerSectionLabelClassName}>• CONTACT</p>
-                  <div className="space-y-6">
-                    <div>
-                      <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
-                        Construction Office
-                      </p>
-                      <a
-                        href={businessContact.mapsHref}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`${footerDisplayLinkClassName} flex-col leading-[1.04]`}
-                        style={{ fontSize: "clamp(1.55rem, 2.1vw, 2.65rem)" }}
-                      >
-                        <span>{businessContact.addressLine1}</span>
-                        <span>{businessContact.cityRegionPostal}</span>
-                      </a>
+                {hideContactInfo ? (
+                  <div className="flex max-w-[22rem] flex-col text-left">
+                    <p className={footerSectionLabelClassName}>• CVR</p>
+                    <p
+                      className="max-w-[11ch] text-balance font-medium uppercase leading-[0.94] tracking-[-0.05em] text-white"
+                      style={{ fontSize: "clamp(2.2rem, 3.2vw, 4.6rem)" }}
+                    >
+                      Luxury Kitchen & Bath Showroom
+                    </p>
+                    <p className="mt-5 max-w-[22rem] text-[0.95rem] leading-7 text-white/55">
+                      A focused selection space for fixtures, finishes, surfaces,
+                      and product guidance before the build begins.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="flex max-w-[22rem] flex-col text-left">
+                    <p className={footerSectionLabelClassName}>• CONTACT</p>
+                    <div className="space-y-6">
+                      <div>
+                        <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
+                          Construction Office
+                        </p>
+                        <a
+                          href={businessContact.mapsHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={`${footerDisplayLinkClassName} flex-col leading-[1.04]`}
+                          style={{ fontSize: "clamp(1.55rem, 2.1vw, 2.65rem)" }}
+                        >
+                          <span>{businessContact.addressLine1}</span>
+                          <span>{businessContact.cityRegionPostal}</span>
+                        </a>
+                      </div>
+                      <div>
+                        <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
+                          Showroom
+                        </p>
+                        <a
+                          href={showroomContact.mapsHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={`${footerDisplayLinkClassName} flex-col leading-[1.04]`}
+                          style={{ fontSize: "clamp(1.2rem, 1.6vw, 2rem)" }}
+                        >
+                          <span>{showroomContact.addressLine1}</span>
+                          <span>{showroomContact.cityRegionPostal}</span>
+                        </a>
+                      </div>
                     </div>
-                    <div>
-                      <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
-                        Showroom
-                      </p>
-                      <a
-                        href={showroomContact.mapsHref}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`${footerDisplayLinkClassName} flex-col leading-[1.04]`}
-                        style={{ fontSize: "clamp(1.2rem, 1.6vw, 2rem)" }}
-                      >
-                        <span>{showroomContact.addressLine1}</span>
-                        <span>{showroomContact.cityRegionPostal}</span>
+                    <div className="mt-5 flex flex-col gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60">
+                      <a href={businessContact.emailHref} className={metaLinkClassName}>
+                        {businessContact.email.toUpperCase()}
+                      </a>
+                      <a href={businessContact.phoneHref} className={metaLinkClassName}>
+                        {businessContact.phone}
                       </a>
                     </div>
                   </div>
-                  <div className="mt-5 flex flex-col gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60">
-                    <a href={businessContact.emailHref} className={metaLinkClassName}>
-                      {businessContact.email.toUpperCase()}
-                    </a>
-                    <a href={businessContact.phoneHref} className={metaLinkClassName}>
-                      {businessContact.phone}
-                    </a>
-                  </div>
-                </div>
+                )}
               </Reveal>
 
               <Reveal direction="up" delay={0.16} duration={0.9} distance={42}>

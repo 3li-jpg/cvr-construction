@@ -565,8 +565,7 @@ export const showroomContact = {
   phoneHref: "tel:+12504666531",
   email: "cvrshowroom@outlook.com",
   emailHref: "mailto:cvrshowroom@outlook.com",
-  mapsHref:
-    "https://maps.google.com/?q=1057+Fort+St,+Victoria,+BC+V8V+3K5,+Canada",
+  mapsHref: "https://maps.app.goo.gl/6AWwv3gmKRYqnbrYA",
 } as const;
 
 export const showroomBrands = [
@@ -800,9 +799,9 @@ export const showroomPortrait = {
 };
 
 export const showroomFacts = [
+  { value: "1", suffix: "", label: "Design Guidance", displayValue: "1:1" },
   { value: "10", suffix: "+", label: "Premium Brands" },
-  { value: "3", suffix: "", label: "Product Categories" },
-  { value: "100", suffix: "%", label: "By Appointment" },
+  { value: "15", suffix: "", label: "Product Categories" },
   { value: "12", suffix: "+", label: "Years Experience" },
 ] as const;
 
