@@ -85,6 +85,7 @@ const showroomProducts = [
   "Standing Showers",
   "Custom Bathrooms",
   "Light Fixtures",
+  "Many More",
 ] as const;
 
 export function ShowroomPage() {
@@ -359,7 +360,7 @@ export function ShowroomPage() {
           About the CVR Showroom
         </h2>
 
-        <div className="site-shell grid grid-cols-1 gap-x-6 gap-y-10 border-t border-black/10 pt-14 sm:grid-cols-2 sm:gap-x-10 md:grid-cols-4 md:gap-y-14 lg:gap-x-12 lg:pt-20">
+        <div className="site-shell grid grid-cols-4 gap-x-2 gap-y-0 border-t border-black/10 pt-14 sm:gap-x-10 md:gap-y-14 lg:gap-x-12 lg:pt-20">
           {showroomFacts.map((fact, index) => {
             const numericValue = Number.parseInt(fact.value, 10);
             return (
@@ -372,7 +373,7 @@ export function ShowroomPage() {
                 variants={factVariants}
                 className="flex flex-col items-center gap-3 text-center"
               >
-                <p className="flex items-baseline justify-center text-[2.55rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.2rem] md:text-[3.45rem] lg:text-[3.4rem] xl:text-[3.9rem]">
+                <p className="flex items-baseline justify-center text-[1.65rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.2rem] md:text-[3.45rem] lg:text-[3.4rem] xl:text-[3.9rem]">
                   {"displayValue" in fact ? (
                     <span>{fact.displayValue}</span>
                   ) : (
@@ -382,7 +383,7 @@ export function ShowroomPage() {
                     </>
                   )}
                 </p>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/48">
+                <p className="text-[0.48rem] font-semibold uppercase leading-4 tracking-[0.1em] text-black/48 sm:text-[0.72rem] sm:tracking-[0.18em]">
                   {fact.label}
                 </p>
               </motion.div>
@@ -512,8 +513,8 @@ export function ShowroomPage() {
         <div className="site-shell relative z-10">
           <div className="grid gap-12 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
             <Reveal direction="up" duration={0.75} distance={30}>
-              <div className="flex flex-col gap-6">
-                <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+              <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
+                <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-black lg:justify-start">
                   PRODUCTS IN THE SHOWROOM
                 </SectionEyebrow>
                 <h2
@@ -659,17 +660,16 @@ export function ShowroomPage() {
         />
         <div className="site-shell relative z-10 grid gap-12 border-t border-white/12 pt-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
           <Reveal direction="up" duration={0.7} distance={28}>
-            <div className="flex flex-col gap-6">
-              <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-white">
+            <div className="flex flex-col items-center gap-6 text-center">
+              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-white">
                 WHY THE SHOWROOM
               </SectionEyebrow>
               <h2
                 id="why-heading"
-                className="text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-white sm:text-[2.55rem] md:text-[3.06rem] lg:text-[3.4rem] xl:text-[3.74rem]"
+                className="max-w-[15ch] text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-white sm:text-[2.55rem] md:text-[3.06rem] lg:text-[3.4rem] xl:text-[3.74rem]"
               >
-                Not Just
-                <br />
-                Catalog Picks.
+                <span className="block">Not Just</span>
+                <span className="block whitespace-nowrap">Catalog Picks.</span>
               </h2>
             </div>
           </Reveal>

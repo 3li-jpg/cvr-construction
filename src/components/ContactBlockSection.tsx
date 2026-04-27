@@ -61,8 +61,8 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
 
           <div className="grid gap-10 border-t border-white/12 pt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-14 lg:pt-12 xl:gap-18">
             <Reveal direction="up" delay={0.08} duration={0.85} distance={30}>
-              <div className="flex h-full flex-col justify-between gap-10 py-1">
-                <div className="flex flex-col gap-8">
+              <div className="flex h-full flex-col items-center justify-between gap-10 py-1 text-center">
+                <div className="flex flex-col items-center gap-8">
                   <div>
                     <p className="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/48">
                       CVR Showroom
@@ -79,7 +79,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                   <div>
                     <a
                       href={showroom.phoneHref}
-                      className="block text-[2.4rem] font-black uppercase leading-[0.92] tracking-[-0.055em] text-white transition-opacity hover:opacity-70 sm:text-[3.2rem] lg:text-[3.6rem]"
+                      className="block text-center text-[2rem] font-black uppercase leading-[0.92] tracking-[-0.055em] text-white transition-opacity hover:opacity-70 sm:text-[3.2rem] lg:text-[3.6rem]"
                     >
                       {showroom.phone}
                     </a>
@@ -92,7 +92,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap justify-center gap-2">
                   <a
                     href={showroom.mapsHref}
                     target="_blank"

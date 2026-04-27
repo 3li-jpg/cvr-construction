@@ -190,8 +190,8 @@ export function ShowroomAppointmentSection() {
         <div className="flex flex-col gap-10 border-t border-black/10 pt-10 lg:gap-12 lg:pt-14">
           <Reveal direction="up" duration={0.75} distance={30}>
             <div className="flex flex-col gap-8">
-              <div className="flex max-w-[72rem] flex-col gap-6">
-                <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+              <div className="mx-auto flex max-w-[72rem] flex-col items-center gap-6 text-center">
+                <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-black">
                   DESIGN SPECIALIST
                 </SectionEyebrow>
                 <h2
