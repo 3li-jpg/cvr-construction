@@ -4,6 +4,11 @@ import { cn } from "@/lib/utils";
 
 type ButtonVariant = "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
 type ButtonSize = "default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg";
+type ButtonProps = Omit<ButtonPrimitive.Props, "className"> & {
+  className?: string;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+};
 
 const variantClasses: Record<ButtonVariant, string> = {
   default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
@@ -51,10 +56,7 @@ function Button({
   variant = "default",
   size = "default",
   ...props
-}: ButtonPrimitive.Props & {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-}) {
+}: ButtonProps) {
   return (
     <ButtonPrimitive
       data-slot="button"
