@@ -148,7 +148,7 @@ export function ShowroomPage() {
       };
 
   return (
-    <main id="main-content" className="relative bg-white text-black">
+    <main id="main-content" className="relative bg-[var(--showroom-bg)] text-[var(--showroom-text)]">
       <Script
         id="showroom-schema"
         type="application/ld+json"
@@ -704,7 +704,7 @@ export function ShowroomPage() {
 
       <ShowroomAppointmentSection />
 
-      <div className="flex min-h-screen items-center bg-white dark:bg-[#0f0f0e]">
+      <div className="flex min-h-screen items-center bg-[var(--showroom-bg)]">
         <ContactBlockSection showroomOnly />
       </div>
 

@@ -42,7 +42,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
 
   if (showroomOnly && showroom) {
     return (
-      <section className="relative w-full overflow-hidden bg-black py-18 text-white md:py-22 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-[var(--showroom-inverse)] py-18 text-[var(--showroom-inverse-text)] md:py-22 lg:py-28">
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] [background-size:72px_72px]"
@@ -50,16 +50,16 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
         <div className="site-shell relative z-10">
           <Reveal direction="up" delay={0} duration={0.8}>
             <div className="mb-10 flex flex-col items-center gap-4 text-center lg:mb-14">
-              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.14em] text-white">
+              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.14em] text-[var(--showroom-inverse-text)]">
                 VISIT THE SHOWROOM
               </SectionEyebrow>
-              <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-white sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]">
+              <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-[var(--showroom-inverse-text)] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]">
                 Come See The Products In Person
               </h2>
             </div>
           </Reveal>
 
-          <div className="grid gap-10 border-t border-white/12 pt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-14 lg:pt-12 xl:gap-18">
+          <div className="grid gap-10 border-t border-[color:var(--showroom-line)] pt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-14 lg:pt-12 xl:gap-18">
             <Reveal direction="up" delay={0.08} duration={0.85} distance={30}>
               <div className="flex h-full flex-col items-center justify-between gap-10 py-1 text-center">
                 <div className="flex flex-col items-center gap-8">

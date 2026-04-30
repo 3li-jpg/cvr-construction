@@ -1,7 +1,6 @@
- "use client";
+"use client";
 
 import Image from "next/image";
-import { Reveal } from "@/components/Reveal";
 import { proseBodyClassName } from "@/lib/prose";
 
 export function StorySection() {
@@ -20,30 +19,28 @@ export function StorySection() {
         </div>
 
         <div className="flex w-full flex-col items-center justify-center px-[var(--site-gutter)] py-16 text-left md:py-20 lg:w-1/2 lg:items-start lg:pl-12 lg:pr-[var(--site-gutter)] xl:pl-16">
-          <Reveal direction="up" delay={0.2} duration={0.8} className="w-full max-w-xl">
+          <div className="w-full max-w-xl">
             <p className="mb-10 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black lg:justify-start">
               <span className="inline-block h-1.5 w-1.5 rounded-none bg-current" />
               OUR STORY
             </p>
-          </Reveal>
+          </div>
 
-          <Reveal direction="up" delay={0.4} duration={0.9}>
-            <div className={`max-w-xl space-y-6 ${proseBodyClassName}`}>
-              <p>
-                CVR Construction is Victoria&apos;s trusted partner for full home
-                remodeling, kitchen renovations, bathroom remodels, and custom
-                spaces. With 12+ years on Vancouver Island, we deliver
-                disciplined craftsmanship — from scope clarity to a final
-                walkthrough that feels polished, confident, and ready to live in.
-              </p>
-              <p>
-                Every project is shaped by its own conditions. Whether it&apos;s
-                a whole-home renovation, a commercial upgrade, or bespoke
-                cabinetry, the standard stays the same: work that looks sharp,
-                functions well, and holds its quality long after handover.
-              </p>
-            </div>
-          </Reveal>
+          <div className={`max-w-xl space-y-6 ${proseBodyClassName}`}>
+            <p>
+              CVR Construction is Victoria&apos;s trusted partner for full home
+              remodeling, kitchen renovations, bathroom remodels, and custom
+              spaces. With 12+ years on Vancouver Island, we deliver
+              disciplined craftsmanship — from scope clarity to a final
+              walkthrough that feels polished, confident, and ready to live in.
+            </p>
+            <p>
+              Every project is shaped by its own conditions. Whether it&apos;s
+              a whole-home renovation, a commercial upgrade, or bespoke
+              cabinetry, the standard stays the same: work that looks sharp,
+              functions well, and holds its quality long after handover.
+            </p>
+          </div>
         </div>
       </div>
     </section>
