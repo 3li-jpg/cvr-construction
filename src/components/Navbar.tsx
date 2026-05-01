@@ -8,7 +8,12 @@ import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
 import { SocialIconLink } from "@/components/SocialIconLink";
 import TextRoll from "@/components/ui/text-roll";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
-import { businessContact, navItems, socialLinks } from "@/lib/site-data";
+import {
+  businessContact,
+  navItems,
+  showroomContact,
+  socialLinks,
+} from "@/lib/site-data";
 
 // Display order for the top-of-page horizontal nav and the expanded menu
 // overlay.
@@ -347,15 +352,31 @@ export function Navbar() {
                 variants={menuItemVariants}
                 className="flex w-full max-w-[42rem] flex-col items-center gap-3 border-t border-white/12 pt-5 text-center text-[0.72rem] font-medium uppercase tracking-[0.18em] text-white/50 sm:text-xs md:gap-4 md:pt-6"
               >
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-2">
                   <p className="text-[0.7rem] text-white/60">Get in touch</p>
-                  <a
-                    href={businessContact.emailHref}
-                    tabIndex={hiddenMenuTabIndex}
-                    className="break-all text-sm tracking-[0.14em] text-white transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-base"
-                  >
-                    {businessContact.email.toUpperCase()}
-                  </a>
+                  <div className="flex flex-col items-center gap-1.5 text-sm tracking-[0.14em] text-white md:text-base">
+                    <a
+                      href={showroomContact.phoneHref}
+                      tabIndex={hiddenMenuTabIndex}
+                      className="transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      Showroom / {showroomContact.phone}
+                    </a>
+                    <a
+                      href={businessContact.phoneHref}
+                      tabIndex={hiddenMenuTabIndex}
+                      className="transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      Construction / {businessContact.phone}
+                    </a>
+                    <a
+                      href={businessContact.emailHref}
+                      tabIndex={hiddenMenuTabIndex}
+                      className="break-all transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      {businessContact.email.toUpperCase()}
+                    </a>
+                  </div>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-2.5">
                   {socialLinks.map((item) => (

@@ -18,6 +18,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/projects/outbuilding-bath-conversion",
+        destination: "/projects/outbuilding-garage-conversion",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

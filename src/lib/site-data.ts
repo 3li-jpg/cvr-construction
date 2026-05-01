@@ -227,7 +227,6 @@ export const projects: ProjectEntry[] = [
     galleryImages: [
       "/images/victoria-custom-kitchen-renovation.webp",
       "/images/victoria-premium-kitchen-interior.webp",
-      "/images/2025-01-18.webp",
     ],
     scope: [
       "Kitchen demolition and reconfiguration",
@@ -325,16 +324,16 @@ export const projects: ProjectEntry[] = [
     ],
   },
   {
-    slug: "outbuilding-bath-conversion",
-    title: "Outbuilding Bath Conversion",
+    slug: "outbuilding-garage-conversion",
+    title: "Outbuilding Garage Conversion",
     year: "2023",
-    updatedAt: "2026-04-30",
-    category: "Bathroom Conversion",
+    updatedAt: "2026-05-01",
+    category: "Garage Conversion",
     location: "Greater Victoria",
     summary:
-      "An outbuilding bath conversion that turned an unfinished utility space into a clean, practical bathroom with brighter surfaces, defined plumbing, and a finished daily-use feel.",
+      "An outbuilding garage conversion that turned a rough, unfinished structure into a cleaner, more practical garage with brighter surfaces and a finished daily-use feel.",
     intro:
-      "This project converted an outbuilding interior from a rough, work-in-progress shell into a usable bathroom space. The work focused on bringing order to the layout, closing in the unfinished surfaces, and creating a simple, durable finish that made the room feel intentional instead of improvised.",
+      "This project converted an outbuilding garage from a rough, work-in-progress shell into a more usable finished space. The work focused on bringing order to the layout, closing in the unfinished surfaces, and creating a simple, durable finish that made the garage feel intentional instead of improvised.",
     heroImage: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
     coverImage: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
     galleryImages: [
@@ -349,33 +348,33 @@ export const projects: ProjectEntry[] = [
         label: "Existing condition",
         beforeImage: "/images/victoria-outbuilding-bath-conversion-before-001.webp",
         afterImage: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
-        beforeAlt: "Outbuilding bathroom conversion before construction",
-        afterAlt: "Finished outbuilding bathroom conversion by CVR Construction",
+        beforeAlt: "Outbuilding garage conversion before construction",
+        afterAlt: "Finished outbuilding garage conversion by CVR Construction",
       },
     ],
     scope: [
-      "Outbuilding bathroom conversion",
-      "Plumbing and fixture coordination",
+      "Outbuilding garage conversion",
+      "Garage layout and finish coordination",
       "Wall, ceiling, and surface finishing",
       "Flooring, trim, and final detailing",
     ],
     highlights: [
-      "Before and after transformation from unfinished space to finished bathroom",
-      "Cleaner room envelope with brighter, more usable surfaces",
-      "Practical fixture layout for a compact outbuilding footprint",
+      "Before and after transformation from unfinished outbuilding to finished garage",
+      "Cleaner garage envelope with brighter, more usable surfaces",
+      "Practical layout for a compact outbuilding footprint",
     ],
     outcome:
-      "The completed conversion gives the outbuilding a more useful, finished bathroom space. It replaces the rough existing condition with a cleaner layout, brighter surfaces, and a room that feels ready for daily use.",
+      "The completed conversion gives the outbuilding a more useful, finished garage space. It replaces the rough existing condition with a cleaner layout, brighter surfaces, and a garage that feels ready for daily use.",
     storySections: [
       {
         heading: "Design Priorities",
         body:
-          "The priority was to make the conversion feel practical and complete without overcomplicating the small footprint. Every visible surface, fixture position, and transition had to support a cleaner room that could work as part of the outbuilding rather than a temporary add-on.",
+          "The priority was to make the garage conversion feel practical and complete without overcomplicating the small footprint. Every visible surface and transition had to support a cleaner space that could work as part of the outbuilding rather than a temporary add-on.",
       },
       {
         heading: "Execution Notes",
         body:
-          "Conversion work depends on resolving what the existing structure gives you. The visible finish needed to hide the roughness of the starting point while keeping plumbing, trim, and surface transitions simple enough to feel durable and maintainable.",
+          "Conversion work depends on resolving what the existing structure gives you. The visible finish needed to hide the roughness of the starting point while keeping trim and surface transitions simple enough to feel durable and maintainable.",
       },
     ],
   },
@@ -972,13 +971,6 @@ export const galleryItems = [
     alt: "Garden studio exterior walkway by CVR Construction",
   },
   {
-    title: "Refined Interior",
-    image: "/images/2025-01-18.webp",
-    category: "Interior",
-    eyebrow: "Interior Upgrade",
-    alt: "Interior renovation by CVR Construction",
-  },
-  {
     title: "Legacy Wood Kitchen",
     image: "/images/victoria-legacy-wood-kitchen-001.webp",
     category: "Kitchen",
@@ -1413,11 +1405,11 @@ export const galleryItems = [
     alt: "dark gray kitchen and bath by CVR Construction",
   },
   {
-    title: "Outbuilding Bath Conversion",
+    title: "Outbuilding Garage Conversion",
     image: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
-    category: "Bathroom",
-    eyebrow: "Bathroom Conversion",
-    alt: "outbuilding bath conversion by CVR Construction",
+    category: "Garage",
+    eyebrow: "Garage Conversion",
+    alt: "outbuilding garage conversion by CVR Construction",
   },
   {
     title: "Framed Bathroom Renovation",

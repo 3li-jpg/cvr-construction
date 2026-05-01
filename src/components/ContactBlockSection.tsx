@@ -59,7 +59,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
             </div>
           </Reveal>
 
-          <div className="grid gap-10 border-t border-[color:var(--showroom-line)] pt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-14 lg:pt-12 xl:gap-18">
+          <div className="grid gap-10 pt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-14 lg:pt-12 xl:gap-18">
             <Reveal direction="up" delay={0.08} duration={0.85} distance={30}>
               <div className="flex h-full flex-col items-center justify-between gap-10 py-1 text-center">
                 <div className="flex flex-col items-center gap-8">
