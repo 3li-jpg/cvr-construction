@@ -9,6 +9,9 @@ type PageTransitionProps = {
   children: ReactNode;
 };
 
+const isJournalsPath = (path: string) =>
+  path === "/journals" || path.startsWith("/journals/");
+
 // Curtain-style route transition: a black overlay sweeps from the bottom of
 // the viewport up past the top on every route change. The page content itself
 // never translates — this keeps sticky heroes, fixed navbars, and the landing's
@@ -82,6 +85,10 @@ export function PageTransition({ children }: PageTransitionProps) {
         return;
       }
 
+      if (isJournalsPath(pathname) || isJournalsPath(url.pathname)) {
+        return;
+      }
+
       const nextRoute = `${url.pathname}${url.search}`;
       if (nextRoute === currentRoute) {
         return;
@@ -104,7 +111,7 @@ export function PageTransition({ children }: PageTransitionProps) {
         window.clearTimeout(navigationTimerRef.current);
       }
     };
-  }, [currentRoute, prefersReducedMotion, router, updateTransitionPhase]);
+  }, [currentRoute, pathname, prefersReducedMotion, router, updateTransitionPhase]);
 
   return (
     <>
