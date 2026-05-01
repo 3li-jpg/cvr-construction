@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { trackEvent } from "@/lib/analytics";
+import { businessContact } from "@/lib/site-data";
 
 type SubmitState = "idle" | "sending" | "redirecting" | "sent" | "fallback";
 type FieldName =
@@ -30,7 +31,7 @@ const initialValues: FormValues = {
   message: "",
 };
 
-function buildWhatsAppMessage(data: {
+function buildEmailDraftHref(data: {
   firstName: string;
   lastName: string;
   email: string;
@@ -39,20 +40,25 @@ function buildWhatsAppMessage(data: {
   subject: string;
   message: string;
 }) {
-  const lines = [
-    "New CVR Construction website enquiry",
-    "",
-    `Name: ${data.firstName} ${data.lastName}`.trim(),
-    `Email: ${data.email}`,
-    data.organization ? `Organization: ${data.organization}` : "",
-    `Region: ${data.region}`,
-    `Subject: ${data.subject}`,
-    "",
-    "Project Details:",
-    data.message,
-  ].filter(Boolean);
+  const subject = encodeURIComponent(`CVR website enquiry: ${data.subject}`);
+  const body = encodeURIComponent(
+    [
+      "Hi CVR Construction,",
+      "",
+      "I would like to enquire about a project.",
+      "",
+      `Name: ${data.firstName} ${data.lastName}`.trim(),
+      `Email: ${data.email}`,
+      data.organization ? `Organization: ${data.organization}` : "",
+      `Region: ${data.region}`,
+      `Subject: ${data.subject}`,
+      "",
+      "Project details:",
+      data.message,
+    ].filter(Boolean).join("\n")
+  );
 
-  return encodeURIComponent(lines.join("\n"));
+  return `${businessContact.emailHref}?subject=${subject}&body=${body}`;
 }
 
 function validateField(name: FieldName, value: string) {
@@ -100,9 +106,9 @@ export function ContactForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [statusMessage, setStatusMessage] = useState(
-    "Submitting opens WhatsApp with your project details prefilled for CVR Construction. Nothing is sent until you confirm the message in WhatsApp."
+    "Submitting opens an email draft with your project details prefilled for CVR Construction. Nothing is sent until you send the email from your mail app."
   );
-  const [whatsAppFallbackUrl, setWhatsAppFallbackUrl] = useState("");
+  const [emailDraftHref, setEmailDraftHref] = useState("");
 
   useEffect(() => {
     try {
@@ -187,7 +193,7 @@ export function ContactForm() {
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setSubmitState("idle");
-      setStatusMessage("Please correct the highlighted fields before opening WhatsApp.");
+      setStatusMessage("Please correct the highlighted fields before opening your email draft.");
       return;
     }
 
@@ -201,53 +207,27 @@ export function ContactForm() {
       message: values.message.trim(),
     };
 
-    const whatsappUrl = `https://wa.me/12508801270?text=${buildWhatsAppMessage(payload)}`;
-    const prefersDirectHandoff =
-      window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
+    const draftHref = buildEmailDraftHref(payload);
 
-    setWhatsAppFallbackUrl(whatsappUrl);
+    setEmailDraftHref(draftHref);
     try {
       window.sessionStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(values));
     } catch {
-      // Ignore storage write failures and continue with the WhatsApp handoff.
+      // Ignore storage write failures and continue with the email handoff.
     }
-
-    if (prefersDirectHandoff) {
-      trackEvent({
-        event: "whatsapp_enquiry_started",
-        label: payload.subject || "general-enquiry",
-        location: "contact-form",
-        method: "direct-handoff",
-      });
-      setSubmitState("redirecting");
-      setStatusMessage(
-        "Opening WhatsApp in this tab. If it does not open, return here and use the manual WhatsApp link below."
-      );
-      window.location.assign(whatsappUrl);
-      return;
-    }
-
-    const popup = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
     trackEvent({
-      event: "whatsapp_enquiry_started",
+      event: "email_enquiry_started",
       label: payload.subject || "general-enquiry",
       location: "contact-form",
-      method: popup ? "popup" : "manual-fallback",
+      method: "mailto",
     });
 
-    if (popup) {
-      setSubmitState("sent");
-      setStatusMessage(
-        "Your WhatsApp draft opened in a new tab. Your project details are still saved here until you decide to clear them."
-      );
-      return;
-    }
-
-    setSubmitState("fallback");
+    setSubmitState("redirecting");
     setStatusMessage(
-      "WhatsApp did not open automatically. Use the manual link below, or contact CVR at cvrconstruction@outlook.com or +1 250 880 1270."
+      "Opening your email draft. If it does not open, use the manual email link below."
     );
+    window.location.assign(draftHref);
   };
 
   return (
@@ -421,7 +401,7 @@ export function ContactForm() {
         <InteractiveHoverButton
           aria-describedby="contact-form-note"
           data-analytics-event="contact_primary_cta_clicked"
-          data-analytics-label="open_whatsapp_draft"
+          data-analytics-label="open_email_draft"
           data-analytics-location="contact-form"
           className="px-4.5 text-[0.68rem] tracking-[0.08em] md:px-5 md:text-[0.76rem]"
           disabled={submitState === "sending"}
@@ -430,8 +410,8 @@ export function ContactForm() {
           {submitState === "sending"
             ? "PREPARING DRAFT…"
             : submitState === "redirecting"
-              ? "OPENING WHATSAPP…"
-              : "OPEN WHATSAPP DRAFT"}
+              ? "OPENING EMAIL…"
+              : "OPEN EMAIL DRAFT"}
         </InteractiveHoverButton>
       </form>
 
@@ -443,14 +423,12 @@ export function ContactForm() {
         {statusMessage}
       </p>
 
-      {whatsAppFallbackUrl ? (
+      {emailDraftHref ? (
         <a
-          href={whatsAppFallbackUrl}
-          target="_blank"
-          rel="noreferrer"
+          href={emailDraftHref}
           className="mt-4 inline-flex w-fit items-center gap-2 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          Open WhatsApp manually
+          Open Email Draft Manually
         </a>
       ) : null}
     </>
