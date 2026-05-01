@@ -10,8 +10,8 @@ import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { businessContact, navItems, socialLinks } from "@/lib/site-data";
 
 // Display order for the top-of-page horizontal nav and the expanded menu
-// overlay. Contact is excluded because it has its own CTA button.
-const orderedNavItems = navItems.filter((item) => item.href !== "/contact");
+// overlay.
+const orderedNavItems = navItems;
 const desktopNavItems = orderedNavItems;
 const menuNavItems = orderedNavItems;
 

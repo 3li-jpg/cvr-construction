@@ -113,17 +113,17 @@ export function ContactForm() {
   }, [values]);
 
   const getFieldClassName = (name: FieldName) =>
-    `h-18 border px-6 text-[1rem] text-black placeholder:text-black/28 focus-visible:outline-none focus-visible:ring-2 ${
+    `h-18 border px-6 text-[1rem] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 ${
       errors[name]
         ? "border-red-500/70 bg-red-50 focus-visible:border-red-600 focus-visible:ring-red-500/20"
-        : "border-black/8 bg-black/[0.03] focus-visible:border-black focus-visible:ring-black/15"
+        : "border-border bg-muted/30 focus-visible:border-ring focus-visible:ring-ring/20"
     }`;
 
   const getTextareaClassName = (name: FieldName) =>
-    `min-h-[12rem] resize-none border px-6 py-5 text-[1rem] text-black placeholder:text-black/28 focus-visible:outline-none focus-visible:ring-2 ${
+    `min-h-[12rem] resize-none border px-6 py-5 text-[1rem] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 ${
       errors[name]
         ? "border-red-500/70 bg-red-50 focus-visible:border-red-600 focus-visible:ring-red-500/20"
-        : "border-black/8 bg-black/[0.03] focus-visible:border-black focus-visible:ring-black/15"
+        : "border-border bg-muted/30 focus-visible:border-ring focus-visible:ring-ring/20"
     }`;
 
   const setFieldValue = (name: FieldName, value: string) => {
@@ -252,10 +252,10 @@ export function ContactForm() {
 
   return (
     <>
-      <form className="mt-12 space-y-9 lg:mt-14" noValidate onSubmit={handleSubmit}>
+      <form className="mt-8 space-y-9 md:mt-9 lg:mt-10" noValidate onSubmit={handleSubmit}>
         <div className="grid gap-6 md:grid-cols-2">
           <label className="flex flex-col gap-4">
-            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
               FIRST NAME*
             </span>
             <input
@@ -279,7 +279,7 @@ export function ContactForm() {
           </label>
 
           <label className="flex flex-col gap-4">
-            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
               LAST NAME*
             </span>
             <input
@@ -304,7 +304,7 @@ export function ContactForm() {
         </div>
 
         <label className="flex flex-col gap-4">
-          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
             EMAIL*
           </span>
           <input
@@ -329,7 +329,7 @@ export function ContactForm() {
         </label>
 
         <label className="flex flex-col gap-4">
-          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
             ORGANIZATION
           </span>
           <input
@@ -346,7 +346,7 @@ export function ContactForm() {
 
         <div className="grid gap-6 md:grid-cols-2">
           <label className="flex flex-col gap-4">
-            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
               REGION*
             </span>
             <input
@@ -370,7 +370,7 @@ export function ContactForm() {
           </label>
 
           <label className="flex flex-col gap-4">
-            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+            <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
               SUBJECT*
             </span>
             <input
@@ -395,7 +395,7 @@ export function ContactForm() {
         </div>
 
         <label className="flex flex-col gap-4">
-          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-black/45">
+          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
             MESSAGE*
           </span>
           <textarea
@@ -438,7 +438,7 @@ export function ContactForm() {
       <p
         id="contact-form-note"
         aria-live="polite"
-        className="mt-5 text-[0.88rem] leading-relaxed text-black/58"
+        className="mt-5 text-[0.88rem] leading-relaxed text-muted-foreground"
       >
         {statusMessage}
       </p>
@@ -448,7 +448,7 @@ export function ContactForm() {
           href={whatsAppFallbackUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 inline-flex w-fit items-center gap-2 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
+          className="mt-4 inline-flex w-fit items-center gap-2 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           Open WhatsApp manually
         </a>
