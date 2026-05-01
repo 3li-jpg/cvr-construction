@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
+import { SocialIconLink } from "@/components/SocialIconLink";
 import TextRoll from "@/components/ui/text-roll";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { businessContact, navItems, socialLinks } from "@/lib/site-data";
@@ -356,18 +357,18 @@ export function Navbar() {
                     {businessContact.email.toUpperCase()}
                   </a>
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                <div className="flex flex-wrap items-center justify-center gap-2.5">
                   {socialLinks.map((item) => (
-                    <a
+                    <SocialIconLink
                       key={item.href}
                       href={item.href}
+                      label={item.label}
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={hiddenMenuTabIndex}
-                      className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    >
-                      {item.label.toUpperCase()}
-                    </a>
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-none border border-white/15 text-white/56 transition-colors hover:border-white/45 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      iconClassName="h-4 w-4"
+                    />
                   ))}
                 </div>
               </motion.div>

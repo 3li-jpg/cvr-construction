@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
+import { SocialIconLink } from "@/components/SocialIconLink";
 import TextRoll from "@/components/ui/text-roll";
 import {
   businessContact,
@@ -26,6 +27,7 @@ interface FooterProps {
 
 export function Footer({ showCta = false, hideContactInfo = false }: FooterProps) {
   const featuredProjects = [...projects].slice(0, 4).reverse();
+  const bbbAccreditedHref = trustLinks.find((link) => link.label === "BBB Accredited")?.href;
   const metaLinkClassName =
     "transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
   const footerSectionLabelClassName =
@@ -182,6 +184,36 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         {businessContact.phone}
                       </a>
                     </div>
+                    {bbbAccreditedHref ? (
+                      <a
+                        href={bbbAccreditedHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="BBB Accredited Business"
+                        className="mt-7 inline-flex w-fit items-center gap-3 border border-white/14 px-3.5 py-3 text-white/70 transition-colors hover:border-white/38 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      >
+                        <span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center border border-white/12 text-white">
+                          <span className="text-[0.78rem] font-black leading-none tracking-[-0.05em]">
+                            BBB
+                          </span>
+                          <span className="mt-1 h-px w-7 bg-white/24" />
+                          <span className="mt-1 text-[0.5rem] font-black leading-none tracking-[0.14em]">
+                            A+
+                          </span>
+                        </span>
+                        <span className="flex flex-col gap-1 leading-none">
+                          <span className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-white/42">
+                            Accredited
+                          </span>
+                          <span className="text-[0.78rem] font-black uppercase tracking-[0.12em] text-white">
+                            Business
+                          </span>
+                          <span className="text-[0.55rem] font-semibold uppercase tracking-[0.12em] text-white/36">
+                            Better Business Bureau
+                          </span>
+                        </span>
+                      </a>
+                    ) : null}
                   </div>
                 )}
               </Reveal>
@@ -227,28 +259,18 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
 
             <div className="mt-8">
               <div className="flex w-full flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-                <div className="flex flex-wrap items-center gap-3 md:gap-4">
+                <div className="flex flex-wrap items-center gap-2.5 md:gap-3">
                   {socialLinks.map((link) => (
-                    <a
+                    <SocialIconLink
                       key={link.href}
                       href={link.href}
+                      label={link.label}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label={link.label}
-                      className="inline-flex min-h-8 items-center justify-center rounded-none border border-white/15 px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white/50 transition-colors hover:border-white/40 hover:text-white"
-                    >
-                      {link.label}
-                    </a>
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-none border border-white/15 text-white/52 transition-colors hover:border-white/45 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      iconClassName="h-4 w-4"
+                    />
                   ))}
-                  <a
-                    href={trustLinks.find((l) => l.label === "BBB Accredited")?.href ?? "#"}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="BBB Accredited Business"
-                    className="inline-flex min-h-8 items-center justify-center rounded-none border border-white/15 px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white/50 transition-colors hover:border-white/40 hover:text-white"
-                  >
-                    BBB Accredited
-                  </a>
                 </div>
                 <p className="text-[0.75rem] text-white/40">
                   © {new Date().getFullYear()} All rights reserved.
