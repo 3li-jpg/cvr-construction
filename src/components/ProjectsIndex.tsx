@@ -12,8 +12,8 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 import { PageIntro } from "@/components/PageIntro";
-import { EASE_OUT_EXPO } from "@/lib/motion";
-import { proseBodyClassName } from "@/lib/prose";
+import { DURATION, EASE_OUT_EXPO, VIEWPORT } from "@/lib/motion";
+import { projectProseClassName } from "@/lib/prose";
 import { projects, projectsHero, type ProjectEntry } from "@/lib/site-data";
 
 function useParallax(ref: React.RefObject<HTMLElement | null>): MotionValue<number> {
@@ -41,7 +41,6 @@ function ProjectRow({
   const rawY = useParallax(containerRef);
   const imageY = prefersReducedMotion ? 0 : rawY;
 
-  const isReversed = index % 2 === 1;
   const numberLabel = String(index + 1).padStart(2, "0");
 
   return (
@@ -49,8 +48,8 @@ function ProjectRow({
       ref={containerRef}
       initial={prefersReducedMotion ? false : { opacity: 0, y: 64 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -20% 0px" }}
-      transition={{ duration: 1.05, ease: EASE_OUT_EXPO }}
+      viewport={VIEWPORT}
+      transition={{ duration: DURATION.lg, ease: EASE_OUT_EXPO }}
       className="relative"
     >
       <Link
@@ -58,14 +57,10 @@ function ProjectRow({
         data-analytics-event="project_card_clicked"
         data-analytics-label={project.slug}
         data-analytics-location="projects-index"
-        className="group grid items-center gap-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 md:gap-12 lg:gap-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]"
+        className="group grid items-center gap-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background md:gap-10 lg:gap-12 xl:gap-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,0.78fr)]"
       >
-        <div
-          className={`relative overflow-hidden bg-black ${
-            isReversed ? "lg:order-2" : "lg:order-1"
-          }`}
-        >
-          <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[5/6] lg:aspect-[1.15/1]">
+        <div className="relative w-full max-w-[34rem] overflow-hidden bg-muted lg:order-1">
+          <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[5/6] lg:aspect-[1.12/1]">
             <motion.div
               style={{ y: imageY }}
               className="absolute inset-x-0 -top-[8%] -bottom-[8%]"
@@ -74,41 +69,37 @@ function ProjectRow({
                 src={project.coverImage}
                 alt={project.title}
                 fill
-                quality={92}
-                sizes="(max-width: 1023px) 100vw, 60vw"
+                quality={90}
+                sizes="(max-width: 1023px) 100vw, 34rem"
                 className="object-cover transition-[filter,transform] duration-[1200ms] ease-out group-hover:brightness-105 group-hover:scale-[1.02]"
               />
             </motion.div>
           </div>
         </div>
 
-        <div
-          className={`flex flex-col gap-6 lg:max-w-[34rem] ${
-            isReversed ? "lg:order-1 lg:pr-10" : "lg:order-2 lg:pl-10"
-          }`}
-        >
-          <div className="flex items-center justify-between gap-6 text-[0.78rem] font-semibold uppercase tracking-[0.2em] text-black/48">
+        <div className="flex min-w-0 flex-col gap-5 lg:order-2 lg:max-w-[30rem]">
+          <div className="flex items-center justify-between gap-6 project-kicker tracking-[0.2em]">
             <span>{numberLabel} /</span>
             <span>{project.year}</span>
           </div>
 
-          <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]">
+          <h2 className="max-w-[12ch] text-[clamp(2.7rem,5.1vw,4.35rem)] font-black uppercase leading-[0.88] tracking-[-0.03em] text-foreground">
             {project.title}
           </h2>
 
-          <div className="flex flex-col gap-1 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black/55 sm:flex-row sm:items-center sm:gap-6">
+          <div className="flex flex-col gap-1 project-kicker sm:flex-row sm:items-center sm:gap-6">
             <span>{project.category}</span>
-            <span aria-hidden="true" className="hidden text-black/30 sm:inline">
+            <span aria-hidden="true" className="hidden text-border sm:inline">
               /
             </span>
             <span>{project.location}</span>
           </div>
 
-          <p className={`max-w-[32rem] ${proseBodyClassName}`}>
+          <p className={`max-w-[28rem] ${projectProseClassName}`}>
             {project.summary}
           </p>
 
-          <span className="mt-2 inline-flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black transition-transform duration-500 ease-out group-hover:translate-x-1">
+          <span className="mt-2 inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-foreground transition-transform duration-500 ease-out group-hover:translate-x-1">
             <span className="h-1.5 w-1.5 rounded-none bg-current" />
             View Project
           </span>
@@ -124,6 +115,7 @@ export function ProjectsIndex() {
       <PageIntro
         eyebrow="Projects / Built Work"
         title={"Work That Holds Up"}
+        titleClassName="mx-auto max-w-[12ch] text-center text-balance text-[clamp(3.2rem,10vw,8rem)] font-black uppercase leading-[0.88] tracking-[-0.03em] text-white"
         scrollTargetId="projects"
         backgroundImage={projectsHero}
       />
@@ -131,13 +123,13 @@ export function ProjectsIndex() {
       <section
         id="projects"
         aria-labelledby="projects-list-heading"
-        className="site-shell px-6 pb-24 pt-14 sm:px-8 md:px-12 md:pb-28 md:pt-16 lg:px-20 lg:pb-32 lg:pt-20"
+        className="site-shell px-6 pb-20 pt-12 sm:px-8 md:px-12 md:pb-24 md:pt-14 lg:px-16 lg:pb-28 lg:pt-16"
       >
         <h2 id="projects-list-heading" className="sr-only">
           Selected projects
         </h2>
 
-        <div className="flex flex-col gap-24 md:gap-32 lg:gap-40">
+        <div className="flex flex-col gap-20 md:gap-24 lg:gap-28">
           {projects.map((project, index) => (
             <div id={`project-${project.slug}`} key={project.slug}>
               <ProjectRow project={project} index={index} />

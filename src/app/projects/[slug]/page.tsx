@@ -3,16 +3,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Footer } from "@/components/Footer";
+import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
 import { PageIntro } from "@/components/PageIntro";
+import { Reveal } from "@/components/Reveal";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { buildPageMetadata } from "@/lib/metadata";
-import { proseBodyClassName } from "@/lib/prose";
+import { projectProseClassName } from "@/lib/prose";
 import { getProjectBySlug, projects } from "@/lib/site-data";
 
 const projectDetailTitleClassName =
-  "mx-auto text-center text-balance text-[clamp(2.3rem,10.5vw,3rem)] font-bold uppercase leading-[0.94] tracking-tight text-white sm:text-[3.9rem] md:text-[5.3rem] lg:text-[6.2rem] xl:text-[7rem]";
+  "mx-auto max-w-[12ch] text-center text-balance text-[clamp(3rem,10vw,7.6rem)] font-black uppercase leading-[0.88] tracking-[-0.03em] text-white";
+
+const projectSectionHeadingClassName =
+  "text-[3.2rem] font-black uppercase leading-[0.88] tracking-[-0.03em] text-foreground sm:text-[4.2rem] md:text-[5rem] lg:text-[5.8rem] xl:text-[6.4rem]";
+
+const projectSideHeadingClassName =
+  "max-w-[8ch] text-[clamp(3rem,8vw,5rem)] font-black uppercase leading-[0.88] tracking-[-0.03em] text-foreground lg:text-[clamp(3.4rem,4vw,4.8rem)]";
 
 type ProjectDetailPageProps = {
   params: Promise<{
@@ -68,6 +78,16 @@ export default async function ProjectDetailPage({
         Number(left.category === project.category)
     )
     .slice(0, 2);
+  const projectGalleryImages = Array.from(
+    new Set([project.heroImage, ...project.galleryImages])
+  );
+  const projectGalleryItems = projectGalleryImages.map((image, index) => ({
+    image,
+    alt: `${project.title} project image ${index + 1}`,
+    category: project.category,
+    title: `${project.title} / ${String(index + 1).padStart(2, "0")}`,
+  }));
+  const beforeAfterComparison = project.beforeAfterImages?.[0];
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -113,18 +133,15 @@ export default async function ProjectDetailPage({
       "@type": "Place",
       name: project.location,
     },
-    image: [
-      `https://www.cvrconstruction.ca${project.heroImage}`,
-      ...project.galleryImages.map(
-        (image) => `https://www.cvrconstruction.ca${image}`
-      ),
-    ],
+    image: projectGalleryImages.map(
+      (image) => `https://www.cvrconstruction.ca${image}`
+    ),
     keywords: [project.category, project.location, ...project.scope],
     genre: "Construction project case study",
   };
 
   return (
-    <main id="main-content" className="relative bg-white text-black">
+    <main id="main-content" className="relative bg-background text-foreground">
       <Navbar />
       <Script
         id={`project-schema-${project.slug}`}
@@ -155,32 +172,32 @@ export default async function ProjectDetailPage({
         </h2>
 
         <div className="flex flex-col gap-12">
-          <div className="flex flex-col gap-6">
+          <Reveal className="flex flex-col gap-6">
             <Link
               href="/projects"
-              className="w-fit text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/54 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+              className="w-fit text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
               ← Back To Projects
             </Link>
 
-            <div className="grid gap-3 border-t border-black/10 pt-8 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-black/55 sm:grid-cols-3 md:pt-10">
+            <div className="grid gap-3 border-t border-border pt-8 project-kicker sm:grid-cols-3 md:pt-10">
               <div>
-                <p className="mb-2 text-black/35">Year</p>
-                <p className="text-black">{project.year}</p>
+                <p className="mb-2 text-muted-foreground/70">Year</p>
+                <p className="text-foreground">{project.year}</p>
               </div>
               <div>
-                <p className="mb-2 text-black/35">Type</p>
-                <p className="text-black">{project.category}</p>
+                <p className="mb-2 text-muted-foreground/70">Type</p>
+                <p className="text-foreground">{project.category}</p>
               </div>
               <div>
-                <p className="mb-2 text-black/35">Location</p>
-                <p className="text-black">{project.location}</p>
+                <p className="mb-2 text-muted-foreground/70">Location</p>
+                <p className="text-foreground">{project.location}</p>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)] lg:gap-12">
-            <div className="relative aspect-[1.28/1] overflow-hidden bg-black">
+          <Reveal className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)] lg:gap-12">
+            <div className="relative aspect-[1.28/1] overflow-hidden bg-muted">
               <Image
                 src={project.heroImage}
                 alt={project.title}
@@ -191,22 +208,20 @@ export default async function ProjectDetailPage({
               />
             </div>
 
-            <div className="flex flex-col justify-between gap-8 border border-black/10 bg-black/[0.02] p-6 sm:p-8">
+            <div className="project-panel flex flex-col justify-between gap-8 p-6 sm:p-8">
               <div>
-                <p className="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                <SectionEyebrow className="mb-3 project-kicker">
                   Project Overview
-                </p>
-                <p className="text-[1rem] leading-7 text-black/72 sm:text-[1.06rem]">
-                  {project.intro}
-                </p>
+                </SectionEyebrow>
+                <p className={projectProseClassName}>{project.intro}</p>
               </div>
 
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <h2 className="mb-3 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                  <h2 className="mb-3 project-kicker">
                     Scope
                   </h2>
-                  <ul className="space-y-2 text-[0.96rem] leading-6 text-black/72">
+                  <ul className="space-y-2 text-[0.96rem] leading-6 text-muted-foreground">
                     {project.scope.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -214,10 +229,10 @@ export default async function ProjectDetailPage({
                 </div>
 
                 <div>
-                  <h2 className="mb-3 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                  <h2 className="mb-3 project-kicker">
                     Highlights
                   </h2>
-                  <ul className="space-y-2 text-[0.96rem] leading-6 text-black/72">
+                  <ul className="space-y-2 text-[0.96rem] leading-6 text-muted-foreground">
                     {project.highlights.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -225,49 +240,84 @@ export default async function ProjectDetailPage({
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-            <div className="max-w-xl">
-              <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
-                Outcome
-              </p>
-              <p className="text-[1rem] leading-7 text-black/72 sm:text-[1.08rem]">
-                {project.outcome}
-              </p>
-            </div>
+          <Reveal className="max-w-3xl border-t border-border pt-10">
+            <SectionEyebrow className="mb-4 project-kicker">
+              Outcome
+            </SectionEyebrow>
+            <p className={projectProseClassName}>{project.outcome}</p>
+          </Reveal>
 
-            {project.galleryImages.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-3">
-                {project.galleryImages.map((image, index) => (
-                  <div
-                    key={image}
-                    className={`relative overflow-hidden bg-black/5 ${
-                      index === 0 ? "aspect-[1.05/1] sm:col-span-2 sm:row-span-2" : "aspect-[0.9/1]"
-                    }`}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${project.title} image ${index + 1}`}
-                      fill
-                      priority={index === 0}
-                      quality={90}
-                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : null}
-          </div>
+          {beforeAfterComparison ? (
+            <section
+              aria-labelledby="before-after-heading"
+              className="border-t border-border pt-10"
+            >
+              <Reveal className="mb-8 flex flex-col gap-4 md:mb-10">
+                <SectionEyebrow className="project-kicker">
+                  Before / After
+                </SectionEyebrow>
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                  <h2 id="before-after-heading" className={projectSectionHeadingClassName}>
+                    Transformation
+                  </h2>
+                  <p className={`max-w-[34rem] ${projectProseClassName}`}>
+                    Slide through the existing condition and final result to see how the space changed.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal>
+                <BeforeAfterSlider
+                  comparison={beforeAfterComparison}
+                  projectTitle={project.title}
+                  priority
+                />
+              </Reveal>
+            </section>
+          ) : null}
+
+          {projectGalleryItems.length > 0 ? (
+            <section
+              aria-labelledby="project-gallery-heading"
+              className="relative left-1/2 w-screen -translate-x-1/2 border-t border-border px-5 pt-10 sm:px-8 lg:px-10"
+            >
+              <Reveal className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between md:mb-10">
+                <div>
+                  <SectionEyebrow className="mb-2 project-kicker">
+                    Project Gallery
+                  </SectionEyebrow>
+                  <h2 id="project-gallery-heading" className={projectSectionHeadingClassName}>
+                    Built Details
+                  </h2>
+                </div>
+
+                <div className="flex flex-col gap-2 sm:items-end sm:text-right">
+                  <span className="project-kicker">
+                    {String(projectGalleryItems.length).padStart(2, "0")} Images
+                  </span>
+                  <p className={`max-w-[34rem] ${projectProseClassName}`}>
+                    Browse the full project sequence with the same lightbox view used in the main gallery.
+                  </p>
+                </div>
+              </Reveal>
+
+              <GalleryLightboxGrid
+                items={projectGalleryItems}
+                priorityCount={1}
+                variant="reference"
+              />
+            </section>
+          ) : null}
 
           {project.storySections.length > 0 ? (
-            <div className="grid gap-8 border-t border-black/10 pt-10 lg:grid-cols-[minmax(18rem,0.36fr)_minmax(0,1fr)] lg:gap-14">
+            <Reveal className="grid gap-8 border-t border-border pt-10 lg:grid-cols-[minmax(18rem,0.36fr)_minmax(0,1fr)] lg:gap-14">
               <div>
-                <p className="mb-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                <SectionEyebrow className="mb-4 project-kicker">
                   Project Notes
-                </p>
-                <h2 className="max-w-[12ch] text-[2.3rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:text-[2.9rem] md:text-[3.4rem]">
+                </SectionEyebrow>
+                <h2 className={projectSideHeadingClassName}>
                   Why This Project Works
                 </h2>
               </div>
@@ -276,32 +326,32 @@ export default async function ProjectDetailPage({
                 {project.storySections.map((section) => (
                   <section
                     key={section.heading}
-                    className="border border-black/10 bg-black/[0.02] p-6"
+                    className="project-panel p-6"
                   >
-                    <h3 className="mb-3 text-[1.2rem] font-black uppercase tracking-[-0.04em]">
+                    <h3 className="mb-3 text-[1.55rem] font-black uppercase leading-[0.9] tracking-[-0.035em] text-foreground">
                       {section.heading}
                     </h3>
-                    <p className="text-[0.98rem] leading-7 text-black/70">
+                    <p className="text-[0.98rem] leading-7 text-muted-foreground">
                       {section.body}
                     </p>
                   </section>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ) : null}
 
           {relatedProjects.length > 0 ? (
-            <div className="border-t border-black/10 pt-10">
+            <Reveal className="border-t border-border pt-10">
               <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                  <SectionEyebrow className="mb-2 project-kicker">
                     Related Work
-                  </p>
-                  <h2 className="text-[2.1rem] font-black uppercase leading-[0.92] tracking-[-0.05em] sm:text-[2.8rem]">
+                  </SectionEyebrow>
+                  <h2 className={projectSectionHeadingClassName}>
                     More Built Proof
                   </h2>
                 </div>
-                <p className={`max-w-xl ${proseBodyClassName}`}>
+                <p className={`max-w-xl ${projectProseClassName}`}>
                   Explore adjacent projects to understand how the same level of planning and finish shows up across different scopes.
                 </p>
               </div>
@@ -314,9 +364,9 @@ export default async function ProjectDetailPage({
                     data-analytics-event="related_project_clicked"
                     data-analytics-label={relatedProject.slug}
                     data-analytics-location="project-detail"
-                    className="group grid gap-6 border border-black/10 bg-white p-5 transition-colors hover:bg-black/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 sm:grid-cols-[14rem_minmax(0,1fr)]"
+                    className="group grid gap-6 border border-border bg-card p-5 text-card-foreground transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background sm:grid-cols-[14rem_minmax(0,1fr)]"
                   >
-                    <div className="relative aspect-[1/1] overflow-hidden bg-black/5">
+                    <div className="relative aspect-[1/1] overflow-hidden bg-muted">
                       <Image
                         src={relatedProject.coverImage}
                         alt={relatedProject.title}
@@ -330,34 +380,34 @@ export default async function ProjectDetailPage({
                     <div className="flex flex-col gap-4">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                          <p className="mb-2 project-kicker tracking-[0.14em]">
                             {relatedProject.category}
                           </p>
-                          <h3 className="text-[1.35rem] font-black uppercase leading-[0.96] tracking-[-0.04em]">
+                          <h3 className="text-[1.65rem] font-black uppercase leading-[0.9] tracking-[-0.035em] text-foreground">
                             {relatedProject.title}
                           </h3>
                         </div>
-                        <span className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
+                        <span className="project-kicker tracking-[0.14em]">
                           {relatedProject.year}
                         </span>
                       </div>
 
-                      <p className="text-[0.96rem] leading-7 text-black/68">
+                      <p className="text-[0.96rem] leading-7 text-muted-foreground">
                         {relatedProject.summary}
                       </p>
                     </div>
                   </Link>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ) : null}
 
-          <div className="flex flex-col gap-5 border-t border-black/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <Reveal className="flex flex-col gap-5 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+              <SectionEyebrow className="mb-2 project-kicker">
                 Start A Similar Project
-              </p>
-              <p className={`max-w-2xl ${proseBodyClassName}`}>
+              </SectionEyebrow>
+              <p className={`max-w-2xl ${projectProseClassName}`}>
                 If you are planning a renovation, custom space, or detail-driven upgrade in Victoria, we can help shape the scope and finish level early.
               </p>
             </div>
@@ -371,7 +421,7 @@ export default async function ProjectDetailPage({
             >
               Start Your Project
             </InteractiveHoverButton>
-          </div>
+          </Reveal>
         </div>
       </section>
 

@@ -350,17 +350,17 @@ export function ShowroomPage() {
       <section
         id="showroom"
         aria-labelledby="showroom-heading"
-        className="relative overflow-hidden bg-white pb-24 pt-16 sm:pb-28 md:pt-20 lg:pb-32 lg:pt-24"
+        className="relative overflow-hidden bg-[var(--showroom-bg)] pb-24 pt-16 text-[var(--showroom-text)] sm:pb-28 md:pt-20 lg:pb-32 lg:pt-24"
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.07),transparent)]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,var(--showroom-grid),transparent)]"
         />
         <h2 id="showroom-heading" className="sr-only">
           About the CVR Showroom
         </h2>
 
-        <div className="site-shell grid grid-cols-4 gap-x-2 gap-y-0 border-t border-black/10 pt-14 sm:gap-x-10 md:gap-y-14 lg:gap-x-12 lg:pt-20">
+        <div className="site-shell grid grid-cols-4 gap-x-2 gap-y-0 border-t border-[color:var(--showroom-line)] pt-14 sm:gap-x-10 md:gap-y-14 lg:gap-x-12 lg:pt-20">
           {showroomFacts.map((fact, index) => {
             const numericValue = Number.parseInt(fact.value, 10);
             return (
@@ -379,11 +379,11 @@ export function ShowroomPage() {
                   ) : (
                     <>
                       <AnimatedNumber value={numericValue} />
-                      <span className="text-black/55">{fact.suffix}</span>
+                      <span className="text-[var(--showroom-soft)]">{fact.suffix}</span>
                     </>
                   )}
                 </p>
-                <p className="text-[0.48rem] font-semibold uppercase leading-4 tracking-[0.1em] text-black/48 sm:text-[0.72rem] sm:tracking-[0.18em]">
+                <p className="text-[0.48rem] font-semibold uppercase leading-4 tracking-[0.1em] text-[var(--showroom-soft)] sm:text-[0.72rem] sm:tracking-[0.18em]">
                   {fact.label}
                 </p>
               </motion.div>
@@ -398,7 +398,7 @@ export function ShowroomPage() {
                 src={showroomPortrait.src}
                 alt={showroomPortrait.alt}
                 fill
-                quality={88}
+                quality={90}
                 sizes="(max-width: 1023px) 100vw, 32vw"
                 className="object-cover"
               />
@@ -414,7 +414,7 @@ export function ShowroomPage() {
             className="flex flex-col gap-8 md:gap-10 lg:h-full lg:justify-between lg:gap-6 lg:py-1"
           >
             <motion.div variants={philosophyItem}>
-              <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+              <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-[var(--showroom-text)]">
                 SEE IT. COMPARE IT. CHOOSE IT.
               </SectionEyebrow>
             </motion.div>
@@ -428,13 +428,13 @@ export function ShowroomPage() {
             </motion.p>
 
             <motion.div variants={philosophyItem} className="flex flex-col gap-4">
-              <div className="grid gap-4 border border-black/10 p-5 text-left sm:grid-cols-3">
+              <div className="grid gap-4 border border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] p-5 text-left sm:grid-cols-3">
                 {materialNotes.map((note) => (
                   <div key={note.label}>
-                    <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black/45">
+                    <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[var(--showroom-soft)]">
                       {note.label}
                     </p>
-                    <p className="text-[0.98rem] leading-7 text-black/74">
+                    <p className="text-[0.98rem] leading-7 text-[var(--showroom-muted)]">
                       {note.value}
                     </p>
                   </div>
@@ -448,7 +448,7 @@ export function ShowroomPage() {
       {/* Brands marquee */}
       <section
         aria-labelledby="brands-heading"
-        className="relative overflow-hidden border-y border-black/10 bg-black py-12 text-white md:py-14"
+        className="relative overflow-hidden border-y border-white/12 bg-black py-12 text-white md:py-14"
       >
         <div
           aria-hidden="true"
@@ -504,17 +504,17 @@ export function ShowroomPage() {
       {/* Showroom products */}
       <section
         aria-labelledby="showroom-products-heading"
-        className="relative overflow-hidden bg-white py-20 text-black md:py-28 lg:py-32"
+        className="relative overflow-hidden bg-[var(--showroom-bg)] py-20 text-[var(--showroom-text)] md:py-28 lg:py-32"
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.45] [background-image:linear-gradient(rgba(0,0,0,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.055)_1px,transparent_1px)] [background-size:56px_56px]"
+          className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(var(--showroom-grid)_1px,transparent_1px),linear-gradient(90deg,var(--showroom-grid)_1px,transparent_1px)] [background-size:56px_56px]"
         />
         <div className="site-shell relative z-10">
-          <div className="grid gap-12 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
+          <div className="grid gap-12 border-t border-[color:var(--showroom-line)] pt-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
             <Reveal direction="up" duration={0.75} distance={30}>
               <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
-                <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-black lg:justify-start">
+                <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-[var(--showroom-text)] lg:justify-start">
                   PRODUCTS IN THE SHOWROOM
                 </SectionEyebrow>
                 <h2
@@ -523,7 +523,7 @@ export function ShowroomPage() {
                 >
                   See More Than Samples.
                 </h2>
-                <p className="max-w-[28rem] text-[1rem] leading-7 text-black/62 md:text-[1.08rem]">
+                <p className="max-w-[28rem] text-[1rem] leading-7 text-[var(--showroom-muted)] md:text-[1.08rem]">
                   Explore kitchen, bath, fixture, surface, and lighting options in
                   person, with more product lines available beyond this list.
                 </p>
@@ -575,7 +575,7 @@ export function ShowroomPage() {
       >
         <Reveal direction="up" duration={0.7} distance={28}>
           <div className="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
-            <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+            <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-[var(--showroom-text)]">
               WHAT YOU CAN SEE
             </SectionEyebrow>
             <h2
@@ -598,13 +598,13 @@ export function ShowroomPage() {
                 distance={40}
               >
                 <article
-                  className={`group relative grid overflow-hidden border border-black/10 bg-white lg:grid-cols-2 lg:items-stretch ${
+                  className={`group relative grid overflow-hidden border border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] lg:grid-cols-2 lg:items-stretch ${
                     isReversed ? "lg:[&>*:first-child]:order-2" : ""
                   }`}
                 >
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 [background-image:linear-gradient(rgba(0,0,0,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.045)_1px,transparent_1px)] [background-size:48px_48px]"
+                    className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 [background-image:linear-gradient(var(--showroom-grid)_1px,transparent_1px),linear-gradient(90deg,var(--showroom-grid)_1px,transparent_1px)] [background-size:48px_48px]"
                   />
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-black lg:aspect-auto lg:min-h-[34rem]">
                     <Image
@@ -621,7 +621,7 @@ export function ShowroomPage() {
                     </p>
                   </div>
                   <div className="relative flex min-h-[26rem] flex-col justify-between p-6 sm:p-8 lg:p-10 xl:p-12">
-                    <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/48">
+                    <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-[var(--showroom-soft)]">
                       {collection.index} / {collection.eyebrow}
                     </p>
                     <div>
@@ -632,13 +632,13 @@ export function ShowroomPage() {
                         {collection.description}
                       </p>
                     </div>
-                    <div className="mt-10 flex items-center justify-between border-t border-black/10 pt-5">
-                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-black/42">
+                    <div className="mt-10 flex items-center justify-between border-t border-[color:var(--showroom-line)] pt-5">
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)]">
                         Compare in store
                       </span>
                       <span
                         aria-hidden="true"
-                        className="h-2 w-10 bg-black transition-transform duration-500 group-hover:translate-x-2"
+                        className="h-2 w-10 bg-[var(--showroom-text)] transition-transform duration-500 group-hover:translate-x-2"
                       />
                     </div>
                   </div>

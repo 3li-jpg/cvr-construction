@@ -14,8 +14,15 @@ import { TextAnimate } from "@/components/TextAnimate";
 import { proseBodyClassName } from "@/lib/prose";
 import { galleryItems } from "@/lib/site-data";
 
-const firstRowItems = galleryItems.slice(0, 5);
-const secondRowItems = galleryItems.slice(5);
+const galleryRows = galleryItems.reduce<
+  [Array<{ item: (typeof galleryItems)[number]; index: number }>, Array<{ item: (typeof galleryItems)[number]; index: number }>]
+>(
+  (rows, item, index) => {
+    rows[index % 2].push({ item, index });
+    return rows;
+  },
+  [[], []]
+);
 
 function GalleryTile({
   image,
@@ -123,32 +130,22 @@ export function GallerySection() {
         </div>
 
         <ScrollVelocityContainer className="space-y-4 sm:space-y-5 lg:space-y-6">
-          <ScrollVelocityRow
-            baseVelocity={2.6}
-            direction={1}
-            className="px-[var(--site-gutter)] sm:px-0"
-          >
-            {firstRowItems.map((item, index) => (
-              <GalleryTile
-                key={`${item.image}-row-1`}
-                {...item}
-                onClick={() => setActiveIndex(index)}
-              />
-            ))}
-          </ScrollVelocityRow>
-          <ScrollVelocityRow
-            baseVelocity={2.2}
-            direction={-1}
-            className="px-[var(--site-gutter)] sm:px-0"
-          >
-            {secondRowItems.map((item, index) => (
-              <GalleryTile
-                key={`${item.image}-row-2`}
-                {...item}
-                onClick={() => setActiveIndex(firstRowItems.length + index)}
-              />
-            ))}
-          </ScrollVelocityRow>
+          {galleryRows.map((rowItems, rowIndex) => (
+            <ScrollVelocityRow
+              key={`gallery-row-${rowIndex}`}
+              baseVelocity={0.35}
+              direction={rowIndex === 0 ? 1 : -1}
+              className="px-[var(--site-gutter)] sm:px-0"
+            >
+              {rowItems.map(({ item, index }) => (
+                <GalleryTile
+                  key={`${item.image}-row-${rowIndex}`}
+                  {...item}
+                  onClick={() => setActiveIndex(index)}
+                />
+              ))}
+            </ScrollVelocityRow>
+          ))}
         </ScrollVelocityContainer>
       </section>
 

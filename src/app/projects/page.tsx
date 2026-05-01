@@ -15,7 +15,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <main id="main-content" className="relative bg-white text-black">
+    <main id="main-content" className="relative bg-background text-foreground">
       <Navbar />
       <ProjectsIndex />
       <div className="relative z-[60] bg-black">

@@ -6,13 +6,13 @@ import { useEffect, useRef } from "react";
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { TextAnimate } from "@/components/TextAnimate";
-import { projects } from "@/lib/site-data";
+import { landingProjects as projects } from "@/lib/site-data";
 
 const projectMotion = [
   { side: "left" as const, targetX: -42 },
-  { side: "right" as const, targetX: 84 },
-  { side: "left" as const, targetX: -68 },
-  { side: "right" as const, targetX: 108 },
+  { side: "right" as const, targetX: 42 },
+  { side: "left" as const, targetX: -56 },
+  { side: "right" as const, targetX: 56 },
 ] as const;
 
 function clamp(value: number, min: number, max: number) {
@@ -20,7 +20,7 @@ function clamp(value: number, min: number, max: number) {
 }
 
 const projectCardFrameClassName =
-  "w-[min(100%,12.75rem)] sm:w-[14.25rem] lg:w-[17.25rem] xl:w-[19.5rem]";
+  "w-[min(100%,21rem)] sm:w-[25rem] lg:w-[23rem] xl:w-[27rem]";
 
 function ProjectCard({
   projectIndex,
@@ -48,7 +48,7 @@ function ProjectCard({
           }}
           className="w-full transform-gpu will-change-transform"
         >
-          <div className="relative aspect-[4/5] overflow-hidden bg-black">
+          <div className="relative aspect-[4/3] overflow-hidden bg-black">
             <div
               ref={(node) => {
                 setImageRef(projectIndex, node);
@@ -60,7 +60,8 @@ function ProjectCard({
                 alt={project.title}
                 fill
                 quality={90}
-                sizes="(max-width: 639px) 12.75rem, (max-width: 1023px) 14.25rem, (max-width: 1279px) 17.25rem, 19.5rem"
+                priority={projectIndex < 2}
+                sizes="(max-width: 639px) calc(100vw - 3rem), (max-width: 1023px) 25rem, (max-width: 1279px) 23rem, 27rem"
                 className="object-cover brightness-[0.92] transition-[filter] duration-500 ease-out group-hover:brightness-100"
               />
             </div>

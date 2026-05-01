@@ -138,6 +138,14 @@ export type ProjectStorySection = {
   body: string;
 };
 
+export type ProjectBeforeAfterComparison = {
+  beforeImage: string;
+  afterImage: string;
+  beforeAlt: string;
+  afterAlt: string;
+  label?: string;
+};
+
 export type ProjectEntry = {
   slug: string;
   title: string;
@@ -150,6 +158,7 @@ export type ProjectEntry = {
   heroImage: string;
   coverImage: string;
   galleryImages: readonly string[];
+  beforeAfterImages?: readonly ProjectBeforeAfterComparison[];
   scope: readonly string[];
   highlights: readonly string[];
   outcome: string;
@@ -159,45 +168,47 @@ export type ProjectEntry = {
 export const projects: ProjectEntry[] = [
   {
     slug: "forest-garden-studio",
-    title: "Forest Garden Studio",
+    title: "Forest Cabin And Outhouse",
     year: "2024",
-    updatedAt: "2026-04-01",
+    updatedAt: "2026-04-30",
     category: "Custom Space",
     location: "Victoria, BC",
     summary:
-      "A compact backyard studio designed to feel calm, durable, and properly integrated into a wooded residential property.",
+      "A compact forest cabin and outhouse project designed to feel calm, durable, and properly integrated into a wooded residential property.",
     intro:
-      "This project focused on building a secondary space that felt intentional rather than temporary. The result is a clean-lined garden studio with better utility, stronger detailing, and a finish quality that matches the main property.",
-    heroImage: "/images/victoria-garden-studio-exterior.webp",
-    coverImage: "/images/victoria-garden-studio-exterior.webp",
+      "This project focused on building a secondary forest space that felt intentional rather than temporary. The result is a warm cabin and outhouse setting with stronger exterior detailing, practical access, and a finish quality that feels grounded in the site.",
+    heroImage: "/images/victoria-forest-cabin-and-outhouse-005.webp",
+    coverImage: "/images/victoria-forest-cabin-and-outhouse-005.webp",
     galleryImages: [
-      "/images/victoria-garden-studio-exterior.webp",
-      "/images/victoria-custom-garden-studio-angle.webp",
-      "/images/victoria-home-entry-renovation-exterior.webp",
+      "/images/victoria-forest-cabin-and-outhouse-001.webp",
+      "/images/victoria-forest-cabin-and-outhouse-002.webp",
+      "/images/victoria-forest-cabin-and-outhouse-003.webp",
+      "/images/victoria-forest-cabin-and-outhouse-004.webp",
+      "/images/victoria-forest-cabin-and-outhouse-005.webp",
     ],
     scope: [
       "Site review and planning",
-      "Structure and envelope work",
-      "Exterior finish detailing",
-      "Interior trim and final fit-out",
+      "Cabin and outhouse exterior work",
+      "Deck and access detailing",
+      "Woodland finish coordination",
     ],
     highlights: [
-      "Minimal roofline with a clean profile",
-      "Warm cladding and trim contrast",
-      "Flexible space for work, wellness, or hosting",
+      "Warm cabin forms set into the trees",
+      "Simple exterior detailing that suits the wooded site",
+      "Practical deck and access points for daily use",
     ],
     outcome:
-      "The completed studio feels deliberate, private, and high-value. It expands the property without reading like an afterthought.",
+      "The completed cabin and outhouse feel deliberate, private, and settled into the landscape. The project adds useful outdoor living support without reading like an afterthought.",
     storySections: [
       {
         heading: "Design Priorities",
         body:
-          "The studio needed to feel integrated with the property rather than dropped into the yard as a secondary afterthought. That meant clean roof geometry, calm detailing, and an exterior palette that felt grounded in the site.",
+          "The cabin and outhouse needed to feel integrated with the wooded property rather than dropped into the site. That meant warm exterior materials, simple forms, and access details that worked with the surrounding trees.",
       },
       {
         heading: "Execution Notes",
         body:
-          "The work centered on restraint and finish discipline. Alignment at the openings, the deck transition, and the cladding profile all had to feel crisp because small buildings reveal mistakes quickly.",
+          "The work centered on restraint and site fit. The deck transitions, exterior edges, and compact building forms had to feel clean because small structures reveal proportion and finish decisions quickly.",
       },
     ],
   },
@@ -242,6 +253,397 @@ export const projects: ProjectEntry[] = [
         heading: "Execution Notes",
         body:
           "Kitchens succeed or fail in the details clients touch every day. Hardware alignment, appliance integration, trim tolerances, and lighting placement were all treated as finish-critical decisions rather than last-stage corrections.",
+      },
+    ],
+  },
+  {
+    slug: "rustic-checkerboard-cabin-kitchen",
+    title: "Rustic Checkerboard Cabin Kitchen",
+    year: "2025",
+    updatedAt: "2026-04-30",
+    category: "Kitchen Renovation",
+    location: "Vancouver Island",
+    summary:
+      "A cabin kitchen renovation that kept the warmth of the original wood interior while introducing sharper cabinetry, brighter work surfaces, and a bold checkerboard floor.",
+    intro:
+      "This project updated a compact cabin kitchen without stripping away its personality. The work focused on preserving the warmth of the timber shell while bringing in cleaner cabinetry, more usable prep space, and a stronger visual rhythm through the finished palette.",
+    heroImage: "/images/victoria-rustic-checkerboard-cabin-kitchen-025.webp",
+    coverImage: "/images/victoria-rustic-checkerboard-cabin-kitchen-025.webp",
+    galleryImages: [
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-001.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-002.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-003.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-004.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-005.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-006.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-007.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-008.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-009.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-010.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-011.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-012.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-013.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-014.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-015.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-016.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-017.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-018.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-019.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-020.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-021.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-022.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-023.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-024.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-025.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-026.webp",
+      "/images/victoria-rustic-checkerboard-cabin-kitchen-027.webp",
+    ],
+    scope: [
+      "Kitchen layout refinement",
+      "Cabinet and hardware installation",
+      "Countertop and sink integration",
+      "Appliance and finish coordination",
+      "Flooring and final detailing",
+    ],
+    highlights: [
+      "Checkerboard flooring that anchors the room",
+      "Soft green cabinetry against warm timber walls and ceilings",
+      "Long, brighter prep surfaces with cleaner working zones",
+    ],
+    outcome:
+      "The completed kitchen feels brighter, better organized, and more intentional. It still reads like part of the cabin, but with a clearer working layout and a much stronger finish standard.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The goal was to modernize function without flattening the rustic character of the home. The checkerboard floor, soft green cabinetry, and warm wood backdrop were balanced to make the room feel both playful and grounded.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "The success of the room depends on contrast and fit. Cabinet lines, countertop edges, appliance placement, and the long sink run all needed to feel crisp against the existing timber envelope so the renovation looked resolved rather than patched in.",
+      },
+    ],
+  },
+  {
+    slug: "outbuilding-bath-conversion",
+    title: "Outbuilding Bath Conversion",
+    year: "2023",
+    updatedAt: "2026-04-30",
+    category: "Bathroom Conversion",
+    location: "Greater Victoria",
+    summary:
+      "An outbuilding bath conversion that turned an unfinished utility space into a clean, practical bathroom with brighter surfaces, defined plumbing, and a finished daily-use feel.",
+    intro:
+      "This project converted an outbuilding interior from a rough, work-in-progress shell into a usable bathroom space. The work focused on bringing order to the layout, closing in the unfinished surfaces, and creating a simple, durable finish that made the room feel intentional instead of improvised.",
+    heroImage: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
+    coverImage: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
+    galleryImages: [
+      "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
+      "/images/victoria-outbuilding-bath-conversion-during-001.webp",
+      "/images/victoria-outbuilding-bath-conversion-during-002.webp",
+      "/images/victoria-outbuilding-bath-conversion-during-003.webp",
+      "/images/victoria-outbuilding-bath-conversion-during-004.webp",
+    ],
+    beforeAfterImages: [
+      {
+        label: "Existing condition",
+        beforeImage: "/images/victoria-outbuilding-bath-conversion-before-001.webp",
+        afterImage: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
+        beforeAlt: "Outbuilding bathroom conversion before construction",
+        afterAlt: "Finished outbuilding bathroom conversion by CVR Construction",
+      },
+    ],
+    scope: [
+      "Outbuilding bathroom conversion",
+      "Plumbing and fixture coordination",
+      "Wall, ceiling, and surface finishing",
+      "Flooring, trim, and final detailing",
+    ],
+    highlights: [
+      "Before and after transformation from unfinished space to finished bathroom",
+      "Cleaner room envelope with brighter, more usable surfaces",
+      "Practical fixture layout for a compact outbuilding footprint",
+    ],
+    outcome:
+      "The completed conversion gives the outbuilding a more useful, finished bathroom space. It replaces the rough existing condition with a cleaner layout, brighter surfaces, and a room that feels ready for daily use.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The priority was to make the conversion feel practical and complete without overcomplicating the small footprint. Every visible surface, fixture position, and transition had to support a cleaner room that could work as part of the outbuilding rather than a temporary add-on.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "Conversion work depends on resolving what the existing structure gives you. The visible finish needed to hide the roughness of the starting point while keeping plumbing, trim, and surface transitions simple enough to feel durable and maintainable.",
+      },
+    ],
+  },
+  {
+    slug: "dark-gray-kitchen-and-bath",
+    title: "Dark Gray Kitchen And Bath",
+    year: "2025",
+    updatedAt: "2026-04-30",
+    category: "Kitchen & Bathroom Renovation",
+    location: "Greater Victoria",
+    summary:
+      "A dark gray kitchen and bath renovation with a sharper finish palette, cleaner storage, and coordinated details across two high-use rooms.",
+    intro:
+      "This project brought a kitchen and bathroom into the same darker, more composed finish direction. The work focused on strong cabinet contrast, cleaner surfaces, improved storage, and fixture coordination that makes both rooms feel more intentional and refined.",
+    heroImage: "/images/victoria-dark-gray-kitchen-and-bath-001.webp",
+    coverImage: "/images/victoria-dark-gray-kitchen-and-bath-001.webp",
+    galleryImages: [
+      "/images/victoria-dark-gray-kitchen-and-bath-001.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-002.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-003.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-004.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-005.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-006.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-007.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-008.webp",
+      "/images/victoria-dark-gray-kitchen-and-bath-009.webp",
+    ],
+    scope: [
+      "Kitchen and bathroom renovation",
+      "Cabinet, vanity, and storage coordination",
+      "Counter, fixture, and hardware integration",
+      "Tile, trim, paint, and final detailing",
+    ],
+    highlights: [
+      "Dark gray cabinetry used as the anchor finish",
+      "Coordinated kitchen and bath palette for a more cohesive home update",
+      "Cleaner storage, fixture, and surface details in both rooms",
+    ],
+    outcome:
+      "The completed renovation gives the home a stronger visual direction and more polished daily-use spaces. The kitchen and bathroom now feel connected by a consistent finish standard instead of treated as separate updates.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The goal was to make the darker finish direction feel confident rather than heavy. Cabinet colour, counters, fixtures, and lighting had to balance contrast with enough brightness for both rooms to stay practical and comfortable.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "Coordinating a kitchen and bath together means small inconsistencies become more visible. Cabinet lines, hardware placement, tile transitions, and fixture finishes were treated as connected decisions so the work felt deliberate across the home.",
+      },
+    ],
+  },
+  {
+    slug: "modern-bath-and-laundry-suite",
+    title: "Modern Bath And Laundry Suite",
+    year: "2025",
+    updatedAt: "2026-04-30",
+    category: "Bathroom Renovation",
+    location: "Greater Victoria",
+    summary:
+      "A modern bathroom and laundry suite remodel with large-format tile, dark contrast walls, cleaner fixtures, and a more functional shared utility layout.",
+    intro:
+      "This project turned a hard-working bathroom and laundry zone into a cleaner, brighter suite with better storage, stronger fixture coordination, and a more polished daily-use layout. The finish direction balances crisp white surfaces, dark wall colour, matte black hardware, and marble-look tile for a room that feels practical without reading utilitarian.",
+    heroImage: "/images/victoria-modern-bath-and-laundry-suite-004.webp",
+    coverImage: "/images/victoria-modern-bath-and-laundry-suite-004.webp",
+    galleryImages: [
+      "/images/victoria-modern-bath-and-laundry-suite-003.webp",
+      "/images/victoria-modern-bath-and-laundry-suite-004.webp",
+      "/images/victoria-modern-bath-and-laundry-suite-005.webp",
+      "/images/victoria-modern-bath-and-laundry-suite-006.webp",
+      "/images/victoria-modern-bath-and-laundry-suite-007.webp",
+      "/images/victoria-modern-bath-and-laundry-suite-008.webp",
+    ],
+    scope: [
+      "Bathroom and laundry suite remodeling",
+      "Large-format tile and shower enclosure installation",
+      "Vanity, fixture, and hardware coordination",
+      "Tub, shower, and plumbing finish integration",
+      "Flooring, paint, trim, and final detailing",
+    ],
+    highlights: [
+      "Marble-look tile shower with black fixture contrast",
+      "Double vanity with cleaner storage and lighting",
+      "Bright floor tile balanced by a darker wall palette",
+    ],
+    outcome:
+      "The finished suite feels more composed, more functional, and easier to use day to day. It now carries the finish quality of a primary bathroom while still supporting the practical needs of a laundry-connected space.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The room needed to feel elevated while still handling everyday utility. Dark walls, white tile, black hardware, and a long vanity helped create contrast without making the suite feel visually crowded.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "The project depended on clean alignment across tile, glass, fixtures, vanity placement, and trim. Those details matter most in a compact suite where every transition is visible from multiple angles.",
+      },
+    ],
+  },
+  {
+    slug: "legacy-wood-kitchen",
+    title: "Legacy Wood Kitchen",
+    year: "2025",
+    updatedAt: "2026-04-30",
+    category: "Kitchen Renovation",
+    location: "Vancouver Island",
+    summary:
+      "A warm wood kitchen refresh that retained the character of the original interior while tightening the finish, storage, and daily working layout.",
+    intro:
+      "This project updated a legacy wood kitchen without erasing the warmth that made the space feel established. The work focused on cleaner cabinetry, brighter work surfaces, improved storage, and details that make the room feel more resolved for everyday use.",
+    heroImage: "/images/victoria-legacy-wood-kitchen-001.webp",
+    coverImage: "/images/victoria-legacy-wood-kitchen-001.webp",
+    galleryImages: [
+      "/images/victoria-legacy-wood-kitchen-001.webp",
+      "/images/victoria-legacy-wood-kitchen-002.webp",
+      "/images/victoria-legacy-wood-kitchen-003.webp",
+      "/images/victoria-legacy-wood-kitchen-004.webp",
+    ],
+    beforeAfterImages: [
+      {
+        label: "Kitchen refresh",
+        beforeImage: "/images/victoria-legacy-wood-kitchen-before.webp",
+        afterImage: "/images/victoria-legacy-wood-kitchen-001.webp",
+        beforeAlt: "Legacy wood kitchen before renovation",
+        afterAlt: "Legacy wood kitchen after renovation by CVR Construction",
+      },
+    ],
+    scope: [
+      "Kitchen refresh and finish coordination",
+      "Cabinet, counter, and storage improvements",
+      "Fixture and appliance integration",
+      "Trim, paint, and final detailing",
+    ],
+    highlights: [
+      "Existing wood character preserved as part of the finished palette",
+      "Brighter working surfaces with a cleaner daily-use layout",
+      "Sharper detailing around cabinetry, fixtures, and storage zones",
+    ],
+    outcome:
+      "The finished kitchen feels more composed and usable while still carrying the warmth of the original home. It reads as a refresh that belongs to the space instead of a replacement dropped into it.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The room needed to feel renewed without losing its established wood character. The finish direction kept the warmth of the existing interior and used cleaner surfaces, cabinetry, and fixture coordination to make the kitchen feel brighter and more deliberate.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "A refresh like this depends on restraint. The visible details around cabinetry, counters, appliances, and trim had to tighten the room while still respecting the original envelope of the home.",
+      },
+    ],
+  },
+  {
+    slug: "upper-deck-and-stairs",
+    title: "Upper Deck And Stairs",
+    year: "2025",
+    updatedAt: "2026-04-30",
+    category: "Exterior Upgrade",
+    location: "Vancouver Island",
+    summary:
+      "An upper deck and stair rebuild that improved outdoor access, structural confidence, and the finished look of the exterior approach.",
+    intro:
+      "This project rebuilt an elevated outdoor access sequence so it could feel safer, cleaner, and more integrated with the home. The work focused on durable exterior detailing, clear stair geometry, and a more confident deck connection for everyday use.",
+    heroImage: "/images/victoria-upper-deck-and-stairs-001.webp",
+    coverImage: "/images/victoria-upper-deck-and-stairs-001.webp",
+    galleryImages: [
+      "/images/victoria-upper-deck-and-stairs-001.webp",
+      "/images/victoria-upper-deck-and-stairs-002.webp",
+      "/images/victoria-upper-deck-and-stairs-003.webp",
+      "/images/victoria-upper-deck-and-stairs-004.webp",
+      "/images/victoria-upper-deck-and-stairs-005.webp",
+      "/images/victoria-upper-deck-and-stairs-006.webp",
+      "/images/victoria-upper-deck-and-stairs-007.webp",
+    ],
+    beforeAfterImages: [
+      {
+        label: "Deck and stair rebuild",
+        beforeImage: "/images/victoria-upper-deck-and-stairs-before.webp",
+        afterImage: "/images/victoria-upper-deck-and-stairs-003.webp",
+        beforeAlt: "Upper deck before stair and railing rebuild",
+        afterAlt: "Upper deck and stairs after rebuild by CVR Construction",
+      },
+    ],
+    scope: [
+      "Upper deck and stair rebuild",
+      "Exterior framing and structural coordination",
+      "Railing, landing, and access detailing",
+      "Weather-exposed finish work and cleanup",
+    ],
+    highlights: [
+      "Cleaner elevated access from deck to grade",
+      "More resolved exterior lines across stairs, landing, and railing",
+      "Durable detailing for exposed outdoor conditions",
+    ],
+    outcome:
+      "The rebuilt deck and stair sequence gives the home a stronger, more dependable outdoor connection. It improves both daily access and the exterior impression of the property.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The goal was to make the upper access route feel intentional and dependable. Proportion, landing clarity, railing alignment, and the way the stairs met the exterior all mattered because this element is both functional and highly visible.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "Exterior stair and deck work has to resolve structure, weather exposure, and finish quality at the same time. Framing, fastening, transitions, and final detailing were coordinated so the rebuild felt solid rather than simply replaced.",
+      },
+    ],
+  },
+  {
+    slug: "framed-bathroom-renovation",
+    title: "Framed Bathroom Renovation",
+    year: "2025",
+    updatedAt: "2026-04-30",
+    category: "Bathroom Renovation",
+    location: "Greater Victoria",
+    summary:
+      "A framed bathroom renovation that moved from exposed construction stages into a finished, cleaner bathroom with brighter tile, coordinated fixtures, and sharper trim details.",
+    intro:
+      "This project shows the bathroom build through framing, rough-in, and final finish. The work focused on turning a compact construction shell into a complete bathroom with clean tile, practical fixture placement, and a more polished daily-use feel.",
+    heroImage: "/images/victoria-framed-bathroom-renovation-001.webp",
+    coverImage: "/images/victoria-framed-bathroom-renovation-001.webp",
+    galleryImages: [
+      "/images/victoria-framed-bathroom-renovation-001.webp",
+      "/images/victoria-framed-bathroom-renovation-002.webp",
+      "/images/victoria-framed-bathroom-renovation-003.webp",
+      "/images/victoria-framed-bathroom-renovation-004.webp",
+      "/images/victoria-framed-bathroom-renovation-005.webp",
+      "/images/victoria-framed-bathroom-renovation-006.webp",
+      "/images/victoria-framed-bathroom-renovation-007.webp",
+      "/images/victoria-framed-bathroom-renovation-008.webp",
+    ],
+    beforeAfterImages: [
+      {
+        label: "Bathroom renovation",
+        beforeImage: "/images/victoria-framed-bathroom-renovation-008.webp",
+        afterImage: "/images/victoria-framed-bathroom-renovation-001.webp",
+        beforeAlt: "Framed bathroom renovation before construction",
+        afterAlt: "Finished framed bathroom renovation by CVR Construction",
+      },
+    ],
+    scope: [
+      "Bathroom framing and renovation",
+      "Plumbing and fixture coordination",
+      "Tile, tub, and wall finish installation",
+      "Trim, paint, and final detailing",
+    ],
+    highlights: [
+      "Visible construction sequence from framing to finished bathroom",
+      "Clean tile and fixture coordination in a compact footprint",
+      "Sharper finished envelope with brighter daily-use surfaces",
+    ],
+    outcome:
+      "The finished bathroom feels clean, practical, and fully resolved. The project sequence shows how the rough framed condition was brought through each stage into a more durable and polished room.",
+    storySections: [
+      {
+        heading: "Design Priorities",
+        body:
+          "The priority was to make a compact bathroom feel complete and orderly without overcomplicating the finish palette. Bright tile, clean fixture placement, and tight trim work helped the final room feel more open and usable.",
+      },
+      {
+        heading: "Execution Notes",
+        body:
+          "The construction sequence mattered because the finished quality depended on the early layers. Framing, rough-in coordination, waterproofing prep, tile layout, and final trim all had to line up before the room could read as polished.",
       },
     ],
   },
@@ -334,6 +736,14 @@ export const projects: ProjectEntry[] = [
     ],
   },
 ];
+
+export const landingProjects = projects.filter(
+  (project) =>
+    project.slug !== "modern-bath-and-laundry-suite" &&
+    project.slug !== "legacy-wood-kitchen" &&
+    project.slug !== "upper-deck-and-stairs" &&
+    project.slug !== "framed-bathroom-renovation"
+);
 
 export function getProjectBySlug(slug: string) {
   return projects.find((project) => project.slug === slug);
@@ -521,6 +931,13 @@ export const galleryItems = [
     alt: "Kitchen interior detail by CVR Construction",
   },
   {
+    title: "Rustic Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-025.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "Rustic checkerboard cabin kitchen renovation by CVR Construction",
+  },
+  {
     title: "Utility Room Fit-Out",
     image: "/images/victoria-commercial-interior-renovation.webp",
     category: "Interior",
@@ -533,6 +950,13 @@ export const galleryItems = [
     category: "Exterior",
     eyebrow: "Exterior Upgrade",
     alt: "Front entry rebuild by CVR Construction",
+  },
+  {
+    title: "Modern Bath And Laundry Suite",
+    image: "/images/victoria-modern-bath-and-laundry-suite-004.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "Modern bathroom and laundry suite remodel by CVR Construction",
   },
   {
     title: "Bathroom Remodel Detail",
@@ -554,6 +978,538 @@ export const galleryItems = [
     category: "Interior",
     eyebrow: "Interior Upgrade",
     alt: "Interior renovation by CVR Construction",
+  },
+  {
+    title: "Legacy Wood Kitchen",
+    image: "/images/victoria-legacy-wood-kitchen-001.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "legacy wood kitchen by CVR Construction",
+  },
+  {
+    title: "Legacy Wood Kitchen",
+    image: "/images/victoria-legacy-wood-kitchen-002.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "legacy wood kitchen by CVR Construction",
+  },
+  {
+    title: "Legacy Wood Kitchen",
+    image: "/images/victoria-legacy-wood-kitchen-003.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "legacy wood kitchen by CVR Construction",
+  },
+  {
+    title: "White Basement Suite",
+    image: "/images/victoria-white-basement-suite-2024-001.webp",
+    category: "Interior",
+    eyebrow: "Basement Suite",
+    alt: "white basement suite by CVR Construction",
+  },
+  {
+    title: "Gray Siding And Forest Shed",
+    image: "/images/victoria-gray-siding-and-forest-shed-001.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "gray siding and forest shed by CVR Construction",
+  },
+  {
+    title: "Gray Siding And Forest Shed",
+    image: "/images/victoria-gray-siding-and-forest-shed-002.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "gray siding and forest shed by CVR Construction",
+  },
+  {
+    title: "Gray Siding And Forest Shed",
+    image: "/images/victoria-gray-siding-and-forest-shed-003.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "gray siding and forest shed by CVR Construction",
+  },
+  {
+    title: "Gray Siding And Forest Shed",
+    image: "/images/victoria-gray-siding-and-forest-shed-004.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "gray siding and forest shed by CVR Construction",
+  },
+  {
+    title: "Condo Kitchen And Marble Baths",
+    image: "/images/victoria-condo-kitchen-and-marble-baths-001.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "condo kitchen and marble baths by CVR Construction",
+  },
+  {
+    title: "Condo Kitchen And Marble Baths",
+    image: "/images/victoria-condo-kitchen-and-marble-baths-002.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "condo kitchen and marble baths by CVR Construction",
+  },
+  {
+    title: "Condo Kitchen And Marble Baths",
+    image: "/images/victoria-condo-kitchen-and-marble-baths-003.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "condo kitchen and marble baths by CVR Construction",
+  },
+  {
+    title: "Condo Kitchen And Marble Baths",
+    image: "/images/victoria-condo-kitchen-and-marble-baths-004.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "condo kitchen and marble baths by CVR Construction",
+  },
+  {
+    title: "Condo Kitchen And Marble Baths",
+    image: "/images/victoria-condo-kitchen-and-marble-baths-005.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "condo kitchen and marble baths by CVR Construction",
+  },
+  {
+    title: "Condo Kitchen And Marble Baths",
+    image: "/images/victoria-condo-kitchen-and-marble-baths-006.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "condo kitchen and marble baths by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-001.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-002.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-003.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-004.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-005.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-006.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-007.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-008.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-009.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-010.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-011.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-012.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-013.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-014.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-015.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-016.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-017.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-018.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-019.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-020.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-021.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-022.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-023.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-024.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-026.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Rustic Checkerboard Cabin Kitchen",
+    image: "/images/victoria-rustic-checkerboard-cabin-kitchen-027.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "rustic checkerboard cabin kitchen by CVR Construction",
+  },
+  {
+    title: "Upper Deck And Stairs",
+    image: "/images/victoria-upper-deck-and-stairs-001.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "upper deck and stairs by CVR Construction",
+  },
+  {
+    title: "Upper Deck And Stairs",
+    image: "/images/victoria-upper-deck-and-stairs-002.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "upper deck and stairs by CVR Construction",
+  },
+  {
+    title: "Upper Deck And Stairs",
+    image: "/images/victoria-upper-deck-and-stairs-003.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "upper deck and stairs by CVR Construction",
+  },
+  {
+    title: "Upper Deck And Stairs",
+    image: "/images/victoria-upper-deck-and-stairs-004.webp",
+    category: "Exterior",
+    eyebrow: "Exterior Upgrade",
+    alt: "upper deck and stairs by CVR Construction",
+  },
+  {
+    title: "Modern Bath And Laundry Suite",
+    image: "/images/victoria-modern-bath-and-laundry-suite-003.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "modern bath and laundry suite by CVR Construction",
+  },
+  {
+    title: "Modern Bath And Laundry Suite",
+    image: "/images/victoria-modern-bath-and-laundry-suite-005.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "modern bath and laundry suite by CVR Construction",
+  },
+  {
+    title: "Modern Bath And Laundry Suite",
+    image: "/images/victoria-modern-bath-and-laundry-suite-006.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "modern bath and laundry suite by CVR Construction",
+  },
+  {
+    title: "Modern Bath And Laundry Suite",
+    image: "/images/victoria-modern-bath-and-laundry-suite-007.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "modern bath and laundry suite by CVR Construction",
+  },
+  {
+    title: "Modern Bath And Laundry Suite",
+    image: "/images/victoria-modern-bath-and-laundry-suite-008.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "modern bath and laundry suite by CVR Construction",
+  },
+  {
+    title: "White Railing Deck",
+    image: "/images/victoria-white-railing-deck-001.webp",
+    category: "Exterior",
+    eyebrow: "Deck Upgrade",
+    alt: "white railing deck by CVR Construction",
+  },
+  {
+    title: "White Railing Deck",
+    image: "/images/victoria-white-railing-deck-002.webp",
+    category: "Exterior",
+    eyebrow: "Deck Upgrade",
+    alt: "white railing deck by CVR Construction",
+  },
+  {
+    title: "Green Tile Bath And Mudroom",
+    image: "/images/victoria-green-tile-bath-and-mudroom-001.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom & Mudroom Renovation",
+    alt: "green tile bath and mudroom by CVR Construction",
+  },
+  {
+    title: "Green Tile Bath And Mudroom",
+    image: "/images/victoria-green-tile-bath-and-mudroom-002.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom & Mudroom Renovation",
+    alt: "green tile bath and mudroom by CVR Construction",
+  },
+  {
+    title: "Green Tile Bath And Mudroom",
+    image: "/images/victoria-green-tile-bath-and-mudroom-003.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom & Mudroom Renovation",
+    alt: "green tile bath and mudroom by CVR Construction",
+  },
+  {
+    title: "Green Tile Bath And Mudroom",
+    image: "/images/victoria-green-tile-bath-and-mudroom-004.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom & Mudroom Renovation",
+    alt: "green tile bath and mudroom by CVR Construction",
+  },
+  {
+    title: "Green Tile Bath And Mudroom",
+    image: "/images/victoria-green-tile-bath-and-mudroom-005.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom & Mudroom Renovation",
+    alt: "green tile bath and mudroom by CVR Construction",
+  },
+  {
+    title: "Dark Gray Kitchen And Bath",
+    image: "/images/victoria-dark-gray-kitchen-and-bath-001.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "dark gray kitchen and bath by CVR Construction",
+  },
+  {
+    title: "Dark Gray Kitchen And Bath",
+    image: "/images/victoria-dark-gray-kitchen-and-bath-002.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "dark gray kitchen and bath by CVR Construction",
+  },
+  {
+    title: "Dark Gray Kitchen And Bath",
+    image: "/images/victoria-dark-gray-kitchen-and-bath-003.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "dark gray kitchen and bath by CVR Construction",
+  },
+  {
+    title: "Dark Gray Kitchen And Bath",
+    image: "/images/victoria-dark-gray-kitchen-and-bath-004.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "dark gray kitchen and bath by CVR Construction",
+  },
+  {
+    title: "Dark Gray Kitchen And Bath",
+    image: "/images/victoria-dark-gray-kitchen-and-bath-005.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "dark gray kitchen and bath by CVR Construction",
+  },
+  {
+    title: "Dark Gray Kitchen And Bath",
+    image: "/images/victoria-dark-gray-kitchen-and-bath-006.webp",
+    category: "Kitchen & Bath",
+    eyebrow: "Kitchen & Bathroom Renovation",
+    alt: "dark gray kitchen and bath by CVR Construction",
+  },
+  {
+    title: "Outbuilding Bath Conversion",
+    image: "/images/victoria-outbuilding-bath-conversion-after-final-main.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Conversion",
+    alt: "outbuilding bath conversion by CVR Construction",
+  },
+  {
+    title: "Framed Bathroom Renovation",
+    image: "/images/victoria-framed-bathroom-renovation-001.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "framed bathroom renovation by CVR Construction",
+  },
+  {
+    title: "Framed Bathroom Renovation",
+    image: "/images/victoria-framed-bathroom-renovation-002.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "framed bathroom renovation by CVR Construction",
+  },
+  {
+    title: "Framed Bathroom Renovation",
+    image: "/images/victoria-framed-bathroom-renovation-003.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "framed bathroom renovation by CVR Construction",
+  },
+  {
+    title: "Forest Cabin And Outhouse",
+    image: "/images/victoria-forest-cabin-and-outhouse-001.webp",
+    category: "Custom Space",
+    eyebrow: "Cabin & Outhouse",
+    alt: "forest cabin and outhouse by CVR Construction",
+  },
+  {
+    title: "Forest Cabin And Outhouse",
+    image: "/images/victoria-forest-cabin-and-outhouse-002.webp",
+    category: "Custom Space",
+    eyebrow: "Cabin & Outhouse",
+    alt: "forest cabin and outhouse by CVR Construction",
+  },
+  {
+    title: "Forest Cabin And Outhouse",
+    image: "/images/victoria-forest-cabin-and-outhouse-003.webp",
+    category: "Custom Space",
+    eyebrow: "Cabin & Outhouse",
+    alt: "forest cabin and outhouse by CVR Construction",
+  },
+  {
+    title: "Forest Cabin And Outhouse",
+    image: "/images/victoria-forest-cabin-and-outhouse-004.webp",
+    category: "Custom Space",
+    eyebrow: "Cabin & Outhouse",
+    alt: "forest cabin and outhouse by CVR Construction",
+  },
+  {
+    title: "Forest Cabin And Outhouse",
+    image: "/images/victoria-forest-cabin-and-outhouse-005.webp",
+    category: "Custom Space",
+    eyebrow: "Cabin & Outhouse",
+    alt: "forest cabin and outhouse by CVR Construction",
+  },
+  {
+    title: "Small ADU Exterior And Rooms",
+    image: "/images/victoria-small-adu-exterior-and-rooms-001.webp",
+    category: "Custom Space",
+    eyebrow: "ADU Build",
+    alt: "small adu exterior and rooms by CVR Construction",
+  },
+  {
+    title: "Small ADU Exterior And Rooms",
+    image: "/images/victoria-small-adu-exterior-and-rooms-002.webp",
+    category: "Custom Space",
+    eyebrow: "ADU Build",
+    alt: "small adu exterior and rooms by CVR Construction",
+  },
+  {
+    title: "Beige House Washroom",
+    image: "/images/victoria-beige-house-exterior-and-old-baths-washroom.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "beige house washroom by CVR Construction",
+  },
+  {
+    title: "White Kitchen Suite",
+    image: "/images/victoria-white-kitchen-suite-final.webp",
+    category: "Kitchen",
+    eyebrow: "Kitchen Renovation",
+    alt: "white kitchen suite by CVR Construction",
+  },
+  {
+    title: "White Shower Bath",
+    image: "/images/victoria-white-shower-bath-single-001.webp",
+    category: "Bathroom",
+    eyebrow: "Bathroom Renovation",
+    alt: "white shower bath by CVR Construction",
   },
 ] as const;
 

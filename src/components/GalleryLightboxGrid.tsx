@@ -3,8 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { GalleryLightboxOverlay } from "@/components/GalleryLightboxOverlay";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import {
+  GalleryLightboxOverlay,
+  type GalleryLightboxItem,
+} from "@/components/GalleryLightboxOverlay";
+import { DURATION, EASE_OUT_EXPO, STAGGER, VIEWPORT } from "@/lib/motion";
 import { galleryItems } from "@/lib/site-data";
 
 const ASPECT_PATTERN = [
@@ -16,11 +19,21 @@ const ASPECT_PATTERN = [
   "aspect-[5/7]",
 ] as const;
 
-export function GalleryLightboxGrid() {
+type GalleryLightboxGridProps = {
+  items?: readonly GalleryLightboxItem[];
+  priorityCount?: number;
+  variant?: "default" | "reference";
+};
+
+export function GalleryLightboxGrid({
+  items = galleryItems,
+  priorityCount = 3,
+  variant = "default",
+}: GalleryLightboxGridProps = {}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  const total = galleryItems.length;
+  const total = items.length;
 
   const handlePrev = useCallback(() => {
     setActiveIndex((current) =>
@@ -54,43 +67,76 @@ export function GalleryLightboxGrid() {
     };
   }, [activeIndex]);
 
-  const activeItem = activeIndex === null ? null : galleryItems[activeIndex];
+  const activeItem = activeIndex === null ? null : items[activeIndex];
+  const isReferenceVariant = variant === "reference";
+
+  const renderTile = (item: GalleryLightboxItem, index: number) => {
+    const aspectClass = ASPECT_PATTERN[index % ASPECT_PATTERN.length];
+
+    return (
+      <motion.button
+        key={item.image}
+        type="button"
+        onClick={() => setActiveIndex(index)}
+        aria-label={`Open larger image for ${item.title}`}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 40, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={VIEWPORT}
+        transition={{
+          duration: DURATION.base,
+          ease: EASE_OUT_EXPO,
+          delay: Math.min((index % 6) * STAGGER.tight, 0.3),
+        }}
+        className={`group relative block w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background ${aspectClass}`}
+      >
+        <Image
+          src={item.image}
+          alt={item.alt}
+          fill
+          quality={90}
+          priority={index < priorityCount}
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+        />
+      </motion.button>
+    );
+  };
+
+  const renderMasonryColumns = (columnCount: number, gapClassName: string) => {
+    const columns = Array.from({ length: columnCount }, () =>
+      [] as Array<{ item: GalleryLightboxItem; index: number }>
+    );
+
+    items.forEach((item, index) => {
+      columns[index % columnCount].push({ item, index });
+    });
+
+    return columns.map((columnItems, columnIndex) => (
+      <div key={columnIndex} className={`flex min-w-0 flex-col ${gapClassName}`}>
+        {columnItems.map(({ item, index }) => renderTile(item, index))}
+      </div>
+    ));
+  };
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
-        {galleryItems.map((item, index) => {
-          const aspectClass = ASPECT_PATTERN[index % ASPECT_PATTERN.length];
-
-          return (
-            <motion.button
-              key={item.image}
-              type="button"
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Open larger image for ${item.title}`}
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 40, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
-              transition={{
-                duration: 0.85,
-                ease: EASE_OUT_EXPO,
-                delay: Math.min((index % 6) * 0.06, 0.3),
-              }}
-              className={`group relative block w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 ${aspectClass}`}
-            >
-              <Image
-                src={item.image}
-                alt={item.alt}
-                fill
-                quality={90}
-                priority={index < 3}
-                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
-              />
-            </motion.button>
-          );
-        })}
-      </div>
+      {isReferenceVariant ? (
+        <>
+          <div className="grid grid-cols-1 gap-4 sm:hidden">
+            {renderMasonryColumns(1, "gap-4")}
+          </div>
+          <div className="hidden gap-5 sm:grid sm:grid-cols-2 lg:hidden">
+            {renderMasonryColumns(2, "gap-5")}
+          </div>
+          <div className="hidden gap-6 lg:grid lg:grid-cols-3">
+            {renderMasonryColumns(3, "gap-6")}
+          </div>
+        </>
+      ) : (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+          {items.map((item, index) => renderTile(item, index))}
+        </div>
+      )}
 
       <GalleryLightboxOverlay
         item={activeItem ?? null}

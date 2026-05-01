@@ -156,7 +156,7 @@ export function GalleryLightboxOverlay({
                     src={item.image}
                     alt={item.alt}
                     fill
-                    quality={92}
+                    quality={90}
                     sizes="100vw"
                     className="object-contain"
                     priority

@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { proseBodyClassName } from "@/lib/prose";
-import { sectionHeadingClassName } from "@/lib/section-heading";
 
 const phrases = [
   "plan carefully.",

@@ -181,6 +181,22 @@
     width: min(calc(100% - (var(--site-gutter) * 2)), var(--site-max-width));
     margin-inline: auto;
   }
+
+  .project-display {
+    @apply font-sans font-black uppercase leading-[0.88] tracking-[-0.03em];
+  }
+
+  .project-kicker {
+    @apply text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground;
+  }
+
+  .project-panel {
+    @apply border border-border bg-card text-card-foreground;
+  }
+
+  .project-section-heading {
+    @apply font-sans text-[3.2rem] font-black uppercase leading-[0.88] tracking-[-0.03em] text-foreground sm:text-[4.2rem] md:text-[5rem] lg:text-[5.8rem] xl:text-[6.4rem];
+  }
 }
 
 html {
