@@ -184,7 +184,7 @@ export function Navbar() {
             >
               <span
                 aria-hidden="true"
-                className="block h-14 w-40 bg-current md:h-16 md:w-44"
+                className="block h-12 w-36 bg-current"
                 style={{
                   WebkitMask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
                   mask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
