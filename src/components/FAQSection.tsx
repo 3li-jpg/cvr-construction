@@ -3,6 +3,7 @@
 import Accordion07, {
   type Accordion07Item,
 } from "@/components/shadcn-space/accordion/accordion-07";
+import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 
 const faqItems: Accordion07Item[] = [
@@ -70,20 +71,28 @@ export function FAQSection() {
       <div className="site-shell px-3 sm:px-5 lg:px-8 xl:px-10">
         <div className="grid gap-14 md:grid-cols-[0.9fr_1.1fr] md:gap-20">
           <div className="max-w-xl">
-            <SectionEyebrow className="text-[0.83rem] tracking-[0.18em] text-[var(--faq-soft)]">
-              FAQ
-            </SectionEyebrow>
-            <h2 className="mt-5 max-w-[11ch] text-[3.05rem] font-black uppercase leading-[0.9] tracking-normal sm:text-[3.45rem] md:text-[4.3rem]">
-              What Homeowners Ask Before They Build
-            </h2>
-            <p className="mt-7 max-w-lg text-[1rem] leading-8 text-[var(--faq-muted)] md:text-[1.15rem] md:leading-9">
-              These are the questions that usually come up when clients are comparing
-              renovation companies, planning budgets, and making decisions about materials,
-              finishes, and overall project scope.
-            </p>
+            <Reveal direction="up" duration={0.8} distance={34}>
+              <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-white">
+                FAQ
+              </SectionEyebrow>
+            </Reveal>
+            <Reveal direction="up" delay={0.08} duration={0.95} distance={54}>
+              <h2 className="mt-5 max-w-[11ch] text-[3.05rem] font-black uppercase leading-[0.9] tracking-normal text-white sm:text-[3.45rem] md:text-[4.3rem]">
+                What Homeowners Ask Before They Build
+              </h2>
+            </Reveal>
+            <Reveal direction="up" delay={0.16} duration={0.9} distance={34}>
+              <p className="mt-7 max-w-lg text-[1rem] leading-8 text-white/68 md:text-[1.15rem] md:leading-9">
+                These are the questions that usually come up when clients are comparing
+                renovation companies, planning budgets, and making decisions about materials,
+                finishes, and overall project scope.
+              </p>
+            </Reveal>
           </div>
 
-          <Accordion07 items={faqItems} />
+          <Reveal direction="up" delay={0.12} duration={1} distance={48}>
+            <Accordion07 items={faqItems} />
+          </Reveal>
         </div>
       </div>
     </section>

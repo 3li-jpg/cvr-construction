@@ -42,32 +42,32 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
 
   if (showroomOnly && showroom) {
     return (
-      <section className="relative w-full overflow-hidden bg-black py-18 text-white md:py-22 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-black py-14 text-white md:py-16 lg:py-18 xl:py-20">
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] [background-size:72px_72px]"
         />
         <div className="site-shell relative z-10">
           <Reveal direction="up" delay={0} duration={0.8}>
-            <div className="mb-10 flex flex-col items-center gap-4 text-center lg:mb-14">
+            <div className="mb-8 flex flex-col items-center gap-3 text-center lg:mb-10">
               <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.14em] text-white">
                 VISIT THE SHOWROOM
               </SectionEyebrow>
-              <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-white sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]">
+              <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-white sm:text-[3.1rem] md:text-[3.6rem] lg:text-[3.9rem] xl:text-[4.25rem]">
                 Come See The Products In Person
               </h2>
             </div>
           </Reveal>
 
-          <div className="grid gap-10 pt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-14 lg:pt-12 xl:gap-18">
+          <div className="grid gap-8 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-12 lg:pt-8 xl:gap-14">
             <Reveal direction="up" delay={0.08} duration={0.85} distance={30}>
-              <div className="flex h-full flex-col items-center justify-between gap-10 py-1 text-center">
-                <div className="flex flex-col items-center gap-8">
+              <div className="flex h-full flex-col items-center justify-between gap-8 py-1 text-center">
+                <div className="flex flex-col items-center gap-6">
                   <div>
                     <p className="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/48">
                       CVR Showroom
                     </p>
-                    <p className="text-[1.1rem] leading-8 text-white/72 md:text-[1.2rem]">
+                    <p className="text-[1.1rem] leading-7 text-white/72 md:text-[1.14rem]">
                       Walk-In Showroom
                       <br />
                       {showroom.addressLine1}
@@ -79,13 +79,13 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                   <div>
                     <a
                       href={showroom.phoneHref}
-                      className="block text-center text-[2rem] font-black uppercase leading-[0.92] tracking-[-0.055em] text-white transition-opacity hover:opacity-70 sm:text-[3.2rem] lg:text-[3.6rem]"
+                      className="block text-center text-[2rem] font-black uppercase leading-[0.92] tracking-[-0.055em] text-white transition-opacity hover:opacity-70 sm:text-[3rem] lg:text-[3.2rem] xl:text-[3.35rem]"
                     >
                       {showroom.phone}
                     </a>
                     <a
                       href={showroom.emailHref}
-                      className="mt-5 block break-all text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-white/58 transition-opacity hover:opacity-80 md:text-[0.9rem]"
+                      className="mt-4 block break-all text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-white/58 transition-opacity hover:opacity-80 md:text-[0.88rem]"
                     >
                       {showroom.email}
                     </a>
@@ -97,7 +97,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                     href={showroom.mapsHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-13 items-center gap-2 rounded-none border border-white/18 px-5 text-[0.68rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                    className="inline-flex box-border h-16 items-center justify-center gap-3 rounded-none border border-white/18 px-7 text-[0.68rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
                   >
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
                       <path
@@ -121,7 +121,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                   </a>
                   <a
                     href={showroom.phoneHref}
-                    className="inline-flex h-13 items-center gap-2 rounded-none bg-white px-5 text-[0.68rem] font-bold uppercase tracking-widest text-black transition-colors hover:bg-white/82"
+                    className="inline-flex box-border h-16 items-center justify-center gap-3 rounded-none border border-white bg-white px-7 text-[0.68rem] font-bold uppercase tracking-widest text-black transition-colors hover:bg-white/82"
                   >
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
                       <path
@@ -136,7 +136,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                   </a>
                   <a
                     href={showroom.emailHref}
-                    className="inline-flex h-13 items-center gap-2 rounded-none border border-white/18 px-5 text-[0.68rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                    className="inline-flex box-border h-16 items-center justify-center gap-3 rounded-none border border-white/18 px-7 text-[0.68rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
                   >
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
                       <rect
@@ -163,7 +163,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
             </Reveal>
 
             <Reveal direction="up" delay={0.16} duration={0.85} distance={30}>
-              <div className="relative min-h-[28rem] overflow-hidden border border-white/14 bg-black lg:min-h-[34rem]">
+              <div className="relative min-h-[24rem] overflow-hidden border border-white/14 bg-black md:min-h-[26rem] lg:min-h-[28rem] xl:min-h-[30rem]">
                 <iframe
                   title="CVR Showroom map"
                   src="https://www.google.com/maps?q=1057%20Fort%20St%2C%20Victoria%2C%20BC%20V8V%203K5&output=embed"

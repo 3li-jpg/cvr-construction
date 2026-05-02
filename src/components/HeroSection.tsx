@@ -196,10 +196,12 @@ export function HeroSection() {
             >
               <a
                 href="/contact"
-                className="inline-flex box-border h-12 w-full items-center justify-center rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] !text-[#000000] transition-colors hover:!bg-[#000000] hover:!text-[#ffffff] sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
+                className="group relative inline-flex box-border h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] !text-[#000000] transition-colors duration-300 hover:!text-[#ffffff] sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
               >
-                <span className="mr-1.5 size-1.5 shrink-0 bg-current sm:mr-2 sm:size-2" />
-                <span>Get Estimate</span>
+                <span className="relative inline-flex items-center whitespace-nowrap">
+                  <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#000000] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
+                  <span className="relative ml-3 sm:ml-4">Book Consultation</span>
+                </span>
               </a>
               <a
                 href="/showroom"

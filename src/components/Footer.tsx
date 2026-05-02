@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Reveal } from "@/components/Reveal";
 import { SocialIconLink } from "@/components/SocialIconLink";
 import TextRoll from "@/components/ui/text-roll";
@@ -84,13 +83,15 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
               <Reveal direction="up" delay={0.35} duration={0.8}>
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex flex-wrap items-center justify-center gap-3">
-                    <InteractiveHoverButton
+                    <Link
                       href="/contact"
-                      variant="light"
-                      className={globalCtaButtonClassName}
+                      className={`${globalCtaButtonClassName} group relative inline-flex items-center justify-center overflow-hidden rounded-none border border-white !bg-white font-semibold uppercase leading-none tracking-[0.1em] !text-black transition-colors duration-300 hover:!text-white sm:tracking-[0.12em]`}
                     >
-                      GET A FREE ESTIMATE
-                    </InteractiveHoverButton>
+                      <span className="relative inline-flex items-center whitespace-nowrap">
+                        <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-black transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
+                        <span className="relative ml-3 sm:ml-4">Get A Free Estimate</span>
+                      </span>
+                    </Link>
                     <a
                       href="/showroom"
                       className={`${globalCtaButtonClassName} inline-flex items-center justify-center rounded-none border border-white/40 font-bold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white/10`}
@@ -198,7 +199,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                           </span>
                           <span className="mt-1 h-px w-7 bg-white/24" />
                           <span className="mt-1 text-[0.5rem] font-black leading-none tracking-[0.14em]">
-                            A+
+                            A
                           </span>
                         </span>
                         <span className="flex flex-col gap-1 leading-none">

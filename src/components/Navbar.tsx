@@ -179,9 +179,17 @@ export function Navbar() {
               href="/"
               onClick={closeMenu}
               tabIndex={expandedHeaderTabIndex}
-              className="justify-self-start text-[2.2rem] font-bold uppercase tracking-[-0.05em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black md:text-[2.45rem]"
+              className="justify-self-start text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              aria-label="CVR Construction home"
             >
-              CVR
+              <span
+                aria-hidden="true"
+                className="block h-14 w-40 bg-current md:h-16 md:w-44"
+                style={{
+                  WebkitMask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
+                  mask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
+                }}
+              />
             </Link>
 
             <nav aria-label="Primary" className="flex items-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
@@ -199,7 +207,7 @@ export function Navbar() {
               ))}
             </nav>
 
-            <div className="justify-self-end" style={{minWidth: "17.5rem"}} />
+            <div className="justify-self-end" style={{minWidth: "22rem"}} />
           </div>
         </div>
       </header>
@@ -209,14 +217,14 @@ export function Navbar() {
           <div className="pointer-events-auto flex items-center gap-2">
             <a
               href={businessContact.phoneHref}
-              className="inline-flex h-11 items-center gap-2 rounded-none border border-black bg-black px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white dark:bg-white dark:text-black"
+              className="inline-flex h-12 min-w-[9rem] items-center justify-center gap-2 rounded-none border border-black bg-black px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white dark:bg-white dark:text-black xl:min-w-[9.75rem]"
             >
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="currentColor" aria-hidden="true">
                 <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
               </svg>
               CALL NOW
             </a>
-            <AnimatedThemeToggler className="h-11 w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
+            <AnimatedThemeToggler className="h-12 w-12 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
             <button
               ref={desktopMenuButtonRef}
               type="button"
@@ -225,7 +233,7 @@ export function Navbar() {
               aria-haspopup="dialog"
               aria-label={menuButtonLabel}
               onClick={() => setIsOpen((current) => !current)}
-              className="inline-flex h-11 min-w-[6.5rem] items-center justify-center rounded-none bg-[#e6e6e2] px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+              className="inline-flex h-12 min-w-[9rem] items-center justify-center rounded-none bg-[#e6e6e2] px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black xl:min-w-[9.75rem]"
             >
               <TextRoll
                 center
@@ -249,9 +257,17 @@ export function Navbar() {
         <Link
           href="/"
           onClick={closeMenu}
-          className="text-[1.95rem] font-bold uppercase tracking-[-0.05em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black md:text-[2.2rem]"
+          className="text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+          aria-label="CVR Construction home"
         >
-          CVR
+          <span
+            aria-hidden="true"
+            className="block h-12 w-36 bg-current md:h-14 md:w-40"
+            style={{
+              WebkitMask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
+              mask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
+            }}
+          />
         </Link>
 
         <div className="flex items-center gap-1.5">
