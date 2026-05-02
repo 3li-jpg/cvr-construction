@@ -217,14 +217,14 @@ export function Navbar() {
           <div className="pointer-events-auto flex items-center gap-2">
             <a
               href={businessContact.phoneHref}
-              className="inline-flex h-12 min-w-[9rem] items-center justify-center gap-2 rounded-none border border-black bg-black px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white dark:bg-white dark:text-black xl:min-w-[9.75rem]"
+              className="inline-flex h-11 min-w-[7.75rem] items-center justify-center gap-2 rounded-none border border-black bg-black px-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white dark:bg-white dark:text-black xl:min-w-[8.25rem]"
             >
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="currentColor" aria-hidden="true">
                 <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
               </svg>
               CALL NOW
             </a>
-            <AnimatedThemeToggler className="h-12 w-12 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
+            <AnimatedThemeToggler className="!h-11 !w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
             <button
               ref={desktopMenuButtonRef}
               type="button"
@@ -233,7 +233,7 @@ export function Navbar() {
               aria-haspopup="dialog"
               aria-label={menuButtonLabel}
               onClick={() => setIsOpen((current) => !current)}
-              className="inline-flex h-12 min-w-[9rem] items-center justify-center rounded-none bg-[#e6e6e2] px-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black xl:min-w-[9.75rem]"
+              className="inline-flex h-11 min-w-[7.75rem] items-center justify-center rounded-none bg-[#e6e6e2] px-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black xl:min-w-[8.25rem]"
             >
               <TextRoll
                 center
