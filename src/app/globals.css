@@ -274,10 +274,10 @@
 #soro-blog .soro-blog-card-title {
   margin: 0 !important;
   color: #f4f2ed !important;
-  font-size: clamp(1.75rem, 5.8vw, 4.4rem) !important;
+  font-size: clamp(1.55rem, 4.6vw, 3.45rem) !important;
   font-weight: 900 !important;
-  letter-spacing: -0.055em !important;
-  line-height: 0.9 !important;
+  letter-spacing: -0.052em !important;
+  line-height: 0.92 !important;
   text-transform: uppercase !important;
   transition: transform 500ms ease !important;
 }
@@ -289,7 +289,7 @@
 #soro-blog .soro-blog-card-excerpt {
   max-width: 46rem !important;
   margin: 0 !important;
-  color: rgba(244, 242, 237, 0.66) !important;
+  color: #f4f2ed !important;
   font-size: 1rem !important;
   line-height: 1.65 !important;
   letter-spacing: -0.01em !important;
@@ -297,7 +297,7 @@
 
 #soro-blog .soro-blog-card-date,
 #soro-blog .soro-blog-article-date {
-  color: rgba(244, 242, 237, 0.48) !important;
+  color: #f4f2ed !important;
   font-size: 0.72rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.16em !important;
@@ -318,7 +318,7 @@
   width: fit-content !important;
   border-bottom: 1px solid currentColor !important;
   padding-bottom: 0.25rem !important;
-  color: rgba(244, 242, 237, 0.68) !important;
+  color: #f4f2ed !important;
   font-size: 0.78rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.14em !important;
@@ -346,13 +346,13 @@
 }
 
 #soro-blog .soro-blog-article-title {
-  max-width: 12ch !important;
+  max-width: 14ch !important;
   margin: 0 !important;
   color: #f4f2ed !important;
-  font-size: clamp(2.4rem, 8vw, 6.4rem) !important;
+  font-size: clamp(2.2rem, 6vw, 4.9rem) !important;
   font-weight: 900 !important;
-  letter-spacing: -0.06em !important;
-  line-height: 0.86 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 0.9 !important;
   text-transform: uppercase !important;
 }
 
@@ -370,14 +370,16 @@
 #soro-blog .soro-blog-article-content {
   max-width: 54rem !important;
   margin: 3rem auto 0 !important;
-  color: rgba(244, 242, 237, 0.72) !important;
-  font-size: 1.05rem !important;
-  line-height: 1.75 !important;
+  color: #f4f2ed !important;
+  font-size: 1.02rem !important;
+  line-height: 1.72 !important;
   letter-spacing: -0.01em !important;
 }
 
-#soro-blog .soro-blog-article-content p {
+#soro-blog .soro-blog-article-content p,
+#soro-blog .soro-blog-article-content li {
   margin: 0 0 1.35rem !important;
+  color: #f4f2ed !important;
 }
 
 #soro-blog .soro-blog-article-content h2,
@@ -391,11 +393,11 @@
 }
 
 #soro-blog .soro-blog-article-content h2 {
-  font-size: clamp(1.8rem, 4vw, 3.3rem) !important;
+  font-size: clamp(1.65rem, 3.2vw, 2.65rem) !important;
 }
 
 #soro-blog .soro-blog-article-content h3 {
-  font-size: clamp(1.28rem, 2.4vw, 1.8rem) !important;
+  font-size: clamp(1.12rem, 1.9vw, 1.45rem) !important;
 }
 
 @media (min-width: 640px) {
