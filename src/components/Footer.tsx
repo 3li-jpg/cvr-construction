@@ -35,6 +35,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
     "inline-flex max-w-full w-fit font-medium tracking-[-0.04em] text-white transition-colors hover:text-white/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
   const globalCtaButtonClassName =
     "z-10 h-14 w-full min-w-[17.5rem] max-w-full px-6 text-[0.78rem] sm:w-[18.5rem]";
+  const bbbBlue = "#005A78";
 
   return (
     <>
@@ -191,25 +192,26 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         target="_blank"
                         rel="noreferrer"
                         aria-label="BBB Accredited Business"
-                        className="mt-7 inline-flex w-fit items-center gap-3 border border-white/14 px-3.5 py-3 text-white/70 transition-colors hover:border-white/38 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                        className="mt-7 inline-flex w-fit items-center gap-3 border px-3.5 py-3 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                        style={{ borderColor: `${bbbBlue}66`, color: bbbBlue }}
                       >
-                        <span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center border border-white/12 text-white">
+                        <span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center border" style={{ borderColor: `${bbbBlue}66` }}>
                           <span className="text-[0.78rem] font-black leading-none tracking-[-0.05em]">
                             BBB
                           </span>
-                          <span className="mt-1 h-px w-7 bg-white/24" />
+                          <span className="mt-1 h-px w-7" style={{ backgroundColor: `${bbbBlue}66` }} />
                           <span className="mt-1 text-[0.5rem] font-black leading-none tracking-[0.14em]">
                             A
                           </span>
                         </span>
                         <span className="flex flex-col gap-1 leading-none">
-                          <span className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-white/42">
+                          <span className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] opacity-70">
                             Accredited
                           </span>
-                          <span className="text-[0.78rem] font-black uppercase tracking-[0.12em] text-white">
+                          <span className="text-[0.78rem] font-black uppercase tracking-[0.12em]">
                             Business
                           </span>
-                          <span className="text-[0.55rem] font-semibold uppercase tracking-[0.12em] text-white/36">
+                          <span className="text-[0.55rem] font-semibold uppercase tracking-[0.12em] opacity-60">
                             Better Business Bureau
                           </span>
                         </span>

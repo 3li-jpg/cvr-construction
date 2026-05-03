@@ -62,8 +62,8 @@ const trustItems = [
     ),
   },
   {
-    label: "12+ Years",
-    sublabel: "On Vancouver Island",
+    label: "20+ Years",
+    sublabel: "Experience",
     icon: (
       <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />

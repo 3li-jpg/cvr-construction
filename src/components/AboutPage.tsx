@@ -10,10 +10,6 @@ import { InteractiveHoverButton } from "@/components/InteractiveHoverButton";
 import { Navbar } from "@/components/Navbar";
 import { PageIntro } from "@/components/PageIntro";
 import { Reveal } from "@/components/Reveal";
-import {
-  ScrollVelocityContainer,
-  ScrollVelocityRow,
-} from "@/components/ScrollVelocity";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { proseHeroClassName } from "@/lib/prose";
@@ -23,7 +19,6 @@ import {
   services,
   studioCertifications,
   studioFacts,
-  studioPartners,
   studioPhilosophy,
   studioYears,
 } from "@/lib/site-data";
@@ -237,39 +232,6 @@ export function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      <section
-        aria-labelledby="partners-heading"
-        className="border-y border-black/10 bg-white py-10 md:py-12"
-      >
-        <div className="site-shell mb-6 flex flex-col items-center gap-2 px-6 text-center sm:px-8 md:px-12 lg:px-20">
-          <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-black/60">
-            OUR PARTNERS
-          </SectionEyebrow>
-          <h2
-            id="partners-heading"
-            className="text-[2.4rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
-          >
-            Trusted By The Best
-          </h2>
-        </div>
-
-        <ScrollVelocityContainer className="pt-2">
-          <ScrollVelocityRow baseVelocity={2.2} direction={1} scrollReactivity={false}>
-            {studioPartners.map((partner) => (
-              <span
-                key={partner.name}
-                className="mr-10 whitespace-nowrap text-[1.8rem] font-black uppercase tracking-[-0.02em] text-black/75 sm:mr-14 sm:text-[2.4rem] md:text-[3rem] lg:text-[3.4rem]"
-              >
-                {partner.name}
-                <span aria-hidden="true" className="mx-6 text-black/20 sm:mx-8">
-                  ◆
-                </span>
-              </span>
-            ))}
-          </ScrollVelocityRow>
-        </ScrollVelocityContainer>
       </section>
 
       <section

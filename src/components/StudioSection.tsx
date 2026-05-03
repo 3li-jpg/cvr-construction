@@ -70,7 +70,7 @@ export function StudioSection() {
         </div>
 
         <div className="flex w-full flex-col lg:flex-row lg:items-start">
-          <div className="flex w-full items-start justify-center pb-12 lg:sticky lg:top-20 lg:w-1/2 lg:self-start lg:pb-0 lg:pr-10 xl:pr-14">
+          <div className="flex w-full items-center justify-center pb-12 lg:sticky lg:top-0 lg:min-h-[100dvh] lg:w-1/2 lg:self-start lg:pb-0 lg:pr-10 xl:pr-14">
             <Reveal direction="up" delay={0.1} duration={1.1} distance={80} className="w-full max-w-[272px] lg:max-w-[381px]">
               <div
                 className="relative w-full overflow-hidden"
@@ -131,6 +131,12 @@ export function StudioSection() {
                 From kitchens and bathrooms to custom spaces and commercial
                 interiors, every project is approached with restraint, precision,
                 and the kind of care that gives the final result lasting weight.
+              </p>
+              <p>
+                Clients choose CVR because they expect more than basic contracting.
+                We bring disciplined project execution, strong design judgment,
+                clear communication, and a level of finish that feels considered
+                in every detail — not just functional, but lasting.
               </p>
             </Reveal>
           </div>

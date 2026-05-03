@@ -28,17 +28,20 @@ export function StorySection() {
 
           <div className={`max-w-xl space-y-6 ${proseBodyClassName}`}>
             <p>
-              CVR Construction is Victoria&apos;s trusted partner for full home
-              remodeling, kitchen renovations, bathroom remodels, and custom
-              spaces. With 12+ years on Vancouver Island, we deliver
-              disciplined craftsmanship — from scope clarity to a final
-              walkthrough that feels polished, confident, and ready to live in.
+              CVR Construction is built on 20+ years experience, backed by
+              craftsmanship spanning three generations. Rooted in Syria, this
+              foundation reflects a disciplined approach to construction—where
+              consistency, precision, and accountability matter, and where skills
+              were developed through hands-on experience with a focus on doing
+              the work right the first time.
             </p>
             <p>
-              Every project is shaped by its own conditions. Whether it&apos;s
-              a whole-home renovation, a commercial upgrade, or bespoke
-              cabinetry, the standard stays the same: work that looks sharp,
-              functions well, and holds its quality long after handover.
+              Now based in Victoria, CVR Construction specializes in full home
+              renovations, kitchen and bathroom remodeling, and custom spaces.
+              Every project is approached with structured planning, clear
+              communication, and disciplined execution—from initial walkthrough
+              to final inspection—delivering work that is technically sound,
+              visually refined, and built to last.
             </p>
           </div>
         </div>

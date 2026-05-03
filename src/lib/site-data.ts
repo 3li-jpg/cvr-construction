@@ -1,4 +1,5 @@
 export const navItems = [
+  { href: "/", label: "Home" },
   { href: "/showroom", label: "Showroom" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
@@ -1508,7 +1509,7 @@ export const showroomContact = {
   addressLine1: "1057 Fort St",
   cityRegionPostal: "Victoria, BC V8V 3K5",
   country: "Canada",
-  phone: "+1 250 466 6531",
+  phone: "+1 (250) 466 6531",
   phoneHref: "tel:+12504666531",
   email: "cvrshowroom@outlook.com",
   emailHref: "mailto:cvrshowroom@outlook.com",
@@ -1608,6 +1609,7 @@ export const socialLinks = [
     label: "Facebook",
   },
   { href: "https://wa.me/12508801270", label: "WhatsApp" },
+  { href: "https://maps.app.goo.gl/WpiNvvknAfY1fdir6", label: "Google" },
   { href: "https://www.yelp.ca/biz/cvr-construction-victoria", label: "Yelp" },
 ] as const;
 
@@ -1651,7 +1653,7 @@ export const studioStats = [
 ] as const;
 
 export const studioFacts = [
-  { value: "12", suffix: "+", label: "Years On The Island" },
+  { value: "20", suffix: "+", label: "Years Experience" },
   { value: "150", suffix: "+", label: "Completed Projects" },
   { value: "40", suffix: "+", label: "Trades Coordinated" },
   { value: "100", suffix: "%", label: "Licensed & Insured" },
@@ -1727,7 +1729,7 @@ export const showroomFacts = [
   { value: "1", suffix: "", label: "Design Guidance", displayValue: "1:1" },
   { value: "10", suffix: "+", label: "Premium Brands" },
   { value: "15", suffix: "", label: "Product Categories" },
-  { value: "12", suffix: "+", label: "Years Experience" },
+  { value: "20", suffix: "+", label: "Years Experience" },
 ] as const;
 
 export const aboutStudioPortrait = {

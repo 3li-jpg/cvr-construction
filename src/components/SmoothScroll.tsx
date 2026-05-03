@@ -1,20 +1,23 @@
 "use client";
 
 import { ReactLenis } from "lenis/react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
-/**
- * Lenis smooth-scroll provider — Archform-style buttery feel with ghosting.
- *
- * Uses **lerp-based** mode so elements perpetually trail behind the scroll
- * target, creating that visible "ghosting" lag on images and components.
- *
- * – `lerp: 0.075`    → low value = more visible trailing/ghosting
- * – `smoothWheel`    → true — smooths discrete wheel ticks into fluid motion
- * – `syncTouch`      → false — native touch inertia is already perfect
- * – `wheelMultiplier: 1` → 1:1 wheel distance
- */
 export function SmoothScroll({ children }: { children: ReactNode }) {
+  const [isTabletTouch, setIsTabletTouch] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia(
+      "(pointer: coarse) and (min-width: 768px) and (max-width: 1366px)"
+    );
+    const update = () => setIsTabletTouch(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  if (isTabletTouch) return <>{children}</>;
+
   return (
     <ReactLenis
       root

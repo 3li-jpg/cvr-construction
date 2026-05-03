@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     template: "%s | CVR Construction",
   },
   description:
-    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. 12+ years on Vancouver Island, licensed & insured. Visit our kitchen & bath showroom.",
+    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. 20+ years experience, licensed & insured. Visit our kitchen & bath showroom.",
   keywords: [
     "CVR Construction",
     "bathroom renovation Victoria BC",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
     description:
-      "Premier bathroom renovation, kitchen remodeling, and home remodeling contractor in Victoria, BC. 12+ years, licensed & insured. Kitchen & bath showroom now open.",
+      "Premier bathroom renovation, kitchen remodeling, and home remodeling contractor in Victoria, BC. 20+ years experience, licensed & insured. Kitchen & bath showroom now open.",
     url: "https://www.cvrconstruction.ca",
     siteName: "CVR Construction",
     locale: "en_CA",

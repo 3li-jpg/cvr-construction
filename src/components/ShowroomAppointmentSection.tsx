@@ -178,6 +178,7 @@ export function ShowroomAppointmentSection() {
 
   return (
     <section
+      id="design-specialist"
       aria-labelledby="appointment-heading"
       className="relative overflow-hidden bg-[var(--showroom-bg)] py-20 text-[var(--showroom-text)] md:py-28 lg:py-32"
     >

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, type Variants } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
@@ -18,7 +19,7 @@ import {
 // Display order for the top-of-page horizontal nav and the expanded menu
 // overlay.
 const orderedNavItems = navItems;
-const desktopNavItems = orderedNavItems;
+const desktopNavItems = orderedNavItems.filter((item) => item.href !== "/");
 const menuNavItems = orderedNavItems;
 
 // Menu curtain animation. The panel uses the site-wide expo-out easing so it
@@ -82,11 +83,28 @@ export function Navbar() {
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isCallChooserOpen, setIsCallChooserOpen] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
   const isHomePage = pathname === "/";
   const isContactPage = pathname === "/contact";
+  const isShowroomPage = pathname === "/showroom";
   const showExpandedNav = !isPastHero && !isOpen;
   const showMobileContactFab = !isContactPage && !isOpen && isPastHero;
+  const constructionCallOption = {
+    label: "Construction Office",
+    chooserLabel: "Construction Office Number",
+    phone: businessContact.phone,
+    phoneHref: businessContact.phoneHref,
+  };
+  const showroomCallOption = {
+    label: "Showroom",
+    chooserLabel: "Showroom Number",
+    phone: showroomContact.phone,
+    phoneHref: showroomContact.phoneHref,
+  };
+  const callOptions = isShowroomPage
+    ? [showroomCallOption, constructionCallOption]
+    : [constructionCallOption, showroomCallOption];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -156,8 +174,25 @@ export function Navbar() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isCallChooserOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsCallChooserOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isCallChooserOpen]);
+
+  const toggleMenu = () => {
+    setIsCallChooserOpen(false);
+    setIsOpen((current) => !current);
+  };
+
   const closeMenu = () => {
     setIsOpen(false);
+    setIsCallChooserOpen(false);
   };
 
   const menuButtonLabel = isOpen ? "Close site navigation" : "Open site navigation";
@@ -167,7 +202,7 @@ export function Navbar() {
     <>
       <header
         aria-hidden={!showExpandedNav}
-        className={`fixed inset-x-0 top-0 z-[99] hidden text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block ${
+        className={`fixed inset-x-0 top-0 z-[99] hidden text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] xl:block ${
           showExpandedNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
@@ -182,13 +217,13 @@ export function Navbar() {
               className="justify-self-start text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               aria-label="CVR Construction home"
             >
-              <span
-                aria-hidden="true"
-                className="block h-12 w-36 bg-current"
-                style={{
-                  WebkitMask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
-                  mask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
-                }}
+              <Image
+                src="/images/cvr-logo-gold-transparent.png"
+                alt=""
+                width={180}
+                height={72}
+                className="h-12 w-36 object-contain"
+                priority
               />
             </Link>
 
@@ -212,18 +247,15 @@ export function Navbar() {
         </div>
       </header>
 
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] hidden lg:block">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] hidden xl:block">
         <div className="site-shell flex justify-end pt-8">
           <div className="pointer-events-auto flex items-center gap-2">
-            <a
-              href={businessContact.phoneHref}
+            <Link
+              href="/contact"
               className="inline-flex h-11 min-w-[7.75rem] items-center justify-center gap-2 rounded-none border border-black bg-black px-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white dark:bg-white dark:text-black xl:min-w-[8.25rem]"
             >
-              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="currentColor" aria-hidden="true">
-                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
-              </svg>
-              CALL NOW
-            </a>
+              CONTACT US
+            </Link>
             <AnimatedThemeToggler className="!h-11 !w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
             <button
               ref={desktopMenuButtonRef}
@@ -232,7 +264,7 @@ export function Navbar() {
               aria-controls={menuId}
               aria-haspopup="dialog"
               aria-label={menuButtonLabel}
-              onClick={() => setIsOpen((current) => !current)}
+              onClick={toggleMenu}
               className="inline-flex h-11 min-w-[7.75rem] items-center justify-center rounded-none bg-[#e6e6e2] px-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black xl:min-w-[8.25rem]"
             >
               <TextRoll
@@ -247,7 +279,7 @@ export function Navbar() {
       </header>
 
       <header
-        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2 pt-2 backdrop-blur dark:border-white/10 dark:bg-black/92 lg:hidden"
+        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2 pt-2 backdrop-blur dark:border-white/10 dark:bg-black/92 xl:hidden"
         style={{
           paddingTop: "max(env(safe-area-inset-top), 0.625rem)",
           paddingLeft: "max(env(safe-area-inset-left), 1rem)",
@@ -260,17 +292,23 @@ export function Navbar() {
           className="text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           aria-label="CVR Construction home"
         >
-          <span
-            aria-hidden="true"
-            className="block h-12 w-36 bg-current md:h-14 md:w-40"
-            style={{
-              WebkitMask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
-              mask: "url('/images/cvr-logo-white-transparent.png') center / contain no-repeat",
-            }}
+          <Image
+            src="/images/cvr-logo-gold-transparent.png"
+            alt=""
+            width={180}
+            height={72}
+            className="h-12 w-36 object-contain md:h-14 md:w-40"
+            priority
           />
         </Link>
 
         <div className="flex items-center gap-1.5">
+          <Link
+            href="/contact"
+            className="hidden md:flex h-12 items-center justify-center rounded-none border border-black/8 bg-black px-3.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white/10 dark:bg-white dark:text-black"
+          >
+            CONTACT US
+          </Link>
           <AnimatedThemeToggler className="h-12 w-12 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
           <button
             ref={mobileMenuButtonRef}
@@ -279,7 +317,7 @@ export function Navbar() {
             aria-controls={menuId}
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
-            onClick={() => setIsOpen((current) => !current)}
+            onClick={toggleMenu}
             className="flex h-12 min-w-[5.35rem] items-center justify-center rounded-none border border-black/8 bg-[#e6e6e2] px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/10 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
             <TextRoll
@@ -294,7 +332,7 @@ export function Navbar() {
 
       <div
         aria-hidden={!showMobileContactFab}
-        className={`fixed left-1/2 z-[101] -translate-x-1/2 transition-all duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] lg:hidden ${
+        className={`fixed left-1/2 z-[101] -translate-x-1/2 transition-all duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] xl:hidden ${
           showMobileContactFab
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"
@@ -303,17 +341,78 @@ export function Navbar() {
           bottom: "max(env(safe-area-inset-bottom, 0px), 1rem)",
         }}
       >
-        <a
-          href={businessContact.phoneHref}
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded={isCallChooserOpen}
+          onClick={() => setIsCallChooserOpen(true)}
           tabIndex={showMobileContactFab ? 0 : -1}
-          className="inline-flex min-h-[3.45rem] whitespace-nowrap items-center gap-2.5 rounded-none bg-black px-6 py-3 text-[0.85rem] font-semibold uppercase tracking-[0.1em] text-white shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-opacity hover:opacity-80"
+          className="inline-flex min-h-[3.45rem] whitespace-nowrap items-center gap-2.5 rounded-none bg-black px-6 py-3 text-[0.85rem] font-semibold uppercase tracking-[0.1em] text-white shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-opacity hover:opacity-80 dark:bg-white dark:text-black"
         >
           <svg viewBox="0 0 24 24" className="h-[1.1rem] w-[1.1rem]" fill="currentColor" aria-hidden="true">
             <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
           </svg>
           CALL NOW
-        </a>
+        </button>
       </div>
+
+      <AnimatePresence>
+        {isCallChooserOpen ? (
+          <motion.div
+            className="fixed inset-0 z-[110] flex items-center justify-center bg-black/45 px-4 py-4 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            onClick={() => setIsCallChooserOpen(false)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="call-chooser-title"
+              className="w-full max-w-sm rounded-none bg-white p-5 text-black shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.28, ease: EASE_OUT_EXPO }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <div>
+                  <p id="call-chooser-title" className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-black/55">
+                    Choose a number
+                  </p>
+                  <p className="mt-1 text-lg font-black uppercase leading-tight tracking-[-0.03em]">
+                    Call CVR
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close call options"
+                  onClick={() => setIsCallChooserOpen(false)}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-none border border-black/10 text-xl leading-none transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="grid gap-2.5">
+                {callOptions.map((option) => (
+                  <a
+                    key={option.label}
+                    href={option.phoneHref}
+                    className="flex min-h-16 flex-col justify-center rounded-none border border-black/10 px-4 py-3 text-left transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                    onClick={() => setIsCallChooserOpen(false)}
+                  >
+                    <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] opacity-60">{option.chooserLabel}</span>
+                    <span className="mt-1 text-base font-semibold tracking-[-0.01em]">{option.phone}</span>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isOpen ? (
@@ -371,20 +470,16 @@ export function Navbar() {
                 <div className="flex flex-col items-center gap-2">
                   <p className="text-[0.7rem] text-white/60">Get in touch</p>
                   <div className="flex flex-col items-center gap-1.5 text-sm tracking-[0.14em] text-white md:text-base">
-                    <a
-                      href={showroomContact.phoneHref}
-                      tabIndex={hiddenMenuTabIndex}
-                      className="transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    >
-                      Showroom / {showroomContact.phone}
-                    </a>
-                    <a
-                      href={businessContact.phoneHref}
-                      tabIndex={hiddenMenuTabIndex}
-                      className="transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    >
-                      Construction / {businessContact.phone}
-                    </a>
+                    {callOptions.map((option) => (
+                      <a
+                        key={option.label}
+                        href={option.phoneHref}
+                        tabIndex={hiddenMenuTabIndex}
+                        className="transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      >
+                        {option.label} / {option.phone}
+                      </a>
+                    ))}
                     <a
                       href={businessContact.emailHref}
                       tabIndex={hiddenMenuTabIndex}

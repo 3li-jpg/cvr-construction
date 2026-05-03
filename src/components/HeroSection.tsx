@@ -99,7 +99,7 @@ export function HeroSection() {
             {prefersReducedMotion ? (
               <h1 className="text-center font-bold uppercase leading-[0.84] tracking-tighter text-[#ffffff]">
                 <span
-                  className="block whitespace-nowrap text-[clamp(3.1rem,14vw,4.4rem)] normal-case leading-[0.82] tracking-normal md:text-[5.74rem]"
+                  className="block whitespace-nowrap text-[clamp(3.1rem,14vw,4.4rem)] normal-case leading-[0.82] tracking-normal lg:text-[5.74rem]"
                   style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic", fontWeight: 400 }}
                 >
                   Victoria&apos;s{" "}
@@ -107,20 +107,20 @@ export function HeroSection() {
                     Premium
                   </em>
                 </span>
-                <span className="mt-1 block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] md:hidden">
+                <span className="mt-1 block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] lg:hidden">
                   HOME
                 </span>
-                <span className="block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] md:hidden">
+                <span className="block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] lg:hidden">
                   REMODELING
                 </span>
-                <span className="mt-1 hidden whitespace-nowrap text-[5.95rem] leading-[0.82] md:block">
+                <span className="mt-1 hidden whitespace-nowrap text-[5.95rem] leading-[0.82] lg:block">
                   HOME REMODELING
                 </span>
               </h1>
             ) : (
               <h1 className="text-center font-bold uppercase leading-[0.84] tracking-tighter text-[#ffffff]">
                 <span
-                  className="block whitespace-nowrap text-[clamp(3.1rem,14vw,4.4rem)] normal-case leading-[0.82] tracking-normal md:text-[5.74rem]"
+                  className="block whitespace-nowrap text-[clamp(3.1rem,14vw,4.4rem)] normal-case leading-[0.82] tracking-normal lg:text-[5.74rem]"
                   style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic", fontWeight: 400 }}
                 >
                   <BlurTextAnimation
@@ -134,7 +134,7 @@ export function HeroSection() {
                     repeat={false}
                   />
                 </span>
-                <span className="mt-1 block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] md:hidden">
+                <span className="mt-1 block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] lg:hidden">
                   <BlurTextAnimation
                     text="HOME"
                     className="block"
@@ -145,7 +145,7 @@ export function HeroSection() {
                     repeat={false}
                   />
                 </span>
-                <span className="block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] md:hidden">
+                <span className="block whitespace-nowrap text-[clamp(3.05rem,13.6vw,4.25rem)] leading-[0.82] lg:hidden">
                   <BlurTextAnimation
                     text="REMODELING"
                     className="block"
@@ -156,7 +156,7 @@ export function HeroSection() {
                     repeat={false}
                   />
                 </span>
-                <span className="mt-1 hidden whitespace-nowrap text-[5.95rem] leading-[0.82] md:block">
+                <span className="mt-1 hidden whitespace-nowrap text-[5.95rem] leading-[0.82] lg:block">
                   <BlurTextAnimation
                     text="HOME REMODELING"
                     className="block"

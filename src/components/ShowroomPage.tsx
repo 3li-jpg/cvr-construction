@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Script from "next/script";
-import { motion, type Variants } from "motion/react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import BlurTextAnimation from "@/components/ui/blur-text-animation";
@@ -92,6 +92,8 @@ export function ShowroomPage() {
   const heroRef = useRef<HTMLElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isTabletTouch, setIsTabletTouch] = useState(false);
+  const [isOpeningSoonOpen, setIsOpeningSoonOpen] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -100,11 +102,32 @@ export function ShowroomPage() {
     updatePreference();
     mediaQuery.addEventListener("change", updatePreference);
 
-    return () => mediaQuery.removeEventListener("change", updatePreference);
+    const tabletQuery = window.matchMedia(
+      "(pointer: coarse) and (min-width: 768px) and (max-width: 1366px)"
+    );
+    const updateTablet = () => setIsTabletTouch(tabletQuery.matches);
+    updateTablet();
+    tabletQuery.addEventListener("change", updateTablet);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updatePreference);
+      tabletQuery.removeEventListener("change", updateTablet);
+    };
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (!isOpeningSoonOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpeningSoonOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpeningSoonOpen]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || isTabletTouch) return;
 
     let frame = 0;
     const updateTransform = () => {
@@ -133,7 +156,7 @@ export function ShowroomPage() {
       window.removeEventListener("scroll", requestTick);
       window.removeEventListener("resize", requestTick);
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, isTabletTouch]);
 
   const indicatorAnimation = prefersReducedMotion
     ? { opacity: 1 }
@@ -155,6 +178,71 @@ export function ShowroomPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(showroomSchema) }}
       />
       <Navbar />
+
+      <AnimatePresence>
+        {isOpeningSoonOpen ? (
+          <motion.div
+            className="fixed inset-0 z-[130] flex items-center justify-center bg-black/62 px-4 py-6 text-white backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28 }}
+            onClick={() => setIsOpeningSoonOpen(false)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="opening-soon-title"
+              className="relative w-full max-w-[28rem] overflow-hidden rounded-none border border-white/18 bg-[#0a0a09] p-7 text-center shadow-[0_28px_90px_rgba(0,0,0,0.5)] sm:p-8"
+              initial={{ opacity: 0, y: 26, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.97 }}
+              transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.14),transparent_45%)]"
+              />
+              <button
+                type="button"
+                aria-label="Close opening soon message"
+                onClick={() => setIsOpeningSoonOpen(false)}
+                className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center border border-white/16 text-xl leading-none text-white/80 transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                ×
+              </button>
+
+              <div className="relative z-10 flex flex-col items-center">
+                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center border border-white/18 bg-white/8 text-[0.72rem] font-black uppercase tracking-[0.16em] text-white">
+                  CVR
+                </span>
+                <p className="mb-3 flex items-center justify-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white/58">
+                  <span className="h-1.5 w-1.5 bg-current" />
+                  Showroom Update
+                </p>
+                <h2
+                  id="opening-soon-title"
+                  className="text-[3rem] font-black uppercase leading-[0.86] tracking-[-0.06em] sm:text-[4rem]"
+                >
+                  Opening Soon!
+                </h2>
+                <p className="mt-5 max-w-[22rem] text-[0.98rem] leading-7 text-white/68">
+                  Our luxury kitchen and bath showroom is almost ready. You can still explore the page and request a design consultation.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsOpeningSoonOpen(false)}
+                  className="group relative mt-7 inline-flex h-12 min-w-[12rem] items-center justify-center overflow-hidden border border-white bg-white px-5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors duration-300 hover:text-white"
+                >
+                  <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-black transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96" />
+                  <span className="relative">Continue</span>
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <section
         ref={heroRef}
@@ -183,28 +271,28 @@ export function ShowroomPage() {
             <div className="flex w-full flex-col items-center">
               {prefersReducedMotion ? (
                 <h1 className="text-center font-bold uppercase leading-[0.84] tracking-tighter text-[#ffffff]">
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     LUXURY KITCHEN
                   </span>
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     &amp; BATH
                   </span>
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     SHOWROOM
                   </span>
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     IN VICTORIA
                   </span>
-                  <span className="mt-1 hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] md:block">
+                  <span className="mt-1 hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] lg:block">
                     LUXURY KITCHEN &amp; BATH
                   </span>
-                  <span className="hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] md:block">
+                  <span className="hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] lg:block">
                     SHOWROOM IN VICTORIA
                   </span>
                 </h1>
               ) : (
                 <h1 className="text-center font-bold uppercase leading-[0.84] tracking-tighter text-[#ffffff]">
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     <BlurTextAnimation
                       text="LUXURY KITCHEN"
                       className="block"
@@ -215,7 +303,7 @@ export function ShowroomPage() {
                       repeat={false}
                     />
                   </span>
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     <BlurTextAnimation
                       text="& BATH"
                       className="block"
@@ -226,7 +314,7 @@ export function ShowroomPage() {
                       repeat={false}
                     />
                   </span>
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     <BlurTextAnimation
                       text="SHOWROOM"
                       className="block"
@@ -237,7 +325,7 @@ export function ShowroomPage() {
                       repeat={false}
                     />
                   </span>
-                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] md:hidden">
+                  <span className="block whitespace-nowrap text-[clamp(2.25rem,10.4vw,3.45rem)] leading-[0.84] lg:hidden">
                     <BlurTextAnimation
                       text="IN VICTORIA"
                       className="block"
@@ -248,7 +336,7 @@ export function ShowroomPage() {
                       repeat={false}
                     />
                   </span>
-                  <span className="mt-1 hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] md:block">
+                  <span className="mt-1 hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] lg:block">
                     <BlurTextAnimation
                       text="LUXURY KITCHEN & BATH"
                       className="block"
@@ -259,7 +347,7 @@ export function ShowroomPage() {
                       repeat={false}
                     />
                   </span>
-                  <span className="hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] md:block">
+                  <span className="hidden whitespace-nowrap text-[clamp(4.2rem,6.2vw,5.6rem)] leading-[0.82] lg:block">
                     <BlurTextAnimation
                       text="SHOWROOM IN VICTORIA"
                       className="block"
@@ -302,18 +390,24 @@ export function ShowroomPage() {
                   href={showroomContact.mapsHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="group relative inline-flex box-border h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] !text-[#000000] transition-colors duration-300 hover:!text-[#ffffff] sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
+                  className="inline-flex box-border h-12 w-full items-center justify-center rounded-none border border-white/45 bg-transparent px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] text-white transition-colors hover:border-white hover:bg-white hover:text-black sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
                 >
-                  <span className="relative inline-flex items-center whitespace-nowrap">
-                    <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#000000] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
-                    <span className="relative ml-3 sm:ml-4">Get Directions</span>
-                  </span>
+                  Get Directions
                 </a>
                 <a
                   href={showroomContact.phoneHref}
                   className="inline-flex box-border h-12 w-full items-center justify-center rounded-none border border-white/45 bg-transparent px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] text-white transition-colors hover:border-white hover:bg-white hover:text-black sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
                 >
                   Call Showroom
+                </a>
+                <a
+                  href="#design-specialist"
+                  className="group relative col-span-2 mx-auto inline-flex box-border h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] !text-[#000000] transition-colors duration-300 hover:!text-[#ffffff] sm:w-[calc((100%_-_0.75rem)/2)] sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
+                >
+                  <span className="relative inline-flex items-center whitespace-nowrap">
+                    <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#000000] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
+                    <span className="relative ml-3 sm:ml-4">Get Design Consultation</span>
+                  </span>
                 </a>
               </div>
             </div>
@@ -458,7 +552,7 @@ export function ShowroomPage() {
         />
         <div className="site-shell relative z-10 mb-7 flex flex-col items-center gap-2 text-center">
           <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-white/58">
-            BRANDS IN STORE
+            BRANDS WE WORK WITH
           </SectionEyebrow>
           <h2
             id="brands-heading"

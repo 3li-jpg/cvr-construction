@@ -125,7 +125,7 @@ export function ProjectsSection() {
     const updateTransforms = () => {
       frame = 0;
 
-      const isDesktop = window.innerWidth >= 1024;
+      const isDesktop = window.innerWidth >= 1280;
       const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
       const activeCardRefs = isDesktop
         ? desktopCardRefs.current
@@ -186,13 +186,9 @@ export function ProjectsSection() {
         }
 
         const imageOffset = (0.5 - progress) * 70;
-        const cardEase = clamp((progress - 0.05) / 0.85, 0, 1);
-        const outwardDrift = 1 - Math.pow(1 - cardEase, 1.5);
-        const mobileTargetX = index % 2 === 0 ? -42 : 42;
-        const horizontalOffset = mobileTargetX * outwardDrift;
         const verticalOffset = (0.5 - progress) * 14;
 
-        card.style.transform = `translate3d(${horizontalOffset.toFixed(2)}px, ${verticalOffset.toFixed(2)}px, 0)`;
+        card.style.transform = `translate3d(0, ${verticalOffset.toFixed(2)}px, 0)`;
         image.style.transform = `translate3d(0, ${imageOffset.toFixed(2)}px, 0) scale(1.06)`;
       });
     };
@@ -221,9 +217,9 @@ export function ProjectsSection() {
   }, []);
 
   return (
-    <section className="w-full overflow-x-clip bg-white py-20 text-black lg:py-24">
+    <section className="w-full overflow-x-clip bg-white py-20 text-black xl:py-24">
       <div className="site-shell">
-        <div className="mb-10 flex flex-col items-center text-center lg:hidden">
+        <div className="mb-10 flex flex-col items-center text-center xl:hidden">
           <SectionEyebrow className="mb-5 justify-center text-[0.68rem] tracking-widest text-black">
             PROJECTS
           </SectionEyebrow>
@@ -240,7 +236,7 @@ export function ProjectsSection() {
           </TextAnimate>
         </div>
 
-        <div className="flex flex-col gap-10 sm:gap-12 lg:hidden">
+        <div className="flex flex-col gap-10 sm:gap-12 xl:hidden">
           {projects.map((project, projectIndex) => (
             <div
               key={project.title}
@@ -256,8 +252,8 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        <div className="hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(15rem,20rem)_minmax(0,1fr)] lg:gap-x-[1.5vw]">
-          <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 lg:order-1 lg:gap-[9rem]">
+        <div className="hidden xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(15rem,20rem)_minmax(0,1fr)] xl:gap-x-[1.5vw]">
+          <div className="order-2 flex flex-col items-end gap-14 sm:gap-16 xl:order-1 xl:gap-[9rem]">
             {leftProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}
@@ -269,7 +265,7 @@ export function ProjectsSection() {
             ))}
           </div>
 
-          <div className="order-1 hidden lg:order-2 lg:block">
+          <div className="order-1 hidden xl:order-2 xl:block">
             <div className="sticky top-1/2 -translate-y-1/2">
               <div className="flex flex-col items-center text-center">
                 <SectionEyebrow className="mb-5 justify-center text-[0.68rem] tracking-widest text-black">
@@ -290,7 +286,7 @@ export function ProjectsSection() {
             </div>
           </div>
 
-          <div className="order-3 flex flex-col items-start gap-14 sm:gap-16 lg:gap-[9rem] lg:pt-[7rem]">
+          <div className="order-3 flex flex-col items-start gap-14 sm:gap-16 xl:gap-[9rem] xl:pt-[7rem]">
             {rightProjectIndexes.map((projectIndex) => (
               <ProjectCard
                 key={projects[projectIndex].title}
@@ -303,7 +299,7 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        <div className="flex justify-center pt-12 sm:pt-14 lg:pt-20">
+        <div className="flex justify-center pt-12 sm:pt-14 xl:pt-20">
           <InteractiveHoverButton href="/projects" className="px-4 text-[0.64rem] font-bold tracking-[0.12em] md:px-4.5 md:text-[0.72rem] md:tracking-[0.12em]">
             VIEW ALL PROJECTS
           </InteractiveHoverButton>
