@@ -79,13 +79,13 @@ export function HeroSection() {
         className="absolute inset-x-0 top-[-5%] h-[110%] will-change-transform"
       >
         <Image
-          src="/images/victoria-garden-studio-hero.png"
+          src="/images/victoria-garden-studio-hero-optimized.webp"
           alt="CVR Construction backyard garden studio in Victoria BC"
           fill
           priority
           fetchPriority="high"
+          quality={100}
           sizes="100vw"
-          unoptimized
           className="object-cover object-[center_70%]"
         />
       </div>

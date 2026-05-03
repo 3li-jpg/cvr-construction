@@ -58,18 +58,18 @@ export function ShowcaseSection() {
         className="absolute inset-x-0 top-[-5%] h-[110%] will-change-transform"
       >
         <Image
-          src="/images/victoria-modern-bathroom-vanity-portrait.png"
+          src="/images/victoria-modern-bathroom-vanity-portrait-optimized.webp"
           alt="CVR Construction bathroom vanity detail in Victoria BC"
           fill
-          quality={90}
+          quality={100}
           sizes="100vw"
           className="object-cover object-center md:hidden"
         />
         <Image
-          src="/images/victoria-modern-bathroom-vanity-landscape.png"
+          src="/images/victoria-modern-bathroom-vanity-landscape-optimized.webp"
           alt="CVR Construction bathroom vanity detail in Victoria BC"
           fill
-          quality={90}
+          quality={100}
           sizes="100vw"
           className="hidden object-cover object-center md:block"
         />
