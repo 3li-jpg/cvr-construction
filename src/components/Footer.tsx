@@ -122,7 +122,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
         </section>
       ) : null}
 
-      <footer className="relative z-10 min-h-[100svh] w-full overflow-hidden bg-black text-white md:min-h-[100dvh]">
+      <footer id="site-footer" className="relative z-10 min-h-[100svh] w-full overflow-hidden bg-black text-white md:min-h-[100dvh]">
         <div className="site-shell relative z-10 flex min-h-[100svh] w-full flex-col px-4 pb-18 pt-18 sm:px-5 sm:pb-20 md:min-h-[100dvh] md:px-7 md:pt-20 md:pb-22 lg:px-9 lg:pt-22 lg:pb-24">
           <div className="mx-auto flex w-full max-w-[84rem] flex-1 flex-col">
             <div className="border-t border-white/10" />

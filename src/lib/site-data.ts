@@ -1608,6 +1608,14 @@ export const socialLinks = [
     href: "https://www.facebook.com/profile.php?id=61552800609732",
     label: "Facebook",
   },
+  {
+    href: "https://www.tiktok.com/@cvr.construction",
+    label: "TikTok",
+  },
+  {
+    href: "https://www.youtube.com/@cvrconstructionltd",
+    label: "YouTube",
+  },
   { href: "https://wa.me/12508801270", label: "WhatsApp" },
   { href: "https://maps.app.goo.gl/WpiNvvknAfY1fdir6", label: "Google" },
   { href: "https://www.yelp.ca/biz/cvr-construction-victoria", label: "Yelp" },

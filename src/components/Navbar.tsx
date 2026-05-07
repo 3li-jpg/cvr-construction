@@ -85,11 +85,12 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallChooserOpen, setIsCallChooserOpen] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
   const isHomePage = pathname === "/";
   const isContactPage = pathname === "/contact";
   const isShowroomPage = pathname === "/showroom";
   const showExpandedNav = !isPastHero && !isOpen;
-  const showMobileContactFab = !isContactPage && !isOpen && isPastHero;
+  const showMobileContactFab = !isContactPage && !isOpen && isPastHero && !isFooterVisible;
   const constructionCallOption = {
     label: "Construction Office",
     chooserLabel: "Construction Office Number",
@@ -120,6 +121,23 @@ export function Navbar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomePage]);
+
+  useEffect(() => {
+    const footer = document.getElementById("site-footer");
+
+    if (!footer) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsFooterVisible(entry.isIntersecting),
+      { threshold: 0.02 }
+    );
+
+    observer.observe(footer);
+
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     if (!isOpen) {

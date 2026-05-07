@@ -1,7 +1,13 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
-import type { socialLinks } from "@/lib/site-data";
 
-type SocialLinkLabel = (typeof socialLinks)[number]["label"];
+type SocialLinkLabel =
+  | "Instagram"
+  | "Facebook"
+  | "TikTok"
+  | "YouTube"
+  | "WhatsApp"
+  | "Google"
+  | "Yelp";
 
 type SocialIconLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   label: SocialLinkLabel;
@@ -11,6 +17,8 @@ type SocialIconLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 const socialIconColors: Record<SocialLinkLabel, string> = {
   Instagram: "#E4405F",
   Facebook: "#1877F2",
+  TikTok: "#FFFFFF",
+  YouTube: "#FF0000",
   WhatsApp: "#25D366",
   Google: "#4285F4",
   Yelp: "#D32323",
@@ -35,6 +43,16 @@ const iconRenderers: Record<SocialLinkLabel, (className: string) => ReactNode> =
   Facebook: (className) => (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M14.2 8.25h2.35V4.6h-2.9c-3.15 0-4.85 1.9-4.85 4.8v2.05H6v3.7h2.8V22h4.05v-6.85h2.85l.55-3.7h-3.4V9.8c0-1.05.35-1.55 1.35-1.55Z" />
+    </svg>
+  ),
+  TikTok: (className) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.4 5.55a5.08 5.08 0 0 1-1.4-3.48h-3.37v13.36a2.86 2.86 0 1 1-2.03-2.74V9.27a6.26 6.26 0 1 0 5.4 6.2V8.67a8.4 8.4 0 0 0 4.9 1.56V6.86a5.04 5.04 0 0 1-3.5-1.31Z" />
+    </svg>
+  ),
+  YouTube: (className) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M21.58 7.19a2.75 2.75 0 0 0-1.94-1.95C17.92 4.78 12 4.78 12 4.78s-5.92 0-7.64.46a2.75 2.75 0 0 0-1.94 1.95A28.7 28.7 0 0 0 1.96 12c0 1.6.15 3.2.46 4.81a2.75 2.75 0 0 0 1.94 1.95c1.72.46 7.64.46 7.64.46s5.92 0 7.64-.46a2.75 2.75 0 0 0 1.94-1.95c.31-1.61.46-3.21.46-4.81 0-1.6-.15-3.2-.46-4.81ZM10 15.27V8.73L15.45 12 10 15.27Z" />
     </svg>
   ),
   WhatsApp: (className) => (

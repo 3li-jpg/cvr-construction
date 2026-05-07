@@ -59,6 +59,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "rWHfeQE_HjxgAXavOC3ikn617ngYRyqWEjFdp1rV7ck",
+  },
   openGraph: {
     title: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
     description:
