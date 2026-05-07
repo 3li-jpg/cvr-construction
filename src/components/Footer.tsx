@@ -163,7 +163,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         </a>
                         <a
                           href={businessContact.phoneHref}
-                          className={`${metaLinkClassName} mt-3 inline-flex text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
                         >
                           {businessContact.phone}
                         </a>
@@ -184,7 +184,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         </a>
                         <a
                           href={showroomContact.phoneHref}
-                          className={`${metaLinkClassName} mt-3 inline-flex text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
                         >
                           {showroomContact.phone}
                         </a>
