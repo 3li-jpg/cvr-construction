@@ -161,6 +161,12 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                           <span>{businessContact.addressLine1}</span>
                           <span>{businessContact.cityRegionPostal}</span>
                         </a>
+                        <a
+                          href={businessContact.phoneHref}
+                          className={`${metaLinkClassName} mt-3 inline-flex text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                        >
+                          {businessContact.phone}
+                        </a>
                       </div>
                       <div>
                         <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
@@ -176,14 +182,17 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                           <span>{showroomContact.addressLine1}</span>
                           <span>{showroomContact.cityRegionPostal}</span>
                         </a>
+                        <a
+                          href={showroomContact.phoneHref}
+                          className={`${metaLinkClassName} mt-3 inline-flex text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                        >
+                          {showroomContact.phone}
+                        </a>
                       </div>
                     </div>
                     <div className="mt-5 flex flex-col gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60">
                       <a href={businessContact.emailHref} className={metaLinkClassName}>
                         {businessContact.email.toUpperCase()}
-                      </a>
-                      <a href={businessContact.phoneHref} className={metaLinkClassName}>
-                        {businessContact.phone}
                       </a>
                     </div>
                     {bbbAccreditedHref ? (
