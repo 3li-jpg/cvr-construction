@@ -6,12 +6,25 @@ import { PageIntro } from "@/components/PageIntro";
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { buildPageMetadata } from "@/lib/metadata";
-import { businessContact, contactHero } from "@/lib/site-data";
+import { businessContact, contactHero, showroomContact } from "@/lib/site-data";
+
+const contactLocations = [
+  {
+    name: "CVR Construction",
+    label: "Construction Office",
+    contact: businessContact,
+  },
+  {
+    name: "CVR Showroom",
+    label: "Kitchen & Bath Showroom",
+    contact: showroomContact,
+  },
+] as const;
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Contact CVR Construction in Victoria, BC for premium renovations, kitchens, bathrooms, custom spaces, and commercial upgrades.",
+    "Contact CVR Construction and the CVR Showroom in Victoria, BC for premium renovations, kitchens, bathrooms, custom spaces, and commercial upgrades.",
   path: "/contact",
   image: contactHero.src,
   imageAlt: contactHero.alt,
@@ -56,43 +69,64 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                <a
-                  href={businessContact.phoneHref}
-                  className="group flex h-full flex-col justify-between gap-8 border border-border p-6 transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background md:p-7"
-                >
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground group-hover:text-background/62 group-focus-visible:text-background/62">
-                    Call Directly
-                  </span>
-                  <span className="text-[1.65rem] font-black uppercase leading-[1.02] tracking-[-0.045em] sm:text-[1.85rem]">
-                    {businessContact.phone}
-                  </span>
-                </a>
+              <div className="grid gap-3">
+                {contactLocations.map(({ name, label, contact }, index) => (
+                  <article
+                    key={name}
+                    className="group relative overflow-hidden border border-border bg-card/45 p-5 text-card-foreground transition-colors duration-300 hover:border-foreground/35 md:p-6"
+                  >
+                    <span className="absolute right-5 top-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground md:right-6 md:top-6">
+                      0{index + 1}
+                    </span>
 
-                <a
-                  href={businessContact.emailHref}
-                  className="group flex h-full flex-col justify-between gap-8 border border-border p-6 transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background md:p-7"
-                >
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground group-hover:text-background/62 group-focus-visible:text-background/62">
-                    Email CVR
-                  </span>
-                  <span className="break-all text-[1.15rem] font-black uppercase leading-[1.08] tracking-[-0.035em] sm:text-[1.35rem] md:text-[1.5rem]">
-                    {businessContact.email}
-                  </span>
-                </a>
-              </div>
+                    <div className="max-w-[24rem] pr-12">
+                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                        {name}
+                      </p>
+                      <h3 className="mt-2 text-[1.35rem] font-black uppercase leading-[0.98] tracking-[-0.04em] text-foreground sm:text-[1.55rem]">
+                        {label}
+                      </h3>
+                    </div>
 
-              <div className="border border-border p-6 md:p-7">
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Office
-                </p>
-                <p className="mt-4 text-[1rem] leading-7 text-foreground/76">
-                  {businessContact.addressLine1}
-                  <br />
-                  {businessContact.cityRegionPostal}
-                  <br />
-                  {businessContact.country}
-                </p>
+                    <div className="mt-6 grid gap-5 border-t border-border pt-5 sm:grid-cols-[minmax(0,0.88fr)_minmax(0,1fr)] sm:items-end lg:grid-cols-1 xl:grid-cols-[minmax(0,0.88fr)_minmax(0,1fr)]">
+                      <a
+                        href={contact.mapsHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-fit text-[0.95rem] leading-6 text-foreground/72 transition-opacity hover:opacity-60"
+                      >
+                        {contact.addressLine1}
+                        <br />
+                        {contact.cityRegionPostal}
+                        <br />
+                        {contact.country}
+                      </a>
+
+                      <div className="grid gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.12em]">
+                        <a
+                          href={contact.phoneHref}
+                          className="flex flex-col items-start gap-2 border border-border px-4 py-3 text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                        >
+                          <span className="text-muted-foreground transition-colors group-hover:text-muted-foreground">
+                            Call
+                          </span>
+                          <span className="tracking-[-0.02em] sm:text-right">{contact.phone}</span>
+                        </a>
+                        <a
+                          href={contact.emailHref}
+                          className="flex flex-col items-start gap-2 border border-border px-4 py-3 text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                        >
+                          <span className="text-muted-foreground transition-colors group-hover:text-muted-foreground">
+                            Email
+                          </span>
+                          <span className="break-all tracking-[-0.02em] sm:text-right">
+                            {contact.email}
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </Reveal>
@@ -107,7 +141,7 @@ export default function ContactPage() {
                   Start The Conversation
                 </h3>
                 <p className="text-[0.98rem] leading-7 text-muted-foreground md:text-[1rem]">
-                  The WhatsApp draft stays prefilled so you can review everything before sending.
+                  The email draft stays prefilled so you can review everything before sending.
                 </p>
               </div>
 

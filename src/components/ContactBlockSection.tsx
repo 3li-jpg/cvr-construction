@@ -2,7 +2,8 @@
 
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
-import { businessContact, showroomContact } from "@/lib/site-data";
+import { SocialIconLink } from "@/components/SocialIconLink";
+import { businessContact, showroomContact, socialLinks } from "@/lib/site-data";
 
 const contacts = [
   {
@@ -19,7 +20,7 @@ const contacts = [
   },
   {
     eyebrow: "CVR Showroom",
-    sublabel: "Walk-In Showroom",
+    sublabel: "Kitchen & Bath Showroom",
     addressLine1: showroomContact.addressLine1,
     cityRegionPostal: showroomContact.cityRegionPostal,
     phone: showroomContact.phone,
@@ -29,6 +30,10 @@ const contacts = [
     mapsHref: showroomContact.mapsHref,
   },
 ];
+
+const showroomSocialLabels = ["Instagram", "Facebook", "YouTube", "TikTok", "Google", "WhatsApp"];
+
+const showroomSocialLinks = socialLinks.filter((link) => showroomSocialLabels.includes(link.label));
 
 type ContactBlockSectionProps = {
   showroomOnly?: boolean;
@@ -59,111 +64,164 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
             </div>
           </Reveal>
 
-          <div className="grid gap-8 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-12 lg:pt-8 xl:gap-14">
-            <Reveal direction="up" delay={0.08} duration={0.85} distance={30}>
-              <div className="flex h-full flex-col items-center justify-between gap-8 py-1 text-center">
-                <div className="flex flex-col items-center gap-6">
-                  <div>
-                    <p className="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/48">
-                      CVR Showroom
-                    </p>
-                    <p className="text-[1.1rem] leading-7 text-white/72 md:text-[1.14rem]">
-                      Walk-In Showroom
-                      <br />
-                      {showroom.addressLine1}
-                      <br />
-                      {showroom.cityRegionPostal}
-                    </p>
+          <div className="grid items-stretch gap-8 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-12 lg:pt-8 xl:gap-14">
+            <Reveal direction="up" delay={0.08} duration={0.85} distance={30} className="h-full">
+              <div data-showroom-contact-card className="relative h-full overflow-hidden border border-white/14 bg-white/[0.035] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm sm:p-6 lg:p-7">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/55 to-transparent"
+                />
+
+                <div className="flex h-full flex-col gap-6">
+                  <div className="flex items-start justify-between gap-5">
+                    <div>
+                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-white/48">
+                        CVR Showroom
+                      </p>
+                      <h3 className="mt-3 max-w-[10ch] text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.055em] text-white sm:text-[2.55rem] lg:text-[2.8rem]">
+                        Kitchen & Bath Showroom
+                      </h3>
+                    </div>
+                    <span className="border border-white/14 px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/48">
+                      Victoria
+                    </span>
                   </div>
 
-                  <div>
+                  <div className="grid gap-3 border-y border-white/10 py-5">
+                    <a
+                      href={showroom.mapsHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group grid gap-1 text-white transition-opacity hover:opacity-75"
+                    >
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/42">
+                        Visit
+                      </span>
+                      <span className="text-[1.08rem] leading-7 text-white/76">
+                        {showroom.addressLine1}
+                        <br />
+                        {showroom.cityRegionPostal}
+                      </span>
+                    </a>
+                  </div>
+
+                  <div className="grid gap-2">
                     <a
                       href={showroom.phoneHref}
-                      className="block text-center text-[2rem] font-black uppercase leading-[0.92] tracking-[-0.055em] text-white transition-opacity hover:opacity-70 sm:text-[3rem] lg:text-[3.2rem] xl:text-[3.35rem]"
+                      className="group flex items-center justify-between gap-4 border border-white/12 px-4 py-3.5 transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     >
-                      {showroom.phone}
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/48 transition-colors group-hover:text-black/52">
+                        Call
+                      </span>
+                      <span className="text-right text-[1rem] font-black uppercase tracking-[-0.025em] sm:text-[1.1rem]">
+                        {showroom.phone}
+                      </span>
                     </a>
                     <a
                       href={showroom.emailHref}
-                      className="mt-4 block break-all text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-white/58 transition-opacity hover:opacity-80 md:text-[0.88rem]"
+                      className="group flex flex-col items-start gap-2 border border-white/12 px-4 py-3.5 transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                     >
-                      {showroom.email}
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/48 transition-colors group-hover:text-black/52">
+                        Email
+                      </span>
+                      <span className="break-all text-[0.84rem] font-black uppercase tracking-[0.08em] sm:text-right">
+                        {showroom.email}
+                      </span>
                     </a>
                   </div>
-                </div>
 
-                <div className="flex flex-wrap justify-center gap-2">
-                  <a
-                    href={showroom.mapsHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex box-border h-16 items-center justify-center gap-3 rounded-none border border-white/18 px-7 text-[0.68rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
-                  >
-                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <circle
-                        cx="12"
-                        cy="10"
-                        r="3"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Get Directions
-                  </a>
-                  <a
-                    href={showroom.phoneHref}
-                    className="inline-flex box-border h-16 items-center justify-center gap-3 rounded-none border border-white bg-white px-7 text-[0.68rem] font-bold uppercase tracking-widest text-black transition-colors hover:bg-white/82"
-                  >
-                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Call Now
-                  </a>
-                  <a
-                    href={showroom.emailHref}
-                    className="inline-flex box-border h-16 items-center justify-center gap-3 rounded-none border border-white/18 px-7 text-[0.68rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
-                  >
-                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                      <rect
-                        x="2"
-                        y="4"
-                        width="20"
-                        height="16"
-                        rx="2"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Email
-                  </a>
+                  <div className="mt-auto flex flex-col gap-3 border border-white/10 bg-black/24 p-4">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/45">
+                      Follow The Showroom
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {showroomSocialLinks.map((link) => (
+                        <SocialIconLink
+                          key={link.label}
+                          href={link.href}
+                          label={link.label}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-11 w-11 items-center justify-center border border-white/14 bg-white/[0.03] text-white transition-colors hover:border-white hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                          iconClassName="h-4.5 w-4.5"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid gap-2 sm:grid-cols-3">
+                    <a
+                      href={showroom.mapsHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex h-14 items-center justify-center gap-2 border border-white/18 px-4 text-[0.62rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                    >
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <circle
+                          cx="12"
+                          cy="10"
+                          r="3"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Directions
+                    </a>
+                    <a
+                      href={showroom.phoneHref}
+                      className="inline-flex h-14 items-center justify-center gap-2 border border-white bg-white px-4 text-[0.62rem] font-bold uppercase tracking-widest text-black transition-colors hover:bg-white/82"
+                    >
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Call
+                    </a>
+                    <a
+                      href={showroom.emailHref}
+                      className="inline-flex h-14 items-center justify-center gap-2 border border-white/18 px-4 text-[0.62rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                    >
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
+                        <rect
+                          x="2"
+                          y="4"
+                          width="20"
+                          height="16"
+                          rx="2"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        />
+                        <path
+                          d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Email
+                    </a>
+                  </div>
                 </div>
               </div>
             </Reveal>
 
-            <Reveal direction="up" delay={0.16} duration={0.85} distance={30}>
-              <div className="relative min-h-[24rem] overflow-hidden border border-white/14 bg-black md:min-h-[26rem] lg:min-h-[28rem] xl:min-h-[30rem]">
+            <Reveal direction="up" delay={0.16} duration={0.85} distance={30} className="h-full">
+              <div data-showroom-contact-map className="relative h-full min-h-[24rem] overflow-hidden border border-white/14 bg-black md:min-h-[26rem] lg:min-h-[28rem] xl:min-h-[30rem]">
                 <iframe
                   title="CVR Showroom map"
                   src="https://www.google.com/maps?q=1057%20Fort%20St%2C%20Victoria%2C%20BC%20V8V%203K5&output=embed"

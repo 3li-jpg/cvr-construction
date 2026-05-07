@@ -754,10 +754,10 @@ export function ShowroomPage() {
           aria-hidden="true"
           className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:64px_64px]"
         />
-        <div className="site-shell relative z-10 grid gap-12 border-t border-white/12 pt-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
+        <div className="site-shell relative z-10 grid gap-12 border-t border-white/12 px-6 pt-10 sm:px-8 md:px-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-16 lg:px-0 lg:pt-14">
           <Reveal direction="up" duration={0.7} distance={28}>
-            <div className="flex flex-col items-center gap-6 text-center">
-              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-white">
+            <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
+              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-white lg:justify-start">
                 WHY THE SHOWROOM
               </SectionEyebrow>
               <h2
