@@ -77,7 +77,7 @@ export function FAQSection() {
               </SectionEyebrow>
             </Reveal>
             <Reveal direction="up" delay={0.08} duration={0.95} distance={54}>
-              <h2 className="mx-auto mt-5 max-w-[11ch] text-[3.05rem] font-black uppercase leading-[0.9] tracking-normal text-white sm:text-[3.45rem] md:text-[4.3rem] xl:mx-0">
+              <h2 className="mx-auto mt-5 max-w-[11ch] text-[2.5rem] font-black uppercase leading-[0.9] tracking-normal text-white sm:text-[3.45rem] md:text-[4.3rem] xl:mx-0">
                 What Homeowners Ask Before They Build
               </h2>
             </Reveal>
