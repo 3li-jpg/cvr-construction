@@ -47,18 +47,18 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
 
   if (showroomOnly && showroom) {
     return (
-      <section className="relative w-full overflow-hidden bg-black py-14 text-white md:py-16 lg:py-18 xl:py-20">
+      <section className="relative w-full overflow-hidden bg-[var(--showroom-bg)] py-14 text-[var(--showroom-text)] md:py-16 lg:py-18 xl:py-20">
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] [background-size:72px_72px]"
+          className="hidden"
         />
         <div className="site-shell relative z-10">
           <Reveal direction="up" delay={0} duration={0.8}>
             <div className="mb-8 flex flex-col items-center gap-3 text-center lg:mb-10">
-              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.14em] text-white">
+              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.14em] text-[var(--showroom-text)]">
                 VISIT THE SHOWROOM
               </SectionEyebrow>
-              <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-white sm:text-[3.1rem] md:text-[3.6rem] lg:text-[3.9rem] xl:text-[4.25rem]">
+              <h2 className="max-w-[14ch] text-[2.4rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-[var(--showroom-text)] sm:text-[3.1rem] md:text-[3.6rem] lg:text-[3.9rem] xl:text-[4.25rem]">
                 Come See The Products In Person
               </h2>
             </div>
@@ -66,38 +66,38 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
 
           <div className="grid items-stretch gap-8 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-12 lg:pt-8 xl:gap-14">
             <Reveal direction="up" delay={0.08} duration={0.85} distance={30} className="h-full">
-              <div data-showroom-contact-card className="relative h-full overflow-hidden border border-white/14 bg-white/[0.035] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm sm:p-6 lg:p-7">
+              <div data-showroom-contact-card className="relative h-full overflow-hidden border border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] p-5 shadow-[0_24px_80px_var(--showroom-shadow)] backdrop-blur-sm sm:p-6 lg:p-7">
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/55 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--showroom-text)] to-transparent opacity-[0.35]"
                 />
 
                 <div className="flex h-full flex-col gap-6">
                   <div className="flex items-start justify-between gap-5">
                     <div>
-                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-white/48">
+                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[var(--showroom-soft)]">
                         CVR Showroom
                       </p>
-                      <h3 className="mt-3 max-w-[10ch] text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.055em] text-white sm:text-[2.55rem] lg:text-[2.8rem]">
+                      <h3 className="mt-3 max-w-[10ch] text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.055em] text-[var(--showroom-text)] sm:text-[2.55rem] lg:text-[2.8rem]">
                         Kitchen & Bath Showroom
                       </h3>
                     </div>
-                    <span className="border border-white/14 px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/48">
+                    <span className="border border-[color:var(--showroom-line)] px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)]">
                       Victoria
                     </span>
                   </div>
 
-                  <div className="grid gap-3 border-y border-white/10 py-5">
+                  <div className="grid gap-3 border-y border-[color:var(--showroom-line)] py-5">
                     <a
                       href={showroom.mapsHref}
                       target="_blank"
                       rel="noreferrer"
                       className="group grid gap-1 text-white transition-opacity hover:opacity-75"
                     >
-                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/42">
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)]">
                         Visit
                       </span>
-                      <span className="text-[1.08rem] leading-7 text-white/76">
+                      <span className="text-[1.08rem] leading-7 text-[var(--showroom-muted)]">
                         {showroom.addressLine1}
                         <br />
                         {showroom.cityRegionPostal}
@@ -108,9 +108,9 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                   <div className="grid gap-2">
                     <a
                       href={showroom.phoneHref}
-                      className="group flex items-center justify-between gap-4 border border-white/12 px-4 py-3.5 transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      className="group flex items-center justify-between gap-4 border border-[color:var(--showroom-line)] px-4 py-3.5 transition-colors hover:border-[color:var(--showroom-inverse)] hover:bg-[var(--showroom-inverse)] hover:text-[var(--showroom-inverse-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)]"
                     >
-                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/48 transition-colors group-hover:text-black/52">
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)] transition-colors group-hover:text-[var(--showroom-inverse-text)] group-hover:opacity-[0.55]">
                         Call
                       </span>
                       <span className="text-right text-[1rem] font-black uppercase tracking-[-0.025em] sm:text-[1.1rem]">
@@ -119,9 +119,9 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                     </a>
                     <a
                       href={showroom.emailHref}
-                      className="group flex flex-col items-start gap-2 border border-white/12 px-4 py-3.5 transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                      className="group flex flex-col items-start gap-2 border border-[color:var(--showroom-line)] px-4 py-3.5 transition-colors hover:border-[color:var(--showroom-inverse)] hover:bg-[var(--showroom-inverse)] hover:text-[var(--showroom-inverse-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)] sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                     >
-                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/48 transition-colors group-hover:text-black/52">
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)] transition-colors group-hover:text-[var(--showroom-inverse-text)] group-hover:opacity-[0.55]">
                         Email
                       </span>
                       <span className="break-all text-[0.84rem] font-black uppercase tracking-[0.08em] sm:text-right">
@@ -130,8 +130,8 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                     </a>
                   </div>
 
-                  <div className="mt-auto flex flex-col gap-3 border border-white/10 bg-black/24 p-4">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/45">
+                  <div className="mt-auto flex flex-col gap-3 border border-[color:var(--showroom-line)] bg-[color:var(--showroom-grid)] p-4">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)]">
                       Follow The Showroom
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -142,7 +142,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                           label={link.label}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-11 w-11 items-center justify-center border border-white/14 bg-white/[0.03] text-white transition-colors hover:border-white hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                          className="inline-flex h-11 w-11 items-center justify-center border border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] text-[var(--showroom-text)] transition-colors hover:border-[color:var(--showroom-inverse)] hover:bg-[var(--showroom-inverse)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)]"
                           iconClassName="h-4.5 w-4.5"
                         />
                       ))}
@@ -154,7 +154,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                       href={showroom.mapsHref}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex h-14 items-center justify-center gap-2 border border-white/18 px-4 text-[0.62rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                      className="inline-flex h-14 items-center justify-center gap-2 border border-[color:var(--showroom-line)] px-4 text-[0.62rem] font-semibold uppercase tracking-widest text-[var(--showroom-text)] transition-colors hover:border-[color:var(--showroom-inverse)] hover:bg-[var(--showroom-inverse)] hover:text-[var(--showroom-inverse-text)]"
                     >
                       <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
                         <path
@@ -178,7 +178,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                     </a>
                     <a
                       href={showroom.phoneHref}
-                      className="inline-flex h-14 items-center justify-center gap-2 border border-white bg-white px-4 text-[0.62rem] font-bold uppercase tracking-widest text-black transition-colors hover:bg-white/82"
+                      className="inline-flex h-14 items-center justify-center gap-2 border border-[color:var(--showroom-inverse)] bg-[var(--showroom-inverse)] px-4 text-[0.62rem] font-bold uppercase tracking-widest text-[var(--showroom-inverse-text)] transition-opacity hover:opacity-[0.82]"
                     >
                       <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
                         <path
@@ -193,7 +193,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
                     </a>
                     <a
                       href={showroom.emailHref}
-                      className="inline-flex h-14 items-center justify-center gap-2 border border-white/18 px-4 text-[0.62rem] font-semibold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                      className="inline-flex h-14 items-center justify-center gap-2 border border-[color:var(--showroom-line)] px-4 text-[0.62rem] font-semibold uppercase tracking-widest text-[var(--showroom-text)] transition-colors hover:border-[color:var(--showroom-inverse)] hover:bg-[var(--showroom-inverse)] hover:text-[var(--showroom-inverse-text)]"
                     >
                       <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
                         <rect
@@ -221,20 +221,20 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
             </Reveal>
 
             <Reveal direction="up" delay={0.16} duration={0.85} distance={30} className="h-full">
-              <div data-showroom-contact-map className="relative h-full min-h-[24rem] overflow-hidden border border-white/14 bg-black md:min-h-[26rem] lg:min-h-[28rem] xl:min-h-[30rem]">
+              <div data-showroom-contact-map className="relative h-full min-h-[24rem] overflow-hidden border border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] md:min-h-[26rem] lg:min-h-[28rem] xl:min-h-[30rem]">
                 <iframe
                   title="CVR Showroom map"
                   src="https://www.google.com/maps?q=1057%20Fort%20St%2C%20Victoria%2C%20BC%20V8V%203K5&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full contrast-[1.18] saturate-[1.35] brightness-[0.82] invert hue-rotate-180"
+                  className="absolute inset-0 h-full w-full dark:contrast-[1.18] dark:saturate-[1.35] dark:brightness-[0.82] dark:invert dark:hue-rotate-180"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.12),transparent_36%,rgba(0,0,0,0.28))]" />
-                <div className="absolute left-4 top-4 border border-white/14 bg-black/72 px-4 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.28)] backdrop-blur-md md:left-5 md:top-5">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white/48">
+                <div className="hidden" />
+                <div className="absolute left-4 top-4 border border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] px-4 py-3 shadow-[0_16px_40px_var(--showroom-shadow)] backdrop-blur-md md:left-5 md:top-5">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[var(--showroom-soft)]">
                     Map
                   </p>
-                  <p className="mt-1 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white">
+                  <p className="mt-1 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-[var(--showroom-text)]">
                     Fort St, Victoria
                   </p>
                 </div>
@@ -271,7 +271,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
             >
               <div className="flex h-full flex-col gap-8 border border-black/12 p-6 dark:border-white/12 md:p-8 lg:p-10">
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/48 dark:text-white/48">
+                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black/48 dark:text-[var(--showroom-soft)]">
                     {contact.eyebrow}
                   </span>
                   <span className="text-[0.82rem] font-medium leading-[1.3] tracking-[-0.01em] text-black/70 dark:text-white/70">

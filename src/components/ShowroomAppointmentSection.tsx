@@ -184,7 +184,7 @@ export function ShowroomAppointmentSection() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(var(--showroom-grid)_1px,transparent_1px),linear-gradient(90deg,var(--showroom-grid)_1px,transparent_1px)] [background-size:56px_56px]"
+        className="hidden"
       />
 
       <div className="site-shell relative z-10 px-4 sm:px-6 lg:px-8">

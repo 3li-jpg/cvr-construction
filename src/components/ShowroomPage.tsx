@@ -9,6 +9,7 @@ import BlurTextAnimation from "@/components/ui/blur-text-animation";
 import { ContactBlockSection } from "@/components/ContactBlockSection";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { PearlProductsSection } from "@/components/PearlProductsSection";
 import { Reveal } from "@/components/Reveal";
 import { ShowroomAppointmentSection } from "@/components/ShowroomAppointmentSection";
 import {
@@ -450,7 +451,7 @@ export function ShowroomPage() {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,var(--showroom-grid),transparent)]"
+          className="hidden"
         />
         <h2 id="showroom-heading" className="sr-only">
           About the CVR Showroom
@@ -544,14 +545,14 @@ export function ShowroomPage() {
       {/* Brands marquee */}
       <section
         aria-labelledby="brands-heading"
-        className="relative overflow-hidden border-y border-white/12 bg-black py-12 text-white md:py-14"
+        className="relative overflow-hidden border-y border-[color:var(--showroom-line)] bg-[var(--showroom-bg)] py-12 text-[var(--showroom-text)] md:py-14"
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.13)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.13)_1px,transparent_1px)] [background-size:72px_72px]"
+          className="hidden"
         />
         <div className="site-shell relative z-10 mb-7 flex flex-col items-center gap-2 text-center">
-          <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-white/58">
+          <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-[var(--showroom-soft)]">
             BRANDS WE WORK WITH
           </SectionEyebrow>
           <h2
@@ -567,10 +568,10 @@ export function ShowroomPage() {
             {showroomBrands.map((brand) => (
               <span
                 key={brand}
-                className="mr-10 whitespace-nowrap text-[1.8rem] font-black uppercase tracking-[-0.02em] text-white/82 sm:mr-14 sm:text-[2.4rem] md:text-[3rem] lg:text-[3.4rem]"
+                className="mr-10 whitespace-nowrap text-[1.8rem] font-black uppercase tracking-[-0.02em] text-[var(--showroom-text)] opacity-[0.82] sm:mr-14 sm:text-[2.4rem] md:text-[3rem] lg:text-[3.4rem]"
               >
                 {brand}
-                <span aria-hidden="true" className="mx-6 text-white/20 sm:mx-8">
+                <span aria-hidden="true" className="mx-6 text-[var(--showroom-soft)] sm:mx-8">
                   ◆
                 </span>
               </span>
@@ -585,10 +586,10 @@ export function ShowroomPage() {
             {showroomBrands.map((brand) => (
               <span
                 key={`${brand}-outline`}
-                className="mr-10 whitespace-nowrap text-[1.8rem] font-black uppercase tracking-[-0.02em] text-white/82 sm:mr-14 sm:text-[2.4rem] md:text-[3rem] lg:text-[3.4rem]"
+                className="mr-10 whitespace-nowrap text-[1.8rem] font-black uppercase tracking-[-0.02em] text-[var(--showroom-text)] opacity-[0.82] sm:mr-14 sm:text-[2.4rem] md:text-[3rem] lg:text-[3.4rem]"
               >
                 {brand}
-                <span aria-hidden="true" className="mx-6 text-white/20 sm:mx-8">
+                <span aria-hidden="true" className="mx-6 text-[var(--showroom-soft)] sm:mx-8">
                   ◆
                 </span>
               </span>
@@ -604,7 +605,7 @@ export function ShowroomPage() {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(var(--showroom-grid)_1px,transparent_1px),linear-gradient(90deg,var(--showroom-grid)_1px,transparent_1px)] [background-size:56px_56px]"
+          className="hidden"
         />
         <div className="site-shell relative z-10">
           <div className="grid gap-12 border-t border-[color:var(--showroom-line)] pt-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
@@ -636,7 +637,7 @@ export function ShowroomPage() {
                   transition: { staggerChildren: 0.035, delayChildren: 0.08 },
                 },
               }}
-              className="grid grid-cols-1 border-l border-t border-white/12 sm:grid-cols-2 xl:grid-cols-3"
+              className="grid grid-cols-1 border-l border-t border-[color:var(--showroom-line)] sm:grid-cols-2 xl:grid-cols-3"
             >
               {showroomProducts.map((product, index) => (
                 <motion.div
@@ -649,12 +650,12 @@ export function ShowroomPage() {
                       transition: { duration: DURATION.md, ease: EASE_OUT_EXPO },
                     },
                   }}
-                  className="group flex min-h-24 items-center justify-between gap-5 border-b border-r border-white/12 bg-black px-5 py-5 text-white transition-colors duration-500 hover:bg-white hover:text-black md:min-h-28 md:px-6"
+                  className="group flex min-h-24 items-center justify-between gap-5 border-b border-r border-[color:var(--showroom-line)] bg-[var(--showroom-panel)] px-5 py-5 text-[var(--showroom-text)] transition-colors duration-500 hover:bg-[var(--showroom-inverse)] hover:text-[var(--showroom-inverse-text)] md:min-h-28 md:px-6"
                 >
                   <span className="text-[1.05rem] font-black uppercase leading-[1.02] tracking-[-0.035em] md:text-[1.25rem]">
                     {product}
                   </span>
-                  <span className="shrink-0 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-white/42 transition-colors duration-500 group-hover:text-black/38">
+                  <span className="shrink-0 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)] transition-colors duration-500 group-hover:text-[var(--showroom-inverse-text)] group-hover:opacity-40">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </motion.div>
@@ -663,6 +664,8 @@ export function ShowroomPage() {
           </div>
         </div>
       </section>
+
+      <PearlProductsSection />
 
       {/* Product categories */}
       <section
@@ -700,7 +703,7 @@ export function ShowroomPage() {
                 >
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 [background-image:linear-gradient(var(--showroom-grid)_1px,transparent_1px),linear-gradient(90deg,var(--showroom-grid)_1px,transparent_1px)] [background-size:48px_48px]"
+                    className="hidden"
                   />
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-black lg:aspect-auto lg:min-h-[34rem]">
                     <Image
@@ -748,21 +751,21 @@ export function ShowroomPage() {
       {/* Why the showroom */}
       <section
         aria-labelledby="why-heading"
-        className="relative overflow-hidden bg-black py-20 text-white md:py-28 lg:py-32"
+        className="relative overflow-hidden bg-[var(--showroom-bg)] py-20 text-[var(--showroom-text)] md:py-28 lg:py-32"
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:64px_64px]"
+          className="hidden"
         />
-        <div className="site-shell relative z-10 grid gap-12 border-t border-white/12 px-6 pt-10 sm:px-8 md:px-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-16 lg:px-0 lg:pt-14">
+        <div className="site-shell relative z-10 grid gap-12 border-t border-[color:var(--showroom-line)] px-6 pt-10 sm:px-8 md:px-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-16 lg:px-0 lg:pt-14">
           <Reveal direction="up" duration={0.7} distance={28}>
             <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
-              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-white lg:justify-start">
+              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-[var(--showroom-text)] lg:justify-start">
                 WHY THE SHOWROOM
               </SectionEyebrow>
               <h2
                 id="why-heading"
-                className="max-w-[15ch] text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-white sm:text-[2.55rem] md:text-[3.06rem] lg:text-[3.4rem] xl:text-[3.74rem]"
+                className="max-w-[15ch] text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.05em] text-[var(--showroom-text)] sm:text-[2.55rem] md:text-[3.06rem] lg:text-[3.4rem] xl:text-[3.74rem]"
               >
                 <span className="block">Not Just</span>
                 <span className="block whitespace-nowrap">Catalog Picks.</span>
@@ -779,16 +782,16 @@ export function ShowroomPage() {
                 whileInView="show"
                 viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                 variants={reasonRowVariants}
-                className="group border-b border-white/12 first:border-t"
+                className="group border-b border-[color:var(--showroom-line)] first:border-t"
               >
                 <div className="grid grid-cols-1 gap-5 py-7 sm:grid-cols-[5rem_minmax(0,1fr)_minmax(0,1.4fr)] sm:items-start sm:gap-8 sm:py-9 md:py-10">
-                  <div className="flex h-12 w-12 items-center justify-center border border-white/18 text-[0.78rem] font-black uppercase tracking-[-0.02em] text-white transition-colors duration-500 group-hover:bg-white group-hover:text-black">
+                  <div className="flex h-12 w-12 items-center justify-center border border-[color:var(--showroom-line)] text-[0.78rem] font-black uppercase tracking-[-0.02em] text-[var(--showroom-text)] transition-colors duration-500 group-hover:bg-[var(--showroom-inverse)] group-hover:text-[var(--showroom-inverse-text)]">
                     0{index + 1}
                   </div>
-                  <p className="text-[1.15rem] font-black uppercase leading-[1.05] tracking-[-0.03em] text-white md:text-[1.4rem] lg:text-[1.6rem]">
+                  <p className="text-[1.15rem] font-black uppercase leading-[1.05] tracking-[-0.03em] text-[var(--showroom-text)] md:text-[1.4rem] lg:text-[1.6rem]">
                     {reason.title}
                   </p>
-                  <p className="max-w-[38rem] text-[1rem] leading-7 text-white/68 md:text-[1.08rem]">
+                  <p className="max-w-[38rem] text-[1rem] leading-7 text-[var(--showroom-muted)] md:text-[1.08rem]">
                     {reason.description}
                   </p>
                 </div>

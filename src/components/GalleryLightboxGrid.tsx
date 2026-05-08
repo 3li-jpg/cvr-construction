@@ -87,7 +87,9 @@ export function GalleryLightboxGrid({
           ease: EASE_OUT_EXPO,
           delay: Math.min((index % 6) * STAGGER.tight, 0.3),
         }}
-        className={`group relative block w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background ${aspectClass}`}
+        className={`group relative block w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background ${aspectClass} ${
+          isReferenceVariant ? "mb-4 break-inside-avoid sm:mb-5 lg:mb-6" : ""
+        }`}
       >
         <Image
           src={item.image}
@@ -102,36 +104,12 @@ export function GalleryLightboxGrid({
     );
   };
 
-  const renderMasonryColumns = (columnCount: number, gapClassName: string) => {
-    const columns = Array.from({ length: columnCount }, () =>
-      [] as Array<{ item: GalleryLightboxItem; index: number }>
-    );
-
-    items.forEach((item, index) => {
-      columns[index % columnCount].push({ item, index });
-    });
-
-    return columns.map((columnItems, columnIndex) => (
-      <div key={columnIndex} className={`flex min-w-0 flex-col ${gapClassName}`}>
-        {columnItems.map(({ item, index }) => renderTile(item, index))}
-      </div>
-    ));
-  };
-
   return (
     <>
       {isReferenceVariant ? (
-        <>
-          <div className="grid grid-cols-1 gap-4 sm:hidden">
-            {renderMasonryColumns(1, "gap-4")}
-          </div>
-          <div className="hidden gap-5 sm:grid sm:grid-cols-2 lg:hidden">
-            {renderMasonryColumns(2, "gap-5")}
-          </div>
-          <div className="hidden gap-6 lg:grid lg:grid-cols-3">
-            {renderMasonryColumns(3, "gap-6")}
-          </div>
-        </>
+        <div className="columns-1 gap-4 sm:columns-2 sm:gap-5 lg:columns-3 lg:gap-6">
+          {items.map((item, index) => renderTile(item, index))}
+        </div>
       ) : (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
           {items.map((item, index) => renderTile(item, index))}

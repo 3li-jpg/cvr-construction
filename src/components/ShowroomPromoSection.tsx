@@ -134,7 +134,7 @@ export function ShowroomPromoSection() {
 
             <motion.h2
               variants={headingStagger}
-              className="mt-6 text-[2.2rem] font-black uppercase leading-[0.88] tracking-[-0.055em] sm:text-[2.8rem] md:mt-8 md:text-[3.4rem] lg:text-[3.6rem] xl:text-[4rem]"
+              className="mt-6 text-[2.2rem] font-black uppercase leading-[0.88] tracking-[-0.055em] text-black dark:text-white sm:text-[2.8rem] md:mt-8 md:text-[3.4rem] lg:text-[3.6rem] xl:text-[4rem]"
             >
               <motion.span className="block" variants={headingLine}>
                 Visit Our

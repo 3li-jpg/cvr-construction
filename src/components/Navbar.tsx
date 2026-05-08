@@ -236,7 +236,7 @@ export function Navbar() {
               aria-label="CVR Construction home"
             >
               <Image
-                src="/images/cvr-logo-gold-transparent.png"
+                src="/images/cvr-logo.png"
                 alt=""
                 width={180}
                 height={72}
@@ -311,7 +311,7 @@ export function Navbar() {
           aria-label="CVR Construction home"
         >
           <Image
-            src="/images/cvr-logo-gold-transparent.png"
+            src="/images/cvr-logo.png"
             alt=""
             width={180}
             height={72}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 
 export type GalleryLightboxItem = {
@@ -101,7 +102,7 @@ export function GalleryLightboxOverlay({
       ? `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
       : "";
 
-  return (
+  const lightbox = (
     <AnimatePresence>
       {item ? (
         <motion.div
@@ -201,4 +202,10 @@ export function GalleryLightboxOverlay({
       ) : null}
     </AnimatePresence>
   );
+
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(lightbox, document.body);
 }
