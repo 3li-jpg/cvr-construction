@@ -1,0 +1,44 @@
+# CVR Construction
+
+CVR Construction Ltd. is a construction and renovation company in Victoria, British Columbia, Canada.
+
+## Primary site
+
+- https://www.cvrconstruction.ca/
+
+## Key pages
+
+- Home: https://www.cvrconstruction.ca/
+- Showroom: https://www.cvrconstruction.ca/showroom
+- About: https://www.cvrconstruction.ca/about
+- Projects: https://www.cvrconstruction.ca/projects
+- Journals: https://www.cvrconstruction.ca/journals
+- Gallery: https://www.cvrconstruction.ca/gallery
+- Contact: https://www.cvrconstruction.ca/contact
+- Sitemap: https://www.cvrconstruction.ca/sitemap.xml
+
+## Services
+
+- Full Home Remodeling
+- Kitchen Renovation
+- Bathroom Remodeling
+- Commercial Upgrades
+- Custom Spaces
+- Tile, Flooring & Fixtures
+
+## Service area
+
+- Victoria, BC
+- Greater Victoria, BC
+- Vancouver Island, BC
+
+## Contact
+
+- Business name: CVR Construction Ltd.
+- Address: 1226 Finlayson Street, Victoria, BC V8T 2V3, Canada
+- Phone: +1 (250) 880 1270
+- Email: cvrconstruction@outlook.com
+
+## AI and search usage
+
+Search indexing and answer generation are allowed. AI training is not permitted. See robots.txt for current crawler directives and content-signal preferences.

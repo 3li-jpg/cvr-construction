@@ -5,7 +5,8 @@ import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { PageTransition } from "@/components/PageTransition";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { WebMCPRegistrar } from "@/components/WebMCPRegistrar";
-import { businessContact } from "@/lib/site-data";
+import { faqItems } from "@/lib/faq-data";
+import { businessContact, services } from "@/lib/site-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -194,6 +195,68 @@ const localBusinessSchema = {
     areaServed: "CA",
     availableLanguage: ["en"],
   },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+  ],
+};
+
+const websiteSchema = {
+  "@type": "WebSite",
+  "@id": "https://www.cvrconstruction.ca/#website",
+  url: "https://www.cvrconstruction.ca",
+  name: "CVR Construction",
+  publisher: {
+    "@id": "https://www.cvrconstruction.ca/#business",
+  },
+  inLanguage: "en-CA",
+};
+
+const serviceSchemas = services.map((service) => ({
+  "@type": "Service",
+  "@id": `https://www.cvrconstruction.ca/#service-${service.num}`,
+  name: service.title,
+  description: service.desc,
+  provider: {
+    "@id": "https://www.cvrconstruction.ca/#business",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Victoria",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Greater Victoria",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Vancouver Island",
+    },
+  ],
+  image: `https://www.cvrconstruction.ca${service.previewImage}`,
+}));
+
+const faqPageSchema = {
+  "@type": "FAQPage",
+  "@id": "https://www.cvrconstruction.ca/#faq",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.title,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.content,
+    },
+  })),
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [localBusinessSchema, websiteSchema, ...serviceSchemas, faqPageSchema],
 };
 
 export default function RootLayout({
@@ -225,7 +288,7 @@ export default function RootLayout({
           id="cvr-construction-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
+            __html: JSON.stringify(structuredData),
           }}
         />
         <AnalyticsTracker />
