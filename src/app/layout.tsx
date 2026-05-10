@@ -36,6 +36,10 @@ const themeInitScript = `
   })();
 `;
 
+const sitePublishedDate = "2026-04-09";
+const siteModifiedDate = "2026-05-10";
+const siteModifiedDateTime = "2026-05-10T00:00:00-07:00";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.cvrconstruction.ca"),
   title: {
@@ -98,6 +102,10 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  other: {
+    "date-modified": siteModifiedDate,
+    "article:modified_time": siteModifiedDateTime,
+  },
 };
 
 export const viewport: Viewport = {
@@ -111,13 +119,13 @@ export const viewport: Viewport = {
 };
 
 const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "GeneralContractor",
+  "@type": ["Organization", "LocalBusiness", "GeneralContractor"],
   "@id": "https://www.cvrconstruction.ca/#business",
   name: "CVR Construction Ltd.",
   alternateName: "CVR Construction",
   url: "https://www.cvrconstruction.ca",
   image: "https://www.cvrconstruction.ca/images/victoria-garden-studio-exterior.webp",
+  logo: "https://www.cvrconstruction.ca/images/cvr-logo.png",
   description:
     "CVR Construction is a Victoria, BC construction company specializing in premium renovations, kitchen and bathroom remodels, custom spaces, and commercial upgrades across Greater Victoria and Vancouver Island.",
   telephone: "+1-250-880-1270",
@@ -214,6 +222,32 @@ const websiteSchema = {
     "@id": "https://www.cvrconstruction.ca/#business",
   },
   inLanguage: "en-CA",
+  datePublished: sitePublishedDate,
+  dateModified: siteModifiedDate,
+};
+
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": "https://www.cvrconstruction.ca/#webpage",
+  url: "https://www.cvrconstruction.ca",
+  name: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
+  description:
+    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. 20+ years experience, licensed & insured. Visit our kitchen & bath showroom.",
+  isPartOf: {
+    "@id": "https://www.cvrconstruction.ca/#website",
+  },
+  about: {
+    "@id": "https://www.cvrconstruction.ca/#business",
+  },
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: "https://www.cvrconstruction.ca/images/victoria-garden-studio-exterior.webp",
+    width: 1360,
+    height: 765,
+  },
+  inLanguage: "en-CA",
+  datePublished: sitePublishedDate,
+  dateModified: siteModifiedDate,
 };
 
 const serviceSchemas = services.map((service) => ({
@@ -244,6 +278,12 @@ const serviceSchemas = services.map((service) => ({
 const faqPageSchema = {
   "@type": "FAQPage",
   "@id": "https://www.cvrconstruction.ca/#faq",
+  isPartOf: {
+    "@id": "https://www.cvrconstruction.ca/#webpage",
+  },
+  inLanguage: "en-CA",
+  datePublished: sitePublishedDate,
+  dateModified: siteModifiedDate,
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.title,
@@ -256,7 +296,13 @@ const faqPageSchema = {
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [localBusinessSchema, websiteSchema, ...serviceSchemas, faqPageSchema],
+  "@graph": [
+    localBusinessSchema,
+    websiteSchema,
+    webPageSchema,
+    ...serviceSchemas,
+    faqPageSchema,
+  ],
 };
 
 export default function RootLayout({
@@ -284,7 +330,7 @@ export default function RootLayout({
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitScript}
         </Script>
-        <Script
+        <script
           id="cvr-construction-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
