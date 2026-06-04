@@ -21,8 +21,63 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/2d&3d%20design.html",
+        destination: "/showroom",
+        permanent: true,
+      },
+      {
+        source: "/plumbing.html",
+        destination: "/showroom",
+        permanent: true,
+      },
+      {
+        source: "/siding.html",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/insulation.html",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/flooring.html",
+        destination: "/gallery",
+        permanent: true,
+      },
+      {
+        source: "/foundation.html",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/houserenovation.html",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/paint.html",
+        destination: "/gallery",
+        permanent: true,
+      },
+      {
+        source: "/custombuild.html",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/about%20us.html",
+        destination: "/about",
+        permanent: true,
+      },
+      {
         source: "/projects/outbuilding-bath-conversion",
         destination: "/projects/outbuilding-garage-conversion",
+        permanent: true,
+      },
+      {
+        source: "/:path*.html",
+        destination: "/",
         permanent: true,
       },
     ];

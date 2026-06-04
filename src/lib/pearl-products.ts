@@ -1653,7 +1653,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/grid-for-kato-kawai-30-gb367.webp",
+    "image": "/images/pearl/grid-for-kato-kami-22-gb365.webp",
     "alt": "Pearl KAWAI-30 Kitchen Sink"
   },
   {
@@ -3792,7 +3792,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/pearl-madison-doubletriple-valve-lever-handle-and-finishing-plate-gbbm-c2c3-f.webp",
+    "image": "/images/pearl/pearl-madison-double-control-valve-gbbm-c2-r.webp",
     "alt": "Pearl MADISON Chrome Double/Triple Valve Lever Handle and Finishing Plate"
   },
   {
@@ -3911,7 +3911,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/pearl-madison-doubletriple-valve-lever-handle-and-finishing-plate-gbbm-c2c3-f.webp",
+    "image": "/images/pearl/pearl-madison-double-control-valve-gbbm-c2-r.webp",
     "alt": "Pearl MADISON II Brushed Nickel Double/Triple Valve Lever Handle and Finishing Plate"
   },
   {
@@ -4168,7 +4168,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/sink-grid-for-melo-tmelogrid.webp",
+    "image": "/images/pearl/sink-grid-for-mabe-iona-tmabegrid.webp",
     "alt": "Pearl SINK GRID for Melo"
   },
   {
@@ -4219,7 +4219,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/grid-for-kyri.webp",
+    "image": "/images/pearl/grid-for-kali-24b.webp",
     "alt": "Pearl Grid for Kyri"
   },
   {
@@ -4236,7 +4236,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/sink-grid-for-kupa.webp",
+    "image": "/images/pearl/grid-for-kona-32.webp",
     "alt": "Pearl SINK GRID for KUPA (KATO)"
   },
   {
@@ -4270,7 +4270,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/sink-grid-for-keshi-tkeshigrid.webp",
+    "image": "/images/pearl/grid-for-kato-kami-22-gb365.webp",
     "alt": "Pearl SINK GRID for Keshi"
   },
   {
@@ -4287,7 +4287,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/grid-for-karo.webp",
+    "image": "/images/pearl/grid-for-kali-24b.webp",
     "alt": "Pearl Grid for Karo"
   },
   {
@@ -4321,7 +4321,7 @@ export const pearlProducts = [
     "notes": "",
     "status": [],
     "detail": "",
-    "image": "/images/pearl/grid-for-kato-kawai-30-gb367.webp",
+    "image": "/images/pearl/grid-for-kato-kami-22-gb365.webp",
     "alt": "Pearl Grid for Kawai-30"
   },
   {

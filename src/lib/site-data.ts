@@ -494,7 +494,6 @@ export const projects: ProjectEntry[] = [
       "/images/victoria-legacy-wood-kitchen-001.webp",
       "/images/victoria-legacy-wood-kitchen-002.webp",
       "/images/victoria-legacy-wood-kitchen-003.webp",
-      "/images/victoria-legacy-wood-kitchen-004.webp",
     ],
     beforeAfterImages: [
       {
@@ -551,7 +550,6 @@ export const projects: ProjectEntry[] = [
       "/images/victoria-upper-deck-and-stairs-004.webp",
       "/images/victoria-upper-deck-and-stairs-005.webp",
       "/images/victoria-upper-deck-and-stairs-006.webp",
-      "/images/victoria-upper-deck-and-stairs-007.webp",
     ],
     beforeAfterImages: [
       {

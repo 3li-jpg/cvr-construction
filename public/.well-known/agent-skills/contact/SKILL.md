@@ -24,7 +24,7 @@ Use this skill when the user wants to:
 | Channel   | Value |
 |-----------|-------|
 | Website   | <https://www.cvrconstruction.ca> |
-| Email     | <mailto:info@cvrconstruction.ca> |
+| Email     | <mailto:cvrconstruction@outlook.com> |
 | Phone     | +1-250-880-1270 |
 | WhatsApp  | <https://wa.me/12508801270> |
 | Instagram | <https://www.instagram.com/cvr_construction_ltd/> |

@@ -12,6 +12,7 @@ import {
   STAGGER,
   VIEWPORT,
 } from "@/lib/motion";
+import { showroomContact } from "@/lib/site-data";
 
 const contentStagger: Variants = {
   hidden: {},
@@ -166,7 +167,7 @@ export function ShowroomPromoSection() {
                 </a>
 
                 <a
-                  href="tel:+12504666531"
+                  href={showroomContact.phoneHref}
                   className="inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-none border border-black/15 px-2 py-0 text-[0.58rem] font-semibold uppercase tracking-[0.07em] text-black transition-colors hover:border-black hover:bg-black hover:text-white dark:border-white/15 dark:text-white dark:hover:border-white dark:hover:bg-white dark:hover:text-black sm:gap-2 sm:px-5 sm:text-[0.72rem] sm:tracking-[0.12em]"
                 >
                   <svg className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none">
