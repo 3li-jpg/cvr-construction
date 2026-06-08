@@ -17,7 +17,16 @@ export default function ProjectsPage() {
   return (
     <main id="main-content" className="relative bg-background text-foreground">
       <Navbar />
-      <ProjectsIndex />
+      <ProjectsIndex
+        collectionLink={{
+          eyebrow: "Project Collection",
+          title: "Bathroom Remodeling Projects",
+          description:
+            "View bathroom-only and kitchen-and-bath renovation work in one focused page.",
+          href: "/projects/bathroom-remodeling",
+          ctaLabel: "View Bathroom Projects",
+        }}
+      />
       <div className="relative z-[60] bg-black">
         <Footer showCta />
       </div>

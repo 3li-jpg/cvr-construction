@@ -76,6 +76,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/projects/rustic-checkerboard-cabin-kitchen",
+        destination: "/projects/kitchen-remodelling",
+        permanent: true,
+      },
+      {
         source: "/:path*.html",
         destination: "/",
         permanent: true,
