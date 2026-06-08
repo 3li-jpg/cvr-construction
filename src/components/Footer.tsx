@@ -167,6 +167,12 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         >
                           {businessContact.phone}
                         </a>
+                        <a
+                          href={businessContact.emailHref}
+                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                        >
+                          {businessContact.email.toUpperCase()}
+                        </a>
                       </div>
                       <div>
                         <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
@@ -188,12 +194,13 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         >
                           {showroomContact.phone}
                         </a>
+                        <a
+                          href={showroomContact.emailHref}
+                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                        >
+                          {showroomContact.email.toUpperCase()}
+                        </a>
                       </div>
-                    </div>
-                    <div className="mt-5 flex flex-col gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60">
-                      <a href={businessContact.emailHref} className={metaLinkClassName}>
-                        {businessContact.email.toUpperCase()}
-                      </a>
                     </div>
                     {bbbAccreditedHref ? (
                       <a

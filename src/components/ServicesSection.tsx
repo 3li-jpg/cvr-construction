@@ -81,8 +81,8 @@ export function ServicesSection() {
             </div>
 
             <p className="w-full text-[clamp(0.98rem,1.08vw,1.08rem)] leading-[1.16] tracking-[-0.025em] text-black dark:text-white">
-              Chosen for projects where finish quality, clarity, and execution
-              matter as much as the final look.
+              Big or small, we’re on it. We work with a range of project sizes
+              and budgets to find the right solution for your space.
             </p>
 
             <div className="flex w-full justify-center">
