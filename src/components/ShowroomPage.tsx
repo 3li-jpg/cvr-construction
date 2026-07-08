@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Script from "next/script";
-import { AnimatePresence, motion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import BlurTextAnimation from "@/components/ui/blur-text-animation";
 import { ContactBlockSection } from "@/components/ContactBlockSection";
 import { Footer } from "@/components/Footer";
+import { GrandOpeningPopup } from "@/components/GrandOpeningPopup";
 import { Navbar } from "@/components/Navbar";
 import { PearlProductsSection } from "@/components/PearlProductsSection";
 import { Reveal } from "@/components/Reveal";
@@ -94,7 +95,6 @@ export function ShowroomPage() {
   const heroImageRef = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTabletTouch, setIsTabletTouch] = useState(false);
-  const [isOpeningSoonOpen, setIsOpeningSoonOpen] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -115,17 +115,6 @@ export function ShowroomPage() {
       tabletQuery.removeEventListener("change", updateTablet);
     };
   }, []);
-
-  useEffect(() => {
-    if (!isOpeningSoonOpen) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpeningSoonOpen(false);
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpeningSoonOpen]);
 
   useEffect(() => {
     if (prefersReducedMotion || isTabletTouch) return;
@@ -180,70 +169,7 @@ export function ShowroomPage() {
       />
       <Navbar />
 
-      <AnimatePresence>
-        {isOpeningSoonOpen ? (
-          <motion.div
-            className="fixed inset-0 z-[130] flex items-center justify-center bg-black/62 px-4 py-6 text-white backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28 }}
-            onClick={() => setIsOpeningSoonOpen(false)}
-          >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="opening-soon-title"
-              className="relative w-full max-w-[28rem] overflow-hidden rounded-none border border-white/18 bg-[#0a0a09] p-7 text-center shadow-[0_28px_90px_rgba(0,0,0,0.5)] sm:p-8"
-              initial={{ opacity: 0, y: 26, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 18, scale: 0.97 }}
-              transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.14),transparent_45%)]"
-              />
-              <button
-                type="button"
-                aria-label="Close opening soon message"
-                onClick={() => setIsOpeningSoonOpen(false)}
-                className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center border border-white/16 text-xl leading-none text-white/80 transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                ×
-              </button>
-
-              <div className="relative z-10 flex flex-col items-center">
-                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center border border-white/18 bg-white/8 text-[0.72rem] font-black uppercase tracking-[0.16em] text-white">
-                  CVR
-                </span>
-                <p className="mb-3 flex items-center justify-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white/58">
-                  <span className="h-1.5 w-1.5 bg-current" />
-                  Showroom Update
-                </p>
-                <h2
-                  id="opening-soon-title"
-                  className="text-[3rem] font-black uppercase leading-[0.86] tracking-[-0.06em] sm:text-[4rem]"
-                >
-                  Opening Soon!
-                </h2>
-                <p className="mt-5 max-w-[22rem] text-[0.98rem] leading-7 text-white/68">
-                  Our luxury kitchen and bath showroom is almost ready. You can still explore the page and request a design consultation.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setIsOpeningSoonOpen(false)}
-                  className="group relative mt-7 inline-flex h-12 min-w-[12rem] items-center justify-center overflow-hidden border border-white bg-white px-5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors duration-300 hover:text-white"
-                >
-                  <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-black transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96" />
-                  <span className="relative">Continue</span>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <GrandOpeningPopup />
 
       <section
         ref={heroRef}

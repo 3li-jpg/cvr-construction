@@ -25,7 +25,10 @@ interface FooterProps {
 }
 
 export function Footer({ showCta = false, hideContactInfo = false }: FooterProps) {
-  const featuredProjects = [...projects].slice(0, 4).reverse();
+  const featuredProjects = projects
+    .filter((project) => project.slug !== "kitchen-remodelling")
+    .slice(0, 4)
+    .reverse();
   const bbbAccreditedHref = trustLinks.find((link) => link.label === "BBB Accredited")?.href;
   const metaLinkClassName =
     "transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";

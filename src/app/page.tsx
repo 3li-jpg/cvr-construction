@@ -1,3 +1,4 @@
+import { GrandOpeningPopup } from "@/components/GrandOpeningPopup";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { StudioSection } from "@/components/StudioSection";
@@ -15,6 +16,7 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <main id="main-content" className="bg-black text-white relative">
+      <GrandOpeningPopup />
       <Navbar />
 
       <div className="relative z-0 overflow-hidden md:sticky md:top-0 md:h-[100dvh]">
