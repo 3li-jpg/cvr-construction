@@ -290,7 +290,7 @@ export function Navbar() {
       </header>
 
       <header
-        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2 pt-2 backdrop-blur dark:border-white/10 dark:bg-black/92 xl:hidden"
+        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2 pt-2 backdrop-blur dark:border-white/10 dark:bg-[#161f1f]/92 xl:hidden"
         style={{
           paddingTop: "max(env(safe-area-inset-top), 0.625rem)",
           paddingLeft: "max(env(safe-area-inset-left), 1rem)",
