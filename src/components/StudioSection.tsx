@@ -51,7 +51,7 @@ export function StudioSection() {
   const floatPos = progress * (phrases.length - 1);
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pb-16 pt-16 text-black md:pt-20">
+    <section id="studio" className="relative w-full overflow-hidden bg-white pb-16 pt-16 text-black md:pt-20">
       <div className="site-shell">
         <div className="flex flex-col items-center text-center">
           <Reveal direction="up" delay={0} duration={0.8}>

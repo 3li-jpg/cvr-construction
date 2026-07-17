@@ -113,8 +113,9 @@ export function AboutPage() {
       <section
         id="about"
         aria-labelledby="about-heading"
-        className="site-shell px-6 pb-24 pt-16 sm:px-8 md:px-12 md:pt-20 md:pb-28 lg:px-20 lg:pb-32 lg:pt-24"
+        className="px-6 pb-24 pt-16 sm:px-8 md:px-12 md:pt-20 md:pb-28 lg:px-20 lg:pb-32 lg:pt-24"
       >
+        <div className="site-shell">
         <h2 id="about-heading" className="sr-only">
           About CVR Construction
         </h2>
@@ -191,6 +192,7 @@ export function AboutPage() {
               </Link>
             </motion.div>
           </motion.div>
+        </div>
         </div>
       </section>
 

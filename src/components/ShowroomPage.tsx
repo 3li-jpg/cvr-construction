@@ -8,7 +8,6 @@ import { AnimatedNumber } from "@/components/AnimatedNumber";
 import BlurTextAnimation from "@/components/ui/blur-text-animation";
 import { ContactBlockSection } from "@/components/ContactBlockSection";
 import { Footer } from "@/components/Footer";
-import { GrandOpeningPopup } from "@/components/GrandOpeningPopup";
 import { Navbar } from "@/components/Navbar";
 import { PearlProductsSection } from "@/components/PearlProductsSection";
 import { Reveal } from "@/components/Reveal";
@@ -168,8 +167,6 @@ export function ShowroomPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(showroomSchema) }}
       />
       <Navbar />
-
-      <GrandOpeningPopup />
 
       <section
         ref={heroRef}

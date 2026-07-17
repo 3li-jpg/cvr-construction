@@ -1,11 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion, type Variants } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
+import { Logo } from "@/components/Logo";
 import { SocialIconLink } from "@/components/SocialIconLink";
 import TextRoll from "@/components/ui/text-roll";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
@@ -235,14 +235,7 @@ export function Navbar() {
               className="justify-self-start text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               aria-label="CVR Construction home"
             >
-              <Image
-                src="/images/cvr-logo.png"
-                alt=""
-                width={180}
-                height={72}
-                className="h-12 w-36 object-contain"
-                priority
-              />
+              <Logo className="h-12 w-36" />
             </Link>
 
             <nav aria-label="Primary" className="flex items-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
@@ -310,14 +303,7 @@ export function Navbar() {
           className="text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           aria-label="CVR Construction home"
         >
-          <Image
-            src="/images/cvr-logo.png"
-            alt=""
-            width={180}
-            height={72}
-            className="h-12 w-36 object-contain md:h-14 md:w-40"
-            priority
-          />
+          <Logo className="h-12 w-36 md:h-14 md:w-40" />
         </Link>
 
         <div className="flex items-center gap-1.5">
