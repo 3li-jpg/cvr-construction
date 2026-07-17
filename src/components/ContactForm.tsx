@@ -70,7 +70,7 @@ function buildEmailDraftHref(data: {
 function validateField(name: FieldName, value: string) {
   const trimmedValue = value.trim();
 
-  if (name === "organization") {
+  if (name === "organization" || name === "website") {
     return "";
   }
 

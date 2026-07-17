@@ -32,7 +32,7 @@ const visitDetails = [
   {
     icon: Accessibility,
     title: "Accessible Entrance",
-    body: "The showroom entrance is accessible for booked showroom visits.",
+    body: "The showroom entrance is accessible.",
   },
   {
     icon: Car,

@@ -512,6 +512,10 @@ html.dark {
 
 .dark #studio {
   background-color: #161f1f !important;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.10), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.12) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .dark input::placeholder,

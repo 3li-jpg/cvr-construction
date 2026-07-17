@@ -3,7 +3,7 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { SocialIconLink } from "@/components/SocialIconLink";
-import { businessContact, showroomContact, socialLinks } from "@/lib/site-data";
+import { businessContact, showroomContact } from "@/lib/site-data";
 
 const contacts = [
   {
@@ -31,9 +31,14 @@ const contacts = [
   },
 ];
 
-const showroomSocialLabels = ["Instagram", "Facebook", "YouTube", "TikTok", "Google", "WhatsApp"];
-
-const showroomSocialLinks = socialLinks.filter((link) => showroomSocialLabels.includes(link.label));
+const showroomSocialLinks = [
+  { href: showroomContact.instagram, label: "Instagram" },
+  { href: showroomContact.facebook, label: "Facebook" },
+  { href: "https://www.tiktok.com/@cvr.construction", label: "TikTok" },
+  { href: "https://www.youtube.com/@cvrconstructionltd", label: "YouTube" },
+  { href: "https://maps.app.goo.gl/WpiNvvknAfY1fdir6", label: "Google" },
+  { href: "https://wa.me/12508801270", label: "WhatsApp" },
+] as const;
 
 type ContactBlockSectionProps = {
   showroomOnly?: boolean;

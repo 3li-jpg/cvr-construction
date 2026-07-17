@@ -91,7 +91,7 @@ export function HeroSection() {
       </div>
 
       <div className="absolute inset-0 bg-[#000000] opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50" />
 
       <div className="relative z-10 h-full w-full">
         <div className="site-shell relative flex h-full flex-col items-center justify-center pb-20 pt-20 md:pb-24 md:pt-28 lg:pb-24 lg:pt-32">

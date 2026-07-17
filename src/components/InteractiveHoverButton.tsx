@@ -51,6 +51,7 @@ export const InteractiveHoverButton = forwardRef<
     showDot = true,
     icon,
     type,
+    disabled,
     ...props
   },
   ref
@@ -137,6 +138,7 @@ export const InteractiveHoverButton = forwardRef<
       ref={ref}
       type={type ?? "button"}
       className={buttonClasses}
+      disabled={disabled}
       {...props}
     >
       {content}

@@ -1512,6 +1512,8 @@ export const showroomContact = {
   email: "cvrshowroom@outlook.com",
   emailHref: "mailto:cvrshowroom@outlook.com",
   mapsHref: "https://maps.app.goo.gl/6AWwv3gmKRYqnbrYA",
+  instagram: "https://www.instagram.com/cvr_kitchenandbath/",
+  facebook: "https://www.facebook.com/people/CVR-Kitchen-Bath/61592060245229/",
 } as const;
 
 export const showroomBrands = [
@@ -1591,6 +1593,7 @@ export const showroomSchema = {
     addressCountry: "CA",
   },
   areaServed: ["Victoria, BC", "Greater Victoria", "Vancouver Island"],
+  sameAs: [showroomContact.instagram, showroomContact.facebook],
   brand: showroomBrands.map((name) => ({
     "@type": "Brand",
     name,
