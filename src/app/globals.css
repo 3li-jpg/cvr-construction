@@ -110,11 +110,11 @@
 }
 
 .dark {
-  --background: oklch(0 0 0);
+  --background: #161f1f;
   --foreground: oklch(1 0 0);
-  --card: oklch(0.205 0 0);
+  --card: #161f1f;
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: #161f1f;
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
@@ -133,7 +133,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: #161f1f;
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -141,7 +141,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --faq-bg: #050505;
+  --faq-bg: #161f1f;
   --faq-text: #f4f2ed;
   --faq-muted: rgba(244, 242, 237, 0.68);
   --faq-soft: rgba(244, 242, 237, 0.48);
@@ -152,8 +152,8 @@
   --faq-cube-border: rgba(244, 242, 237, 0.18);
   --faq-cube-shadow: rgba(244, 242, 237, 0.2);
   --faq-focus: rgba(244, 242, 237, 0.32);
-  --showroom-bg: #0f0f0e;
-  --showroom-panel: #131311;
+  --showroom-bg: #161f1f;
+  --showroom-panel: #161f1f;
   --showroom-text: #f4f2ed;
   --showroom-muted: rgba(244, 242, 237, 0.68);
   --showroom-soft: rgba(244, 242, 237, 0.48);
@@ -255,7 +255,7 @@
   aspect-ratio: 4 / 3 !important;
   object-fit: cover !important;
   border-radius: 0 !important;
-  background: #050505 !important;
+  background: #161f1f !important;
   filter: brightness(0.88) !important;
   transition: filter 500ms ease, transform 700ms ease !important;
 }
@@ -439,12 +439,46 @@ html.dark {
 }
 
 .dark body {
-  background-color: #0a0a09;
+  background-color: #161f1f;
   color: #f4f2ed;
 }
 
 .dark .bg-white {
-  background-color: #0f0f0e !important;
+  background-color: #161f1f !important;
+}
+
+.dark .bg-black {
+  background-color: #161f1f !important;
+}
+
+.dark\:bg-black:is(.dark *) {
+  background-color: #161f1f !important;
+}
+
+/* Keep buttons that explicitly ask for dark:bg-white as white */
+.dark\:bg-white:is(.dark *) {
+  background-color: #fff !important;
+}
+
+.dark\:bg-white:is(.dark *) .dark\:bg-black:is(.dark *) {
+  background-color: #000 !important;
+}
+
+.dark .bg-\[\#000000\],
+.dark .bg-\[\#0f0f0e\],
+.dark .bg-\[\#131311\],
+.dark .bg-\[\#0a0a09\],
+.dark .bg-\[\#050505\],
+.dark .bg-\[\#121211\],
+.dark .bg-\[\#1a1a18\] {
+  background-color: #161f1f !important;
+}
+
+.dark\:bg-\[\#000000\]:is(.dark *),
+.dark\:bg-\[\#0f0f0e\]:is(.dark *),
+.dark\:bg-\[\#131311\]:is(.dark *),
+.dark\:bg-\[\#1a1a18\]:is(.dark *) {
+  background-color: #161f1f !important;
 }
 
 .dark .text-black {
@@ -462,14 +496,14 @@ html.dark {
 .dark input,
 .dark textarea,
 .dark select {
-  background-color: #121211 !important;
+  background-color: #161f1f !important;
   color: #f4f2ed !important;
   border-color: rgba(244, 242, 237, 0.12) !important;
 }
 
-/* About CVR section — glossy #2c3e42 surface in dark mode */
+/* About CVR section — glossy #161f1f surface in dark mode */
 .dark #about {
-  background-color: #2c3e42;
+  background-color: #161f1f;
   background-image:
     radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.10), transparent 70%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.12) 100%);

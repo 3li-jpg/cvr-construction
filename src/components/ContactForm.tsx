@@ -10,10 +10,12 @@ type FieldName =
   | "firstName"
   | "lastName"
   | "email"
+  | "phone"
   | "organization"
   | "region"
   | "subject"
-  | "message";
+  | "message"
+  | "website";
 
 type FormValues = Record<FieldName, string>;
 
@@ -25,16 +27,19 @@ const initialValues: FormValues = {
   firstName: "",
   lastName: "",
   email: "",
+  phone: "",
   organization: "",
   region: "",
   subject: "",
   message: "",
+  website: "",
 };
 
 function buildEmailDraftHref(data: {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   organization: string;
   region: string;
   subject: string;
@@ -49,6 +54,7 @@ function buildEmailDraftHref(data: {
       "",
       `Name: ${data.firstName} ${data.lastName}`.trim(),
       `Email: ${data.email}`,
+      data.phone ? `Phone: ${data.phone}` : "",
       data.organization ? `Organization: ${data.organization}` : "",
       `Region: ${data.region}`,
       `Subject: ${data.subject}`,
@@ -65,6 +71,17 @@ function validateField(name: FieldName, value: string) {
   const trimmedValue = value.trim();
 
   if (name === "organization") {
+    return "";
+  }
+
+  if (name === "phone") {
+    if (!trimmedValue) {
+      return "This field is required.";
+    }
+    const phonePattern = /^[+]?[\d\s().-]{7,}$/;
+    if (!phonePattern.test(trimmedValue)) {
+      return "Enter a valid phone number.";
+    }
     return "";
   }
 
@@ -106,7 +123,7 @@ export function ContactForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [statusMessage, setStatusMessage] = useState(
-    "Submitting opens an email draft with your project details prefilled for CVR Construction. Nothing is sent until you send the email from your mail app."
+    "Send your project details straight to CVR Construction. We reply by email, usually within one business day."
   );
   const [emailDraftHref, setEmailDraftHref] = useState("");
 
@@ -175,7 +192,7 @@ export function ContactForm() {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitState("sending");
 
@@ -193,7 +210,7 @@ export function ContactForm() {
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setSubmitState("idle");
-      setStatusMessage("Please correct the highlighted fields before opening your email draft.");
+      setStatusMessage("Please correct the highlighted fields before sending your message.");
       return;
     }
 
@@ -201,38 +218,75 @@ export function ContactForm() {
       firstName: values.firstName.trim(),
       lastName: values.lastName.trim(),
       email: values.email.trim(),
+      phone: values.phone.trim(),
       organization: values.organization.trim(),
       region: values.region.trim(),
       subject: values.subject.trim(),
       message: values.message.trim(),
     };
 
-    const draftHref = buildEmailDraftHref(payload);
-
-    setEmailDraftHref(draftHref);
     try {
-      window.sessionStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(values));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        try {
+          window.sessionStorage.removeItem(DRAFT_STORAGE_KEY);
+        } catch {
+          // Ignore storage clear failures.
+        }
+
+        trackEvent({
+          event: "email_enquiry_sent",
+          label: payload.subject || "general-enquiry",
+          location: "contact-form",
+          method: "resend",
+        });
+
+        setSubmitState("sent");
+        setStatusMessage(
+          "Thanks — your message has been sent. CVR Construction will reply to your email shortly."
+        );
+        return;
+      }
     } catch {
-      // Ignore storage write failures and continue with the email handoff.
+      // Network or runtime error — fall through to fallback.
     }
 
+    // Fallback: open a prefilled email draft in the visitor's mail client.
+    const draftHref = buildEmailDraftHref(payload);
+    setEmailDraftHref(draftHref);
+
     trackEvent({
-      event: "email_enquiry_started",
+      event: "email_enquiry_fallback",
       label: payload.subject || "general-enquiry",
       location: "contact-form",
       method: "mailto",
     });
 
-    setSubmitState("redirecting");
+    setSubmitState("fallback");
     setStatusMessage(
-      "Opening your email draft. If it does not open, use the manual email link below."
+      "We couldn't send automatically. Use the email link below to send your message instead."
     );
-    window.location.assign(draftHref);
   };
 
   return (
     <>
       <form className="mt-8 space-y-9 md:mt-9 lg:mt-10" noValidate onSubmit={handleSubmit}>
+        {/* honeypot: hidden field; bots fill it, real users never see it */}
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          value={values.website ?? ""}
+          onChange={(event) => setFieldValue("website" as FieldName, event.currentTarget.value)}
+          className="hidden"
+        />
         <div className="grid gap-6 md:grid-cols-2">
           <label className="flex flex-col gap-4">
             <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
@@ -304,6 +358,30 @@ export function ContactForm() {
           {errors.email ? (
             <span id="contact-email-error" className="text-sm text-red-700">
               {errors.email}
+            </span>
+          ) : null}
+        </label>
+
+        <label className="flex flex-col gap-4">
+          <span className="text-[0.82rem] font-semibold uppercase tracking-[-0.03em] text-muted-foreground">
+            PHONE*
+          </span>
+          <input
+            type="tel"
+            name="phone"
+            required
+            autoComplete="tel"
+            placeholder="(250) 555-0199…"
+            value={values.phone}
+            onChange={(event) => setFieldValue("phone", event.currentTarget.value)}
+            onBlur={() => handleBlur("phone")}
+            aria-invalid={Boolean(errors.phone)}
+            aria-describedby={errors.phone ? "contact-phone-error" : undefined}
+            className={getFieldClassName("phone")}
+          />
+          {errors.phone ? (
+            <span id="contact-phone-error" className="text-sm text-red-700">
+              {errors.phone}
             </span>
           ) : null}
         </label>
@@ -404,14 +482,14 @@ export function ContactForm() {
           data-analytics-label="open_email_draft"
           data-analytics-location="contact-form"
           className="px-4.5 text-[0.68rem] tracking-[0.08em] md:px-5 md:text-[0.76rem]"
-          disabled={submitState === "sending"}
+          disabled={submitState === "sending" || submitState === "sent"}
           type="submit"
         >
           {submitState === "sending"
-            ? "PREPARING DRAFT…"
-            : submitState === "redirecting"
-              ? "OPENING EMAIL…"
-              : "OPEN EMAIL DRAFT"}
+            ? "SENDING…"
+            : submitState === "sent"
+              ? "MESSAGE SENT"
+              : "SEND MESSAGE"}
         </InteractiveHoverButton>
       </form>
 
@@ -428,7 +506,7 @@ export function ContactForm() {
           href={emailDraftHref}
           className="mt-4 inline-flex w-fit items-center gap-2 border-b border-current pb-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground transition-opacity hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          Open Email Draft Manually
+          Send Email Manually Instead
         </a>
       ) : null}
     </>
