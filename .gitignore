@@ -44,10 +44,13 @@ next-env.d.ts
 # Vercel
 .vercel
 
-# Local settings (not project config)
-.claude/settings.local.json
+# AI agent configs (local only)
+.agents/
+.claude/
+.codex/
+.mcp.json
+GEMINI.md
 
 # User-specific skills (not part of the template)
-.claude/skills/customize/
 .aidesigner/*
 !.aidesigner/.gitkeep
