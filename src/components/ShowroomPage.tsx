@@ -89,6 +89,11 @@ const showroomProducts = [
   "Many More",
 ] as const;
 
+const openingPhotos = Array.from(
+  { length: 23 },
+  (_, i) => `/images/showroom-opening/showroom-opening-${String(i + 1).padStart(2, "0")}.webp`,
+);
+
 export function ShowroomPage() {
   const heroRef = useRef<HTMLElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
@@ -463,6 +468,51 @@ export function ShowroomPage() {
             </motion.div>
           </motion.div>
         </div>
+      </section>
+
+      {/* Grand opening photo marquee */}
+      <section
+        aria-labelledby="opening-heading"
+        className="relative overflow-hidden bg-[var(--showroom-bg)] py-16 text-[var(--showroom-text)] md:py-20"
+      >
+        <div className="site-shell relative z-10 mb-10 flex flex-col items-center gap-2 text-center">
+          <SectionEyebrow className="text-[0.72rem] tracking-[0.18em] text-[var(--showroom-soft)]">
+            GRAND OPENING
+          </SectionEyebrow>
+          <h2
+            id="opening-heading"
+            className="text-[2.4rem] font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem]"
+          >
+            Opening Day At The Showroom
+          </h2>
+        </div>
+
+        <ScrollVelocityContainer className="relative z-10">
+          <ScrollVelocityRow baseVelocity={1.6} direction={1} scrollReactivity>
+            {openingPhotos.slice(0, 12).map((src) => (
+              <Image
+                key={src}
+                src={src}
+                alt="CVR Kitchen & Bath showroom grand opening"
+                width={900}
+                height={1200}
+                className="mr-4 inline-block h-60 w-auto object-cover sm:mr-5 md:h-80"
+              />
+            ))}
+          </ScrollVelocityRow>
+          <ScrollVelocityRow baseVelocity={1.6} direction={-1} className="mt-4 sm:mt-5" scrollReactivity>
+            {openingPhotos.slice(12).map((src) => (
+              <Image
+                key={src}
+                src={src}
+                alt="CVR Kitchen & Bath showroom grand opening"
+                width={900}
+                height={1200}
+                className="mr-4 inline-block h-60 w-auto object-cover sm:mr-5 md:h-80"
+              />
+            ))}
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
       </section>
 
       {/* Brands marquee */}

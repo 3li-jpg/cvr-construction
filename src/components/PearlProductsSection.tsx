@@ -418,16 +418,6 @@ function ProductCard({ product }: { product: PearlProduct }) {
             </p>
           ) : null}
         </div>
-
-        <div className="flex items-end justify-between gap-4 border-t border-[color:var(--showroom-line)] pt-4 transition-colors duration-500 group-hover:border-[color:var(--showroom-soft)]">
-          <p className="text-[1.04rem] font-black uppercase tracking-[-0.03em]">
-            {product.price}
-          </p>
-          <span
-            aria-hidden="true"
-            className="h-2 w-9 bg-[var(--showroom-text)] transition duration-500 group-hover:translate-x-1"
-          />
-        </div>
       </div>
     </motion.article>
   );

@@ -276,7 +276,7 @@ export function Navbar() {
               aria-haspopup="dialog"
               aria-label={menuButtonLabel}
               onClick={toggleMenu}
-              className="inline-flex h-11 min-w-[7.75rem] items-center justify-center rounded-none bg-[#e6e6e2] px-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black xl:min-w-[8.25rem]"
+              className="inline-flex h-11 min-w-[7.75rem] items-center justify-center rounded-none bg-[#e6e6e2] px-4 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:bg-[#33403f] dark:text-white dark:hover:bg-[#3e4c4b] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black xl:min-w-[8.25rem]"
             >
               <TextRoll
                 center
@@ -322,7 +322,7 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={toggleMenu}
-            className="flex h-12 min-w-[5.35rem] items-center justify-center rounded-none border border-black/8 bg-[#e6e6e2] px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/10 dark:bg-[#1a1a18] dark:text-white dark:hover:bg-[#232320] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className="flex h-12 min-w-[5.35rem] items-center justify-center rounded-none border border-black/8 bg-[#e6e6e2] px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/10 dark:bg-[#33403f] dark:text-white dark:hover:bg-[#3e4c4b] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
             <TextRoll
               center
