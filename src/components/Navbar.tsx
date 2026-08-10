@@ -227,7 +227,7 @@ export function Navbar() {
         }`}
       >
         <div className="site-shell pt-8">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+          <div className="grid grid-cols-[auto_1fr_auto] items-center">
             <Link
               href="/"
               onClick={closeMenu}
@@ -235,10 +235,10 @@ export function Navbar() {
               className="justify-self-start text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               aria-label="CVR Construction home"
             >
-              <Logo className="h-12 w-36" />
+              <Logo className="h-11 w-auto text-[#FDFBF7]" />
             </Link>
 
-            <nav aria-label="Primary" className="flex items-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
+            <nav aria-label="Primary" className="flex items-center justify-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
               {desktopNavItems.map((item) => (
                 <Link
                   key={item.href}
@@ -253,7 +253,7 @@ export function Navbar() {
               ))}
             </nav>
 
-            <div className="justify-self-end" style={{minWidth: "22rem"}} />
+            <div className="justify-self-end" style={{width: "20.25rem"}} />
           </div>
         </div>
       </header>
@@ -303,7 +303,7 @@ export function Navbar() {
           className="text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           aria-label="CVR Construction home"
         >
-          <Logo className="h-12 w-36 md:h-14 md:w-40" />
+          <Logo className="h-12 w-auto text-[#161F1F] dark:text-[#FDFBF7]" />
         </Link>
 
         <div className="flex items-center gap-1.5">
