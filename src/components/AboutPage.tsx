@@ -19,7 +19,10 @@ import {
   services,
   studioCertifications,
   studioFacts,
+  studioMission,
   studioPhilosophy,
+  studioValues,
+  studioVision,
   studioYears,
 } from "@/lib/site-data";
 
@@ -237,6 +240,69 @@ export function AboutPage() {
       </section>
 
       <section
+        aria-labelledby="values-heading"
+        className="site-shell px-6 pb-24 sm:px-8 md:px-12 md:pb-28 lg:px-20 lg:pb-32"
+      >
+        <div className="grid gap-10 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,0.3fr)_minmax(0,1fr)] lg:gap-16 lg:pt-14">
+          <Reveal direction="up" duration={0.7} distance={28}>
+            <SectionEyebrow className="text-[0.78rem] tracking-[0.18em] text-black">
+              WHAT WE STAND ON
+            </SectionEyebrow>
+          </Reveal>
+
+          <div className="flex flex-col gap-12 lg:gap-16">
+            <Reveal direction="up" duration={0.9} distance={32}>
+              <h2 id="values-heading" className="sr-only">
+                Mission, vision and values
+              </h2>
+              <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
+                <div className="flex flex-col gap-3">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/40">
+                    Why We Exist
+                  </p>
+                  <p className={proseHeroClassName}>{studioMission}</p>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/40">
+                    Where We&rsquo;re Headed
+                  </p>
+                  <p className={proseHeroClassName}>{studioVision}</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+              variants={philosophyContainer}
+              className="flex flex-col"
+            >
+              {studioValues.map((value) => (
+                <motion.div
+                  key={value.num}
+                  variants={philosophyItem}
+                  className="grid gap-2 border-t border-black/10 py-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8 md:py-7"
+                >
+                  <p className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[#A8842F] sm:w-16">
+                    {value.num}
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <p className="text-[1.1rem] font-black uppercase leading-[1.05] tracking-[-0.03em] md:text-[1.3rem]">
+                      {value.title}
+                    </p>
+                    <p className="max-w-[52ch] text-[clamp(0.95rem,1.12vw,1.05rem)] leading-[1.25] tracking-[-0.025em] text-black/58 dark:text-white/58">
+                      {value.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section
         aria-labelledby="awards-heading"
         className="site-shell px-6 pb-24 pt-20 sm:px-8 md:px-12 md:pt-28 md:pb-28 lg:px-20 lg:pb-32 lg:pt-32"
       >
@@ -314,7 +380,7 @@ export function AboutPage() {
 
       <section
         aria-labelledby="services-heading"
-        className="w-full bg-white py-10 text-black dark:bg-[#0f0f0e] dark:text-white lg:py-12"
+        className="w-full bg-white py-10 text-black dark:bg-[#161F1F] dark:text-white lg:py-12"
       >
         <div className="site-shell flex w-full flex-col px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center">
@@ -343,7 +409,7 @@ export function AboutPage() {
               duration={0.95}
               className="mx-auto flex max-w-[18.75rem] flex-col items-center gap-5 xl:mx-0 xl:items-start xl:sticky xl:top-24 xl:self-start xl:pt-1"
             >
-              <div className="w-full overflow-hidden bg-white dark:bg-[#131311]">
+              <div className="w-full overflow-hidden bg-white dark:bg-[#161F1F]">
                 <Image
                   src={activeService.previewImage}
                   alt={activeService.title}
@@ -442,7 +508,7 @@ export function AboutPage() {
                               {service.galleryImages.map((image, imageIndex) => (
                                 <div
                                   key={image}
-                                  className="overflow-hidden bg-white dark:bg-[#131311]"
+                                  className="overflow-hidden bg-white dark:bg-[#161F1F]"
                                 >
                                   <Image
                                     src={image}

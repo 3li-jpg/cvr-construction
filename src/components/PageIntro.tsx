@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { useEffect, useRef, type ReactNode } from "react";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { TextAnimate } from "@/components/TextAnimate";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 
@@ -123,14 +124,16 @@ export function PageIntro({
       <div className="relative z-10 h-full w-full">
         <div className="site-shell relative flex h-full flex-col items-center justify-center py-24 text-center md:py-28 lg:py-32">
           {eyebrow ? (
-            <motion.p
+            <motion.div
               initial={prefersReducedMotion ? "show" : "hidden"}
               animate="show"
               variants={eyebrowVariants}
-              className="mb-6 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-white/70 sm:mb-8"
+              className="mb-6 sm:mb-8"
             >
-              {eyebrow}
-            </motion.p>
+              <SectionEyebrow className="justify-center text-[0.78rem] tracking-[0.18em] text-white/70">
+                {eyebrow}
+              </SectionEyebrow>
+            </motion.div>
           ) : null}
 
           <TextAnimate

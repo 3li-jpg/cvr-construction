@@ -103,7 +103,7 @@ const trustItems = [
 
 export function TrustStripSection() {
   return (
-    <section className="w-full border-y border-black/8 bg-white py-14 text-black dark:border-white/8 dark:bg-[#0f0f0e] dark:text-white md:py-16 lg:py-20">
+    <section className="w-full border-y border-black/8 bg-white py-14 text-black dark:border-white/8 dark:bg-[#161F1F] dark:text-white md:py-16 lg:py-20">
       <div className="site-shell">
         <Reveal direction="up" delay={0} duration={0.8}>
           <SectionEyebrow className="mb-10 justify-center text-center text-[0.78rem] tracking-[0.14em] text-black dark:text-white">

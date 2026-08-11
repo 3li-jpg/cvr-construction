@@ -252,7 +252,7 @@ export function ContactBlockSection({ showroomOnly = false }: ContactBlockSectio
   }
 
   return (
-    <section className="w-full bg-white py-16 text-black dark:bg-[#0f0f0e] dark:text-white md:py-20 lg:py-24">
+    <section className="w-full bg-white py-16 text-black dark:bg-[#161F1F] dark:text-white md:py-20 lg:py-24">
       <div className="site-shell">
         <Reveal direction="up" delay={0} duration={0.8}>
           <div className="mb-10 flex flex-col items-center gap-4 text-center lg:mb-14">

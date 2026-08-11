@@ -13,7 +13,7 @@ export function JournalSection() {
     "text-[2.4rem] sm:text-[3.1rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] font-black tracking-[-0.045em] uppercase leading-[0.9]";
 
   return (
-    <section className="w-full bg-white py-20 text-black dark:bg-[#0f0f0e] dark:text-white md:py-24">
+    <section className="w-full bg-white py-20 text-black dark:bg-[#161F1F] dark:text-white md:py-24">
       <div className="site-shell">
         <div className="mb-14 flex flex-col items-center gap-6 text-center lg:mb-16">
           <div className="flex flex-col items-center text-center">
@@ -54,7 +54,7 @@ export function JournalSection() {
                 href={`/journals/${post.slug}`}
                 className="group flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-white dark:bg-[#131311]">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-white dark:bg-[#161F1F]">
                   <Image
                     src={post.heroImage}
                     alt={post.title}

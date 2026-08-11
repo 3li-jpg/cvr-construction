@@ -267,7 +267,7 @@ export function Navbar() {
             >
               CONTACT US
             </Link>
-            <AnimatedThemeToggler className="!h-11 !w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#1a1a18] dark:text-white" />
+            <AnimatedThemeToggler className="!h-11 !w-11 border-black/10 bg-white text-black dark:border-white/12 dark:bg-[#161F1F] dark:text-white" />
             <button
               ref={desktopMenuButtonRef}
               type="button"
@@ -313,7 +313,7 @@ export function Navbar() {
           >
             CONTACT US
           </Link>
-          <AnimatedThemeToggler className="h-12 w-12 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#1a1a18] dark:text-white" />
+          <AnimatedThemeToggler className="h-12 w-12 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#161F1F] dark:text-white" />
           <button
             ref={mobileMenuButtonRef}
             type="button"

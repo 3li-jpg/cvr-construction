@@ -23,13 +23,13 @@ export function FlowButton({
     "group relative flex items-center gap-1 overflow-hidden rounded-none border-[1.5px] px-8 py-3 text-[0.7rem] font-semibold uppercase tracking-widest cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.95]",
     isDark
       ? "border-white/50 bg-transparent text-white hover:text-white"
-      : "border-[#333333]/40 bg-transparent text-[#111111] hover:text-white",
+      : "border-[#333333]/40 bg-transparent text-[#161F1F] hover:text-white",
     className
   );
 
-  const arrowColor = isDark ? "stroke-white" : "stroke-[#111111]";
+  const arrowColor = isDark ? "stroke-white" : "stroke-[#161F1F]";
   const arrowHoverColor = "group-hover:stroke-white";
-  const circleBg = isDark ? "bg-black" : "bg-[#111111]";
+  const circleBg = isDark ? "bg-black" : "bg-[#161F1F]";
 
   const inner = (
     <>

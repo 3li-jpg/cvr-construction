@@ -1637,21 +1637,41 @@ export const trustLinks = [
   },
 ] as const;
 
-export const studioPrinciples = [
+/**
+ * Mission, vision and values are taken from the CVR brand guidelines
+ * (items 02-04). Wording follows the source; only run-on punctuation has
+ * been resolved into full sentences, per the tone of voice rules on p.5.
+ */
+export const studioMission =
+  "To turn a homeowner's vision into a space built with precision, care, and craftsmanship \u2014 and to make the process feel as considered as the result.";
+
+export const studioVision =
+  "To become Victoria's benchmark for kitchen, bath, and full home renovation: the name trusted by homeowners who expect the work to speak for itself.";
+
+export const studioValues = [
   {
-    title: "Clarity Before Construction",
+    num: "01",
+    title: "Precision",
     description:
-      "We work to reduce ambiguity early so scope, finish level, and expectations are aligned before the site gets moving.",
+      "Every measurement, every proportion, every detail is deliberate. Nothing is left to chance.",
   },
   {
-    title: "Detail-Driven Execution",
+    num: "02",
+    title: "Craftsmanship",
     description:
-      "Projects are managed with a premium finish standard, disciplined sequencing, and close attention to the details clients notice at handover.",
+      "Quality workmanship isn't a selling point here. It's the baseline every project is held to.",
   },
   {
-    title: "Straightforward Communication",
+    num: "03",
+    title: "Integrity",
     description:
-      "We aim for communication that is calm, direct, and useful. Clients should know what is happening and why it matters.",
+      "Clear communication and honest execution, from the first walkthrough to the final punch list.",
+  },
+  {
+    num: "04",
+    title: "Partnership",
+    description:
+      "We build alongside our clients, not just for them. Every decision is made together.",
   },
 ] as const;
 

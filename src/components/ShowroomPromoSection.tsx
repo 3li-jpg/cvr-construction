@@ -116,7 +116,7 @@ export function ShowroomPromoSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-[#f5f5f0] dark:bg-[#0f0f0e]"
+      className="relative w-full overflow-hidden bg-[#FDFBF7] dark:bg-[#161F1F]"
     >
       <div className="grid min-h-[100svh] lg:grid-cols-2">
         <div className="order-2 flex flex-col items-center justify-center px-[var(--site-gutter)] py-16 md:py-20 lg:order-1 lg:py-24 xl:py-28">
@@ -158,10 +158,10 @@ export function ShowroomPromoSection() {
               <div className="mx-auto mt-8 grid w-full max-w-[22rem] grid-cols-2 gap-2.5 sm:max-w-[34rem] sm:gap-3 lg:mx-0">
                 <a
                   href="/showroom"
-                  className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.58rem] font-semibold uppercase leading-none tracking-[-0.03em] !text-[#000000] transition-colors duration-300 hover:!text-[#ffffff] sm:px-5 sm:text-[0.72rem]"
+                  className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.58rem] font-semibold uppercase leading-none tracking-[-0.03em] !text-[#161F1F] transition-colors duration-300 hover:!text-[#ffffff] sm:px-5 sm:text-[0.72rem]"
                 >
                   <span className="relative inline-flex items-center whitespace-nowrap">
-                    <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#000000] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
+                    <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#161F1F] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
                     <span className="relative ml-3 sm:ml-4">Explore Showroom</span>
                   </span>
                 </a>

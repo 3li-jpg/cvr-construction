@@ -317,7 +317,11 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
           <p
             className="block w-full whitespace-nowrap px-4 text-center font-semibold uppercase leading-[0.82] tracking-[-0.04em] text-white/90"
             style={{
-              fontSize: "clamp(3.2rem, 6vw, 7.4rem)",
+              // No lower bound: a min floor made this overflow on every phone
+              // width, since the line is `whitespace-nowrap`. "Craft Vision
+              // Realized" measures 11.3em wide, so 7.6vw keeps it inside the
+              // viewport down to 320px. Retune if the tagline text changes.
+              fontSize: "min(7.6vw, 7.4rem)",
               WebkitMaskImage:
                 "linear-gradient(0deg, rgba(0,0,0,0) 0%, rgb(0,0,0) 100%)",
               maskImage:
@@ -325,7 +329,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
               marginBottom: "-0.18em",
             }}
           >
-            Canada Victoria Remodeling
+            Craft Vision Realized
           </p>
         </div>
       </footer>

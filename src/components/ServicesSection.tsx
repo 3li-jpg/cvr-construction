@@ -43,7 +43,7 @@ export function ServicesSection() {
   const activeService = services[openIdx ?? 0];
 
   return (
-    <section className="w-full bg-white py-10 text-black dark:bg-[#0f0f0e] dark:text-white lg:py-12">
+    <section className="w-full bg-white py-10 text-black dark:bg-[#161F1F] dark:text-white lg:py-12">
       <div className="site-shell flex w-full flex-col px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           <Reveal direction="up" duration={0.8}>
@@ -68,7 +68,7 @@ export function ServicesSection() {
             duration={0.95}
             className="mx-auto flex max-w-[18.75rem] flex-col items-center gap-5 text-center xl:sticky xl:top-24 xl:self-start xl:pt-1"
           >
-            <div className="w-full overflow-hidden bg-white dark:bg-[#131311]">
+            <div className="w-full overflow-hidden bg-white dark:bg-[#161F1F]">
               <Image
                 src={activeService.previewImage}
                 alt={activeService.title}
@@ -148,7 +148,7 @@ export function ServicesSection() {
 
                           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                             {service.galleryImages.map((image, imageIndex) => (
-                              <div key={image} className="overflow-hidden bg-white dark:bg-[#131311]">
+                              <div key={image} className="overflow-hidden bg-white dark:bg-[#161F1F]">
                                 <Image
                                   src={image}
                                   alt={`${service.title} reference ${imageIndex + 1}`}

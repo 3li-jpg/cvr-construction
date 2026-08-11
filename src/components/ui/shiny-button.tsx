@@ -123,7 +123,7 @@ export function ShinyButton({
   href,
   onClick,
   className = "",
-  bg = "#080808",
+  bg = "#161F1F",
   highlight = "rgba(255,255,255,0.85)",
 }: ShinyButtonProps) {
   const background = `

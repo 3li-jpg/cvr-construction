@@ -71,7 +71,7 @@ export function ProcessSection() {
 
   return (
     <section className="w-full bg-white text-black">
-      <div className="border-b border-black/8 bg-white dark:border-white/10 dark:bg-[#0f0f0e] lg:border-b-0 lg:bg-transparent">
+      <div className="border-b border-black/8 bg-white dark:border-white/10 dark:bg-[#161F1F] lg:border-b-0 lg:bg-transparent">
         <div className="site-shell pb-5 pt-4 lg:pb-16 lg:pt-24">
           <div className="flex flex-col items-center text-center">
             <Reveal direction="up" duration={0.8} distance={36}>
@@ -97,7 +97,7 @@ export function ProcessSection() {
             ref={(node) => {
               articleRefs.current[index] = node;
             }}
-            className="sticky top-[var(--process-card-top)] bg-white text-black dark:bg-[#0f0f0e] dark:text-white lg:top-20"
+            className="sticky top-[var(--process-card-top)] bg-white text-black dark:bg-[#161F1F] dark:text-white lg:top-20"
             style={
               {
                 zIndex: index + 1,
@@ -113,7 +113,7 @@ export function ProcessSection() {
             />
 
             <div className="site-shell pb-5 pt-0 sm:pb-6 lg:py-7">
-              <div className="overflow-hidden rounded-none border border-black/10 bg-white shadow-[0_18px_48px_rgba(0,0,0,0.06)] dark:border-white/10 dark:bg-[#0f0f0e] sm:rounded-[1.35rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
+              <div className="overflow-hidden rounded-none border border-black/10 bg-white shadow-[0_18px_48px_rgba(0,0,0,0.06)] dark:border-white/10 dark:bg-[#161F1F] sm:rounded-[1.35rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
                 <div className="min-h-[calc(100svh-var(--process-card-top)-1rem)] px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-8 lg:min-h-[42rem] lg:px-0 lg:py-0">
                   <div className="grid min-h-[inherit] content-start gap-4 pt-3 sm:pt-4 lg:mx-auto lg:max-w-[72rem] lg:grid-cols-[6rem_minmax(0,1fr)] lg:content-center lg:items-start lg:gap-8 lg:pt-0 xl:max-w-[78rem]">
                     <div className="flex items-start justify-center lg:min-h-[34rem] lg:items-center lg:pt-0">
@@ -132,7 +132,7 @@ export function ProcessSection() {
                     </div>
 
                     <div className="grid gap-5 lg:min-h-[42rem] lg:grid-cols-[minmax(0,44rem)_minmax(22rem,24rem)] lg:items-center lg:justify-center lg:gap-8 xl:gap-10">
-                      <div className="relative mx-auto aspect-[1/0.96] w-full max-w-[58rem] overflow-hidden rounded-none bg-white dark:bg-[#131311] sm:aspect-[1.12/1] sm:rounded-[1rem] lg:h-[34rem] lg:w-full lg:max-w-none lg:rounded-none">
+                      <div className="relative mx-auto aspect-[1/0.96] w-full max-w-[58rem] overflow-hidden rounded-none bg-white dark:bg-[#161F1F] sm:aspect-[1.12/1] sm:rounded-[1rem] lg:h-[34rem] lg:w-full lg:max-w-none lg:rounded-none">
                         <Image
                           src={step.image}
                           alt={step.title}

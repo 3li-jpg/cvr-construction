@@ -21,9 +21,15 @@ export function SectionEyebrow({
         className
       )}
     >
+      {/* Brass Gold marker, per the brand guidelines: gold carries eyebrows,
+          short rules and numerals, never body copy. Decorative and
+          aria-hidden, so it sidesteps the 3.38:1 contrast gold has on ivory. */}
       <span
         aria-hidden="true"
-        className={cn("inline-block h-1.5 w-1.5 rounded-none bg-current", dotClassName)}
+        className={cn(
+          "inline-block h-1.5 w-1.5 rounded-none bg-[#A8842F]",
+          dotClassName
+        )}
       />
       <span>{children}</span>
     </p>

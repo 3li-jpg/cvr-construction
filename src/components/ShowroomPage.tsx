@@ -192,8 +192,8 @@ export function ShowroomPage() {
           />
         </div>
 
-        <div className="absolute inset-0 bg-[#000000] opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-50" />
+        <div className="absolute inset-0 bg-[#161F1F] opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#161F1F] via-transparent to-transparent opacity-50" />
 
         <div className="relative z-10 h-full w-full">
           <div className="site-shell relative flex h-full flex-col items-center justify-center pb-20 pt-20 md:pb-24 md:pt-28 lg:pb-24 lg:pt-32">
@@ -331,10 +331,10 @@ export function ShowroomPage() {
                 </a>
                 <a
                   href="#design-specialist"
-                  className="group relative col-span-2 mx-auto inline-flex box-border h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] !text-[#000000] transition-colors duration-300 hover:!text-[#ffffff] sm:w-[calc((100%_-_0.75rem)/2)] sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
+                  className="group relative col-span-2 mx-auto inline-flex box-border h-12 w-full items-center justify-center overflow-hidden rounded-none border border-[#ffffff] !bg-[#ffffff] px-2 py-0 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.07em] !text-[#161F1F] transition-colors duration-300 hover:!text-[#ffffff] sm:w-[calc((100%_-_0.75rem)/2)] sm:px-5 sm:text-[0.76rem] sm:tracking-[0.12em]"
                 >
                   <span className="relative inline-flex items-center whitespace-nowrap">
-                    <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#000000] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
+                    <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 bg-[#161F1F] transition-all duration-300 ease-out group-hover:-left-32 group-hover:h-32 group-hover:w-96 sm:size-2" />
                     <span className="relative ml-3 sm:ml-4">Get Design Consultation</span>
                   </span>
                 </a>
