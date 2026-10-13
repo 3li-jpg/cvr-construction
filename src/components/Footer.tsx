@@ -171,30 +171,34 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                           <span>1057 Fort Street</span>
                           <span>{showroomContact.cityRegionPostal}</span>
                         </a>
-                        <a
-                          href={businessContact.phoneHref}
-                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
-                        >
-                          {businessContact.phone}
-                        </a>
-                        <a
-                          href="mailto:info@cvrconstruction.ca"
-                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
-                        >
-                          INFO@CVRCONSTRUCTION.CA
-                        </a>
-                        <a
-                          href={showroomContact.phoneHref}
-                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
-                        >
-                          {showroomContact.phone}
-                        </a>
-                        <a
-                          href="mailto:sales@cvrconstruction.ca"
-                          className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
-                        >
-                          SALES@CVRCONSTRUCTION.CA
-                        </a>
+                        <div className="mt-4 flex flex-col gap-1.5">
+                          <a
+                            href={businessContact.phoneHref}
+                            className={`${metaLinkClassName} w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                          >
+                            {businessContact.phone}
+                          </a>
+                          <a
+                            href={showroomContact.phoneHref}
+                            className={`${metaLinkClassName} w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                          >
+                            {showroomContact.phone}
+                          </a>
+                        </div>
+                        <div className="mt-6 flex flex-col gap-1.5">
+                          <a
+                            href="mailto:info@cvrconstruction.ca"
+                            className={`${metaLinkClassName} w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                          >
+                            INFO@CVRCONSTRUCTION.CA
+                          </a>
+                          <a
+                            href="mailto:sales@cvrconstruction.ca"
+                            className={`${metaLinkClassName} w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
+                          >
+                            SALES@CVRCONSTRUCTION.CA
+                          </a>
+                        </div>
                       </div>
                     </div>
                     {bbbAccreditedHref ? (
