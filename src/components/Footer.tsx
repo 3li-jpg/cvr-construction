@@ -161,18 +161,15 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                     <p className={footerSectionLabelClassName}>• CONTACT</p>
                     <div className="space-y-6">
                       <div>
-                        <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
-                          Construction Office
-                        </p>
                         <a
-                          href={businessContact.mapsHref}
+                          href={showroomContact.mapsHref}
                           target="_blank"
                           rel="noreferrer"
                           className={`${footerDisplayLinkClassName} flex-col leading-[1.04]`}
                           style={{ fontSize: "clamp(1.55rem, 2.1vw, 2.65rem)" }}
                         >
-                          <span>{businessContact.addressLine1}</span>
-                          <span>{businessContact.cityRegionPostal}</span>
+                          <span>1057 Fort Street</span>
+                          <span>{showroomContact.cityRegionPostal}</span>
                         </a>
                         <a
                           href={businessContact.phoneHref}
@@ -181,25 +178,10 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                           {businessContact.phone}
                         </a>
                         <a
-                          href={businessContact.emailHref}
+                          href="mailto:info@cvrconstruction.ca"
                           className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
                         >
-                          {businessContact.email.toUpperCase()}
-                        </a>
-                      </div>
-                      <div>
-                        <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/45">
-                          Showroom
-                        </p>
-                        <a
-                          href={showroomContact.mapsHref}
-                          target="_blank"
-                          rel="noreferrer"
-                          className={`${footerDisplayLinkClassName} flex-col leading-[1.04]`}
-                          style={{ fontSize: "clamp(1.2rem, 1.6vw, 2rem)" }}
-                        >
-                          <span>{showroomContact.addressLine1}</span>
-                          <span>{showroomContact.cityRegionPostal}</span>
+                          INFO@CVRCONSTRUCTION.CA
                         </a>
                         <a
                           href={showroomContact.phoneHref}
@@ -208,10 +190,10 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                           {showroomContact.phone}
                         </a>
                         <a
-                          href={showroomContact.emailHref}
+                          href="mailto:sales@cvrconstruction.ca"
                           className={`${metaLinkClassName} mt-3 flex w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
                         >
-                          {showroomContact.email.toUpperCase()}
+                          SALES@CVRCONSTRUCTION.CA
                         </a>
                       </div>
                     </div>
