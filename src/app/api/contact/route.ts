@@ -13,9 +13,8 @@ function getResend() {
   return new Resend(apiKey);
 }
 
-const FROM_ADDRESS = process.env.CONTACT_FROM_ADDRESS ?? "info@cvrconstruction.ca";
-// ponytail: optional test/staging recipient; unset in production so it routes to businessContact.email
-const TO_ADDRESS = process.env.CONTACT_TO_ADDRESS ?? businessContact.email;
+const FROM_ADDRESS = businessContact.email;
+const TO_ADDRESS = businessContact.email;
 const MAX_MESSAGE = 5000;
 
 type ContactPayload = {

@@ -9,7 +9,7 @@ const BODY = `# CVR Construction, Premium Construction Company in Victoria, BC
 > upgrades across Greater Victoria and Vancouver Island.
 
 - **Website:** https://www.cvrconstruction.ca
-- **Email:** cvrconstruction@outlook.com
+- **Email:** info@cvrconstruction.ca
 - **Phone:** +1-250-880-1270
 - **WhatsApp:** https://wa.me/12508801270
 - **Location:** 1226 Finlayson Street, Victoria, BC V8T 2V3, Canada

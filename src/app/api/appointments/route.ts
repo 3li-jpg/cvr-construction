@@ -24,8 +24,8 @@ export async function POST(request: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: `CVR Showroom <${process.env.CONTACT_FROM_ADDRESS ?? "info@cvrconstruction.ca"}>`,
-      to: process.env.APPOINTMENT_TO_ADDRESS || showroomContact.email,
+      from: `CVR Showroom <${showroomContact.email}>`,
+      to: showroomContact.email,
       replyTo: data.email,
       subject: `Showroom appointment request: ${data.date} at ${data.time}`,
       text: [

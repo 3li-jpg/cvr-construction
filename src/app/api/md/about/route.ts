@@ -24,7 +24,7 @@ Vancouver Island.
 ## Contact
 
 - Website: https://www.cvrconstruction.ca
-- Email: cvrconstruction@outlook.com
+- Email: info@cvrconstruction.ca
 - Phone: +1-250-880-1270
 `;
 

@@ -187,10 +187,10 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         </div>
                         <div className="mt-6 flex flex-col gap-1.5">
                           <a
-                            href="mailto:info@cvrconstruction.ca"
+                            href={businessContact.emailHref}
                             className={`${metaLinkClassName} w-fit text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-white/60`}
                           >
-                            INFO@CVRCONSTRUCTION.CA
+                            {businessContact.email.toUpperCase()}
                           </a>
                           <a
                             href="mailto:sales@cvrconstruction.ca"

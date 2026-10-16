@@ -9,7 +9,7 @@ in Greater Victoria or on Vancouver Island.
 
 ## Channels
 
-- **Email:** cvrconstruction@outlook.com
+- **Email:** info@cvrconstruction.ca
 - **Phone:** +1-250-880-1270
 - **WhatsApp:** https://wa.me/12508801270
 - **Instagram:** https://www.instagram.com/cvr_construction_ltd/

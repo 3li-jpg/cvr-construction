@@ -27,7 +27,7 @@ type NavigatorWithModelContext = Navigator & {
 
 const CONTACT_INFO = {
   name: "CVR Construction Ltd.",
-  email: "cvrconstruction@outlook.com",
+  email: "info@cvrconstruction.ca",
   phone: "+1-250-880-1270",
   whatsapp: "https://wa.me/12508801270",
   website: "https://www.cvrconstruction.ca",

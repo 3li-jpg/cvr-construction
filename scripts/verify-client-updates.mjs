@@ -33,6 +33,10 @@ async function main() {
   const { projects, galleryItems, services } = load('src/lib/site-data.ts');
   const { getProjectView, getGalleryCategory } = load('src/lib/project-categories.ts');
   const { validateAppointment } = load('src/lib/appointments.ts');
+  const { businessContact, showroomContact } = load('src/lib/site-data.ts');
+  assert.equal(businessContact.email, 'info@cvrconstruction.ca');
+  assert.equal(showroomContact.email, businessContact.email);
+  assert.equal(showroomContact.emailHref, businessContact.emailHref);
   const kitchen = projects.find(p => p.slug === 'dark-grey-kitchen');
   const bath = projects.find(p => p.slug === 'dark-grey-bathroom');
   assert.equal(kitchen.galleryImages.length, 2);
@@ -95,10 +99,18 @@ async function main() {
     process.env.RESEND_API_KEY = 'test-only';
     process.env.APPOINTMENT_TO_ADDRESS = 'appointments@example.com';
     assert.equal((await POST(request(fields))).status, 200);
-    assert.equal(sentEmail.to, 'appointments@example.com');
+    assert.equal(sentEmail.to, 'info@cvrconstruction.ca');
+    assert.equal(sentEmail.from, 'CVR Showroom <info@cvrconstruction.ca>');
     assert.equal(sentEmail.replyTo, fields.email);
     assert(sentEmail.text.includes(fields.date));
     assert(sentEmail.text.includes('not yet confirmed'));
+    // A stale inbox override must not change the agreed destination.
+    const { POST: contactPost } = load('src/app/api/contact/route.ts');
+    const contactFields = { firstName: 'Test', lastName: 'Visitor', email: 'visitor@example.com', region: 'Victoria', subject: 'Kitchen', message: 'Test enquiry' };
+    assert.equal((await contactPost(request(contactFields))).status, 200);
+    assert.equal(sentEmail.to, 'info@cvrconstruction.ca');
+    assert.equal(sentEmail.from, 'CVR Website <info@cvrconstruction.ca>');
+    assert.equal(sentEmail.replyTo, contactFields.email);
     emailFailure = true;
     assert.equal((await POST(request(fields))).status, 502);
   } finally {
