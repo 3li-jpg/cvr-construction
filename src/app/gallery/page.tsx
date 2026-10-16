@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { buildPageMetadata } from "@/lib/metadata";
 import { projectProseClassName } from "@/lib/prose";
-import { galleryHero, galleryItems } from "@/lib/site-data";
+import { galleryHero, galleryItems, projectCategories } from "@/lib/site-data";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Gallery",
@@ -66,7 +66,7 @@ export default async function GalleryPage({ searchParams }: { searchParams: Prom
             </div>
           </Reveal>
 
-          <ProjectCategoryNav selected={selectedCategory} basePath="/gallery" />
+          <ProjectCategoryNav selected={selectedCategory} basePath="/gallery" populatedCategories={projectCategories.filter((category) => galleryItems.some((item) => category.id === "finishes" ? ["kitchen", "bathroom"].includes(getGalleryCategory(item)) : getGalleryCategory(item) === category.id)).map((category) => category.id)} />
           {items.length ? <GalleryLightboxGrid key={selectedCategory ?? "all"} items={items} priorityCount={1} variant="reference" /> : <p className="py-10">Photography for this service is being prepared. Contact us to discuss your project.</p>}
         </section>
       </section>

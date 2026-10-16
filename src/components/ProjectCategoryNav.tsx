@@ -3,13 +3,19 @@
 import Link from "next/link";
 import { projectCategories, type ProjectCategory } from "@/lib/site-data";
 
-export function ProjectCategoryNav({ selected, basePath = "/projects" }: {
+export function ProjectCategoryNav({ selected, basePath = "/projects", populatedCategories }: {
   selected?: ProjectCategory;
   basePath?: string;
+  populatedCategories: readonly ProjectCategory[];
 }) {
+  const populated = new Set(populatedCategories);
+  const orderedCategories = [
+    ...projectCategories.filter((category) => populated.has(category.id)),
+    ...projectCategories.filter((category) => !populated.has(category.id)),
+  ];
   return (
     <nav aria-label="Filter by service" className="mb-10 flex flex-wrap gap-2 border-b border-border pb-6">
-      {[{ id: undefined, label: "All" }, ...projectCategories].map((category) => (
+      {[{ id: undefined, label: "All" }, ...orderedCategories].map((category) => (
         <Link
           key={category.id ?? "all"}
           href={category.id ? `${basePath}?category=${category.id}#${basePath === "/gallery" ? "gallery" : "projects"}` : `${basePath}#${basePath === "/gallery" ? "gallery" : "projects"}`}

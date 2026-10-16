@@ -14,7 +14,7 @@ import { useRef } from "react";
 import { PageIntro } from "@/components/PageIntro";
 import { DURATION, EASE_OUT_EXPO, VIEWPORT } from "@/lib/motion";
 import { projectProseClassName } from "@/lib/prose";
-import { projects as allProjects, projectsHero, type ProjectEntry, type ProjectCategory } from "@/lib/site-data";
+import { projects as allProjects, projectsHero, projectCategories, type ProjectEntry, type ProjectCategory } from "@/lib/site-data";
 
 import { ProjectCategoryNav } from "@/components/ProjectCategoryNav";
 import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
@@ -176,7 +176,7 @@ export function ProjectsIndex({
           {listHeading}
         </h2>
 
-        {showFilters ? <ProjectCategoryNav selected={selectedCategory} /> : null}
+        {showFilters ? <ProjectCategoryNav selected={selectedCategory} populatedCategories={projectCategories.filter((category) => projects.some((project) => getProjectView(project, category.id))).map((category) => category.id)} /> : null}
 
         {collectionLink && !selectedCategory ? (
           <Link

@@ -21,14 +21,6 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
       <Navbar />
       <ProjectsIndex
         selectedCategory={isProjectCategory(category) ? category : undefined}
-        collectionLink={{
-          eyebrow: "Project Collection",
-          title: "Bathroom Remodeling Projects",
-          description:
-            "View bathroom-only and kitchen-and-bath renovation work in one focused page.",
-          href: "/projects/bathroom-remodeling",
-          ctaLabel: "View Bathroom Projects",
-        }}
       />
       <div className="relative z-[60] bg-black">
         <Footer showCta />
