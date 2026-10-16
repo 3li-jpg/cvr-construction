@@ -486,7 +486,7 @@ html.dark {
   border-color: rgba(253, 251, 247, 0.12) !important;
 }
 
-/* About CVR section — glossy #161f1f surface in dark mode */
+/* About CVR section, glossy #161f1f surface in dark mode */
 .dark #about {
   background-color: #161f1f;
   background-image:
@@ -511,7 +511,7 @@ html.dark {
 /* --------------------------------------------------------------------------
    Scroll behavior
    Lenis handles smooth scrolling globally. The CSS `scroll-behavior: smooth`
-   is removed to avoid conflicts — Lenis's `scrollTo()` handles anchor jumps.
+   is removed to avoid conflicts, Lenis's `scrollTo()` handles anchor jumps.
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {

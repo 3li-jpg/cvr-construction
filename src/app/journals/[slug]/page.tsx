@@ -130,7 +130,7 @@ export default async function JournalDetailPage({
         scrollTargetId="journal-detail"
         backgroundImage={{
           src: post.heroImage,
-          alt: `${post.title} — CVR Construction journal article`,
+          alt: `${post.title}, CVR Construction journal article`,
         }}
       />
 

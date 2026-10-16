@@ -136,7 +136,7 @@ export function StudioSection() {
                 Clients choose CVR because they expect more than basic contracting.
                 We bring disciplined project execution, strong design judgment,
                 clear communication, and a level of finish that feels considered
-                in every detail — not just functional, but lasting.
+                in every detail, not just functional, but lasting.
               </p>
             </Reveal>
           </div>

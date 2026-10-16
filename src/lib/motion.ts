@@ -125,7 +125,7 @@ export const fadeUpItem: Variants = {
   },
 };
 
-// Indexed variant — good for grids/lists where each item should stagger based
+// Indexed variant, good for grids/lists where each item should stagger based
 // on its index rather than relying on a parent container.
 export const indexedFadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },

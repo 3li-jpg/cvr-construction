@@ -151,7 +151,7 @@ export function ShowroomPromoSection() {
             >
               Walk in, compare products in person, and make your selections
               with confidence. Fixtures, faucets, and finishes from 10+
-              premium brands — all under one roof.
+              premium brands, all under one roof.
             </motion.p>
 
             <motion.div variants={contentItem}>

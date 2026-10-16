@@ -248,12 +248,12 @@ export function ContactForm() {
 
         setSubmitState("sent");
         setStatusMessage(
-          "Thanks — your message has been sent. CVR Construction will reply to your email shortly."
+          "Thanks, your message has been sent. CVR Construction will reply to your email shortly."
         );
         return;
       }
     } catch {
-      // Network or runtime error — fall through to fallback.
+      // Network or runtime error, fall through to fallback.
     }
 
     // Fallback: open a prefilled email draft in the visitor's mail client.

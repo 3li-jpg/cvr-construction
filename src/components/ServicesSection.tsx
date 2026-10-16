@@ -7,10 +7,10 @@ import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { services } from "@/lib/site-data";
 
-function PillButton({ label }: { label: string }) {
+function PillButton({ label, href }: { label: string; href: string }) {
   return (
     <InteractiveHoverButton
-      href="/contact"
+      href={href}
       className="w-fit tracking-[-0.02em]"
     >
       {label}
@@ -86,7 +86,7 @@ export function ServicesSection() {
             </p>
 
             <div className="flex w-full justify-center">
-              <PillButton label="Start Your Project" />
+              <PillButton label="Start Your Project" href="/contact" />
             </div>
           </Reveal>
 
@@ -143,7 +143,7 @@ export function ServicesSection() {
                           </p>
 
                           <div className="mt-6">
-                            <PillButton label="Get Started" />
+                            <PillButton label="View Projects" href={`/projects?category=${service.projectCategory}#projects`} />
                           </div>
 
                           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">

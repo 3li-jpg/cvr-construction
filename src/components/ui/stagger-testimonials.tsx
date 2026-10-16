@@ -128,7 +128,7 @@ const testimonials: Testimonial[] = [
   {
     tempId: 13,
     testimonial:
-      "We couldn’t be happier with our new shower. From start to finish, Bader at CVR Construction was professional, punctual, and incredibly detail oriented. Bader listened to our ideas, offered helpful suggestions, respected our budget, and kept us updated throughout the process. The craftsmanship is outstanding — the tile work is flawless, and the overall design feels modern and inviting. They also kept the workspace clean and tidy each day. We would absolutely recommend Bader to anyone looking to upgrade their bathroom.",
+      "We couldn’t be happier with our new shower. From start to finish, Bader at CVR Construction was professional, punctual, and incredibly detail oriented. Bader listened to our ideas, offered helpful suggestions, respected our budget, and kept us updated throughout the process. The craftsmanship is outstanding, the tile work is flawless, and the overall design feels modern and inviting. They also kept the workspace clean and tidy each day. We would absolutely recommend Bader to anyone looking to upgrade their bathroom.",
     by: "Hummingbird 250",
     project: "Shower Renovation",
     source: "Google",

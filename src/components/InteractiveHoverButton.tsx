@@ -93,7 +93,7 @@ export const InteractiveHoverButton = forwardRef<
   const content = (
     <>
       <div className="relative z-[1] flex items-center justify-center gap-2">
-        {/* Expanding dot — always present for the bg-fill animation; hidden when icon is used */}
+        {/* Expanding dot, always present for the bg-fill animation; hidden when icon is used */}
         {showDot && (
           <div
             className={cn(

@@ -14,7 +14,12 @@ import { useRef } from "react";
 import { PageIntro } from "@/components/PageIntro";
 import { DURATION, EASE_OUT_EXPO, VIEWPORT } from "@/lib/motion";
 import { projectProseClassName } from "@/lib/prose";
-import { projects as allProjects, projectsHero, type ProjectEntry } from "@/lib/site-data";
+import { projects as allProjects, projectsHero, type ProjectEntry, type ProjectCategory } from "@/lib/site-data";
+
+import { ProjectCategoryNav } from "@/components/ProjectCategoryNav";
+import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
+import { galleryItems } from "@/lib/site-data";
+import { getGalleryCategory, getProjectView } from "@/lib/project-categories";
 
 function useParallax(ref: React.RefObject<HTMLElement | null>): MotionValue<number> {
   const { scrollYProgress } = useScroll({
@@ -33,10 +38,12 @@ function ProjectRow({
   project,
   index,
   analyticsLocation,
+  selectedCategory,
 }: {
   project: ProjectEntry;
   index: number;
   analyticsLocation: string;
+  selectedCategory?: ProjectCategory;
 }) {
   const containerRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -55,7 +62,7 @@ function ProjectRow({
       className="relative"
     >
       <Link
-        href={`/projects/${project.slug}`}
+        href={`/projects/${project.slug}${selectedCategory ? `?category=${selectedCategory}` : ""}`}
         data-analytics-event="project_card_clicked"
         data-analytics-label={project.slug}
         data-analytics-location={analyticsLocation}
@@ -120,6 +127,8 @@ type ProjectCollectionLink = {
 };
 
 type ProjectsIndexProps = {
+  selectedCategory?: ProjectCategory;
+  showFilters?: boolean;
   projects?: readonly ProjectEntry[];
   eyebrow?: string;
   title?: string;
@@ -141,8 +150,12 @@ export function ProjectsIndex({
   listHeading = "Selected projects",
   analyticsLocation = "projects-index",
   collectionLink,
+  selectedCategory,
+  showFilters = true,
   backgroundImage = projectsHero,
 }: ProjectsIndexProps) {
+  const visibleProjects = projects.map((project) => getProjectView(project, selectedCategory)).filter((project): project is ProjectEntry => project !== null);
+  const serviceImages = selectedCategory ? galleryItems.filter((item) => getGalleryCategory(item) === selectedCategory) : [];
   return (
     <>
       <PageIntro
@@ -163,7 +176,9 @@ export function ProjectsIndex({
           {listHeading}
         </h2>
 
-        {collectionLink ? (
+        {showFilters ? <ProjectCategoryNav selected={selectedCategory} /> : null}
+
+        {collectionLink && !selectedCategory ? (
           <Link
             href={collectionLink.href}
             data-analytics-event="project_collection_clicked"
@@ -189,13 +204,23 @@ export function ProjectsIndex({
           </Link>
         ) : null}
 
+        <p role="status" className="mb-8 text-sm text-muted-foreground">{visibleProjects.length ? `${visibleProjects.length} ${visibleProjects.length === 1 ? "project" : "projects"}` : "Selected project photography"}</p>
+        {visibleProjects.length === 0 ? (
+          <div className="mb-12 border border-border p-8">
+            <p className="mb-5 text-lg">Explore our work and contact us to discuss your project.</p>
+            {serviceImages.length ? <GalleryLightboxGrid items={serviceImages} priorityCount={0} /> : null}
+            <Link className="mt-6 inline-block underline underline-offset-4" href={`/gallery${selectedCategory ? `?category=${selectedCategory}` : ""}#gallery`}>View service gallery</Link>
+            <Link className="ml-6 underline underline-offset-4" href="/contact">Contact CVR</Link>
+          </div>
+        ) : null}
         <div className="flex flex-col gap-20 md:gap-24 lg:gap-28">
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <div id={`project-${project.slug}`} key={project.slug}>
               <ProjectRow
                 project={project}
                 index={index}
                 analyticsLocation={analyticsLocation}
+                selectedCategory={selectedCategory}
               />
             </div>
           ))}

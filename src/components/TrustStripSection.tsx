@@ -62,22 +62,6 @@ const trustItems = [
     ),
   },
   {
-    label: "20+ Years",
-    sublabel: "Experience",
-    icon: (
-      <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-        <polyline
-          points="12 6 12 12 16 14"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
     label: "Licensed & Insured",
     sublabel: "Full Coverage in BC",
     icon: (
@@ -111,7 +95,7 @@ export function TrustStripSection() {
           </SectionEyebrow>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-3">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
           {trustItems.map((item, index) => {
             const Wrapper = item.href ? "a" : "div";
             const linkProps = item.href

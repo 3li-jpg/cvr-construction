@@ -33,7 +33,7 @@ export function FlowButton({
 
   const inner = (
     <>
-      {/* Left arrow — slides in from the left on hover */}
+      {/* Left arrow, slides in from the left on hover */}
       <ArrowRight
         className={cn(
           "absolute w-4 h-4 left-[-25%] fill-none z-[9] transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:left-4",
@@ -55,7 +55,7 @@ export function FlowButton({
         )}
       />
 
-      {/* Right arrow — slides out to the right on hover */}
+      {/* Right arrow, slides out to the right on hover */}
       <ArrowRight
         className={cn(
           "absolute w-4 h-4 right-4 fill-none z-[9] transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:right-[-25%]",

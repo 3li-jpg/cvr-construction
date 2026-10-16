@@ -9,7 +9,7 @@ const bathroomProjectSlugs = [
   "luxury-bathroom-remodel",
   "modern-bath-and-laundry-suite",
   "framed-bathroom-renovation",
-  "dark-gray-kitchen-and-bath",
+  "dark-grey-bathroom",
 ] as const;
 
 const bathroomProjects = bathroomProjectSlugs
@@ -31,6 +31,8 @@ export default function BathroomRemodelingProjectsPage() {
       <Navbar />
       <ProjectsIndex
         projects={bathroomProjects}
+        selectedCategory="bathroom"
+        showFilters={false}
         eyebrow="Projects / Bathroom Remodeling"
         title="Bathroom Remodeling Projects"
         description="Explore bathroom remodeling work across Victoria, from full bathroom renovations and tile details to coordinated kitchen-and-bath transformations."

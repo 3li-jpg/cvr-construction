@@ -43,11 +43,11 @@ const siteModifiedDateTime = "2026-05-10T00:00:00-07:00";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.cvrconstruction.ca"),
   title: {
-    default: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
+    default: "CVR Construction, Kitchen, Bath & Home Remodeling | Victoria BC",
     template: "%s | CVR Construction",
   },
   description:
-    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. 20+ years experience, licensed & insured. Visit our kitchen & bath showroom.",
+    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. Licensed & insured. Visit our kitchen & bath showroom.",
   keywords: [
     "CVR Construction",
     "bathroom renovation Victoria BC",
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
     google: "rWHfeQE_HjxgAXavOC3ikn617ngYRyqWEjFdp1rV7ck",
   },
   openGraph: {
-    title: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
+    title: "CVR Construction, Kitchen, Bath & Home Remodeling | Victoria BC",
     description:
-      "Premier bathroom renovation, kitchen remodeling, and home remodeling contractor in Victoria, BC. 20+ years experience, licensed & insured. Kitchen & bath showroom now open.",
+      "Premier bathroom renovation, kitchen remodeling, and home remodeling contractor in Victoria, BC. Licensed & insured. Kitchen & bath showroom now open.",
     url: "https://www.cvrconstruction.ca",
     siteName: "CVR Construction",
     locale: "en_CA",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
+    title: "CVR Construction, Kitchen, Bath & Home Remodeling | Victoria BC",
     description:
       "Victoria, BC contractor for bathroom renovation, kitchen remodeling, home remodeling, and custom spaces. Visit our showroom.",
     images: ["/images/victoria-garden-studio-exterior.webp"],
@@ -230,9 +230,9 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": "https://www.cvrconstruction.ca/#webpage",
   url: "https://www.cvrconstruction.ca",
-  name: "CVR Construction — Kitchen, Bath & Home Remodeling | Victoria BC",
+  name: "CVR Construction, Kitchen, Bath & Home Remodeling | Victoria BC",
   description:
-    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. 20+ years experience, licensed & insured. Visit our kitchen & bath showroom.",
+    "Premier bathroom renovation, kitchen remodeling, and full home remodeling contractor in Victoria, BC. Licensed & insured. Visit our kitchen & bath showroom.",
   isPartOf: {
     "@id": "https://www.cvrconstruction.ca/#website",
   },

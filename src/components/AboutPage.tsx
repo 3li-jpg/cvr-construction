@@ -123,7 +123,7 @@ export function AboutPage() {
           About CVR Construction
         </h2>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-black/10 pt-14 sm:gap-x-10 md:gap-y-14 lg:grid-cols-4 lg:gap-x-12 lg:pt-20">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-black/10 pt-14 sm:gap-x-10 md:gap-y-14 lg:grid-cols-3 lg:gap-x-12 lg:pt-20">
           {studioFacts.map((fact, index) => {
             const numericValue = Number.parseInt(fact.value, 10);
             return (
@@ -226,7 +226,7 @@ export function AboutPage() {
                 id="story-heading"
                 className={proseHeroClassName}
               >
-                Founded in Victoria and built around premium renovation work on Vancouver Island, CVR Construction has grown through word-of-mouth, repeat clients, and a track record of detail-driven builds. We partner closely with homeowners, designers, and trades to deliver renovation results that still feel sharp years later &mdash; whether it&apos;s a kitchen, a bathroom, a custom garden studio, or a full-home transformation.
+                Founded in Victoria and built around premium renovation work on Vancouver Island, CVR Construction has grown through word-of-mouth, repeat clients, and a track record of detail-driven builds. We partner closely with homeowners, designers, and trades to deliver renovation results that still feel sharp years later , whether it&apos;s a kitchen, a bathroom, a custom garden studio, or a full-home transformation.
               </h2>
             </Reveal>
 
@@ -422,7 +422,7 @@ export function AboutPage() {
               </div>
 
               <p className="max-w-[28ch] text-[clamp(0.98rem,1.08vw,1.08rem)] leading-[1.22] tracking-[-0.025em] text-black dark:text-white">
-                We focus on a narrow set of services so the finish standard stays consistent &mdash; the same discipline carries through scope, sequencing, and handover.
+                We focus on a narrow set of services so the finish standard stays consistent, the same discipline carries through scope, sequencing, and handover.
               </p>
 
               <InteractiveHoverButton
@@ -494,13 +494,13 @@ export function AboutPage() {
 
                             <div className="mt-6">
                               <InteractiveHoverButton
-                                href="/contact"
+                                href={`/projects?category=${service.projectCategory}#projects`}
                                 className="w-fit tracking-[-0.02em]"
                                 data-analytics-event="about_service_cta_clicked"
                                 data-analytics-label={service.title}
                                 data-analytics-location="about-services"
                               >
-                                Get Started
+                                View Projects
                               </InteractiveHoverButton>
                             </div>
 

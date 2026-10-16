@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/projects/legacy-wood-kitchen", destination: "/projects/kitchen-renovation-custom-countertops", permanent: true },
+      { source: "/projects/dark-gray-kitchen-and-bath", destination: "/projects#projects", permanent: true },
       {
         source: "/2d&3d%20design.html",
         destination: "/showroom",

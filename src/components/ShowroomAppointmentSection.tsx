@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import {
   Accessibility,
   CalendarDays,
@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
-import { showroomContact } from "@/lib/site-data";
+
 
 const quickTimes = [
   { label: "10:00 AM", value: "10:00" },
@@ -80,18 +80,6 @@ function formatDateLabel(isoDate: string) {
   }).format(date);
 }
 
-function formatTimeLabel(time: string) {
-  if (!time) return "Select a time";
-
-  const [hourValue, minuteValue] = time.split(":").map(Number);
-  const date = new Date(2026, 0, 1, hourValue, minuteValue);
-
-  return new Intl.DateTimeFormat("en-CA", {
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
-}
-
 function isBookableDate(date: Date, today: Date) {
   const day = date.getDay();
 
@@ -155,26 +143,32 @@ export function ShowroomAppointmentSection() {
   }).format(monthDate);
   const isPreviousMonthDisabled = startOfMonth(monthDate) <= startOfMonth(new Date());
 
-  const bookingHref = useMemo(() => {
-    const subject = encodeURIComponent("Showroom appointment request");
-    const body = encodeURIComponent(
-      [
-        "Hi CVR Showroom,",
-        "",
-        "I would like to book a showroom appointment with a design specialist.",
-        "",
-        `Preferred date: ${formatDateLabel(selectedDate)}`,
-        `Preferred time: ${formatTimeLabel(selectedTime)}`,
-        `Appointment focus: ${selectedType}`,
-        "",
-        "Name:",
-        "Phone:",
-        "Project notes:",
-      ].join("\n")
-    );
+  const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
 
-    return `${showroomContact.emailHref}?subject=${subject}&body=${body}`;
-  }, [selectedDate, selectedTime, selectedType]);
+  async function submitAppointment(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submissionState === "sending") return;
+    const form = event.currentTarget;
+    const fields = Object.fromEntries(new FormData(form));
+    setSubmissionState("sending");
+    setSubmissionMessage("");
+    try {
+      const response = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, date: selectedDate, time: selectedTime, focus: selectedType }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Could not send your request. Please try again.");
+      setSubmissionState("success");
+      setSubmissionMessage("Your appointment request has been sent. CVR will contact you to confirm the time.");
+      form.reset();
+    } catch (error) {
+      setSubmissionState("error");
+      setSubmissionMessage(error instanceof Error ? error.message : "Could not send your request. Please try again.");
+    }
+  }
 
   return (
     <section
@@ -202,7 +196,7 @@ export function ShowroomAppointmentSection() {
                   Book A Showroom Appointment.
                 </h2>
                 <p className="max-w-[46rem] text-[1rem] leading-7 text-[var(--showroom-muted)] md:text-[1.08rem]">
-                  Reserve time with a design specialist to review product lines,
+                  Request time with a design specialist to review product lines,
                   compare finishes, and narrow the choices before your renovation
                   decisions are locked in.
                 </p>
@@ -251,7 +245,7 @@ export function ShowroomAppointmentSection() {
                 </div>
               </div>
 
-              <div className="grid gap-7 lg:grid-cols-[minmax(0,34rem)_minmax(20rem,1fr)] lg:items-start lg:gap-10">
+              <form onSubmit={submitAppointment} className="grid gap-7 lg:grid-cols-[minmax(0,34rem)_minmax(20rem,1fr)] lg:items-start lg:gap-10">
                 <fieldset className="w-full max-w-[34rem]">
                   <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <legend className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[var(--showroom-soft)]">
@@ -330,7 +324,7 @@ export function ShowroomAppointmentSection() {
                     )}
                   </div>
                   <p className="mt-3 text-[0.78rem] leading-6 text-[var(--showroom-soft)]">
-                    Available appointment dates are Tuesday through Saturday.
+                    Preferred appointment dates are Tuesday through Saturday. Times are subject to confirmation.
                   </p>
                 </fieldset>
 
@@ -374,22 +368,39 @@ export function ShowroomAppointmentSection() {
                     </select>
                   </label>
 
-                  <div>
-                    <a
-                      href={bookingHref}
-                      className="inline-flex min-h-13 w-full items-center justify-center gap-2 bg-[var(--showroom-inverse)] px-5 text-center text-[0.68rem] font-bold uppercase tracking-widest text-[var(--showroom-inverse-text)] transition-opacity hover:opacity-82 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)] focus-visible:ring-offset-2"
-                    >
-                      <Mail aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.8} />
-                      Request Appointment
-                    </a>
+                  <div className="grid gap-4">
+                    {[
+                      { name: "name", label: "Your name", type: "text", autoComplete: "name", required: true },
+                      { name: "email", label: "Email", type: "email", autoComplete: "email", required: true },
+                      { name: "phone", label: "Phone", type: "tel", autoComplete: "tel", required: false },
+                    ].map((field) => (
+                      <label key={field.name} className="flex flex-col gap-2 text-sm">
+                        <span>{field.label}{field.required ? " (required)" : " (optional)"}</span>
+                        <input name={field.name} type={field.type} autoComplete={field.autoComplete} required={field.required} maxLength={field.name === "name" ? 120 : 254} className="h-12 w-full border border-[color:var(--showroom-line)] bg-[color:var(--showroom-grid)] px-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)]" />
+                      </label>
+                    ))}
+                    <label className="flex flex-col gap-2 text-sm">
+                      <span>Project notes (optional)</span>
+                      <textarea name="notes" rows={3} maxLength={3000} className="w-full border border-[color:var(--showroom-line)] bg-[color:var(--showroom-grid)] p-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)]" />
+                    </label>
+                    <label className="hidden" aria-hidden="true">Leave empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
                   </div>
-
+                  <button
+                    type="submit"
+                    disabled={submissionState === "sending"}
+                    className="inline-flex min-h-13 w-full items-center justify-center gap-2 bg-[var(--showroom-inverse)] px-5 py-4 text-center text-[0.68rem] font-bold uppercase tracking-widest text-[var(--showroom-inverse-text)] transition-opacity hover:opacity-82 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--showroom-inverse)] focus-visible:ring-offset-2"
+                  >
+                    <Mail aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.8} />
+                    {submissionState === "sending" ? "Sending request…" : "Request Appointment"}
+                  </button>
+                  <p role={submissionState === "error" ? "alert" : "status"} aria-live="polite" className="text-sm leading-6">
+                    {submissionMessage}
+                  </p>
                   <p className="text-[0.82rem] leading-6 text-[var(--showroom-soft)]">
-                    Appointment requests open your email with the selected details
-                    filled in. CVR will confirm the final time directly.
+                    This sends an appointment request. CVR will confirm the final date and time directly.
                   </p>
                 </div>
-              </div>
+              </form>
             </div>
           </Reveal>
         </div>

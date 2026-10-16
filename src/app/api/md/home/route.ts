@@ -2,7 +2,7 @@ import { markdownResponse } from "@/lib/markdownResponse";
 
 export const dynamic = "force-static";
 
-const BODY = `# CVR Construction — Premium Construction Company in Victoria, BC
+const BODY = `# CVR Construction, Premium Construction Company in Victoria, BC
 
 > Victoria, BC construction company specializing in premium home renovations,
 > kitchen & bathroom remodels, custom spaces, and detail-driven commercial
@@ -40,7 +40,7 @@ const BODY = `# CVR Construction — Premium Construction Company in Victoria, B
 
 ## Featured work
 
-- Victoria Garden Studio — custom detached studio
+- Victoria Garden Studio, custom detached studio
 - Kitchen & bath remodels across Oak Bay, Fairfield, and Saanich
 - Whole-home renovations on Vancouver Island
 

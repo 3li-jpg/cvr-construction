@@ -28,9 +28,9 @@ export function StorySection() {
 
           <div className={`max-w-xl space-y-6 ${proseBodyClassName}`}>
             <p>
-              CVR Construction is built on 20+ years experience, backed by
-              craftsmanship spanning three generations. Rooted in Syria, this
-              foundation reflects a disciplined approach to construction—where
+              CVR Construction draws on craftsmanship spanning three
+              generations. Rooted in Syria, this
+              foundation reflects a disciplined approach to construction, where
               consistency, precision, and accountability matter, and where skills
               were developed through hands-on experience with a focus on doing
               the work right the first time.
@@ -39,8 +39,8 @@ export function StorySection() {
               Now based in Victoria, CVR Construction specializes in full home
               renovations, kitchen and bathroom remodeling, and custom spaces.
               Every project is approached with structured planning, clear
-              communication, and disciplined execution—from initial walkthrough
-              to final inspection—delivering work that is technically sound,
+              communication, and disciplined execution, from initial walkthrough
+              to final inspection, delivering work that is technically sound,
               visually refined, and built to last.
             </p>
           </div>

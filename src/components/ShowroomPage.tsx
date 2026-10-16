@@ -385,7 +385,7 @@ export function ShowroomPage() {
           About the CVR Showroom
         </h2>
 
-        <div className="site-shell grid grid-cols-4 gap-x-2 gap-y-0 border-t border-[color:var(--showroom-line)] pt-14 sm:gap-x-10 md:gap-y-14 lg:gap-x-12 lg:pt-20">
+        <div className="site-shell grid grid-cols-3 gap-x-2 gap-y-0 border-t border-[color:var(--showroom-line)] pt-14 sm:gap-x-10 md:gap-y-14 lg:gap-x-12 lg:pt-20">
           {showroomFacts.map((fact, index) => {
             const numericValue = Number.parseInt(fact.value, 10);
             return (
@@ -449,7 +449,7 @@ export function ShowroomPage() {
             </motion.p>
 
             <motion.p variants={philosophyItem} className={proseHeroClassName}>
-              The goal is simple &mdash; better visibility, stronger contrast between options, and fewer weak selections once the project is moving.
+              The goal is simple , better visibility, stronger contrast between options, and fewer weak selections once the project is moving.
             </motion.p>
 
             <motion.div variants={philosophyItem} className="flex flex-col gap-4">

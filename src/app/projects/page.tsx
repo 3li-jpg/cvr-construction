@@ -1,3 +1,4 @@
+import { isProjectCategory } from "@/lib/project-categories";
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -13,11 +14,13 @@ export const metadata: Metadata = buildPageMetadata({
   imageAlt: "Garden studio project by CVR Construction in Victoria BC",
 });
 
-export default function ProjectsPage() {
+export default async function ProjectsPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams;
   return (
     <main id="main-content" className="relative bg-background text-foreground">
       <Navbar />
       <ProjectsIndex
+        selectedCategory={isProjectCategory(category) ? category : undefined}
         collectionLink={{
           eyebrow: "Project Collection",
           title: "Bathroom Remodeling Projects",

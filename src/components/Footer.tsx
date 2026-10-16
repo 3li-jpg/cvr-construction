@@ -201,6 +201,19 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         </div>
                       </div>
                     </div>
+
+                  </div>
+                )}
+                <div className="flex max-w-[22rem] flex-col items-start">
+                    <a
+                      href="https://web.victoriachamber.ca/2024/Contractors-Construction/CVR-Construction-LTD-14112"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-7 flex w-fit max-w-full flex-col gap-3 border border-white/25 px-4 py-4 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      aria-label="Greater Victoria Chamber of Commerce member, view CVR's directory listing"
+                    >
+                      <Image src="/images/greater-victoria-chamber.png" alt="Greater Victoria Chamber of Commerce" width={1200} height={600} className="h-auto w-60 max-w-full" />
+                    </a>
                     {bbbAccreditedHref ? (
                       <a
                         href={bbbAccreditedHref}
@@ -232,8 +245,7 @@ export function Footer({ showCta = false, hideContactInfo = false }: FooterProps
                         </span>
                       </a>
                     ) : null}
-                  </div>
-                )}
+                </div>
               </Reveal>
 
               <Reveal direction="up" delay={0.16} duration={0.9} distance={42}>

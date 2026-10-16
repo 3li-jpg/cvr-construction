@@ -1,3 +1,5 @@
+import { ProjectCategoryNav } from "@/components/ProjectCategoryNav";
+import { getGalleryCategory, isProjectCategory } from "@/lib/project-categories";
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { GalleryLightboxGrid } from "@/components/GalleryLightboxGrid";
@@ -18,7 +20,12 @@ export const metadata: Metadata = buildPageMetadata({
   imageAlt: "Project gallery by CVR Construction in Victoria BC",
 });
 
-export default function GalleryPage() {
+export default async function GalleryPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams;
+  const selectedCategory = isProjectCategory(category) ? category : undefined;
+  const items = selectedCategory ? galleryItems.filter((item) =>
+    selectedCategory === "finishes" ? ["kitchen", "bathroom"].includes(getGalleryCategory(item)) : getGalleryCategory(item) === selectedCategory
+  ) : galleryItems;
   return (
     <main id="main-content" className="relative bg-background text-foreground">
       <Navbar />
@@ -51,7 +58,7 @@ export default function GalleryPage() {
 
             <div className="flex flex-col gap-2 sm:items-end sm:text-right">
               <span className="project-kicker">
-                {String(galleryItems.length).padStart(2, "0")} Images
+                {String(items.length).padStart(2, "0")} Images
               </span>
               <p className={`max-w-[34rem] ${projectProseClassName}`}>
                 A visual proof layer across kitchens, bathrooms, custom spaces, and exterior upgrades. Click any image to open the full-resolution view.
@@ -59,7 +66,8 @@ export default function GalleryPage() {
             </div>
           </Reveal>
 
-          <GalleryLightboxGrid priorityCount={1} variant="reference" />
+          <ProjectCategoryNav selected={selectedCategory} basePath="/gallery" />
+          {items.length ? <GalleryLightboxGrid key={selectedCategory ?? "all"} items={items} priorityCount={1} variant="reference" /> : <p className="py-10">Photography for this service is being prepared. Contact us to discuss your project.</p>}
         </section>
       </section>
 

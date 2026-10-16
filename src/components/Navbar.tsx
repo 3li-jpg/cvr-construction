@@ -26,7 +26,7 @@ const menuNavItems = orderedNavItems;
 // feels connected to the page-transition curtain. Children are staggered via
 // `staggerChildren` + `delayChildren` so the nav items and footer block
 // progressively reveal AFTER the panel has landed (on open) and retract BEFORE
-// the panel lifts (on close) — this is the "play along" choreography.
+// the panel lifts (on close), this is the "play along" choreography.
 const menuPanelVariants: Variants = {
   hidden: { y: "-100%" },
   show: {
@@ -90,7 +90,8 @@ export function Navbar() {
   const isContactPage = pathname === "/contact";
   const isShowroomPage = pathname === "/showroom";
   const showExpandedNav = !isPastHero && !isOpen;
-  const showMobileContactFab = !isContactPage && !isOpen && isPastHero && !isFooterVisible;
+  const [isAppointmentVisible, setIsAppointmentVisible] = useState(false);
+  const showMobileContactFab = !isContactPage && !isOpen && isPastHero && !isFooterVisible && !isAppointmentVisible;
   const constructionCallOption = {
     label: "Construction Office",
     chooserLabel: "Construction Office Number",
@@ -114,6 +115,9 @@ export function Navbar() {
         : Math.min(window.innerHeight * 0.18, 180);
 
       setIsPastHero(window.scrollY > threshold);
+      const appointment = document.getElementById("design-specialist");
+      const bounds = appointment?.getBoundingClientRect();
+      setIsAppointmentVisible(Boolean(bounds && bounds.top < window.innerHeight && bounds.bottom > 0));
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -290,9 +294,9 @@ export function Navbar() {
       </header>
 
       <header
-        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-black/8 bg-white/96 px-4 pb-2 pt-2 backdrop-blur dark:border-white/10 dark:bg-[#161f1f]/92 xl:hidden"
+        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between bg-white px-4 pb-4 pt-4 dark:bg-[#161f1f] xl:hidden"
         style={{
-          paddingTop: "max(env(safe-area-inset-top), 0.625rem)",
+          paddingTop: "max(env(safe-area-inset-top), 1rem)",
           paddingLeft: "max(env(safe-area-inset-left), 1rem)",
           paddingRight: "max(env(safe-area-inset-right), 1rem)",
         }}
@@ -303,17 +307,17 @@ export function Navbar() {
           className="text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:text-white dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           aria-label="CVR Construction home"
         >
-          <Logo className="h-12 w-auto text-[#161F1F] dark:text-[#FDFBF7]" />
+          <Logo className="h-10 w-auto text-[#161F1F] dark:text-[#FDFBF7]" />
         </Link>
 
         <div className="flex items-center gap-1.5">
           <Link
             href="/contact"
-            className="hidden md:flex h-12 items-center justify-center rounded-none border border-black/8 bg-black px-3.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white/10 dark:bg-white dark:text-black"
+            className="hidden md:flex h-11 items-center justify-center rounded-none border border-black/8 bg-black px-3.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-80 dark:border-white/10 dark:bg-white dark:text-black"
           >
             CONTACT US
           </Link>
-          <AnimatedThemeToggler className="h-12 w-12 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#161F1F] dark:text-white" />
+          <AnimatedThemeToggler className="!h-11 !w-11 border-black/8 bg-white text-black dark:border-white/10 dark:bg-[#161F1F] dark:text-white" />
           <button
             ref={mobileMenuButtonRef}
             type="button"
@@ -322,7 +326,7 @@ export function Navbar() {
             aria-haspopup="dialog"
             aria-label={menuButtonLabel}
             onClick={toggleMenu}
-            className="flex h-12 min-w-[5.35rem] items-center justify-center rounded-none border border-black/8 bg-[#e6e6e2] px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/10 dark:bg-[#33403f] dark:text-white dark:hover:bg-[#3e4c4b] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
+            className="flex h-11 min-w-[4.75rem] items-center justify-center rounded-none border border-black/8 bg-[#e6e6e2] px-3 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#dcdcd7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/10 dark:bg-[#33403f] dark:text-white dark:hover:bg-[#3e4c4b] dark:focus-visible:ring-white dark:focus-visible:ring-offset-black"
           >
             <TextRoll
               center

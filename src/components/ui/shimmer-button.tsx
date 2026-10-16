@@ -26,7 +26,7 @@ function Inner({
 }) {
   return (
     <>
-      {/* Rotating shimmer — conic gradient spins behind the button edge */}
+      {/* Rotating shimmer, conic gradient spins behind the button edge */}
       <span className="pointer-events-none absolute inset-0 overflow-hidden [border-radius:inherit]">
         <span
           className="absolute -top-1/2 -left-1/2 h-[200%] w-[200%]"
@@ -37,7 +37,7 @@ function Inner({
         />
       </span>
 
-      {/* Inner backdrop — masks center so only perimeter shows the shimmer */}
+      {/* Inner backdrop, masks center so only perimeter shows the shimmer */}
       <span
         className="pointer-events-none absolute inset-[1.5px] -z-10 [border-radius:inherit]"
         style={{ background }}

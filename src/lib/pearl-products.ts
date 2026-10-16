@@ -1151,7 +1151,7 @@ export const pearlProducts = [
   },
   {
     "id": "franklin-h-chrome-overflow",
-    "name": "FRANKLIN H Chrome — Overflow",
+    "name": "FRANKLIN H Chrome, Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF509H",
@@ -1165,11 +1165,11 @@ export const pearlProducts = [
     ],
     "detail": "Chrome · H: 12-3/4\", W: 4-1/2\"",
     "image": "/images/pearl/franklin-h-chrome-vessel-bathroom-faucet-gbf509h.webp",
-    "alt": "Pearl FRANKLIN H Chrome — Overflow"
+    "alt": "Pearl FRANKLIN H Chrome, Overflow"
   },
   {
     "id": "takka-h-chrome-non-overflow",
-    "name": "TAKKA H Chrome — Non-Overflow",
+    "name": "TAKKA H Chrome, Non-Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF822HNF",
@@ -1184,11 +1184,11 @@ export const pearlProducts = [
     ],
     "detail": "Chrome · H: 12\", W: 5\" · ON SALE, OUT OF STOCK",
     "image": "/images/pearl/takka-h-vessel-bathroom-faucet-gbf822h.webp",
-    "alt": "Pearl TAKKA H Chrome — Non-Overflow"
+    "alt": "Pearl TAKKA H Chrome, Non-Overflow"
   },
   {
     "id": "takka-h-chrome-overflow",
-    "name": "TAKKA H Chrome — Overflow",
+    "name": "TAKKA H Chrome, Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF822H",
@@ -1202,11 +1202,11 @@ export const pearlProducts = [
     ],
     "detail": "Chrome · H: 12\", W: 5\"",
     "image": "/images/pearl/takka-h-vessel-bathroom-faucet-gbf822h.webp",
-    "alt": "Pearl TAKKA H Chrome — Overflow"
+    "alt": "Pearl TAKKA H Chrome, Overflow"
   },
   {
     "id": "bello-3-h-chrome-non-overflow",
-    "name": "BELLO 3-H Chrome — Non-Overflow",
+    "name": "BELLO 3-H Chrome, Non-Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF801-H-NF",
@@ -1220,11 +1220,11 @@ export const pearlProducts = [
     ],
     "detail": "Chrome · H: 11-5/8\", D: 8\", W: 2\" · OUT OF STOCK",
     "image": "/images/pearl/bello-3-h-chrome-bathroom-faucet-2.webp",
-    "alt": "Pearl BELLO 3-H Chrome — Non-Overflow"
+    "alt": "Pearl BELLO 3-H Chrome, Non-Overflow"
   },
   {
     "id": "bello-3-h-chrome-overflow",
-    "name": "BELLO 3-H Chrome — Overflow",
+    "name": "BELLO 3-H Chrome, Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF801-H",
@@ -1236,11 +1236,11 @@ export const pearlProducts = [
     "status": [],
     "detail": "Chrome · H: 11-5/8\", D: 8\", W: 2\"",
     "image": "/images/pearl/bello-3-h-chrome-bathroom-faucet-2.webp",
-    "alt": "Pearl BELLO 3-H Chrome — Overflow"
+    "alt": "Pearl BELLO 3-H Chrome, Overflow"
   },
   {
     "id": "bradley-h-chrome-non-overflow",
-    "name": "BRADLEY-H Chrome — Non-Overflow",
+    "name": "BRADLEY-H Chrome, Non-Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF851H-NF",
@@ -1252,11 +1252,11 @@ export const pearlProducts = [
     "status": [],
     "detail": "Chrome · H: 11-5/8\", D: 7-7/8\", W: 2\"",
     "image": "/images/pearl/bradley-h-vessel-bathroom-faucet-2.webp",
-    "alt": "Pearl BRADLEY-H Chrome — Non-Overflow"
+    "alt": "Pearl BRADLEY-H Chrome, Non-Overflow"
   },
   {
     "id": "bradley-h-chrome-overflow",
-    "name": "BRADLEY-H Chrome — Overflow",
+    "name": "BRADLEY-H Chrome, Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF851H",
@@ -1268,11 +1268,11 @@ export const pearlProducts = [
     "status": [],
     "detail": "Chrome · H: 11-5/8\", D: 7-7/8\", W: 2\"",
     "image": "/images/pearl/bradley-h-vessel-bathroom-faucet-2.webp",
-    "alt": "Pearl BRADLEY-H Chrome — Overflow"
+    "alt": "Pearl BRADLEY-H Chrome, Overflow"
   },
   {
     "id": "bradley-h-matte-black-non-overflow",
-    "name": "BRADLEY-H Matte Black — Non-Overflow",
+    "name": "BRADLEY-H Matte Black, Non-Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF851H-MB-NF",
@@ -1286,11 +1286,11 @@ export const pearlProducts = [
     ],
     "detail": "Matte Black · H: 11-5/8\", D: 7-7/8\", W: 2\" · OUT OF STOCK",
     "image": "/images/pearl/bradley-h-vessel-bathroom-faucet-2.webp",
-    "alt": "Pearl BRADLEY-H Matte Black — Non-Overflow"
+    "alt": "Pearl BRADLEY-H Matte Black, Non-Overflow"
   },
   {
     "id": "bradley-h-matte-black-overflow",
-    "name": "BRADLEY-H Matte Black — Overflow",
+    "name": "BRADLEY-H Matte Black, Overflow",
     "category": "Bathroom Faucets",
     "section": "Vessel (Tall) Faucets",
     "sku": "GBF851H-MB",
@@ -1302,7 +1302,7 @@ export const pearlProducts = [
     "status": [],
     "detail": "Matte Black · H: 11-5/8\", D: 7-7/8\", W: 2\"",
     "image": "/images/pearl/bradley-h-vessel-bathroom-faucet-2.webp",
-    "alt": "Pearl BRADLEY-H Matte Black — Overflow"
+    "alt": "Pearl BRADLEY-H Matte Black, Overflow"
   },
   {
     "id": "baker-chrome",
@@ -4662,7 +4662,7 @@ export const pearlProducts = [
     "id": "nolan-chrome-robe-hook",
     "name": "NOLAN Chrome Robe Hook",
     "category": "Bathroom Accessories",
-    "section": "NOLAN Series (Chrome) — FINAL SALE",
+    "section": "NOLAN Series (Chrome), FINAL SALE",
     "sku": "",
     "finish": "",
     "material": "",
@@ -4678,7 +4678,7 @@ export const pearlProducts = [
     "id": "nolan-chrome-towel-holder",
     "name": "NOLAN Chrome Towel Holder",
     "category": "Bathroom Accessories",
-    "section": "NOLAN Series (Chrome) — FINAL SALE",
+    "section": "NOLAN Series (Chrome), FINAL SALE",
     "sku": "",
     "finish": "",
     "material": "",
@@ -4694,7 +4694,7 @@ export const pearlProducts = [
     "id": "nolan-chrome-towel-bar",
     "name": "NOLAN Chrome Towel Bar",
     "category": "Bathroom Accessories",
-    "section": "NOLAN Series (Chrome) — FINAL SALE",
+    "section": "NOLAN Series (Chrome), FINAL SALE",
     "sku": "",
     "finish": "",
     "material": "",

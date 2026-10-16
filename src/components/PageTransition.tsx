@@ -14,7 +14,7 @@ const isJournalsPath = (path: string) =>
 
 // Curtain-style route transition: a black overlay sweeps from the bottom of
 // the viewport up past the top on every route change. The page content itself
-// never translates — this keeps sticky heroes, fixed navbars, and the landing's
+// never translates, this keeps sticky heroes, fixed navbars, and the landing's
 // sticky-hero layout working exactly as authored. The overlay is skipped on the
 // very first render (server → client hand-off) and for users with
 // `prefers-reduced-motion: reduce`.
@@ -82,6 +82,12 @@ export function PageTransition({ children }: PageTransitionProps) {
 
       const url = new URL(anchor.href, window.location.href);
       if (url.origin !== window.location.origin) {
+        return;
+      }
+
+      // Filters and anchors update the current page without a new pathname.
+      // Let Next handle them directly so the curtain cannot wait on a page change.
+      if (url.pathname === pathname) {
         return;
       }
 

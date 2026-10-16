@@ -1,3 +1,4 @@
+import { getProjectView, isProjectCategory } from "@/lib/project-categories";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,6 +26,7 @@ const projectSideHeadingClassName =
   "max-w-[8ch] text-[clamp(3rem,8vw,5rem)] font-black uppercase leading-[0.88] tracking-[-0.03em] text-foreground lg:text-[clamp(3.4rem,4vw,4.8rem)]";
 
 type ProjectDetailPageProps = {
+  searchParams: Promise<{ category?: string }>;
   params: Promise<{
     slug: string;
   }>;
@@ -61,6 +63,7 @@ export async function generateMetadata({
 
 export default async function ProjectDetailPage({
   params,
+  searchParams,
 }: ProjectDetailPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
@@ -69,25 +72,29 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
-  const pageUrl = `https://www.cvrconstruction.ca/projects/${project.slug}`;
+  const { category } = await searchParams;
+  const selectedCategory = isProjectCategory(category) ? category : undefined;
+  const scopedProject = getProjectView(project, selectedCategory);
+  if (!scopedProject) notFound();
+  const pageUrl = `https://www.cvrconstruction.ca/projects/${scopedProject.slug}`;
   const relatedProjects = projects
-    .filter((candidate) => candidate.slug !== project.slug)
+    .filter((candidate) => candidate.slug !== scopedProject.slug)
     .sort(
       (left, right) =>
-        Number(right.category === project.category) -
-        Number(left.category === project.category)
+        Number(right.category === scopedProject.category) -
+        Number(left.category === scopedProject.category)
     )
     .slice(0, 2);
   const projectGalleryImages = Array.from(
-    new Set([project.heroImage, ...project.galleryImages])
+    new Set([scopedProject.heroImage, ...scopedProject.galleryImages])
   );
   const projectGalleryItems = projectGalleryImages.map((image, index) => ({
     image,
-    alt: `${project.title} project image ${index + 1}`,
-    category: project.category,
-    title: `${project.title} / ${String(index + 1).padStart(2, "0")}`,
+    alt: `${scopedProject.title} project image ${index + 1}`,
+    category: scopedProject.category,
+    title: `${scopedProject.title} / ${String(index + 1).padStart(2, "0")}`,
   }));
-  const beforeAfterComparison = project.beforeAfterImages?.[0];
+  const beforeAfterComparison = scopedProject.beforeAfterImages?.[0];
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -108,7 +115,7 @@ export default async function ProjectDetailPage({
       {
         "@type": "ListItem",
         position: 3,
-        name: project.title,
+        name: scopedProject.title,
         item: pageUrl,
       },
     ],
@@ -117,13 +124,13 @@ export default async function ProjectDetailPage({
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "@id": `${pageUrl}#project`,
-    name: project.title,
-    headline: `${project.title} | CVR Construction`,
-    abstract: project.summary,
-    description: project.intro,
+    name: scopedProject.title,
+    headline: `${scopedProject.title} | CVR Construction`,
+    abstract: scopedProject.summary,
+    description: scopedProject.intro,
     url: pageUrl,
     mainEntityOfPage: pageUrl,
-    dateModified: project.updatedAt,
+    dateModified: scopedProject.updatedAt,
     creator: {
       "@type": "Organization",
       name: "CVR Construction",
@@ -131,12 +138,12 @@ export default async function ProjectDetailPage({
     },
     contentLocation: {
       "@type": "Place",
-      name: project.location,
+      name: scopedProject.location,
     },
     image: projectGalleryImages.map(
       (image) => `https://www.cvrconstruction.ca${image}`
     ),
-    keywords: [project.category, project.location, ...project.scope],
+    keywords: [scopedProject.category, scopedProject.location, ...scopedProject.scope],
     genre: "Construction project case study",
   };
 
@@ -144,7 +151,7 @@ export default async function ProjectDetailPage({
     <main id="main-content" className="relative bg-background text-foreground">
       <Navbar />
       <Script
-        id={`project-schema-${project.slug}`}
+        id={`project-schema-${scopedProject.slug}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([breadcrumbSchema, projectSchema]),
@@ -152,13 +159,13 @@ export default async function ProjectDetailPage({
       />
 
       <PageIntro
-        eyebrow={`Projects / ${project.category}`}
-        title={project.title}
+        eyebrow={`Projects / ${scopedProject.category}`}
+        title={scopedProject.title}
         titleClassName={projectDetailTitleClassName}
         scrollTargetId="project-detail"
         backgroundImage={{
-          src: project.heroImage,
-          alt: `${project.title} by CVR Construction`,
+          src: scopedProject.heroImage,
+          alt: `${scopedProject.title} by CVR Construction`,
         }}
       />
 
@@ -168,9 +175,13 @@ export default async function ProjectDetailPage({
         className="site-shell px-6 pb-16 pt-16 sm:px-8 md:px-12 md:pb-20 md:pt-20 lg:px-20 lg:pb-24 lg:pt-24"
       >
         <h2 id="project-detail-heading" className="sr-only">
-          {project.title} — Project details
+          {scopedProject.title}, Project details
         </h2>
 
+      <div className="mb-8 flex flex-wrap gap-6 text-sm">
+        <Link className="underline underline-offset-4" href={`/projects${selectedCategory ? `?category=${selectedCategory}` : ""}#projects`}>Back to projects</Link>
+        {selectedCategory && project.sections ? <Link className="underline underline-offset-4" href={`/projects/${project.slug}`}>View complete project</Link> : null}
+      </div>
         <div className="flex flex-col gap-12">
           <Reveal className="flex flex-col gap-6">
             <Link
@@ -183,15 +194,15 @@ export default async function ProjectDetailPage({
             <div className="grid gap-3 border-t border-border pt-8 project-kicker sm:grid-cols-3 md:pt-10">
               <div>
                 <p className="mb-2 text-muted-foreground/70">Year</p>
-                <p className="text-foreground">{project.year}</p>
+                <p className="text-foreground">{scopedProject.year}</p>
               </div>
               <div>
                 <p className="mb-2 text-muted-foreground/70">Type</p>
-                <p className="text-foreground">{project.category}</p>
+                <p className="text-foreground">{scopedProject.category}</p>
               </div>
               <div>
                 <p className="mb-2 text-muted-foreground/70">Location</p>
-                <p className="text-foreground">{project.location}</p>
+                <p className="text-foreground">{scopedProject.location}</p>
               </div>
             </div>
           </Reveal>
@@ -199,8 +210,8 @@ export default async function ProjectDetailPage({
           <Reveal className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)] lg:gap-12">
             <div className="relative aspect-[1.28/1] overflow-hidden bg-muted">
               <Image
-                src={project.heroImage}
-                alt={project.title}
+                src={scopedProject.heroImage}
+                alt={scopedProject.title}
                 fill
                 quality={90}
                 sizes="(max-width: 1023px) 100vw, 65vw"
@@ -213,7 +224,7 @@ export default async function ProjectDetailPage({
                 <SectionEyebrow className="mb-3 project-kicker">
                   Project Overview
                 </SectionEyebrow>
-                <p className={projectProseClassName}>{project.intro}</p>
+                <p className={projectProseClassName}>{scopedProject.intro}</p>
               </div>
 
               <div className="grid gap-6 sm:grid-cols-2">
@@ -222,7 +233,7 @@ export default async function ProjectDetailPage({
                     Scope
                   </h2>
                   <ul className="space-y-2 text-[0.96rem] leading-6 text-muted-foreground">
-                    {project.scope.map((item) => (
+                    {scopedProject.scope.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
@@ -233,7 +244,7 @@ export default async function ProjectDetailPage({
                     Highlights
                   </h2>
                   <ul className="space-y-2 text-[0.96rem] leading-6 text-muted-foreground">
-                    {project.highlights.map((item) => (
+                    {scopedProject.highlights.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
@@ -246,7 +257,7 @@ export default async function ProjectDetailPage({
             <SectionEyebrow className="mb-4 project-kicker">
               Outcome
             </SectionEyebrow>
-            <p className={projectProseClassName}>{project.outcome}</p>
+            <p className={projectProseClassName}>{scopedProject.outcome}</p>
           </Reveal>
 
           {beforeAfterComparison ? (
@@ -271,7 +282,7 @@ export default async function ProjectDetailPage({
               <Reveal>
                 <BeforeAfterSlider
                   comparison={beforeAfterComparison}
-                  projectTitle={project.title}
+                  projectTitle={scopedProject.title}
                   priority
                 />
               </Reveal>
@@ -311,7 +322,7 @@ export default async function ProjectDetailPage({
             </section>
           ) : null}
 
-          {project.storySections.length > 0 ? (
+          {scopedProject.storySections.length > 0 ? (
             <Reveal className="grid gap-8 border-t border-border pt-10 lg:grid-cols-[minmax(18rem,0.36fr)_minmax(0,1fr)] lg:gap-14">
               <div>
                 <SectionEyebrow className="mb-4 project-kicker">
@@ -323,7 +334,7 @@ export default async function ProjectDetailPage({
               </div>
 
               <div className="grid gap-5 md:grid-cols-2">
-                {project.storySections.map((section) => (
+                {scopedProject.storySections.map((section) => (
                   <section
                     key={section.heading}
                     className="project-panel p-6"
@@ -415,7 +426,7 @@ export default async function ProjectDetailPage({
             <InteractiveHoverButton
               href="/contact"
               data-analytics-event="project_detail_contact_clicked"
-              data-analytics-label={project.slug}
+              data-analytics-label={scopedProject.slug}
               data-analytics-location="project-detail"
               className="w-fit"
             >

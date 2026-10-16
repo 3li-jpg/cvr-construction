@@ -131,7 +131,7 @@ export default function DocsApiPage() {
                           {endpoint.spec.label}
                         </a>
                       ) : (
-                        <span className="text-black/40">—</span>
+                        <span className="text-black/40">, </span>
                       )}
                     </td>
                   </tr>
@@ -149,10 +149,10 @@ export default function DocsApiPage() {
             omitted:
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-6 text-sm text-black/70">
-            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/openid-configuration</code> — no OpenID provider.</li>
-            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/oauth-authorization-server</code> — no OAuth AS.</li>
-            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/oauth-protected-resource</code> — no protected resources.</li>
-            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/mcp/server-card.json</code> — no hosted MCP server.</li>
+            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/openid-configuration</code>, no OpenID provider.</li>
+            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/oauth-authorization-server</code>, no OAuth AS.</li>
+            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/oauth-protected-resource</code>, no protected resources.</li>
+            <li><code className="rounded bg-black/5 px-1 py-0.5">/.well-known/mcp/server-card.json</code>, no hosted MCP server.</li>
           </ul>
         </section>
 
