@@ -224,7 +224,7 @@ export function Navbar() {
     <>
       <header
         aria-hidden={!showExpandedNav}
-        className={`fixed inset-x-0 top-0 z-[99] hidden text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] xl:block ${
+        className={`fixed inset-x-0 top-0 z-[99] hidden text-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] md:block ${
           showExpandedNav
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
@@ -242,7 +242,7 @@ export function Navbar() {
               <Logo className="h-11 w-auto text-[#FDFBF7]" />
             </Link>
 
-            <nav aria-label="Primary" className="flex items-center justify-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
+            <nav aria-label="Primary" className="hidden xl:flex items-center justify-center gap-5 xl:gap-8 text-[11.5px] xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-white">
               {desktopNavItems.map((item) => (
                 <Link
                   key={item.href}
@@ -262,7 +262,7 @@ export function Navbar() {
         </div>
       </header>
 
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] hidden xl:block">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] hidden md:block">
         <div className="site-shell flex justify-end pt-8">
           <div className="pointer-events-auto flex items-center gap-2">
             <Link
@@ -294,7 +294,7 @@ export function Navbar() {
       </header>
 
       <header
-        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between bg-white px-4 pb-4 pt-4 dark:bg-[#161f1f] xl:hidden"
+        className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between bg-white px-4 pb-4 pt-4 dark:bg-[#161f1f] md:hidden"
         style={{
           paddingTop: "max(env(safe-area-inset-top), 1rem)",
           paddingLeft: "max(env(safe-area-inset-left), 1rem)",
@@ -340,7 +340,7 @@ export function Navbar() {
 
       <div
         aria-hidden={!showMobileContactFab}
-        className={`fixed left-1/2 z-[101] -translate-x-1/2 transition-all duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] xl:hidden ${
+        className={`fixed left-1/2 z-[101] -translate-x-1/2 transition-all duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] md:hidden ${
           showMobileContactFab
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"

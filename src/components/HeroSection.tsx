@@ -1,8 +1,35 @@
 "use client";
 
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import BlurTextAnimation from "@/components/ui/blur-text-animation";
+
+const heroImageOptions = {
+  alt: "Coastal home exterior with light stucco, charcoal windows, stone detailing and landscaped gardens",
+  quality: 90,
+  sizes: "100vw",
+  loading: "eager" as const,
+  fetchPriority: "high" as const,
+};
+
+const { props: mobileHero } = getImageProps({
+  ...heroImageOptions,
+  src: "/images/coastal-home-exterior-hero-mobile.webp",
+  width: 941,
+  height: 1672,
+});
+const { props: tabletHero } = getImageProps({
+  ...heroImageOptions,
+  src: "/images/coastal-home-exterior-hero-tablet.webp",
+  width: 1448,
+  height: 1086,
+});
+const { props: desktopHero } = getImageProps({
+  ...heroImageOptions,
+  src: "/images/coastal-home-exterior-hero.webp",
+  width: 1672,
+  height: 941,
+});
 
 export function HeroSection() {
   const imageWrapRef = useRef<HTMLDivElement>(null);
@@ -78,16 +105,15 @@ export function HeroSection() {
         ref={imageWrapRef}
         className="absolute inset-x-0 top-[-5%] h-[110%] will-change-transform"
       >
-        <Image
-          src="/images/victoria-garden-studio-hero-optimized.webp"
-          alt="CVR Construction backyard garden studio in Victoria BC"
-          fill
-          priority
-          fetchPriority="high"
-          quality={100}
-          sizes="100vw"
-          className="object-cover object-[center_70%]"
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={mobileHero.srcSet} sizes={mobileHero.sizes} />
+          <source media="(min-width: 768px) and (max-width: 1279px)" srcSet={tabletHero.srcSet} sizes={tabletHero.sizes} />
+          <img
+            {...desktopHero}
+            alt={heroImageOptions.alt}
+            className="absolute inset-0 h-full w-full object-cover object-center xl:object-[center_55%]"
+          />
+        </picture>
       </div>
 
       <div className="absolute inset-0 bg-[#161F1F] opacity-30" />

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="270" height="76" viewBox="0 0 270 76">
+  <rect x=".5" y=".5" width="269" height="75" fill="none" stroke="#fff" stroke-opacity=".4"/>
+  <rect x="14.5" y="14.5" width="47" height="47" fill="none" stroke="#fff" stroke-opacity=".4"/>
+  <g fill="#fff" font-family="Arial,Helvetica,sans-serif">
+    <text x="38" y="34" text-anchor="middle" font-size="12.48" font-weight="900" letter-spacing="-.62">BBB</text>
+    <path d="M24 39h28" fill="none" stroke="#fff" stroke-opacity=".4"/>
+    <text x="38" y="52" text-anchor="middle" font-size="8" font-weight="900" letter-spacing="1.12">A</text>
+    <text x="74" y="27" font-size="9.28" font-weight="600" letter-spacing="1.67" opacity=".7">ACCREDITED</text>
+    <text x="74" y="44" font-size="12.48" font-weight="900" letter-spacing="1.5">BUSINESS</text>
+    <text x="74" y="58" font-size="8.8" font-weight="600" letter-spacing="1.05" opacity=".6">BETTER BUSINESS BUREAU</text>
+  </g>
+</svg>
